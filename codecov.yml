@@ -5,12 +5,12 @@ codecov:
 coverage:
   status:
     project:
-      default:
+      default: off
+      unittest:
+        flags: unittest
         target: 85%
-
-ignore:
-  - "aliyun-net-sdk-core.Tests/" # ignore aliyun-net-sdk-core.Tests
-
+      featuretest:
+        flags: featuretest
 flags:
   unittest:
     # only test unittests
