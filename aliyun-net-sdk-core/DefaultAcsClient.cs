@@ -31,6 +31,7 @@ using Aliyun.Acs.Core.Reader;
 using Aliyun.Acs.Core.Regions;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Serilog;
 
 namespace Aliyun.Acs.Core
 {
@@ -47,6 +48,9 @@ namespace Aliyun.Acs.Core
         public bool IgnoreCertificate { get; private set; }
 
         private static HttpWebProxy WebProxy = new HttpWebProxy();
+
+        private long executeTime;
+        private string startTime;
 
         public DefaultAcsClient()
         {
@@ -119,6 +123,8 @@ namespace Aliyun.Acs.Core
 
         private T ParseAcsResponse<T>(AcsRequest<T> request, HttpResponse httpResponse) where T : AcsResponse
         {
+            SerilogProvider.OutputLogInfo(startTime, "AlibabaCloud", "Info", request.Method.ToString(), request.Url, request.Version, httpResponse.Status.ToString(), executeTime.ToString());
+
             FormatType? format = httpResponse.ContentType;
 
             if (httpResponse.isSuccess())
@@ -235,6 +241,9 @@ namespace Aliyun.Acs.Core
         public virtual HttpResponse DoAction<T>(AcsRequest<T> request, bool autoRetry, int maxRetryNumber, string regionId,
             AlibabaCloudCredentials credentials, Signer signer, FormatType? format, List<Endpoint> endpoints) where T : AcsResponse
         {
+            startTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
             FormatType? requestFormatType = request.AcceptFormat;
             if (null != requestFormatType)
             {
@@ -284,7 +293,8 @@ namespace Aliyun.Acs.Core
                 {
                     continue;
                 }
-
+                watch.Stop();
+                executeTime = watch.ElapsedMilliseconds;
                 return response;
             }
 
@@ -494,6 +504,11 @@ namespace Aliyun.Acs.Core
                     httpRequest.WebProxy = new WebProxy(finalProxyUri, false, noProxy);
                 }
             }
+        }
+
+        public void SetLogger(ILogger logger)
+        {
+            SerilogProvider.SetLogger(logger);
         }
     }
 }
