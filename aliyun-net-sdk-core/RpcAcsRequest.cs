@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -29,9 +29,9 @@ namespace Aliyun.Acs.Core
 {
     public abstract class RpcAcsRequest<T> : AcsRequest<T>
     {
+        private FormatType acceptFormat;
         private string actionName;
         private string version;
-        private FormatType acceptFormat;
 
         public RpcAcsRequest(string product) : base(product)
         {
@@ -59,7 +59,8 @@ namespace Aliyun.Acs.Core
             Initialize();
         }
 
-        public RpcAcsRequest(string product, string version, string action, string locationProduct, string locationEndpointType) : base(product)
+        public RpcAcsRequest(string product, string version, string action, string locationProduct,
+            string locationEndpointType) : base(product)
         {
             Version = version;
             ActionName = action;
@@ -68,19 +69,9 @@ namespace Aliyun.Acs.Core
             Initialize();
         }
 
-        private void Initialize()
-        {
-            Method = MethodType.GET;
-            AcceptFormat = FormatType.JSON;
-            Composer = RpcSignatureComposer.GetComposer();
-        }
-
         public override string ActionName
         {
-            get
-            {
-                return actionName;
-            }
+            get { return actionName; }
             set
             {
                 actionName = value;
@@ -90,10 +81,7 @@ namespace Aliyun.Acs.Core
 
         public override string Version
         {
-            get
-            {
-                return version;
-            }
+            get { return version; }
             set
             {
                 version = value;
@@ -103,15 +91,19 @@ namespace Aliyun.Acs.Core
 
         public override FormatType AcceptFormat
         {
-            get
-            {
-                return acceptFormat;
-            }
+            get { return acceptFormat; }
             set
             {
                 acceptFormat = value;
                 DictionaryUtil.Add(QueryParameters, "Format", value.ToString());
             }
+        }
+
+        private void Initialize()
+        {
+            Method = MethodType.GET;
+            AcceptFormat = FormatType.JSON;
+            Composer = RpcSignatureComposer.GetComposer();
         }
 
         public override HttpRequest SignRequest(Signer signer, AlibabaCloudCredentials credentials,
@@ -125,14 +117,14 @@ namespace Aliyun.Acs.Core
                 var accessSecret = credentials.GetAccessKeySecret();
 
                 var sessionCredentials = credentials as BasicSessionCredentials;
-                var sessionToken = sessionCredentials?.GetSessionToken();
+                var sessionToken = sessionCredentials == null ? null : sessionCredentials.GetSessionToken();
                 if (sessionToken != null)
                 {
                     QueryParameters.Add("SecurityToken", sessionToken);
                 }
 
                 var credential = credentials as BearerTokenCredential;
-                var bearerToken = credential?.GetBearerToken();
+                var bearerToken = credential == null ? null : credential.GetBearerToken();
                 if (bearerToken != null)
                 {
                     QueryParameters.Add("BearerToken", bearerToken);
@@ -144,9 +136,9 @@ namespace Aliyun.Acs.Core
                 var paramsToSign = new Dictionary<string, string>(imutableMap);
                 if (BodyParameters != null && BodyParameters.Count > 0)
                 {
-                    var formParams = new Dictionary<string, string>(this.BodyParameters);
-                    string formStr = ConcatQueryString(formParams);
-                    byte[] formData = System.Text.Encoding.UTF8.GetBytes(formStr);
+                    var formParams = new Dictionary<string, string>(BodyParameters);
+                    var formStr = ConcatQueryString(formParams);
+                    var formData = System.Text.Encoding.UTF8.GetBytes(formStr);
                     SetContent(formData, "UTF-8", FormatType.FORM);
                     foreach (var formParam in formParams)
                     {
@@ -154,7 +146,7 @@ namespace Aliyun.Acs.Core
                     }
                 }
 
-                var strToSign = this.Composer.ComposeStringToSign(Method, null, signer, paramsToSign, null, null);
+                var strToSign = Composer.ComposeStringToSign(Method, null, signer, paramsToSign, null, null);
                 var signature = signer.SignString(strToSign, accessSecret + "&");
                 imutableMap.Add("Signature", signature);
 
@@ -167,14 +159,15 @@ namespace Aliyun.Acs.Core
 
         public override string ComposeUrl(string endpoint, Dictionary<string, string> queries)
         {
-            var mapQueries = (queries == null) ? QueryParameters : queries;
-            StringBuilder urlBuilder = new StringBuilder("");
+            var mapQueries = queries == null ? QueryParameters : queries;
+            var urlBuilder = new StringBuilder("");
             urlBuilder.Append(Protocol.ToString().ToLower());
             urlBuilder.Append("://").Append(endpoint);
             if (-1 == urlBuilder.ToString().IndexOf("?"))
             {
                 urlBuilder.Append("/?");
             }
+
             var query = ConcatQueryString(mapQueries);
             return urlBuilder.Append(query).ToString();
         }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,6 +17,7 @@
  * under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Net;
 
@@ -24,23 +25,11 @@ using Aliyun.Acs.Core.Utils;
 
 namespace Aliyun.Acs.Core.Http
 {
-
     public class HttpRequest
     {
-        public Dictionary<string, string> Headers { get; set; }
-        public string Url { get; set; }
-        public MethodType? Method { get; set; }
-        public FormatType? ContentType { get; set; }
-        public byte[] Content { get; set; }
-        public string Encoding { get; set; }
-        public int timeoutInMilliSeconds { get; set; } = 100000;
-        public int readTimeout { get; private set; }
-        public int connectTimeout { get; private set; }
-        public bool IgnoreCertificate { get; private set; }
-
-        public IWebProxy WebProxy { get; set; }
-
-        public HttpRequest() { }
+        public HttpRequest()
+        {
+        }
 
         public HttpRequest(string strUrl)
         {
@@ -57,6 +46,48 @@ namespace Aliyun.Acs.Core.Http
             }
         }
 
+        public Dictionary<string, string> Headers { get; set; }
+        public string Url { get; set; }
+        public MethodType? Method { get; set; }
+        public FormatType? ContentType { get; set; }
+        public byte[] Content { get; set; }
+        public string Encoding { get; set; }
+
+        [Obsolete("timeoutInMilliSeconds is deprecated as does not match Properties rule, please use TimeoutInMilliseconds instead.")]
+        public int timeoutInMilliSeconds
+        {
+            get { return TimeoutInMilliseconds; }
+            set { TimeoutInMilliseconds = value; }
+        }
+
+        private int timeout = 100000;
+
+        public int TimeoutInMilliseconds
+        {
+            get { return timeout; }
+            set { timeout = value; }
+        }
+
+        [Obsolete("readTimeout is deprecated as does not match Properties rule, please use ReadTimeout instead.")]
+        public int readTimeout
+        {
+            get { return ReadTimeout; }
+        }
+
+        public int ReadTimeout { get; private set; }
+
+        [Obsolete("connectTimeout is deprecated as does not match Properties rule, please use ConnectTimeout instead.")]
+        public int connectTimeout
+        {
+            get { return ConnectTimeout; }
+        }
+
+        public int ConnectTimeout { get; private set; }
+
+        public bool IgnoreCertificate { get; private set; }
+
+        public IWebProxy WebProxy { get; set; }
+
         public void SetContent(byte[] content, string encoding, FormatType? format)
         {
             if (null == content)
@@ -69,8 +100,9 @@ namespace Aliyun.Acs.Core.Http
                 Encoding = null;
                 return;
             }
-            string contentLen = content.Length.ToString();
-            string strMd5 = ParameterHelper.Md5SumAndBase64(content);
+
+            var contentLen = content.Length.ToString();
+            var strMd5 = ParameterHelper.Md5SumAndBase64(content);
             FormatType? type = FormatType.RAW;
             if (null != format)
             {
@@ -91,12 +123,12 @@ namespace Aliyun.Acs.Core.Http
 
         public void SetConnectTimeoutInMilliSeconds(int connectTimeout)
         {
-            this.connectTimeout = connectTimeout;
+            ConnectTimeout = connectTimeout;
         }
 
         public void SetReadTimeoutInMilliSeconds(int readTimeout)
         {
-            this.readTimeout = readTimeout;
+            ReadTimeout = readTimeout;
         }
 
         public void SetHttpsInsecure(bool ignoreCertificate = false)
