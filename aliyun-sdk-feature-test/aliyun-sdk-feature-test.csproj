@@ -32,7 +32,7 @@
     <PackageReference Include="aliyun-net-sdk-ram" Version="3.0.1" />
     <PackageReference Include="aliyun-net-sdk-rds" Version="2.3.2" />
     <PackageReference Include="aliyun-net-sdk-ros" Version="2.2.8" />
-    <PackageReference Include="aliyun-net-sdk-slb" Version="3.2.41" />
+    <PackageReference Include="aliyun-net-sdk-slb" Version="3.3.0" />
     <PackageReference Include="aliyun-net-sdk-vpc" Version="3.0.4" />
   </ItemGroup>
 
