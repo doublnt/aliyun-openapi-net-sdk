@@ -1,0 +1,32 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: aliyun-net-sdk-ccc
+    versions:
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.7
+    - 2.0.8
+    - 2.0.9
+  - dependency-name: aliyun-net-sdk-ecs
+    versions:
+    - 4.23.10
+    - 4.23.11
+    - 4.23.7
+    - 4.23.9
+  - dependency-name: Moq
+    versions:
+    - 4.16.0
+  - dependency-name: Codecov
+    versions:
+    - 1.12.4
+  - dependency-name: aliyun-net-sdk-cdn
+    versions:
+    - 3.6.1
