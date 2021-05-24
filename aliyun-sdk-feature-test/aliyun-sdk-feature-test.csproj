@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="aliyun-net-sdk-ccc" Version="1.0.9" />
+    <PackageReference Include="aliyun-net-sdk-ccc" Version="2.0.11" />
     <PackageReference Include="aliyun-net-sdk-cdn" Version="3.0.8" />
     <PackageReference Include="aliyun-net-sdk-ecs" Version="4.16.10" />
     <PackageReference Include="aliyun-net-sdk-ram" Version="3.0.1" />
