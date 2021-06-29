@@ -32,21 +32,27 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public UpdateTranscodeTemplateGroupRequest()
             : base("vod", "2017-03-21", "UpdateTranscodeTemplateGroup", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string transcodeTemplateList;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private string locked;
 
-		private string name;
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string locked;
-
 		private string transcodeTemplateGroupId;
+
+		private string name;
 
 		public string TranscodeTemplateList
 		{
@@ -74,6 +80,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
+		public string Locked
+		{
+			get
+			{
+				return locked;
+			}
+			set	
+			{
+				locked = value;
+				DictionaryUtil.Add(QueryParameters, "Locked", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -84,19 +103,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-			set	
-			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
 			}
 		}
 
@@ -113,19 +119,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string Locked
-		{
-			get
-			{
-				return locked;
-			}
-			set	
-			{
-				locked = value;
-				DictionaryUtil.Add(QueryParameters, "Locked", value);
-			}
-		}
-
 		public string TranscodeTemplateGroupId
 		{
 			get
@@ -136,6 +129,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				transcodeTemplateGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "TranscodeTemplateGroupId", value);
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
 			}
 		}
 

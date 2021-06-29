@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -134,6 +135,10 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private string reservationOrderType;
 
 			private string iSP;
+
+			private bool? deletionProtection;
+
+			private int? serviceManaged;
 
 			private List<DescribeCommonBandwidthPackages_PublicIpAddresse> publicIpAddresses;
 
@@ -365,6 +370,30 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public bool? DeletionProtection
+			{
+				get
+				{
+					return deletionProtection;
+				}
+				set	
+				{
+					deletionProtection = value;
+				}
+			}
+
+			public int? ServiceManaged
+			{
+				get
+				{
+					return serviceManaged;
+				}
+				set	
+				{
+					serviceManaged = value;
+				}
+			}
+
 			public List<DescribeCommonBandwidthPackages_PublicIpAddresse> PublicIpAddresses
 			{
 				get
@@ -383,6 +412,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				private string allocationId;
 
 				private string ipAddress;
+
+				private string bandwidthPackageIpRelationStatus;
 
 				public string AllocationId
 				{
@@ -405,6 +436,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 					set	
 					{
 						ipAddress = value;
+					}
+				}
+
+				public string BandwidthPackageIpRelationStatus
+				{
+					get
+					{
+						return bandwidthPackageIpRelationStatus;
+					}
+					set	
+					{
+						bandwidthPackageIpRelationStatus = value;
 					}
 				}
 			}

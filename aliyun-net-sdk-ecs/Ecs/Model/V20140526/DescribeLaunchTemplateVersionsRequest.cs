@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeLaunchTemplateVersionsRequest()
             : base("Ecs", "2014-05-26", "DescribeLaunchTemplateVersions", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string launchTemplateName;
@@ -56,7 +62,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<long?> launchTemplateVersions;
+		private List<long?> launchTemplateVersions = new List<long?>(){ };
 
 		private bool? detailFlag;
 

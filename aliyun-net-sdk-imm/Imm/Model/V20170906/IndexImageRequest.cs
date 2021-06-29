@@ -32,17 +32,33 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public IndexImageRequest()
             : base("imm", "2017-09-06", "IndexImage", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string remarksB;
 
 		private string project;
 
-		private string remarksA;
-
 		private string externalId;
 
+		private string notifyEndpoint;
+
+		private string sourceType;
+
+		private string notifyTopicName;
+
+		private string remarksB;
+
+		private string remarksA;
+
 		private string imageUri;
+
+		private string remarksArrayA;
+
+		private string remarksArrayB;
 
 		private string sourceUri;
 
@@ -54,21 +70,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 		private string setId;
 
-		private string sourceType;
-
-		public string RemarksB
-		{
-			get
-			{
-				return remarksB;
-			}
-			set	
-			{
-				remarksB = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksB", value);
-			}
-		}
-
 		public string Project
 		{
 			get
@@ -79,19 +80,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
-			}
-		}
-
-		public string RemarksA
-		{
-			get
-			{
-				return remarksA;
-			}
-			set	
-			{
-				remarksA = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksA", value);
 			}
 		}
 
@@ -108,6 +96,71 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
+		public string NotifyEndpoint
+		{
+			get
+			{
+				return notifyEndpoint;
+			}
+			set	
+			{
+				notifyEndpoint = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyEndpoint", value);
+			}
+		}
+
+		public string SourceType
+		{
+			get
+			{
+				return sourceType;
+			}
+			set	
+			{
+				sourceType = value;
+				DictionaryUtil.Add(QueryParameters, "SourceType", value);
+			}
+		}
+
+		public string NotifyTopicName
+		{
+			get
+			{
+				return notifyTopicName;
+			}
+			set	
+			{
+				notifyTopicName = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
+			}
+		}
+
+		public string RemarksB
+		{
+			get
+			{
+				return remarksB;
+			}
+			set	
+			{
+				remarksB = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksB", value);
+			}
+		}
+
+		public string RemarksA
+		{
+			get
+			{
+				return remarksA;
+			}
+			set	
+			{
+				remarksA = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksA", value);
+			}
+		}
+
 		public string ImageUri
 		{
 			get
@@ -118,6 +171,32 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				imageUri = value;
 				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
+			}
+		}
+
+		public string RemarksArrayA
+		{
+			get
+			{
+				return remarksArrayA;
+			}
+			set	
+			{
+				remarksArrayA = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayA", value);
+			}
+		}
+
+		public string RemarksArrayB
+		{
+			get
+			{
+				return remarksArrayB;
+			}
+			set	
+			{
+				remarksArrayB = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayB", value);
 			}
 		}
 
@@ -183,19 +262,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				setId = value;
 				DictionaryUtil.Add(QueryParameters, "SetId", value);
-			}
-		}
-
-		public string SourceType
-		{
-			get
-			{
-				return sourceType;
-			}
-			set	
-			{
-				sourceType = value;
-				DictionaryUtil.Add(QueryParameters, "SourceType", value);
 			}
 		}
 

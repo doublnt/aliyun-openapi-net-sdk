@@ -32,24 +32,17 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public DetectImageTagsRequest()
             : base("imm", "2017-09-06", "DetectImageTags", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string imageUri;
 
 		private string project;
 
-		public string ImageUri
-		{
-			get
-			{
-				return imageUri;
-			}
-			set	
-			{
-				imageUri = value;
-				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
-			}
-		}
+		private string imageUri;
 
 		public string Project
 		{
@@ -61,6 +54,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string ImageUri
+		{
+			get
+			{
+				return imageUri;
+			}
+			set	
+			{
+				imageUri = value;
+				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
 			}
 		}
 

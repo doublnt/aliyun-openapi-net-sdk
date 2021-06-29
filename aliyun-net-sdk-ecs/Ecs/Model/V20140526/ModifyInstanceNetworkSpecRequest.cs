@@ -33,23 +33,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyInstanceNetworkSpecRequest()
             : base("Ecs", "2014-05-26", "ModifyInstanceNetworkSpec", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private string iSP;
+
+		private int? internetMaxBandwidthOut;
+
+		private string startTime;
 
 		private bool? autoPay;
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
 		private string ownerAccount;
 
-		private int? internetMaxBandwidthOut;
-
 		private string endTime;
-
-		private string startTime;
 
 		private long? ownerId;
 
@@ -71,6 +79,58 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string ISP
+		{
+			get
+			{
+				return iSP;
+			}
+			set	
+			{
+				iSP = value;
+				DictionaryUtil.Add(QueryParameters, "ISP", value);
+			}
+		}
+
+		public int? InternetMaxBandwidthOut
+		{
+			get
+			{
+				return internetMaxBandwidthOut;
+			}
+			set	
+			{
+				internetMaxBandwidthOut = value;
+				DictionaryUtil.Add(QueryParameters, "InternetMaxBandwidthOut", value.ToString());
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 
@@ -100,19 +160,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -126,19 +173,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? InternetMaxBandwidthOut
-		{
-			get
-			{
-				return internetMaxBandwidthOut;
-			}
-			set	
-			{
-				internetMaxBandwidthOut = value;
-				DictionaryUtil.Add(QueryParameters, "InternetMaxBandwidthOut", value.ToString());
-			}
-		}
-
 		public string EndTime
 		{
 			get
@@ -149,19 +183,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				endTime = value;
 				DictionaryUtil.Add(QueryParameters, "EndTime", value);
-			}
-		}
-
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 

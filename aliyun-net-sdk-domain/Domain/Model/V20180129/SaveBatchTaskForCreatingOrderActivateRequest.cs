@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,19 +30,25 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveBatchTaskForCreatingOrderActivateRequest : RpcAcsRequest<SaveBatchTaskForCreatingOrderActivateResponse>
     {
         public SaveBatchTaskForCreatingOrderActivateRequest()
-            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderActivate")
+            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderActivate", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<OrderActivateParam> orderActivateParams;
-
-		private string promotionNo;
-
-		private string userClientIp;
+		private List<OrderActivateParam> orderActivateParams = new List<OrderActivateParam>(){ };
 
 		private string couponNo;
 
 		private bool? useCoupon;
+
+		private string promotionNo;
+
+		private string userClientIp;
 
 		private string lang;
 
@@ -91,32 +96,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string PromotionNo
-		{
-			get
-			{
-				return promotionNo;
-			}
-			set	
-			{
-				promotionNo = value;
-				DictionaryUtil.Add(QueryParameters, "PromotionNo", value);
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
 		public string CouponNo
 		{
 			get
@@ -140,6 +119,32 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				useCoupon = value;
 				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
+			}
+		}
+
+		public string PromotionNo
+		{
+			get
+			{
+				return promotionNo;
+			}
+			set	
+			{
+				promotionNo = value;
+				DictionaryUtil.Add(QueryParameters, "PromotionNo", value);
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

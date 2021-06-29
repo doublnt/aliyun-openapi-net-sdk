@@ -32,15 +32,36 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryProductListRequest()
             : base("Iot", "2018-01-20", "QueryProductList", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string resourceGroupId;
 
 		private string iotInstanceId;
 
 		private int? pageSize;
 
+		private string aliyunCommodityCode;
+
 		private int? currentPage;
 
-		private string aliyunCommodityCode;
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
 
 		public string IotInstanceId
 		{
@@ -68,19 +89,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
-			}
-		}
-
 		public string AliyunCommodityCode
 		{
 			get
@@ -91,6 +99,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				aliyunCommodityCode = value;
 				DictionaryUtil.Add(QueryParameters, "AliyunCommodityCode", value);
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 

@@ -32,26 +32,14 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public GetImageJobRequest()
             : base("imm", "2017-09-06", "GetImageJob", "imm", "openAPI")
         {
+			Method = MethodType.POST;
         }
-
-		private string jobId;
 
 		private string project;
 
-		private string jobType;
+		private string jobId;
 
-		public string JobId
-		{
-			get
-			{
-				return jobId;
-			}
-			set	
-			{
-				jobId = value;
-				DictionaryUtil.Add(QueryParameters, "JobId", value);
-			}
-		}
+		private string jobType;
 
 		public string Project
 		{
@@ -63,6 +51,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string JobId
+		{
+			get
+			{
+				return jobId;
+			}
+			set	
+			{
+				jobId = value;
+				DictionaryUtil.Add(QueryParameters, "JobId", value);
 			}
 		}
 

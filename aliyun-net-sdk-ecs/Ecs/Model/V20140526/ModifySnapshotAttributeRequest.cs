@@ -33,21 +33,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifySnapshotAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifySnapshotAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string snapshotId;
 
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
-
 		private string description;
 
 		private string snapshotName;
 
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
 		private long? ownerId;
+
+		private bool? disableInstantAccess;
 
 		public long? ResourceOwnerId
 		{
@@ -72,32 +80,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				snapshotId = value;
 				DictionaryUtil.Add(QueryParameters, "SnapshotId", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -127,6 +109,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -137,6 +145,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public bool? DisableInstantAccess
+		{
+			get
+			{
+				return disableInstantAccess;
+			}
+			set	
+			{
+				disableInstantAccess = value;
+				DictionaryUtil.Add(QueryParameters, "DisableInstantAccess", value.ToString());
 			}
 		}
 

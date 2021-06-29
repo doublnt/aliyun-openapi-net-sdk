@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,13 +33,23 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyDedicatedHostAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyDedicatedHostAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string description;
 
+		private float? cpuOverCommitRatio;
+
 		private string actionOnMaintenance;
+
+		private string dedicatedHostClusterId;
 
 		private string dedicatedHostName;
 
@@ -82,6 +93,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public float? CpuOverCommitRatio
+		{
+			get
+			{
+				return cpuOverCommitRatio;
+			}
+			set	
+			{
+				cpuOverCommitRatio = value;
+				DictionaryUtil.Add(QueryParameters, "CpuOverCommitRatio", value.ToString());
+			}
+		}
+
 		public string ActionOnMaintenance
 		{
 			get
@@ -92,6 +116,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				actionOnMaintenance = value;
 				DictionaryUtil.Add(QueryParameters, "ActionOnMaintenance", value);
+			}
+		}
+
+		public string DedicatedHostClusterId
+		{
+			get
+			{
+				return dedicatedHostClusterId;
+			}
+			set	
+			{
+				dedicatedHostClusterId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostClusterId", value);
 			}
 		}
 

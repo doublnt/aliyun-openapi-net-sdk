@@ -17,7 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
-
+using Newtonsoft.Json;
 using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.ivision.Model.V20190308
@@ -25,29 +25,17 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 	public class DescribeStreamPredictsResponse : AcsResponse
 	{
 
-		private string requestId;
-
 		private long? totalNum;
 
-		private long? currentPage;
-
 		private long? pageSize;
+
+		private string requestId;
+
+		private long? currentPage;
 
 		private string nextPageToken;
 
 		private List<DescribeStreamPredicts_StreamPredict> streamPredicts;
-
-		public string RequestId
-		{
-			get
-			{
-				return requestId;
-			}
-			set	
-			{
-				requestId = value;
-			}
-		}
 
 		public long? TotalNum
 		{
@@ -61,18 +49,6 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 			}
 		}
 
-		public long? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-			}
-		}
-
 		public long? PageSize
 		{
 			get
@@ -82,6 +58,30 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 			set	
 			{
 				pageSize = value;
+			}
+		}
+
+		public string RequestId
+		{
+			get
+			{
+				return requestId;
+			}
+			set	
+			{
+				requestId = value;
+			}
+		}
+
+		public long? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
 			}
 		}
 
@@ -112,121 +112,35 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 		public class DescribeStreamPredicts_StreamPredict
 		{
 
-			private string predictId;
-
-			private string streamType;
-
-			private string streamId;
-
-			private string modelIds;
-
-			private string probabilityThresholds;
-
-			private string output;
-
-			private string notify;
-
-			private string userData;
-
 			private string creationTime;
 
 			private string status;
 
-			public string PredictId
-			{
-				get
-				{
-					return predictId;
-				}
-				set	
-				{
-					predictId = value;
-				}
-			}
+			private string notify;
 
-			public string StreamType
-			{
-				get
-				{
-					return streamType;
-				}
-				set	
-				{
-					streamType = value;
-				}
-			}
+			private string predictId;
 
-			public string StreamId
-			{
-				get
-				{
-					return streamId;
-				}
-				set	
-				{
-					streamId = value;
-				}
-			}
+			private string modelUserData;
 
-			public string ModelIds
-			{
-				get
-				{
-					return modelIds;
-				}
-				set	
-				{
-					modelIds = value;
-				}
-			}
+			private string output;
 
-			public string ProbabilityThresholds
-			{
-				get
-				{
-					return probabilityThresholds;
-				}
-				set	
-				{
-					probabilityThresholds = value;
-				}
-			}
+			private string predictTemplateId;
 
-			public string Output
-			{
-				get
-				{
-					return output;
-				}
-				set	
-				{
-					output = value;
-				}
-			}
+			private string streamId;
 
-			public string Notify
-			{
-				get
-				{
-					return notify;
-				}
-				set	
-				{
-					notify = value;
-				}
-			}
+			private string autoStart;
 
-			public string UserData
-			{
-				get
-				{
-					return userData;
-				}
-				set	
-				{
-					userData = value;
-				}
-			}
+			private string probabilityThresholds;
+
+			private string detectIntervals;
+
+			private string streamType;
+
+			private string userData;
+
+			private string modelIds;
+
+			private string faceGroupId;
 
 			public string CreationTime
 			{
@@ -249,6 +163,162 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 				set	
 				{
 					status = value;
+				}
+			}
+
+			public string Notify
+			{
+				get
+				{
+					return notify;
+				}
+				set	
+				{
+					notify = value;
+				}
+			}
+
+			public string PredictId
+			{
+				get
+				{
+					return predictId;
+				}
+				set	
+				{
+					predictId = value;
+				}
+			}
+
+			public string ModelUserData
+			{
+				get
+				{
+					return modelUserData;
+				}
+				set	
+				{
+					modelUserData = value;
+				}
+			}
+
+			public string Output
+			{
+				get
+				{
+					return output;
+				}
+				set	
+				{
+					output = value;
+				}
+			}
+
+			public string PredictTemplateId
+			{
+				get
+				{
+					return predictTemplateId;
+				}
+				set	
+				{
+					predictTemplateId = value;
+				}
+			}
+
+			public string StreamId
+			{
+				get
+				{
+					return streamId;
+				}
+				set	
+				{
+					streamId = value;
+				}
+			}
+
+			public string AutoStart
+			{
+				get
+				{
+					return autoStart;
+				}
+				set	
+				{
+					autoStart = value;
+				}
+			}
+
+			public string ProbabilityThresholds
+			{
+				get
+				{
+					return probabilityThresholds;
+				}
+				set	
+				{
+					probabilityThresholds = value;
+				}
+			}
+
+			public string DetectIntervals
+			{
+				get
+				{
+					return detectIntervals;
+				}
+				set	
+				{
+					detectIntervals = value;
+				}
+			}
+
+			public string StreamType
+			{
+				get
+				{
+					return streamType;
+				}
+				set	
+				{
+					streamType = value;
+				}
+			}
+
+			public string UserData
+			{
+				get
+				{
+					return userData;
+				}
+				set	
+				{
+					userData = value;
+				}
+			}
+
+			public string ModelIds
+			{
+				get
+				{
+					return modelIds;
+				}
+				set	
+				{
+					modelIds = value;
+				}
+			}
+
+			public string FaceGroupId
+			{
+				get
+				{
+					return faceGroupId;
+				}
+				set	
+				{
+					faceGroupId = value;
 				}
 			}
 		}

@@ -1,0 +1,24 @@
+2020-07-03 Version: 1.2.0
+- Add ListResourceExecutionStatus API.
+- ListExecutions API supports filtering by resource id.
+- TriggerExecution API supports TimerTrigger.
+
+2020-04-29 Version: 1.1.4
+- Add ListTemplateVersions API.
+- GenerateExecutionPolicy supports TemplateVersion.
+- CreateTemplate and UpdateTemplate support VersionName.
+
+
+2020-04-13 Version: 1.1.3
+- Fix ListTaskExecutions SDK error.
+
+2020-04-01 Version: 1.1.2
+- Parameters is string in StartExecution Response.
+
+2020-04-01 Version: 1.1.1
+- Counters and Parameters are changed to Map in ListExections and StartExecution.
+
+2020-02-21 Version 1.1.0
+- Support TAG API.
+2019-07-18 Version 1.0.0
+- OOS C Sharp SDK first release for managing of templates, executions and actions.

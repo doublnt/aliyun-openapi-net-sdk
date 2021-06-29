@@ -25,27 +25,15 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 	public class DescribeParameterTemplatesResponse : AcsResponse
 	{
 
-		private string requestId;
-
 		private string engine;
 
 		private string engineVersion;
 
 		private string parameterCount;
 
-		private List<DescribeParameterTemplates_TemplateRecord> parameters;
+		private string requestId;
 
-		public string RequestId
-		{
-			get
-			{
-				return requestId;
-			}
-			set	
-			{
-				requestId = value;
-			}
-		}
+		private List<DescribeParameterTemplates_TemplateRecord> parameters;
 
 		public string Engine
 		{
@@ -83,6 +71,18 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
+		public string RequestId
+		{
+			get
+			{
+				return requestId;
+			}
+			set	
+			{
+				requestId = value;
+			}
+		}
+
 		public List<DescribeParameterTemplates_TemplateRecord> Parameters
 		{
 			get
@@ -98,39 +98,27 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		public class DescribeParameterTemplates_TemplateRecord
 		{
 
-			private string parameterName;
-
-			private string parameterValue;
+			private string checkingCode;
 
 			private bool? forceModify;
 
 			private bool? forceRestart;
 
-			private string checkingCode;
-
 			private string parameterDescription;
 
-			public string ParameterName
-			{
-				get
-				{
-					return parameterName;
-				}
-				set	
-				{
-					parameterName = value;
-				}
-			}
+			private string parameterName;
 
-			public string ParameterValue
+			private string parameterValue;
+
+			public string CheckingCode
 			{
 				get
 				{
-					return parameterValue;
+					return checkingCode;
 				}
 				set	
 				{
-					parameterValue = value;
+					checkingCode = value;
 				}
 			}
 
@@ -158,18 +146,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				}
 			}
 
-			public string CheckingCode
-			{
-				get
-				{
-					return checkingCode;
-				}
-				set	
-				{
-					checkingCode = value;
-				}
-			}
-
 			public string ParameterDescription
 			{
 				get
@@ -179,6 +155,30 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					parameterDescription = value;
+				}
+			}
+
+			public string ParameterName
+			{
+				get
+				{
+					return parameterName;
+				}
+				set	
+				{
+					parameterName = value;
+				}
+			}
+
+			public string ParameterValue
+			{
+				get
+				{
+					return parameterValue;
+				}
+				set	
+				{
+					parameterValue = value;
 				}
 			}
 		}

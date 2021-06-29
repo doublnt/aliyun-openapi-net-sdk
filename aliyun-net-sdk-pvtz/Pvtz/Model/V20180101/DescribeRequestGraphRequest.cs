@@ -32,7 +32,16 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public DescribeRequestGraphRequest()
             : base("pvtz", "2018-01-01", "DescribeRequestGraph", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private long? startTimestamp;
+
+		private long? endTimestamp;
 
 		private string vpcId;
 
@@ -42,9 +51,31 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 
 		private string lang;
 
-		private long? startTimestamp;
+		public long? StartTimestamp
+		{
+			get
+			{
+				return startTimestamp;
+			}
+			set	
+			{
+				startTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "StartTimestamp", value.ToString());
+			}
+		}
 
-		private long? endTimestamp;
+		public long? EndTimestamp
+		{
+			get
+			{
+				return endTimestamp;
+			}
+			set	
+			{
+				endTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "EndTimestamp", value.ToString());
+			}
+		}
 
 		public string VpcId
 		{
@@ -95,32 +126,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public long? StartTimestamp
-		{
-			get
-			{
-				return startTimestamp;
-			}
-			set	
-			{
-				startTimestamp = value;
-				DictionaryUtil.Add(QueryParameters, "StartTimestamp", value.ToString());
-			}
-		}
-
-		public long? EndTimestamp
-		{
-			get
-			{
-				return endTimestamp;
-			}
-			set	
-			{
-				endTimestamp = value;
-				DictionaryUtil.Add(QueryParameters, "EndTimestamp", value.ToString());
 			}
 		}
 

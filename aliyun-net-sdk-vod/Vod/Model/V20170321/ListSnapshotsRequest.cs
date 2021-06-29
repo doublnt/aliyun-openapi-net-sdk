@@ -32,23 +32,29 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public ListSnapshotsRequest()
             : base("vod", "2017-03-21", "ListSnapshots", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private string snapshotType;
-
-		private string pageNo;
-
 		private string pageSize;
+
+		private string authTimeout;
+
+		private string resourceOwnerAccount;
 
 		private string videoId;
 
 		private long? ownerId;
 
-		private string authTimeout;
+		private string snapshotType;
+
+		private string pageNo;
 
 		public long? ResourceOwnerId
 		{
@@ -63,45 +69,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string SnapshotType
-		{
-			get
-			{
-				return snapshotType;
-			}
-			set	
-			{
-				snapshotType = value;
-				DictionaryUtil.Add(QueryParameters, "SnapshotType", value);
-			}
-		}
-
-		public string PageNo
-		{
-			get
-			{
-				return pageNo;
-			}
-			set	
-			{
-				pageNo = value;
-				DictionaryUtil.Add(QueryParameters, "PageNo", value);
-			}
-		}
-
 		public string PageSize
 		{
 			get
@@ -112,6 +79,32 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value);
+			}
+		}
+
+		public string AuthTimeout
+		{
+			get
+			{
+				return authTimeout;
+			}
+			set	
+			{
+				authTimeout = value;
+				DictionaryUtil.Add(QueryParameters, "AuthTimeout", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -141,16 +134,29 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string AuthTimeout
+		public string SnapshotType
 		{
 			get
 			{
-				return authTimeout;
+				return snapshotType;
 			}
 			set	
 			{
-				authTimeout = value;
-				DictionaryUtil.Add(QueryParameters, "AuthTimeout", value);
+				snapshotType = value;
+				DictionaryUtil.Add(QueryParameters, "SnapshotType", value);
+			}
+		}
+
+		public string PageNo
+		{
+			get
+			{
+				return pageNo;
+			}
+			set	
+			{
+				pageNo = value;
+				DictionaryUtil.Add(QueryParameters, "PageNo", value);
 			}
 		}
 

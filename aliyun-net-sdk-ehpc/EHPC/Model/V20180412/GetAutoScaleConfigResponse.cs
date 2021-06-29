@@ -57,6 +57,8 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private float? spotPriceLimit;
 
+		private string imageId;
+
 		private List<GetAutoScaleConfig_QueueInfo> queues;
 
 		public string RequestId
@@ -251,6 +253,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
+		public string ImageId
+		{
+			get
+			{
+				return imageId;
+			}
+			set	
+			{
+				imageId = value;
+			}
+		}
+
 		public List<GetAutoScaleConfig_QueueInfo> Queues
 		{
 			get
@@ -268,6 +282,8 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 			private string queueName;
 
+			private string resourceGroupId;
+
 			private string instanceType;
 
 			private string spotStrategy;
@@ -277,6 +293,12 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			private bool? enableAutoGrow;
 
 			private bool? enableAutoShrink;
+
+			private int? maxNodesInQueue;
+
+			private int? minNodesInQueue;
+
+			private string queueImageId;
 
 			private List<GetAutoScaleConfig_InstanceTypeInfo> instanceTypes;
 
@@ -289,6 +311,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					queueName = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
 				}
 			}
 
@@ -352,6 +386,42 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				}
 			}
 
+			public int? MaxNodesInQueue
+			{
+				get
+				{
+					return maxNodesInQueue;
+				}
+				set	
+				{
+					maxNodesInQueue = value;
+				}
+			}
+
+			public int? MinNodesInQueue
+			{
+				get
+				{
+					return minNodesInQueue;
+				}
+				set	
+				{
+					minNodesInQueue = value;
+				}
+			}
+
+			public string QueueImageId
+			{
+				get
+				{
+					return queueImageId;
+				}
+				set	
+				{
+					queueImageId = value;
+				}
+			}
+
 			public List<GetAutoScaleConfig_InstanceTypeInfo> InstanceTypes
 			{
 				get
@@ -376,6 +446,8 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				private string zoneId;
 
 				private string vSwitchId;
+
+				private string hostNamePrefix;
 
 				public string InstanceType
 				{
@@ -434,6 +506,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 					set	
 					{
 						vSwitchId = value;
+					}
+				}
+
+				public string HostNamePrefix
+				{
+					get
+					{
+						return hostNamePrefix;
+					}
+					set	
+					{
+						hostNamePrefix = value;
 					}
 				}
 			}

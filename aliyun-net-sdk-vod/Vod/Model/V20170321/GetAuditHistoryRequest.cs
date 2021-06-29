@@ -32,28 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public GetAuditHistoryRequest()
             : base("vod", "2017-03-21", "GetAuditHistory", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? pageNo;
 
 		private long? pageSize;
 
 		private string videoId;
 
-		private string sortBy;
+		private long? pageNo;
 
-		public long? PageNo
-		{
-			get
-			{
-				return pageNo;
-			}
-			set	
-			{
-				pageNo = value;
-				DictionaryUtil.Add(QueryParameters, "PageNo", value.ToString());
-			}
-		}
+		private string sortBy;
 
 		public long? PageSize
 		{
@@ -78,6 +71,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				videoId = value;
 				DictionaryUtil.Add(QueryParameters, "VideoId", value);
+			}
+		}
+
+		public long? PageNo
+		{
+			get
+			{
+				return pageNo;
+			}
+			set	
+			{
+				pageNo = value;
+				DictionaryUtil.Add(QueryParameters, "PageNo", value.ToString());
 			}
 		}
 

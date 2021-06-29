@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public GetLoraNodesTaskRequest()
             : base("Iot", "2018-01-20", "GetLoraNodesTask", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,27 +32,33 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateRouteEntryRequest()
             : base("Ecs", "2014-05-26", "CreateRouteEntry", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
+
+		private string nextHopId;
+
+		private string nextHopType;
+
+		private string routeTableId;
+
+		private string resourceOwnerAccount;
 
 		private string destinationCidrBlock;
 
 		private string ownerAccount;
 
-		private string nextHopId;
-
 		private long? ownerId;
 
-		private string nextHopType;
-
-		private List<NextHopList> nextHopLists;
-
-		private string routeTableId;
+		private List<NextHopList> nextHopLists = new List<NextHopList>(){ };
 
 		public long? ResourceOwnerId
 		{
@@ -68,19 +73,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -91,6 +83,58 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string NextHopId
+		{
+			get
+			{
+				return nextHopId;
+			}
+			set	
+			{
+				nextHopId = value;
+				DictionaryUtil.Add(QueryParameters, "NextHopId", value);
+			}
+		}
+
+		public string NextHopType
+		{
+			get
+			{
+				return nextHopType;
+			}
+			set	
+			{
+				nextHopType = value;
+				DictionaryUtil.Add(QueryParameters, "NextHopType", value);
+			}
+		}
+
+		public string RouteTableId
+		{
+			get
+			{
+				return routeTableId;
+			}
+			set	
+			{
+				routeTableId = value;
+				DictionaryUtil.Add(QueryParameters, "RouteTableId", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -120,19 +164,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string NextHopId
-		{
-			get
-			{
-				return nextHopId;
-			}
-			set	
-			{
-				nextHopId = value;
-				DictionaryUtil.Add(QueryParameters, "NextHopId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -143,19 +174,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string NextHopType
-		{
-			get
-			{
-				return nextHopType;
-			}
-			set	
-			{
-				nextHopType = value;
-				DictionaryUtil.Add(QueryParameters, "NextHopType", value);
 			}
 		}
 
@@ -174,19 +192,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					DictionaryUtil.Add(QueryParameters,"NextHopList." + (i + 1) + ".NextHopId", nextHopLists[i].NextHopId);
 					DictionaryUtil.Add(QueryParameters,"NextHopList." + (i + 1) + ".NextHopType", nextHopLists[i].NextHopType);
 				}
-			}
-		}
-
-		public string RouteTableId
-		{
-			get
-			{
-				return routeTableId;
-			}
-			set	
-			{
-				routeTableId = value;
-				DictionaryUtil.Add(QueryParameters, "RouteTableId", value);
 			}
 		}
 

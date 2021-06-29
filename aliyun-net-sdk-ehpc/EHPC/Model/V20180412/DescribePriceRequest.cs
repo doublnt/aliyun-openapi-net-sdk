@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,47 +31,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class DescribePriceRequest : RpcAcsRequest<DescribePriceResponse>
     {
         public DescribePriceRequest()
-            : base("EHPC", "2018-04-12", "DescribePrice", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "DescribePrice")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private List<Commodities> commoditiess = new List<Commodities>(){ };
 
 		private string priceUnit;
 
-		private string action;
-
-		private List<Commodities> commoditiess;
-
 		private string chargeType;
 
-		private string accessKeyId;
-
 		private string orderType;
-
-		public string PriceUnit
-		{
-			get
-			{
-				return priceUnit;
-			}
-			set	
-			{
-				priceUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
 
 		public List<Commodities> Commoditiess
 		{
@@ -88,10 +64,26 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".Period", commoditiess[i].Period);
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".NodeType", commoditiess[i].NodeType);
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".SystemDiskCategory", commoditiess[i].SystemDiskCategory);
+					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".InternetChargeType", commoditiess[i].InternetChargeType);
+					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".SystemDiskPerformanceLevel", commoditiess[i].SystemDiskPerformanceLevel);
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".SystemDiskSize", commoditiess[i].SystemDiskSize);
+					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".InternetMaxBandWidthOut", commoditiess[i].InternetMaxBandWidthOut);
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".InstanceType", commoditiess[i].InstanceType);
 					DictionaryUtil.Add(QueryParameters,"Commodities." + (i + 1) + ".NetworkType", commoditiess[i].NetworkType);
 				}
+			}
+		}
+
+		public string PriceUnit
+		{
+			get
+			{
+				return priceUnit;
+			}
+			set	
+			{
+				priceUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
 			}
 		}
 
@@ -105,19 +97,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				chargeType = value;
 				DictionaryUtil.Add(QueryParameters, "ChargeType", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -145,7 +124,13 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 			private string systemDiskCategory;
 
+			private string internetChargeType;
+
+			private string systemDiskPerformanceLevel;
+
 			private int? systemDiskSize;
+
+			private int? internetMaxBandWidthOut;
 
 			private string instanceType;
 
@@ -199,6 +184,30 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				}
 			}
 
+			public string InternetChargeType
+			{
+				get
+				{
+					return internetChargeType;
+				}
+				set	
+				{
+					internetChargeType = value;
+				}
+			}
+
+			public string SystemDiskPerformanceLevel
+			{
+				get
+				{
+					return systemDiskPerformanceLevel;
+				}
+				set	
+				{
+					systemDiskPerformanceLevel = value;
+				}
+			}
+
 			public int? SystemDiskSize
 			{
 				get
@@ -208,6 +217,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					systemDiskSize = value;
+				}
+			}
+
+			public int? InternetMaxBandWidthOut
+			{
+				get
+				{
+					return internetMaxBandWidthOut;
+				}
+				set	
+				{
+					internetMaxBandWidthOut = value;
 				}
 			}
 

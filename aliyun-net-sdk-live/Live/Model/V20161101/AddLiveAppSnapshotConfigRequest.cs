@@ -32,25 +32,33 @@ namespace Aliyun.Acs.live.Model.V20161101
         public AddLiveAppSnapshotConfigRequest()
             : base("live", "2016-11-01", "AddLiveAppSnapshotConfig", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private int? timeInterval;
 
-		private string ossBucket;
+		private string ossEndpoint;
 
 		private string appName;
 
 		private string securityToken;
 
-		private string domainName;
+		private string overwriteOssObject;
 
-		private string ossEndpoint;
+		private string ossBucket;
+
+		private string domainName;
 
 		private string sequenceOssObject;
 
-		private string overwriteOssObject;
-
 		private long? ownerId;
+
+		private string callback;
 
 		public int? TimeInterval
 		{
@@ -65,16 +73,16 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string OssBucket
+		public string OssEndpoint
 		{
 			get
 			{
-				return ossBucket;
+				return ossEndpoint;
 			}
 			set	
 			{
-				ossBucket = value;
-				DictionaryUtil.Add(QueryParameters, "OssBucket", value);
+				ossEndpoint = value;
+				DictionaryUtil.Add(QueryParameters, "OssEndpoint", value);
 			}
 		}
 
@@ -104,6 +112,32 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
+		public string OverwriteOssObject
+		{
+			get
+			{
+				return overwriteOssObject;
+			}
+			set	
+			{
+				overwriteOssObject = value;
+				DictionaryUtil.Add(QueryParameters, "OverwriteOssObject", value);
+			}
+		}
+
+		public string OssBucket
+		{
+			get
+			{
+				return ossBucket;
+			}
+			set	
+			{
+				ossBucket = value;
+				DictionaryUtil.Add(QueryParameters, "OssBucket", value);
+			}
+		}
+
 		public string DomainName
 		{
 			get
@@ -114,19 +148,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				domainName = value;
 				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string OssEndpoint
-		{
-			get
-			{
-				return ossEndpoint;
-			}
-			set	
-			{
-				ossEndpoint = value;
-				DictionaryUtil.Add(QueryParameters, "OssEndpoint", value);
 			}
 		}
 
@@ -143,19 +164,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string OverwriteOssObject
-		{
-			get
-			{
-				return overwriteOssObject;
-			}
-			set	
-			{
-				overwriteOssObject = value;
-				DictionaryUtil.Add(QueryParameters, "OverwriteOssObject", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -166,6 +174,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Callback
+		{
+			get
+			{
+				return callback;
+			}
+			set	
+			{
+				callback = value;
+				DictionaryUtil.Add(QueryParameters, "Callback", value);
 			}
 		}
 

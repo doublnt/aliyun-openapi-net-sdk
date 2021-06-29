@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,62 +31,24 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class AddContainerAppRequest : RpcAcsRequest<AddContainerAppResponse>
     {
         public AddContainerAppRequest()
-            : base("EHPC", "2018-04-12", "AddContainerApp", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "AddContainerApp")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string containerType;
-
-		private string name;
-
-		private string action;
 
 		private string description;
 
 		private string repository;
 
+		private string containerType;
+
+		private string name;
+
 		private string imageTag;
-
-		private string accessKeyId;
-
-		public string ContainerType
-		{
-			get
-			{
-				return containerType;
-			}
-			set	
-			{
-				containerType = value;
-				DictionaryUtil.Add(QueryParameters, "ContainerType", value);
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-			set	
-			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
 
 		public string Description
 		{
@@ -113,6 +76,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
+		public string ContainerType
+		{
+			get
+			{
+				return containerType;
+			}
+			set	
+			{
+				containerType = value;
+				DictionaryUtil.Add(QueryParameters, "ContainerType", value);
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
+			}
+		}
+
 		public string ImageTag
 		{
 			get
@@ -123,19 +112,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				imageTag = value;
 				DictionaryUtil.Add(QueryParameters, "ImageTag", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

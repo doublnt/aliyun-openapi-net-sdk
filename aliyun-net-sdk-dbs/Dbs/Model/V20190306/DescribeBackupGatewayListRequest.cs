@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public DescribeBackupGatewayListRequest()
             : base("Dbs", "2019-03-06", "DescribeBackupGatewayList", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string identifier;
 
 		private string clientToken;
 
-		private int? pageSize;
-
-		private string region;
-
 		private int? pageNum;
 
 		private string ownerId;
+
+		private int? pageSize;
+
+		private string region;
 
 		public string Identifier
 		{
@@ -72,32 +78,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Region
-		{
-			get
-			{
-				return region;
-			}
-			set	
-			{
-				region = value;
-				DictionaryUtil.Add(QueryParameters, "Region", value);
-			}
-		}
-
 		public int? PageNum
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string Region
+		{
+			get
+			{
+				return region;
+			}
+			set	
+			{
+				region = value;
+				DictionaryUtil.Add(QueryParameters, "Region", value);
 			}
 		}
 

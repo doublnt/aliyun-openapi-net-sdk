@@ -32,26 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public SetDeviceGroupTagsRequest()
             : base("Iot", "2018-01-20", "SetDeviceGroupTags", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string tagString;
 
 		private string iotInstanceId;
 
-		private string groupId;
+		private string tagString;
 
-		public string TagString
-		{
-			get
-			{
-				return tagString;
-			}
-			set	
-			{
-				tagString = value;
-				DictionaryUtil.Add(QueryParameters, "TagString", value);
-			}
-		}
+		private string groupId;
 
 		public string IotInstanceId
 		{
@@ -63,6 +56,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				iotInstanceId = value;
 				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
+			}
+		}
+
+		public string TagString
+		{
+			get
+			{
+				return tagString;
+			}
+			set	
+			{
+				tagString = value;
+				DictionaryUtil.Add(QueryParameters, "TagString", value);
 			}
 		}
 

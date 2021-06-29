@@ -108,6 +108,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string eventFinishTime;
 
+			private string reason;
+
+			private string impactLevel;
+
+			private string resourceType;
+
 			private DescribeInstanceHistoryEvents_EventType eventType;
 
 			private DescribeInstanceHistoryEvents_EventCycleStatus eventCycleStatus;
@@ -171,6 +177,42 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					eventFinishTime = value;
+				}
+			}
+
+			public string Reason
+			{
+				get
+				{
+					return reason;
+				}
+				set	
+				{
+					reason = value;
+				}
+			}
+
+			public string ImpactLevel
+			{
+				get
+				{
+					return impactLevel;
+				}
+				set	
+				{
+					impactLevel = value;
+				}
+			}
+
+			public string ResourceType
+			{
+				get
+				{
+					return resourceType;
+				}
+				set	
+				{
+					resourceType = value;
 				}
 			}
 
@@ -281,6 +323,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 				private string device;
 
+				private List<DescribeInstanceHistoryEvents_InactiveDisk> inactiveDisks;
+
 				public string DiskId
 				{
 					get
@@ -302,6 +346,92 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					set	
 					{
 						device = value;
+					}
+				}
+
+				public List<DescribeInstanceHistoryEvents_InactiveDisk> InactiveDisks
+				{
+					get
+					{
+						return inactiveDisks;
+					}
+					set	
+					{
+						inactiveDisks = value;
+					}
+				}
+
+				public class DescribeInstanceHistoryEvents_InactiveDisk
+				{
+
+					private string creationTime;
+
+					private string releaseTime;
+
+					private string deviceType;
+
+					private string deviceCategory;
+
+					private string deviceSize;
+
+					public string CreationTime
+					{
+						get
+						{
+							return creationTime;
+						}
+						set	
+						{
+							creationTime = value;
+						}
+					}
+
+					public string ReleaseTime
+					{
+						get
+						{
+							return releaseTime;
+						}
+						set	
+						{
+							releaseTime = value;
+						}
+					}
+
+					public string DeviceType
+					{
+						get
+						{
+							return deviceType;
+						}
+						set	
+						{
+							deviceType = value;
+						}
+					}
+
+					public string DeviceCategory
+					{
+						get
+						{
+							return deviceCategory;
+						}
+						set	
+						{
+							deviceCategory = value;
+						}
+					}
+
+					public string DeviceSize
+					{
+						get
+						{
+							return deviceSize;
+						}
+						set	
+						{
+							deviceSize = value;
+						}
 					}
 				}
 			}

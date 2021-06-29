@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeNetworkInterfacesRequest()
             : base("Ecs", "2014-05-26", "DescribeNetworkInterfaces", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -47,9 +52,11 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string resourceGroupId;
 
+		private string nextToken;
+
 		private int? pageSize;
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string networkInterfaceName;
 
@@ -61,13 +68,21 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string vSwitchId;
 
+		private List<string> privateIpAddresss = new List<string>(){ };
+
 		private string instanceId;
 
 		private string vpcId;
 
 		private string primaryIpAddress;
 
-		private List<string> networkInterfaceIds;
+		private int? maxResults;
+
+		private List<string> networkInterfaceIds = new List<string>(){ };
+
+		private List<string> ipv6Addresss = new List<string>(){ };
+
+		private string status;
 
 		public long? ResourceOwnerId
 		{
@@ -144,6 +159,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string NextToken
+		{
+			get
+			{
+				return nextToken;
+			}
+			set	
+			{
+				nextToken = value;
+				DictionaryUtil.Add(QueryParameters, "NextToken", value);
 			}
 		}
 
@@ -243,6 +271,23 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public List<string> PrivateIpAddresss
+		{
+			get
+			{
+				return privateIpAddresss;
+			}
+
+			set
+			{
+				privateIpAddresss = value;
+				for (int i = 0; i < privateIpAddresss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"PrivateIpAddress." + (i + 1) , privateIpAddresss[i]);
+				}
+			}
+		}
+
 		public string InstanceId
 		{
 			get
@@ -282,6 +327,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? MaxResults
+		{
+			get
+			{
+				return maxResults;
+			}
+			set	
+			{
+				maxResults = value;
+				DictionaryUtil.Add(QueryParameters, "MaxResults", value.ToString());
+			}
+		}
+
 		public List<string> NetworkInterfaceIds
 		{
 			get
@@ -296,6 +354,36 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				{
 					DictionaryUtil.Add(QueryParameters,"NetworkInterfaceId." + (i + 1) , networkInterfaceIds[i]);
 				}
+			}
+		}
+
+		public List<string> Ipv6Addresss
+		{
+			get
+			{
+				return ipv6Addresss;
+			}
+
+			set
+			{
+				ipv6Addresss = value;
+				for (int i = 0; i < ipv6Addresss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Ipv6Address." + (i + 1) , ipv6Addresss[i]);
+				}
+			}
+		}
+
+		public string Status
+		{
+			get
+			{
+				return status;
+			}
+			set	
+			{
+				status = value;
+				DictionaryUtil.Add(QueryParameters, "Status", value);
 			}
 		}
 

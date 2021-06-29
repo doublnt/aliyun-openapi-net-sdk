@@ -32,19 +32,64 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public CompareImageFacesRequest()
             : base("imm", "2017-09-06", "CompareImageFaces", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string project;
+
+		private string faceIdA;
+
+		private string faceIdB;
 
 		private string imageUriB;
 
 		private string imageUriA;
 
-		private string project;
-
 		private string setId;
 
-		private string faceIdA;
+		public string Project
+		{
+			get
+			{
+				return project;
+			}
+			set	
+			{
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
 
-		private string faceIdB;
+		public string FaceIdA
+		{
+			get
+			{
+				return faceIdA;
+			}
+			set	
+			{
+				faceIdA = value;
+				DictionaryUtil.Add(QueryParameters, "FaceIdA", value);
+			}
+		}
+
+		public string FaceIdB
+		{
+			get
+			{
+				return faceIdB;
+			}
+			set	
+			{
+				faceIdB = value;
+				DictionaryUtil.Add(QueryParameters, "FaceIdB", value);
+			}
+		}
 
 		public string ImageUriB
 		{
@@ -72,19 +117,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
-		{
-			get
-			{
-				return project;
-			}
-			set	
-			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
-			}
-		}
-
 		public string SetId
 		{
 			get
@@ -95,32 +127,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				setId = value;
 				DictionaryUtil.Add(QueryParameters, "SetId", value);
-			}
-		}
-
-		public string FaceIdA
-		{
-			get
-			{
-				return faceIdA;
-			}
-			set	
-			{
-				faceIdA = value;
-				DictionaryUtil.Add(QueryParameters, "FaceIdA", value);
-			}
-		}
-
-		public string FaceIdB
-		{
-			get
-			{
-				return faceIdB;
-			}
-			set	
-			{
-				faceIdB = value;
-				DictionaryUtil.Add(QueryParameters, "FaceIdB", value);
 			}
 		}
 

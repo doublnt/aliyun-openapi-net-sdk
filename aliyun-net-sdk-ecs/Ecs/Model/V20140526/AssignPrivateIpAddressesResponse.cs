@@ -27,6 +27,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string requestId;
 
+		private AssignPrivateIpAddresses_AssignedPrivateIpAddressesSet assignedPrivateIpAddressesSet;
+
 		public string RequestId
 		{
 			get
@@ -36,6 +38,50 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			set	
 			{
 				requestId = value;
+			}
+		}
+
+		public AssignPrivateIpAddresses_AssignedPrivateIpAddressesSet AssignedPrivateIpAddressesSet
+		{
+			get
+			{
+				return assignedPrivateIpAddressesSet;
+			}
+			set	
+			{
+				assignedPrivateIpAddressesSet = value;
+			}
+		}
+
+		public class AssignPrivateIpAddresses_AssignedPrivateIpAddressesSet
+		{
+
+			private string networkInterfaceId;
+
+			private List<string> privateIpSet;
+
+			public string NetworkInterfaceId
+			{
+				get
+				{
+					return networkInterfaceId;
+				}
+				set	
+				{
+					networkInterfaceId = value;
+				}
+			}
+
+			public List<string> PrivateIpSet
+			{
+				get
+				{
+					return privateIpSet;
+				}
+				set	
+				{
+					privateIpSet = value;
+				}
 			}
 		}
 	}

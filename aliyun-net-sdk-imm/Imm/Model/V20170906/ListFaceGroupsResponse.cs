@@ -70,29 +70,41 @@ namespace Aliyun.Acs.imm.Model.V20170906
 		public class ListFaceGroups_FaceGroupsItem
 		{
 
-			private string groupId;
-
 			private string groupName;
-
-			private int? faceCount;
-
-			private string createTime;
 
 			private string modifyTime;
 
-			private ListFaceGroups_GroupCoverFace groupCoverFace;
+			private string externalId;
 
-			public string GroupId
-			{
-				get
-				{
-					return groupId;
-				}
-				set	
-				{
-					groupId = value;
-				}
-			}
+			private string createTime;
+
+			private float? maxAge;
+
+			private string gender;
+
+			private float? averageAge;
+
+			private string remarksA;
+
+			private string remarksB;
+
+			private string groupId;
+
+			private string remarksArrayB;
+
+			private int? imageCount;
+
+			private float? minAge;
+
+			private string remarksC;
+
+			private string remarksD;
+
+			private string remarksArrayA;
+
+			private int? faceCount;
+
+			private ListFaceGroups_GroupCoverFace groupCoverFace;
 
 			public string GroupName
 			{
@@ -106,15 +118,27 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				}
 			}
 
-			public int? FaceCount
+			public string ModifyTime
 			{
 				get
 				{
-					return faceCount;
+					return modifyTime;
 				}
 				set	
 				{
-					faceCount = value;
+					modifyTime = value;
+				}
+			}
+
+			public string ExternalId
+			{
+				get
+				{
+					return externalId;
+				}
+				set	
+				{
+					externalId = value;
 				}
 			}
 
@@ -130,15 +154,159 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				}
 			}
 
-			public string ModifyTime
+			public float? MaxAge
 			{
 				get
 				{
-					return modifyTime;
+					return maxAge;
 				}
 				set	
 				{
-					modifyTime = value;
+					maxAge = value;
+				}
+			}
+
+			public string Gender
+			{
+				get
+				{
+					return gender;
+				}
+				set	
+				{
+					gender = value;
+				}
+			}
+
+			public float? AverageAge
+			{
+				get
+				{
+					return averageAge;
+				}
+				set	
+				{
+					averageAge = value;
+				}
+			}
+
+			public string RemarksA
+			{
+				get
+				{
+					return remarksA;
+				}
+				set	
+				{
+					remarksA = value;
+				}
+			}
+
+			public string RemarksB
+			{
+				get
+				{
+					return remarksB;
+				}
+				set	
+				{
+					remarksB = value;
+				}
+			}
+
+			public string GroupId
+			{
+				get
+				{
+					return groupId;
+				}
+				set	
+				{
+					groupId = value;
+				}
+			}
+
+			public string RemarksArrayB
+			{
+				get
+				{
+					return remarksArrayB;
+				}
+				set	
+				{
+					remarksArrayB = value;
+				}
+			}
+
+			public int? ImageCount
+			{
+				get
+				{
+					return imageCount;
+				}
+				set	
+				{
+					imageCount = value;
+				}
+			}
+
+			public float? MinAge
+			{
+				get
+				{
+					return minAge;
+				}
+				set	
+				{
+					minAge = value;
+				}
+			}
+
+			public string RemarksC
+			{
+				get
+				{
+					return remarksC;
+				}
+				set	
+				{
+					remarksC = value;
+				}
+			}
+
+			public string RemarksD
+			{
+				get
+				{
+					return remarksD;
+				}
+				set	
+				{
+					remarksD = value;
+				}
+			}
+
+			public string RemarksArrayA
+			{
+				get
+				{
+					return remarksArrayA;
+				}
+				set	
+				{
+					remarksArrayA = value;
+				}
+			}
+
+			public int? FaceCount
+			{
+				get
+				{
+					return faceCount;
+				}
+				set	
+				{
+					faceCount = value;
 				}
 			}
 
@@ -159,6 +327,12 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 				private string faceId;
 
+				private long? imageHeight;
+
+				private long? imageWidth;
+
+				private string externalId;
+
 				private string imageUri;
 
 				private ListFaceGroups_FaceBoundary faceBoundary;
@@ -172,6 +346,42 @@ namespace Aliyun.Acs.imm.Model.V20170906
 					set	
 					{
 						faceId = value;
+					}
+				}
+
+				public long? ImageHeight
+				{
+					get
+					{
+						return imageHeight;
+					}
+					set	
+					{
+						imageHeight = value;
+					}
+				}
+
+				public long? ImageWidth
+				{
+					get
+					{
+						return imageWidth;
+					}
+					set	
+					{
+						imageWidth = value;
+					}
+				}
+
+				public string ExternalId
+				{
+					get
+					{
+						return externalId;
+					}
+					set	
+					{
+						externalId = value;
 					}
 				}
 
@@ -206,9 +416,9 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 					private int? top;
 
-					private int? width;
-
 					private int? height;
+
+					private int? width;
 
 					public int? Left
 					{
@@ -234,18 +444,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 						}
 					}
 
-					public int? Width
-					{
-						get
-						{
-							return width;
-						}
-						set	
-						{
-							width = value;
-						}
-					}
-
 					public int? Height
 					{
 						get
@@ -255,6 +453,18 @@ namespace Aliyun.Acs.imm.Model.V20170906
 						set	
 						{
 							height = value;
+						}
+					}
+
+					public int? Width
+					{
+						get
+						{
+							return width;
+						}
+						set	
+						{
+							width = value;
 						}
 					}
 				}

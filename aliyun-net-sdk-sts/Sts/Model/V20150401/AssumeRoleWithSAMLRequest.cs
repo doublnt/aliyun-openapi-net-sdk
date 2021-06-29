@@ -32,18 +32,36 @@ namespace Aliyun.Acs.Sts.Model.V20150401
         public AssumeRoleWithSAMLRequest()
             : base("Sts", "2015-04-01", "AssumeRoleWithSAML", "sts", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
         }
+
+		private string sAMLAssertion;
 
 		private string roleArn;
 
 		private string sAMLProviderArn;
 
-		private string sAMLAssertion;
-
 		private long? durationSeconds;
 
 		private string policy;
+
+		public string SAMLAssertion
+		{
+			get
+			{
+				return sAMLAssertion;
+			}
+			set	
+			{
+				sAMLAssertion = value;
+				DictionaryUtil.Add(QueryParameters, "SAMLAssertion", value);
+			}
+		}
 
 		public string RoleArn
 		{
@@ -68,19 +86,6 @@ namespace Aliyun.Acs.Sts.Model.V20150401
 			{
 				sAMLProviderArn = value;
 				DictionaryUtil.Add(QueryParameters, "SAMLProviderArn", value);
-			}
-		}
-
-		public string SAMLAssertion
-		{
-			get
-			{
-				return sAMLAssertion;
-			}
-			set	
-			{
-				sAMLAssertion = value;
-				DictionaryUtil.Add(QueryParameters, "SAMLAssertion", value);
 			}
 		}
 

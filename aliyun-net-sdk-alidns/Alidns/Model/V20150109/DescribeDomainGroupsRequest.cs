@@ -30,9 +30,17 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class DescribeDomainGroupsRequest : RpcAcsRequest<DescribeDomainGroupsResponse>
     {
         public DescribeDomainGroupsRequest()
-            : base("Alidns", "2015-01-09", "DescribeDomainGroups", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "DescribeDomainGroups", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? pageNumber;
 
 		private long? pageSize;
 
@@ -40,7 +48,18 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 		private string keyWord;
 
-		private long? pageNumber;
+		public long? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
 
 		public long? PageSize
 		{
@@ -78,19 +97,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				keyWord = value;
 				DictionaryUtil.Add(QueryParameters, "KeyWord", value);
-			}
-		}
-
-		public long? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 

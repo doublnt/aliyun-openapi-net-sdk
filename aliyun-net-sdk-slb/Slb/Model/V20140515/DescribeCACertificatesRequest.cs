@@ -32,11 +32,17 @@ namespace Aliyun.Acs.Slb.Model.V20140515
         public DescribeCACertificatesRequest()
             : base("Slb", "2014-05-15", "DescribeCACertificates", "slb", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Slb.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Slb.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string resourceGroupId;
-
 		private long? resourceOwnerId;
+
+		private string resourceGroupId;
 
 		private string resourceOwnerAccount;
 
@@ -45,19 +51,6 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private long? ownerId;
 
 		private string cACertificateId;
-
-		public string ResourceGroupId
-		{
-			get
-			{
-				return resourceGroupId;
-			}
-			set	
-			{
-				resourceGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
-			}
-		}
 
 		public long? ResourceOwnerId
 		{
@@ -69,6 +62,19 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 

@@ -32,26 +32,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public BatchStartVodDomainRequest()
             : base("vod", "2017-03-21", "BatchStartVodDomain", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string securityToken;
 
 		private string domainNames;
 
 		private long? ownerId;
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
+		private string securityToken;
 
 		public string DomainNames
 		{
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 

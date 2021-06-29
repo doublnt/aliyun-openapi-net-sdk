@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,41 +31,43 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class ModifyDBInstanceSpecRequest : RpcAcsRequest<ModifyDBInstanceSpecResponse>
     {
         public ModifyDBInstanceSpecRequest()
-            : base("Dds", "2015-12-01", "ModifyDBInstanceSpec", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "ModifyDBInstanceSpec")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string dBInstanceStorage;
 
-		private bool? autoPay;
-
-		private string fromApp;
-
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
+		private string readonlyReplicas;
 
 		private string couponNo;
 
-		private long? ownerId;
-
 		private string replicationFactor;
-
-		private string accessKeyId;
-
-		private string dBInstanceClass;
 
 		private string securityToken;
 
 		private string effectiveTime;
 
-		private string action;
-
 		private string dBInstanceId;
 
 		private string businessInfo;
+
+		private bool? autoPay;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
+
+		private string dBInstanceClass;
 
 		private string orderType;
 
@@ -94,55 +97,16 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public bool? AutoPay
+		public string ReadonlyReplicas
 		{
 			get
 			{
-				return autoPay;
+				return readonlyReplicas;
 			}
 			set	
 			{
-				autoPay = value;
-				DictionaryUtil.Add(QueryParameters, "AutoPay", value.ToString());
-			}
-		}
-
-		public string FromApp
-		{
-			get
-			{
-				return fromApp;
-			}
-			set	
-			{
-				fromApp = value;
-				DictionaryUtil.Add(QueryParameters, "FromApp", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				readonlyReplicas = value;
+				DictionaryUtil.Add(QueryParameters, "ReadonlyReplicas", value);
 			}
 		}
 
@@ -159,19 +123,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string ReplicationFactor
 		{
 			get
@@ -182,32 +133,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				replicationFactor = value;
 				DictionaryUtil.Add(QueryParameters, "ReplicationFactor", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string DBInstanceClass
-		{
-			get
-			{
-				return dBInstanceClass;
-			}
-			set	
-			{
-				dBInstanceClass = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceClass", value);
 			}
 		}
 
@@ -237,19 +162,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string DBInstanceId
 		{
 			get
@@ -273,6 +185,71 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				businessInfo = value;
 				DictionaryUtil.Add(QueryParameters, "BusinessInfo", value);
+			}
+		}
+
+		public bool? AutoPay
+		{
+			get
+			{
+				return autoPay;
+			}
+			set	
+			{
+				autoPay = value;
+				DictionaryUtil.Add(QueryParameters, "AutoPay", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceClass
+		{
+			get
+			{
+				return dBInstanceClass;
+			}
+			set	
+			{
+				dBInstanceClass = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceClass", value);
 			}
 		}
 

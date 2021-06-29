@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteVSwitchResponseUnmarshaller
     {
-        public static DeleteVSwitchResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteVSwitchResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteVSwitchResponse deleteVSwitchResponse = new DeleteVSwitchResponse();
 
-			deleteVSwitchResponse.HttpResponse = context.HttpResponse;
-			deleteVSwitchResponse.RequestId = context.StringValue("DeleteVSwitch.RequestId");
+			deleteVSwitchResponse.HttpResponse = _ctx.HttpResponse;
+			deleteVSwitchResponse.RequestId = _ctx.StringValue("DeleteVSwitch.RequestId");
         
 			return deleteVSwitchResponse;
         }

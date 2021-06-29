@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,43 +31,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class InstallSoftwareRequest : RpcAcsRequest<InstallSoftwareResponse>
     {
         public InstallSoftwareRequest()
-            : base("EHPC", "2018-04-12", "InstallSoftware", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "InstallSoftware")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string application;
-
-		private string action;
 
 		private string clusterId;
 
-		private string accessKeyId;
-
-		public string Application
-		{
-			get
-			{
-				return application;
-			}
-			set	
-			{
-				application = value;
-				DictionaryUtil.Add(QueryParameters, "Application", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
+		private string application;
 
 		public string ClusterId
 		{
@@ -81,16 +57,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string Application
 		{
 			get
 			{
-				return accessKeyId;
+				return application;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				application = value;
+				DictionaryUtil.Add(QueryParameters, "Application", value);
 			}
 		}
 

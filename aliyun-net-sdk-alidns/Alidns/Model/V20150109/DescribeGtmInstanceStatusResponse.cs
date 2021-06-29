@@ -27,9 +27,17 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 		private string requestId;
 
-		private string accessStatus;
+		private int? addrNotAvailableNum;
 
-		private string alertStatus;
+		private int? addrPoolNotAvailableNum;
+
+		private int? switchToFailoverStrategyNum;
+
+		private int? strategyNotAvailableNum;
+
+		private string status;
+
+		private string statusReason;
 
 		public string RequestId
 		{
@@ -43,27 +51,75 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public string AccessStatus
+		public int? AddrNotAvailableNum
 		{
 			get
 			{
-				return accessStatus;
+				return addrNotAvailableNum;
 			}
 			set	
 			{
-				accessStatus = value;
+				addrNotAvailableNum = value;
 			}
 		}
 
-		public string AlertStatus
+		public int? AddrPoolNotAvailableNum
 		{
 			get
 			{
-				return alertStatus;
+				return addrPoolNotAvailableNum;
 			}
 			set	
 			{
-				alertStatus = value;
+				addrPoolNotAvailableNum = value;
+			}
+		}
+
+		public int? SwitchToFailoverStrategyNum
+		{
+			get
+			{
+				return switchToFailoverStrategyNum;
+			}
+			set	
+			{
+				switchToFailoverStrategyNum = value;
+			}
+		}
+
+		public int? StrategyNotAvailableNum
+		{
+			get
+			{
+				return strategyNotAvailableNum;
+			}
+			set	
+			{
+				strategyNotAvailableNum = value;
+			}
+		}
+
+		public string Status
+		{
+			get
+			{
+				return status;
+			}
+			set	
+			{
+				status = value;
+			}
+		}
+
+		public string StatusReason
+		{
+			get
+			{
+				return statusReason;
+			}
+			set	
+			{
+				statusReason = value;
 			}
 		}
 	}

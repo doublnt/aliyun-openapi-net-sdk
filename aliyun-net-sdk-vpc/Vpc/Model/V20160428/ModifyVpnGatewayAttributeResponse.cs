@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -49,6 +50,10 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 		private string status;
 
 		private string businessStatus;
+
+		private bool? enableBgp;
+
+		private bool? autoPropagate;
 
 		public string RequestId
 		{
@@ -203,6 +208,30 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			set	
 			{
 				businessStatus = value;
+			}
+		}
+
+		public bool? EnableBgp
+		{
+			get
+			{
+				return enableBgp;
+			}
+			set	
+			{
+				enableBgp = value;
+			}
+		}
+
+		public bool? AutoPropagate
+		{
+			get
+			{
+				return autoPropagate;
+			}
+			set	
+			{
+				autoPropagate = value;
 			}
 		}
 	}

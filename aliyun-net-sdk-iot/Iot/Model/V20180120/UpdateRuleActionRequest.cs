@@ -32,15 +32,21 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public UpdateRuleActionRequest()
             : base("Iot", "2018-01-20", "UpdateRuleAction", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string configuration;
 
+		private string type;
+
 		private string iotInstanceId;
 
 		private long? actionId;
-
-		private string type;
 
 		public string Configuration
 		{
@@ -52,6 +58,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				configuration = value;
 				DictionaryUtil.Add(QueryParameters, "Configuration", value);
+			}
+		}
+
+		public string Type
+		{
+			get
+			{
+				return type;
+			}
+			set	
+			{
+				type = value;
+				DictionaryUtil.Add(QueryParameters, "Type", value);
 			}
 		}
 
@@ -78,19 +97,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				actionId = value;
 				DictionaryUtil.Add(QueryParameters, "ActionId", value.ToString());
-			}
-		}
-
-		public string Type
-		{
-			get
-			{
-				return type;
-			}
-			set	
-			{
-				type = value;
-				DictionaryUtil.Add(QueryParameters, "Type", value);
 			}
 		}
 

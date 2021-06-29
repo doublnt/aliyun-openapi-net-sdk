@@ -32,9 +32,25 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SubmitSnapshotJobRequest()
             : base("vod", "2017-03-21", "SubmitSnapshotJob", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string userData;
+
+		private long? specifiedOffsetTime;
+
+		private string spriteSnapshotConfig;
+
+		private string snapshotTemplateId;
+
+		private string height;
 
 		private string resourceOwnerAccount;
 
@@ -44,19 +60,11 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private long? ownerId;
 
-		private string userData;
-
-		private long? specifiedOffsetTime;
-
 		private string width;
 
+		private string fileUrl;
+
 		private long? interval;
-
-		private string spriteSnapshotConfig;
-
-		private string snapshotTemplateId;
-
-		private string height;
 
 		public long? ResourceOwnerId
 		{
@@ -68,6 +76,71 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string UserData
+		{
+			get
+			{
+				return userData;
+			}
+			set	
+			{
+				userData = value;
+				DictionaryUtil.Add(QueryParameters, "UserData", value);
+			}
+		}
+
+		public long? SpecifiedOffsetTime
+		{
+			get
+			{
+				return specifiedOffsetTime;
+			}
+			set	
+			{
+				specifiedOffsetTime = value;
+				DictionaryUtil.Add(QueryParameters, "SpecifiedOffsetTime", value.ToString());
+			}
+		}
+
+		public string SpriteSnapshotConfig
+		{
+			get
+			{
+				return spriteSnapshotConfig;
+			}
+			set	
+			{
+				spriteSnapshotConfig = value;
+				DictionaryUtil.Add(QueryParameters, "SpriteSnapshotConfig", value);
+			}
+		}
+
+		public string SnapshotTemplateId
+		{
+			get
+			{
+				return snapshotTemplateId;
+			}
+			set	
+			{
+				snapshotTemplateId = value;
+				DictionaryUtil.Add(QueryParameters, "SnapshotTemplateId", value);
+			}
+		}
+
+		public string Height
+		{
+			get
+			{
+				return height;
+			}
+			set	
+			{
+				height = value;
+				DictionaryUtil.Add(QueryParameters, "Height", value);
 			}
 		}
 
@@ -123,32 +196,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string UserData
-		{
-			get
-			{
-				return userData;
-			}
-			set	
-			{
-				userData = value;
-				DictionaryUtil.Add(QueryParameters, "UserData", value);
-			}
-		}
-
-		public long? SpecifiedOffsetTime
-		{
-			get
-			{
-				return specifiedOffsetTime;
-			}
-			set	
-			{
-				specifiedOffsetTime = value;
-				DictionaryUtil.Add(QueryParameters, "SpecifiedOffsetTime", value.ToString());
-			}
-		}
-
 		public string Width
 		{
 			get
@@ -162,6 +209,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
+		public string FileUrl
+		{
+			get
+			{
+				return fileUrl;
+			}
+			set	
+			{
+				fileUrl = value;
+				DictionaryUtil.Add(QueryParameters, "FileUrl", value);
+			}
+		}
+
 		public long? Interval
 		{
 			get
@@ -172,45 +232,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				interval = value;
 				DictionaryUtil.Add(QueryParameters, "Interval", value.ToString());
-			}
-		}
-
-		public string SpriteSnapshotConfig
-		{
-			get
-			{
-				return spriteSnapshotConfig;
-			}
-			set	
-			{
-				spriteSnapshotConfig = value;
-				DictionaryUtil.Add(QueryParameters, "SpriteSnapshotConfig", value);
-			}
-		}
-
-		public string SnapshotTemplateId
-		{
-			get
-			{
-				return snapshotTemplateId;
-			}
-			set	
-			{
-				snapshotTemplateId = value;
-				DictionaryUtil.Add(QueryParameters, "SnapshotTemplateId", value);
-			}
-		}
-
-		public string Height
-		{
-			get
-			{
-				return height;
-			}
-			set	
-			{
-				height = value;
-				DictionaryUtil.Add(QueryParameters, "Height", value);
 			}
 		}
 

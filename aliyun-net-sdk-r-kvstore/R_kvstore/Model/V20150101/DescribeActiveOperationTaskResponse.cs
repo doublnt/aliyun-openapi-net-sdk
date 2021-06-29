@@ -124,6 +124,8 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 			private string taskType;
 
+			private string region;
+
 			public int? Id
 			{
 				get
@@ -277,6 +279,18 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					taskType = value;
+				}
+			}
+
+			public string Region
+			{
+				get
+				{
+					return region;
+				}
+				set	
+				{
+					region = value;
 				}
 			}
 		}

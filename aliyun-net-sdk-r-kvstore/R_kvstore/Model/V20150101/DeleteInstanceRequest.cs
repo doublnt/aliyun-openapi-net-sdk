@@ -32,11 +32,15 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DeleteInstanceRequest()
             : base("R-kvstore", "2015-01-01", "DeleteInstance", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string instanceId;
 
 		private string securityToken;
 
@@ -45,6 +49,10 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string globalInstanceId;
+
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -56,19 +64,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -121,6 +116,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string GlobalInstanceId
+		{
+			get
+			{
+				return globalInstanceId;
+			}
+			set	
+			{
+				globalInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "GlobalInstanceId", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

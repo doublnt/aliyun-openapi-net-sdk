@@ -114,6 +114,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string offeringType;
 
+			private string platform;
+
 			private int? instanceAmount;
 
 			private string status;
@@ -126,7 +128,11 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string resourceGroupId;
 
+			private string allocationStatus;
+
 			private List<DescribeReservedInstances_OperationLock> operationLocks;
+
+			private List<DescribeReservedInstances_Tag> tags;
 
 			public string ReservedInstanceId
 			{
@@ -224,6 +230,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public string Platform
+			{
+				get
+				{
+					return platform;
+				}
+				set	
+				{
+					platform = value;
+				}
+			}
+
 			public int? InstanceAmount
 			{
 				get
@@ -296,6 +314,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public string AllocationStatus
+			{
+				get
+				{
+					return allocationStatus;
+				}
+				set	
+				{
+					allocationStatus = value;
+				}
+			}
+
 			public List<DescribeReservedInstances_OperationLock> OperationLocks
 			{
 				get
@@ -305,6 +335,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					operationLocks = value;
+				}
+			}
+
+			public List<DescribeReservedInstances_Tag> Tags
+			{
+				get
+				{
+					return tags;
+				}
+				set	
+				{
+					tags = value;
 				}
 			}
 
@@ -322,6 +364,38 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					set	
 					{
 						lockReason = value;
+					}
+				}
+			}
+
+			public class DescribeReservedInstances_Tag
+			{
+
+				private string tagKey;
+
+				private string tagValue;
+
+				public string TagKey
+				{
+					get
+					{
+						return tagKey;
+					}
+					set	
+					{
+						tagKey = value;
+					}
+				}
+
+				public string TagValue
+				{
+					get
+					{
+						return tagValue;
+					}
+					set	
+					{
+						tagValue = value;
 					}
 				}
 			}

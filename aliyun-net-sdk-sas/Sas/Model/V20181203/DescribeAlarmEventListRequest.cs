@@ -32,27 +32,97 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public DescribeAlarmEventListRequest()
             : base("Sas", "2018-12-03", "DescribeAlarmEventList", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string targetType;
+
+		private string alarmEventType;
+
+		private string remark;
+
+		private string containerFieldName;
 
 		private string alarmEventName;
 
 		private string sourceIp;
 
+		private string containerFieldValue;
+
 		private string pageSize;
-
-		private string alarmEventType;
-
-		private string dealed;
 
 		private string from;
 
-		private string remark;
+		private string lang;
+
+		private string groupId;
+
+		private string dealed;
 
 		private int? currentPage;
 
-		private string lang;
+		private string clusterId;
+
+		private List<string> operateErrorCodeLists = new List<string>(){ };
 
 		private string levels;
+
+		public string TargetType
+		{
+			get
+			{
+				return targetType;
+			}
+			set	
+			{
+				targetType = value;
+				DictionaryUtil.Add(QueryParameters, "TargetType", value);
+			}
+		}
+
+		public string AlarmEventType
+		{
+			get
+			{
+				return alarmEventType;
+			}
+			set	
+			{
+				alarmEventType = value;
+				DictionaryUtil.Add(QueryParameters, "AlarmEventType", value);
+			}
+		}
+
+		public string Remark
+		{
+			get
+			{
+				return remark;
+			}
+			set	
+			{
+				remark = value;
+				DictionaryUtil.Add(QueryParameters, "Remark", value);
+			}
+		}
+
+		public string ContainerFieldName
+		{
+			get
+			{
+				return containerFieldName;
+			}
+			set	
+			{
+				containerFieldName = value;
+				DictionaryUtil.Add(QueryParameters, "ContainerFieldName", value);
+			}
+		}
 
 		public string AlarmEventName
 		{
@@ -80,6 +150,19 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
+		public string ContainerFieldValue
+		{
+			get
+			{
+				return containerFieldValue;
+			}
+			set	
+			{
+				containerFieldValue = value;
+				DictionaryUtil.Add(QueryParameters, "ContainerFieldValue", value);
+			}
+		}
+
 		public string PageSize
 		{
 			get
@@ -90,32 +173,6 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value);
-			}
-		}
-
-		public string AlarmEventType
-		{
-			get
-			{
-				return alarmEventType;
-			}
-			set	
-			{
-				alarmEventType = value;
-				DictionaryUtil.Add(QueryParameters, "AlarmEventType", value);
-			}
-		}
-
-		public string Dealed
-		{
-			get
-			{
-				return dealed;
-			}
-			set	
-			{
-				dealed = value;
-				DictionaryUtil.Add(QueryParameters, "Dealed", value);
 			}
 		}
 
@@ -132,16 +189,42 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
-		public string Remark
+		public string Lang
 		{
 			get
 			{
-				return remark;
+				return lang;
 			}
 			set	
 			{
-				remark = value;
-				DictionaryUtil.Add(QueryParameters, "Remark", value);
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public string Dealed
+		{
+			get
+			{
+				return dealed;
+			}
+			set	
+			{
+				dealed = value;
+				DictionaryUtil.Add(QueryParameters, "Dealed", value);
 			}
 		}
 
@@ -158,16 +241,33 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
-		public string Lang
+		public string ClusterId
 		{
 			get
 			{
-				return lang;
+				return clusterId;
 			}
 			set	
 			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
+
+		public List<string> OperateErrorCodeLists
+		{
+			get
+			{
+				return operateErrorCodeLists;
+			}
+
+			set
+			{
+				operateErrorCodeLists = value;
+				for (int i = 0; i < operateErrorCodeLists.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"OperateErrorCodeList." + (i + 1) , operateErrorCodeLists[i]);
+				}
 			}
 		}
 

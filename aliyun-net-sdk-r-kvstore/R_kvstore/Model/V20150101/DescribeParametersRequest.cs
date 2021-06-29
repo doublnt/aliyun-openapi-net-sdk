@@ -32,21 +32,27 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeParametersRequest()
             : base("R-kvstore", "2015-01-01", "DescribeParameters", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string securityToken;
 
+		private string dBInstanceId;
+
+		private string nodeId;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
-
-		private string nodeId;
 
 		public long? ResourceOwnerId
 		{
@@ -71,6 +77,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string NodeId
+		{
+			get
+			{
+				return nodeId;
+			}
+			set	
+			{
+				nodeId = value;
+				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 
@@ -100,19 +132,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -123,19 +142,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string NodeId
-		{
-			get
-			{
-				return nodeId;
-			}
-			set	
-			{
-				nodeId = value;
-				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 

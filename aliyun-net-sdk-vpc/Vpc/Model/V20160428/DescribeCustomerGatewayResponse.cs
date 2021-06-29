@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -35,6 +36,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 		private string description;
 
 		private long? createTime;
+
+		private int? asn;
 
 		public string RequestId
 		{
@@ -105,6 +108,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			set	
 			{
 				createTime = value;
+			}
+		}
+
+		public int? Asn
+		{
+			get
+			{
+				return asn;
+			}
+			set	
+			{
+				asn = value;
 			}
 		}
 	}

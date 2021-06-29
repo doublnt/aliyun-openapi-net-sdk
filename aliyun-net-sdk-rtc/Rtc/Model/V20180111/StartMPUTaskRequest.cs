@@ -32,29 +32,72 @@ namespace Aliyun.Acs.rtc.Model.V20180111
         public StartMPUTaskRequest()
             : base("rtc", "2018-01-11", "StartMPUTask", "rtc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<UserPanes> userPaness;
+		private int? payloadType;
+
+		private List<UserPanes> userPaness = new List<UserPanes>(){ };
 
 		private int? backgroundColor;
+
+		private int? reportVad;
+
+		private string sourceType;
+
+		private string taskId;
+
+		private List<ClockWidgets> clockWidgetss = new List<ClockWidgets>(){ };
+
+		private long? vadInterval;
+
+		private List<Watermarks> watermarkss = new List<Watermarks>(){ };
+
+		private long? ownerId;
+
+		private int? mediaEncode;
+
+		private int? rtpExtInfo;
 
 		private int? cropMode;
 
 		private string taskProfile;
 
-		private List<long?> layoutIdss;
-
-		private string taskId;
+		private List<long?> layoutIdss = new List<long?>(){ };
 
 		private string streamURL;
 
-		private long? ownerId;
+		private int? streamType;
+
+		private List<string> subSpecUserss = new List<string>(){ };
 
 		private string appId;
 
-		private int? mediaEncode;
+		private List<Backgrounds> backgroundss = new List<Backgrounds>(){ };
+
+		private long? timeStampRef;
+
+		private int? mixMode;
 
 		private string channelId;
+
+		public int? PayloadType
+		{
+			get
+			{
+				return payloadType;
+			}
+			set	
+			{
+				payloadType = value;
+				DictionaryUtil.Add(QueryParameters, "PayloadType", value.ToString());
+			}
+		}
 
 		public List<UserPanes> UserPaness
 		{
@@ -71,6 +114,14 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 					DictionaryUtil.Add(QueryParameters,"UserPanes." + (i + 1) + ".PaneId", userPaness[i].PaneId);
 					DictionaryUtil.Add(QueryParameters,"UserPanes." + (i + 1) + ".UserId", userPaness[i].UserId);
 					DictionaryUtil.Add(QueryParameters,"UserPanes." + (i + 1) + ".SourceType", userPaness[i].SourceType);
+					for (int j = 0; j < userPaness[i].Imagess.Count; j++)
+					{
+						DictionaryUtil.Add(QueryParameters,"UserPanes." + (i + 1) + ".Images." +(j + 1), userPaness[i].Imagess[j]);
+					}
+					for (int j = 0; j < userPaness[i].Textss.Count; j++)
+					{
+						DictionaryUtil.Add(QueryParameters,"UserPanes." + (i + 1) + ".Texts." +(j + 1), userPaness[i].Textss[j]);
+					}
 				}
 			}
 		}
@@ -85,6 +136,143 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			{
 				backgroundColor = value;
 				DictionaryUtil.Add(QueryParameters, "BackgroundColor", value.ToString());
+			}
+		}
+
+		public int? ReportVad
+		{
+			get
+			{
+				return reportVad;
+			}
+			set	
+			{
+				reportVad = value;
+				DictionaryUtil.Add(QueryParameters, "ReportVad", value.ToString());
+			}
+		}
+
+		public string SourceType
+		{
+			get
+			{
+				return sourceType;
+			}
+			set	
+			{
+				sourceType = value;
+				DictionaryUtil.Add(QueryParameters, "SourceType", value);
+			}
+		}
+
+		public string TaskId
+		{
+			get
+			{
+				return taskId;
+			}
+			set	
+			{
+				taskId = value;
+				DictionaryUtil.Add(QueryParameters, "TaskId", value);
+			}
+		}
+
+		public List<ClockWidgets> ClockWidgetss
+		{
+			get
+			{
+				return clockWidgetss;
+			}
+
+			set
+			{
+				clockWidgetss = value;
+				for (int i = 0; i < clockWidgetss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".X", clockWidgetss[i].X);
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".Y", clockWidgetss[i].Y);
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".FontType", clockWidgetss[i].FontType);
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".FontSize", clockWidgetss[i].FontSize);
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".FontColor", clockWidgetss[i].FontColor);
+					DictionaryUtil.Add(QueryParameters,"ClockWidgets." + (i + 1) + ".ZOrder", clockWidgetss[i].ZOrder);
+				}
+			}
+		}
+
+		public long? VadInterval
+		{
+			get
+			{
+				return vadInterval;
+			}
+			set	
+			{
+				vadInterval = value;
+				DictionaryUtil.Add(QueryParameters, "VadInterval", value.ToString());
+			}
+		}
+
+		public List<Watermarks> Watermarkss
+		{
+			get
+			{
+				return watermarkss;
+			}
+
+			set
+			{
+				watermarkss = value;
+				for (int i = 0; i < watermarkss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Url", watermarkss[i].Url);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Alpha", watermarkss[i].Alpha);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Display", watermarkss[i].Display);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".X", watermarkss[i].X);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Y", watermarkss[i].Y);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Width", watermarkss[i].Width);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".Height", watermarkss[i].Height);
+					DictionaryUtil.Add(QueryParameters,"Watermarks." + (i + 1) + ".ZOrder", watermarkss[i].ZOrder);
+				}
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? MediaEncode
+		{
+			get
+			{
+				return mediaEncode;
+			}
+			set	
+			{
+				mediaEncode = value;
+				DictionaryUtil.Add(QueryParameters, "MediaEncode", value.ToString());
+			}
+		}
+
+		public int? RtpExtInfo
+		{
+			get
+			{
+				return rtpExtInfo;
+			}
+			set	
+			{
+				rtpExtInfo = value;
+				DictionaryUtil.Add(QueryParameters, "RtpExtInfo", value.ToString());
 			}
 		}
 
@@ -131,19 +319,6 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			}
 		}
 
-		public string TaskId
-		{
-			get
-			{
-				return taskId;
-			}
-			set	
-			{
-				taskId = value;
-				DictionaryUtil.Add(QueryParameters, "TaskId", value);
-			}
-		}
-
 		public string StreamURL
 		{
 			get
@@ -157,16 +332,33 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			}
 		}
 
-		public long? OwnerId
+		public int? StreamType
 		{
 			get
 			{
-				return ownerId;
+				return streamType;
 			}
 			set	
 			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+				streamType = value;
+				DictionaryUtil.Add(QueryParameters, "StreamType", value.ToString());
+			}
+		}
+
+		public List<string> SubSpecUserss
+		{
+			get
+			{
+				return subSpecUserss;
+			}
+
+			set
+			{
+				subSpecUserss = value;
+				for (int i = 0; i < subSpecUserss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SubSpecUsers." + (i + 1) , subSpecUserss[i]);
+				}
 			}
 		}
 
@@ -183,16 +375,52 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			}
 		}
 
-		public int? MediaEncode
+		public List<Backgrounds> Backgroundss
 		{
 			get
 			{
-				return mediaEncode;
+				return backgroundss;
+			}
+
+			set
+			{
+				backgroundss = value;
+				for (int i = 0; i < backgroundss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".Url", backgroundss[i].Url);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".Display", backgroundss[i].Display);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".X", backgroundss[i].X);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".Y", backgroundss[i].Y);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".Width", backgroundss[i].Width);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".Height", backgroundss[i].Height);
+					DictionaryUtil.Add(QueryParameters,"Backgrounds." + (i + 1) + ".ZOrder", backgroundss[i].ZOrder);
+				}
+			}
+		}
+
+		public long? TimeStampRef
+		{
+			get
+			{
+				return timeStampRef;
 			}
 			set	
 			{
-				mediaEncode = value;
-				DictionaryUtil.Add(QueryParameters, "MediaEncode", value.ToString());
+				timeStampRef = value;
+				DictionaryUtil.Add(QueryParameters, "TimeStampRef", value.ToString());
+			}
+		}
+
+		public int? MixMode
+		{
+			get
+			{
+				return mixMode;
+			}
+			set	
+			{
+				mixMode = value;
+				DictionaryUtil.Add(QueryParameters, "MixMode", value.ToString());
 			}
 		}
 
@@ -217,6 +445,10 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			private string userId;
 
 			private string sourceType;
+
+			private List<Images> imagess = new List<Images>(){ };
+
+			private List<Texts> textss = new List<Texts>(){ };
 
 			public int? PaneId
 			{
@@ -251,6 +483,540 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 				set	
 				{
 					sourceType = value;
+				}
+			}
+
+			public List<Images> Imagess
+			{
+				get
+				{
+					return imagess;
+				}
+				set	
+				{
+					imagess = value;
+				}
+			}
+
+			public List<Texts> Textss
+			{
+				get
+				{
+					return textss;
+				}
+				set	
+				{
+					textss = value;
+				}
+			}
+
+			public class Images
+			{
+
+				private string url;
+
+				private int? display;
+
+				private float? x;
+
+				private float? y;
+
+				private float? width;
+
+				private float? height;
+
+				private int? zOrder;
+
+				public string Url
+				{
+					get
+					{
+						return url;
+					}
+					set	
+					{
+						url = value;
+					}
+				}
+
+				public int? Display
+				{
+					get
+					{
+						return display;
+					}
+					set	
+					{
+						display = value;
+					}
+				}
+
+				public float? X
+				{
+					get
+					{
+						return x;
+					}
+					set	
+					{
+						x = value;
+					}
+				}
+
+				public float? Y
+				{
+					get
+					{
+						return y;
+					}
+					set	
+					{
+						y = value;
+					}
+				}
+
+				public float? Width
+				{
+					get
+					{
+						return width;
+					}
+					set	
+					{
+						width = value;
+					}
+				}
+
+				public float? Height
+				{
+					get
+					{
+						return height;
+					}
+					set	
+					{
+						height = value;
+					}
+				}
+
+				public int? ZOrder
+				{
+					get
+					{
+						return zOrder;
+					}
+					set	
+					{
+						zOrder = value;
+					}
+				}
+			}
+
+			public class Texts
+			{
+
+				private string text;
+
+				private float? x;
+
+				private float? y;
+
+				private int? fontType;
+
+				private int? fontSize;
+
+				private int? fontColor;
+
+				private int? zOrder;
+
+				public string Text
+				{
+					get
+					{
+						return text;
+					}
+					set	
+					{
+						text = value;
+					}
+				}
+
+				public float? X
+				{
+					get
+					{
+						return x;
+					}
+					set	
+					{
+						x = value;
+					}
+				}
+
+				public float? Y
+				{
+					get
+					{
+						return y;
+					}
+					set	
+					{
+						y = value;
+					}
+				}
+
+				public int? FontType
+				{
+					get
+					{
+						return fontType;
+					}
+					set	
+					{
+						fontType = value;
+					}
+				}
+
+				public int? FontSize
+				{
+					get
+					{
+						return fontSize;
+					}
+					set	
+					{
+						fontSize = value;
+					}
+				}
+
+				public int? FontColor
+				{
+					get
+					{
+						return fontColor;
+					}
+					set	
+					{
+						fontColor = value;
+					}
+				}
+
+				public int? ZOrder
+				{
+					get
+					{
+						return zOrder;
+					}
+					set	
+					{
+						zOrder = value;
+					}
+				}
+			}
+		}
+
+		public class ClockWidgets
+		{
+
+			private float? x;
+
+			private float? y;
+
+			private int? fontType;
+
+			private int? fontSize;
+
+			private int? fontColor;
+
+			private int? zOrder;
+
+			public float? X
+			{
+				get
+				{
+					return x;
+				}
+				set	
+				{
+					x = value;
+				}
+			}
+
+			public float? Y
+			{
+				get
+				{
+					return y;
+				}
+				set	
+				{
+					y = value;
+				}
+			}
+
+			public int? FontType
+			{
+				get
+				{
+					return fontType;
+				}
+				set	
+				{
+					fontType = value;
+				}
+			}
+
+			public int? FontSize
+			{
+				get
+				{
+					return fontSize;
+				}
+				set	
+				{
+					fontSize = value;
+				}
+			}
+
+			public int? FontColor
+			{
+				get
+				{
+					return fontColor;
+				}
+				set	
+				{
+					fontColor = value;
+				}
+			}
+
+			public int? ZOrder
+			{
+				get
+				{
+					return zOrder;
+				}
+				set	
+				{
+					zOrder = value;
+				}
+			}
+		}
+
+		public class Watermarks
+		{
+
+			private string url;
+
+			private float? alpha;
+
+			private int? display;
+
+			private float? x;
+
+			private float? y;
+
+			private float? width;
+
+			private float? height;
+
+			private int? zOrder;
+
+			public string Url
+			{
+				get
+				{
+					return url;
+				}
+				set	
+				{
+					url = value;
+				}
+			}
+
+			public float? Alpha
+			{
+				get
+				{
+					return alpha;
+				}
+				set	
+				{
+					alpha = value;
+				}
+			}
+
+			public int? Display
+			{
+				get
+				{
+					return display;
+				}
+				set	
+				{
+					display = value;
+				}
+			}
+
+			public float? X
+			{
+				get
+				{
+					return x;
+				}
+				set	
+				{
+					x = value;
+				}
+			}
+
+			public float? Y
+			{
+				get
+				{
+					return y;
+				}
+				set	
+				{
+					y = value;
+				}
+			}
+
+			public float? Width
+			{
+				get
+				{
+					return width;
+				}
+				set	
+				{
+					width = value;
+				}
+			}
+
+			public float? Height
+			{
+				get
+				{
+					return height;
+				}
+				set	
+				{
+					height = value;
+				}
+			}
+
+			public int? ZOrder
+			{
+				get
+				{
+					return zOrder;
+				}
+				set	
+				{
+					zOrder = value;
+				}
+			}
+		}
+
+		public class Backgrounds
+		{
+
+			private string url;
+
+			private int? display;
+
+			private float? x;
+
+			private float? y;
+
+			private float? width;
+
+			private float? height;
+
+			private int? zOrder;
+
+			public string Url
+			{
+				get
+				{
+					return url;
+				}
+				set	
+				{
+					url = value;
+				}
+			}
+
+			public int? Display
+			{
+				get
+				{
+					return display;
+				}
+				set	
+				{
+					display = value;
+				}
+			}
+
+			public float? X
+			{
+				get
+				{
+					return x;
+				}
+				set	
+				{
+					x = value;
+				}
+			}
+
+			public float? Y
+			{
+				get
+				{
+					return y;
+				}
+				set	
+				{
+					y = value;
+				}
+			}
+
+			public float? Width
+			{
+				get
+				{
+					return width;
+				}
+				set	
+				{
+					width = value;
+				}
+			}
+
+			public float? Height
+			{
+				get
+				{
+					return height;
+				}
+				set	
+				{
+					height = value;
+				}
+			}
+
+			public int? ZOrder
+			{
+				get
+				{
+					return zOrder;
+				}
+				set	
+				{
+					zOrder = value;
 				}
 			}
 		}

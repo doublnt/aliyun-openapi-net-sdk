@@ -16,13 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Push;
 using Aliyun.Acs.Push.Transform;
 using Aliyun.Acs.Push.Transform.V20160801;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Push.Model.V20160801
 {
@@ -31,11 +33,15 @@ namespace Aliyun.Acs.Push.Model.V20160801
         public ListTagsRequest()
             : base("Push", "2016-08-01", "ListTags")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? appKey;
-
-		private string accessKeyId;
 
 		public long? AppKey
 		{
@@ -50,20 +56,7 @@ namespace Aliyun.Acs.Push.Model.V20160801
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override ListTagsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override ListTagsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ListTagsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

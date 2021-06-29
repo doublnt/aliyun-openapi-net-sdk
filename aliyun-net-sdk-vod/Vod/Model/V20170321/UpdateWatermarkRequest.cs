@@ -32,32 +32,25 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public UpdateWatermarkRequest()
             : base("vod", "2017-03-21", "UpdateWatermark", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string watermarkId;
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string name;
-
 		private long? ownerId;
 
 		private string watermarkConfig;
 
-		public string WatermarkId
-		{
-			get
-			{
-				return watermarkId;
-			}
-			set	
-			{
-				watermarkId = value;
-				DictionaryUtil.Add(QueryParameters, "WatermarkId", value);
-			}
-		}
+		private string watermarkId;
+
+		private string name;
 
 		public long? ResourceOwnerId
 		{
@@ -85,19 +78,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-			set	
-			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				watermarkConfig = value;
 				DictionaryUtil.Add(QueryParameters, "WatermarkConfig", value);
+			}
+		}
+
+		public string WatermarkId
+		{
+			get
+			{
+				return watermarkId;
+			}
+			set	
+			{
+				watermarkId = value;
+				DictionaryUtil.Add(QueryParameters, "WatermarkId", value);
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
 			}
 		}
 

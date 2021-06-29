@@ -32,26 +32,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public GetVideoRequest()
             : base("imm", "2017-09-06", "GetVideo", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string videoUri;
 
 		private string project;
 
-		private string setId;
+		private string videoUri;
 
-		public string VideoUri
-		{
-			get
-			{
-				return videoUri;
-			}
-			set	
-			{
-				videoUri = value;
-				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
-			}
-		}
+		private string setId;
 
 		public string Project
 		{
@@ -63,6 +56,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string VideoUri
+		{
+			get
+			{
+				return videoUri;
+			}
+			set	
+			{
+				videoUri = value;
+				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
 			}
 		}
 

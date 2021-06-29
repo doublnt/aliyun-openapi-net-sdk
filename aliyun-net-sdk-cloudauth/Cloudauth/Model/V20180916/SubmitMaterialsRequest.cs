@@ -32,17 +32,21 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public SubmitMaterialsRequest()
             : base("Cloudauth", "2018-09-16", "SubmitMaterials", "cloudauth", "openAPI")
         {
-			Protocol = ProtocolType.HTTPS;
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string verifyToken;
+
 		private string sourceIp;
 
-		private List<Material> materials;
-
-		private string verifyToken;
+		private List<Material> materials = new List<Material>(){ };
 
 		public long? ResourceOwnerId
 		{
@@ -54,6 +58,19 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string VerifyToken
+		{
+			get
+			{
+				return verifyToken;
+			}
+			set	
+			{
+				verifyToken = value;
+				DictionaryUtil.Add(BodyParameters, "VerifyToken", value);
 			}
 		}
 
@@ -85,19 +102,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 					DictionaryUtil.Add(BodyParameters,"Material." + (i + 1) + ".MaterialType", materials[i].MaterialType);
 					DictionaryUtil.Add(BodyParameters,"Material." + (i + 1) + ".Value", materials[i].Value);
 				}
-			}
-		}
-
-		public string VerifyToken
-		{
-			get
-			{
-				return verifyToken;
-			}
-			set	
-			{
-				verifyToken = value;
-				DictionaryUtil.Add(BodyParameters, "VerifyToken", value);
 			}
 		}
 

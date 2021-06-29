@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,27 +32,28 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeTrafficControlsRequest()
             : base("CloudAPI", "2016-07-14", "DescribeTrafficControls", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string trafficControlId;
 
 		private string stageName;
 
-		private string securityToken;
-
 		private string trafficControlName;
 
 		private string groupId;
 
-		private int? pageSize;
-
-		private string action;
-
-		private string apiId;
-
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private string securityToken;
+
+		private int? pageSize;
+
+		private string apiId;
 
 		public string TrafficControlId
 		{
@@ -76,19 +78,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				stageName = value;
 				DictionaryUtil.Add(QueryParameters, "StageName", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -118,6 +107,32 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -128,19 +143,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -157,33 +159,7 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override DescribeTrafficControlsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeTrafficControlsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeTrafficControlsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

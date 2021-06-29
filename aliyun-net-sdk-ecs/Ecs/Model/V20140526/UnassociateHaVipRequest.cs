@@ -33,36 +33,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public UnassociateHaVipRequest()
             : base("Ecs", "2014-05-26", "UnassociateHaVip", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string haVipId;
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string clientToken;
+
+		private string haVipId;
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
 		private string ownerAccount;
-
-		private string force;
 
 		private long? ownerId;
 
-		public string HaVipId
-		{
-			get
-			{
-				return haVipId;
-			}
-			set	
-			{
-				haVipId = value;
-				DictionaryUtil.Add(QueryParameters, "HaVipId", value);
-			}
-		}
+		private string instanceId;
+
+		private string force;
 
 		public long? ResourceOwnerId
 		{
@@ -74,32 +67,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -116,6 +83,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string HaVipId
+		{
+			get
+			{
+				return haVipId;
+			}
+			set	
+			{
+				haVipId = value;
+				DictionaryUtil.Add(QueryParameters, "HaVipId", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
 		public string OwnerAccount
 		{
 			get
@@ -129,19 +122,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string Force
-		{
-			get
-			{
-				return force;
-			}
-			set	
-			{
-				force = value;
-				DictionaryUtil.Add(QueryParameters, "Force", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -152,6 +132,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string Force
+		{
+			get
+			{
+				return force;
+			}
+			set	
+			{
+				force = value;
+				DictionaryUtil.Add(QueryParameters, "Force", value);
 			}
 		}
 

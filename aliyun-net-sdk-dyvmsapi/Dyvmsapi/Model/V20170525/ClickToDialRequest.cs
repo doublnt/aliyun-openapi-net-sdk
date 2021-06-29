@@ -30,21 +30,18 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class ClickToDialRequest : RpcAcsRequest<ClickToDialResponse>
     {
         public ClickToDialRequest()
-            : base("Dyvmsapi", "2017-05-25", "ClickToDial")
+            : base("Dyvmsapi", "2017-05-25", "ClickToDial", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private bool? recordFlag;
-
-		private long? ownerId;
-
 		private string callerShowNumber;
-
-		private string accessKeyId;
 
 		private int? sessionTimeout;
 
@@ -52,11 +49,15 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private string calledShowNumber;
 
-		private string action;
+		private bool? asrFlag;
+
+		private string resourceOwnerAccount;
+
+		private bool? recordFlag;
+
+		private long? ownerId;
 
 		private string outId;
-
-		private bool? asrFlag;
 
 		private string asrModelId;
 
@@ -75,45 +76,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public bool? RecordFlag
-		{
-			get
-			{
-				return recordFlag;
-			}
-			set	
-			{
-				recordFlag = value;
-				DictionaryUtil.Add(QueryParameters, "RecordFlag", value.ToString());
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string CallerShowNumber
 		{
 			get
@@ -124,19 +86,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				callerShowNumber = value;
 				DictionaryUtil.Add(QueryParameters, "CallerShowNumber", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -179,16 +128,55 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Action
+		public bool? AsrFlag
 		{
 			get
 			{
-				return action;
+				return asrFlag;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				asrFlag = value;
+				DictionaryUtil.Add(QueryParameters, "AsrFlag", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public bool? RecordFlag
+		{
+			get
+			{
+				return recordFlag;
+			}
+			set	
+			{
+				recordFlag = value;
+				DictionaryUtil.Add(QueryParameters, "RecordFlag", value.ToString());
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -202,19 +190,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				outId = value;
 				DictionaryUtil.Add(QueryParameters, "OutId", value);
-			}
-		}
-
-		public bool? AsrFlag
-		{
-			get
-			{
-				return asrFlag;
-			}
-			set	
-			{
-				asrFlag = value;
-				DictionaryUtil.Add(QueryParameters, "AsrFlag", value.ToString());
 			}
 		}
 

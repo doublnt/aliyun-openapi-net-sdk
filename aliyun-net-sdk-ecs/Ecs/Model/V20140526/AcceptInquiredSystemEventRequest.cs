@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public AcceptInquiredSystemEventRequest()
             : base("Ecs", "2014-05-26", "AcceptInquiredSystemEvent", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string eventId;
@@ -43,6 +49,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string choice;
 
 		public string EventId
 		{
@@ -106,6 +114,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Choice
+		{
+			get
+			{
+				return choice;
+			}
+			set	
+			{
+				choice = value;
+				DictionaryUtil.Add(QueryParameters, "Choice", value);
 			}
 		}
 

@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,12 +33,35 @@ namespace Aliyun.Acs.Kms.Model.V20160120
         public UntagResourceRequest()
             : base("Kms", "2016-01-20", "UntagResource", "kms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Kms.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Kms.Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
+			Method = MethodType.POST;
         }
+
+		private string certificateId;
 
 		private string tagKeys;
 
 		private string keyId;
+
+		private string secretName;
+
+		public string CertificateId
+		{
+			get
+			{
+				return certificateId;
+			}
+			set	
+			{
+				certificateId = value;
+				DictionaryUtil.Add(QueryParameters, "CertificateId", value);
+			}
+		}
 
 		public string TagKeys
 		{
@@ -62,6 +86,19 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 			{
 				keyId = value;
 				DictionaryUtil.Add(QueryParameters, "KeyId", value);
+			}
+		}
+
+		public string SecretName
+		{
+			get
+			{
+				return secretName;
+			}
+			set	
+			{
+				secretName = value;
+				DictionaryUtil.Add(QueryParameters, "SecretName", value);
 			}
 		}
 

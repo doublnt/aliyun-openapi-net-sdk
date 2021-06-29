@@ -32,17 +32,23 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public AddAITemplateRequest()
             : base("vod", "2017-03-21", "AddAITemplate", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string resourceOwnerAccount;
 
 		private string templateConfig;
 
 		private string templateType;
 
 		private string templateName;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
@@ -56,19 +62,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -108,6 +101,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				templateName = value;
 				DictionaryUtil.Add(QueryParameters, "TemplateName", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 

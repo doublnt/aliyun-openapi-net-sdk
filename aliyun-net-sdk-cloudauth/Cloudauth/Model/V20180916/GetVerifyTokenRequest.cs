@@ -32,74 +32,24 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public GetVerifyTokenRequest()
             : base("Cloudauth", "2018-09-16", "GetVerifyToken", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
+			Method = MethodType.POST;
         }
-
-		private string userData;
-
-		private long? resourceOwnerId;
-
-		private string biz;
-
-		private string sourceIp;
 
 		private string binding;
 
 		private string verifyConfigs;
 
+		private string userData;
+
+		private string biz;
+
 		private string ticketId;
-
-		public string UserData
-		{
-			get
-			{
-				return userData;
-			}
-			set	
-			{
-				userData = value;
-				DictionaryUtil.Add(QueryParameters, "UserData", value);
-			}
-		}
-
-		public long? ResourceOwnerId
-		{
-			get
-			{
-				return resourceOwnerId;
-			}
-			set	
-			{
-				resourceOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string Biz
-		{
-			get
-			{
-				return biz;
-			}
-			set	
-			{
-				biz = value;
-				DictionaryUtil.Add(QueryParameters, "Biz", value);
-			}
-		}
-
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
 
 		public string Binding
 		{
@@ -124,6 +74,32 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				verifyConfigs = value;
 				DictionaryUtil.Add(QueryParameters, "VerifyConfigs", value);
+			}
+		}
+
+		public string UserData
+		{
+			get
+			{
+				return userData;
+			}
+			set	
+			{
+				userData = value;
+				DictionaryUtil.Add(QueryParameters, "UserData", value);
+			}
+		}
+
+		public string Biz
+		{
+			get
+			{
+				return biz;
+			}
+			set	
+			{
+				biz = value;
+				DictionaryUtil.Add(QueryParameters, "Biz", value);
 			}
 		}
 

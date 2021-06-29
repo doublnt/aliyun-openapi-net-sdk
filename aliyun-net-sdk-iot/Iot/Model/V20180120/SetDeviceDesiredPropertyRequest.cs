@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public SetDeviceDesiredPropertyRequest()
             : base("Iot", "2018-01-20", "SetDeviceDesiredProperty", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotId;
 
-		private string versions;
-
 		private string iotInstanceId;
 
-		private string deviceName;
-
 		private string productKey;
+
+		private string versions;
+
+		private string deviceName;
 
 		private string items;
 
@@ -59,19 +65,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string Versions
-		{
-			get
-			{
-				return versions;
-			}
-			set	
-			{
-				versions = value;
-				DictionaryUtil.Add(QueryParameters, "Versions", value);
-			}
-		}
-
 		public string IotInstanceId
 		{
 			get
@@ -85,19 +78,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
-		{
-			get
-			{
-				return deviceName;
-			}
-			set	
-			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
 		public string ProductKey
 		{
 			get
@@ -108,6 +88,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productKey = value;
 				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public string Versions
+		{
+			get
+			{
+				return versions;
+			}
+			set	
+			{
+				versions = value;
+				DictionaryUtil.Add(QueryParameters, "Versions", value);
+			}
+		}
+
+		public string DeviceName
+		{
+			get
+			{
+				return deviceName;
+			}
+			set	
+			{
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

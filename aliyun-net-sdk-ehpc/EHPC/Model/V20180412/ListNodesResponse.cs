@@ -104,6 +104,8 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 			private string hostName;
 
+			private string ipAddress;
+
 			private string status;
 
 			private string version;
@@ -133,6 +135,12 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			private string zoneId;
 
 			private string vSwitchId;
+
+			private bool? htEnabled;
+
+			private string publicIpAddress;
+
+			private string instanceType;
 
 			private List<string> roles;
 
@@ -173,6 +181,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					hostName = value;
+				}
+			}
+
+			public string IpAddress
+			{
+				get
+				{
+					return ipAddress;
+				}
+				set	
+				{
+					ipAddress = value;
 				}
 			}
 
@@ -353,6 +373,42 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					vSwitchId = value;
+				}
+			}
+
+			public bool? HtEnabled
+			{
+				get
+				{
+					return htEnabled;
+				}
+				set	
+				{
+					htEnabled = value;
+				}
+			}
+
+			public string PublicIpAddress
+			{
+				get
+				{
+					return publicIpAddress;
+				}
+				set	
+				{
+					publicIpAddress = value;
+				}
+			}
+
+			public string InstanceType
+			{
+				get
+				{
+					return instanceType;
+				}
+				set	
+				{
+					instanceType = value;
 				}
 			}
 

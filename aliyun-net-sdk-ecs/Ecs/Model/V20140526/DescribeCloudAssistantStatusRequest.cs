@@ -32,17 +32,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeCloudAssistantStatusRequest()
             : base("Ecs", "2014-05-26", "DescribeCloudAssistantStatus", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private long? pageNumber;
+
+		private long? pageSize;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
+		private string oSType;
+
 		private long? ownerId;
 
-		private List<string> instanceIds;
+		private List<string> instanceIds = new List<string>(){ };
 
 		public long? ResourceOwnerId
 		{
@@ -54,6 +66,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public long? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public long? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 
@@ -80,6 +118,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string OSType
+		{
+			get
+			{
+				return oSType;
+			}
+			set	
+			{
+				oSType = value;
+				DictionaryUtil.Add(QueryParameters, "OSType", value);
 			}
 		}
 

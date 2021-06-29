@@ -32,34 +32,23 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public CreateNotificationConfigurationRequest()
             : base("Ess", "2014-08-28", "CreateNotificationConfiguration", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string resourceOwnerAccount;
 
 		private string scalingGroupId;
 
 		private string notificationArn;
 
-		private string action;
-
-		private List<string> notificationTypes;
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string accessKeyId;
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
+		private List<string> notificationTypes = new List<string>(){ };
 
 		public string ScalingGroupId
 		{
@@ -87,16 +76,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return action;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -114,32 +116,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 				{
 					DictionaryUtil.Add(QueryParameters,"NotificationType." + (i + 1) , notificationTypes[i]);
 				}
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

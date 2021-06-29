@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DescribeScalingGroupsRequest()
             : base("Ess", "2014-08-28", "DescribeScalingGroups", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -46,15 +53,9 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string scalingGroupId15;
 
-		private string action;
-
 		private long? ownerId;
 
 		private int? pageNumber;
-
-		private string accessKeyId;
-
-		private string regionId;
 
 		private int? pageSize;
 
@@ -210,19 +211,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -246,32 +234,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				pageNumber = value;
 				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
 			}
 		}
 

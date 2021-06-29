@@ -1,3 +1,42 @@
+### 2020-09-30 Version 1.5.10
+* Do not Send x-acs-action when it is null or empty
+
+### 2020-09-17 Version 1.5.9
+* Supported Header x-acs-version
+* Supported Header x-acs-action
+
+### 2020-07-28 Version 1.5.8
+* region, productNetwork and productSuffix are no need to check regex when they are empty or null.
+
+### 2020-07-24 Version 1.5.7
+* Fixed endpointList 
+* add validate for region, productNetwork, productSuffix
+
+### 2020-04-21 Version 1.5.6
+* Fixed Dict.Add
+
+### 2020-04-17 Version 1.5.5
+* Fixed set Content-Length
+* TimeoutConfig Thread safe
+
+### 2019-10-14 Version 1.5.4
+* Fixed signatureComposer
+
+### 2019-09-12 Version 1.5.3
+* Fixed endpoint resolve. 
+
+### 2019-07-08 Version 1.5.2
+* Deprecated Newtonsoft.Json package
+* Convert json file to cs file
+* Fixed URL builder 
+* Thread safe
+* Remove net45 solution
+* use DateTime.UtcNow instead of DateTime.Now
+
+### 2019-07-08 Version 1.5.1
+* Fix RequestId is empty in exception message
+* Fix content type will null error 
+
 ### 2019-07-03 Version 1.5.0
 * Retry logic refactor
 * Add a common log support Serilog, NLog and log4net

@@ -32,27 +32,34 @@ namespace Aliyun.Acs.fnf.Model.V20190315
         public StartExecutionRequest()
             : base("fnf", "2019-03-15", "StartExecution", "fnf", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 
-		private string input;
+		private string callbackFnFTaskToken;
 
 		private string executionName;
+
+		private string input;
 
 		private string requestId;
 
 		private string flowName;
 
-		public string Input
+		public string CallbackFnFTaskToken
 		{
 			get
 			{
-				return input;
+				return callbackFnFTaskToken;
 			}
 			set	
 			{
-				input = value;
-				DictionaryUtil.Add(BodyParameters, "Input", value);
+				callbackFnFTaskToken = value;
+				DictionaryUtil.Add(BodyParameters, "CallbackFnFTaskToken", value);
 			}
 		}
 
@@ -65,7 +72,20 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			set	
 			{
 				executionName = value;
-				DictionaryUtil.Add(QueryParameters, "ExecutionName", value);
+				DictionaryUtil.Add(BodyParameters, "ExecutionName", value);
+			}
+		}
+
+		public string Input
+		{
+			get
+			{
+				return input;
+			}
+			set	
+			{
+				input = value;
+				DictionaryUtil.Add(BodyParameters, "Input", value);
 			}
 		}
 
@@ -91,7 +111,7 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			set	
 			{
 				flowName = value;
-				DictionaryUtil.Add(QueryParameters, "FlowName", value);
+				DictionaryUtil.Add(BodyParameters, "FlowName", value);
 			}
 		}
 

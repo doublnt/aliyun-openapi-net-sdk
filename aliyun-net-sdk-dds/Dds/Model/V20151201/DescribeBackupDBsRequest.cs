@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,15 +31,27 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class DescribeBackupDBsRequest : RpcAcsRequest<DescribeBackupDBsResponse>
     {
         public DescribeBackupDBsRequest()
-            : base("Dds", "2015-12-01", "DescribeBackupDBs", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "DescribeBackupDBs")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string restoreTime;
+		private int? pageNumber;
+
+		private string resourceGroupId;
 
 		private string securityToken;
+
+		private int? pageSize;
+
+		private string restoreTime;
 
 		private string resourceOwnerAccount;
 
@@ -46,17 +59,9 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string backupId;
 
-		private int? pageSize;
-
 		private string sourceDBInstance;
 
-		private string action;
-
 		private long? ownerId;
-
-		private int? pageNumber;
-
-		private string accessKeyId;
 
 		public long? ResourceOwnerId
 		{
@@ -71,16 +76,29 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string RestoreTime
+		public int? PageNumber
 		{
 			get
 			{
-				return restoreTime;
+				return pageNumber;
 			}
 			set	
 			{
-				restoreTime = value;
-				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 
@@ -94,6 +112,32 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string RestoreTime
+		{
+			get
+			{
+				return restoreTime;
+			}
+			set	
+			{
+				restoreTime = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
 			}
 		}
 
@@ -136,19 +180,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
 		public string SourceDBInstance
 		{
 			get
@@ -162,19 +193,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -185,32 +203,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

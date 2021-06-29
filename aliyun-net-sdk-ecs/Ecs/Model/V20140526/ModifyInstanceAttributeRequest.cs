@@ -33,21 +33,21 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyInstanceAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyInstanceAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private bool? recyclable;
 
-		private string ownerAccount;
+		private int? networkInterfaceQueueNumber;
 
 		private string description;
-
-		private string creditSpecification;
-
-		private long? ownerId;
 
 		private bool? deletionProtection;
 
@@ -56,6 +56,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string password;
 
 		private string hostName;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private string creditSpecification;
+
+		private long? ownerId;
+
+		private List<string> securityGroupIdss = new List<string>(){ };
 
 		private string instanceId;
 
@@ -74,19 +84,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public bool? Recyclable
 		{
 			get
@@ -100,16 +97,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string OwnerAccount
+		public int? NetworkInterfaceQueueNumber
 		{
 			get
 			{
-				return ownerAccount;
+				return networkInterfaceQueueNumber;
 			}
 			set	
 			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				networkInterfaceQueueNumber = value;
+				DictionaryUtil.Add(QueryParameters, "NetworkInterfaceQueueNumber", value.ToString());
 			}
 		}
 
@@ -123,32 +120,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				description = value;
 				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
-		public string CreditSpecification
-		{
-			get
-			{
-				return creditSpecification;
-			}
-			set	
-			{
-				creditSpecification = value;
-				DictionaryUtil.Add(QueryParameters, "CreditSpecification", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -201,6 +172,75 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				hostName = value;
 				DictionaryUtil.Add(QueryParameters, "HostName", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string CreditSpecification
+		{
+			get
+			{
+				return creditSpecification;
+			}
+			set	
+			{
+				creditSpecification = value;
+				DictionaryUtil.Add(QueryParameters, "CreditSpecification", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public List<string> SecurityGroupIdss
+		{
+			get
+			{
+				return securityGroupIdss;
+			}
+
+			set
+			{
+				securityGroupIdss = value;
+				for (int i = 0; i < securityGroupIdss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SecurityGroupIds." + (i + 1) , securityGroupIdss[i]);
+				}
 			}
 		}
 

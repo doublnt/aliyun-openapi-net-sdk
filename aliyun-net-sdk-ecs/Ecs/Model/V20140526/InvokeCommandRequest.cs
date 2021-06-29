@@ -33,6 +33,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public InvokeCommandRequest()
             : base("Ecs", "2014-05-26", "InvokeCommand", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -40,6 +46,10 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string commandId;
 
 		private string frequency;
+
+		private string repeatMode;
+
+		private string windowsPasswordName;
 
 		private bool? timed;
 
@@ -49,9 +59,11 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> instanceIds;
+		private List<string> instanceIds = new List<string>(){ };
 
 		private Dictionary<object,object> parameters;
+
+		private string username;
 
 		public long? ResourceOwnerId
 		{
@@ -89,6 +101,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				frequency = value;
 				DictionaryUtil.Add(QueryParameters, "Frequency", value);
+			}
+		}
+
+		public string RepeatMode
+		{
+			get
+			{
+				return repeatMode;
+			}
+			set	
+			{
+				repeatMode = value;
+				DictionaryUtil.Add(QueryParameters, "RepeatMode", value);
+			}
+		}
+
+		public string WindowsPasswordName
+		{
+			get
+			{
+				return windowsPasswordName;
+			}
+			set	
+			{
+				windowsPasswordName = value;
+				DictionaryUtil.Add(QueryParameters, "WindowsPasswordName", value);
 			}
 		}
 
@@ -171,6 +209,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				parameters = value;
 				DictionaryUtil.Add(QueryParameters, "Parameters", JsonConvert.SerializeObject(value));
+			}
+		}
+
+		public string Username
+		{
+			get
+			{
+				return username;
+			}
+			set	
+			{
+				username = value;
+				DictionaryUtil.Add(QueryParameters, "Username", value);
 			}
 		}
 

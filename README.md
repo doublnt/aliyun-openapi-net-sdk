@@ -21,8 +21,12 @@ English | [简体中文](./README-CN.md)
 The Alibaba Cloud SDK for .NET allows you to access Alibaba Cloud services such as Elastic Compute Service (ECS), Server Load Balancer (SLB), CloudMonitor, etc. You can access Alibaba Cloud services without the need to handle API related tasks, such as signing and constructing your requests.
 
 
+## Troubleshoot
+[Troubleshoot](https://troubleshoot.api.aliyun.com/?source=github_sdk) Provide OpenAPI diagnosis service to help developers locate quickly and provide solutions for developers through `RequestID` or `error message`.
+
+
 ## Online Demo
-[OpenAPI Explorer](https://api.aliyun.com/#/?product=Ecs&api=DescribeAccessPoints&params={}&tab=DEMO&lang=CSHARP) provides the ability to call the cloud product OpenAPI online, generates SDK Example code dynamically and retrieves interface quickly, which can lessen the difficultly of using the Alibaba Cloud API significantly.
+[OpenAPI Workbench](https://next.api.aliyun.com) provides the ability to call the cloud product OpenAPI online, generates SDK Example code dynamically and retrieves interface quickly, which can lessen the difficultly of using the Alibaba Cloud API significantly.
 
 
 ## Requirements
@@ -147,7 +151,7 @@ class Program
 * [Timeout](docs/4-Timeout-EN.md)
 * [Product Nuget Package](docs/5-Packages-EN.md)
 * [Log](docs/6-Log-EN.md)
-* [Client](docs/7-Client-EN.md)
+* [Client & Credentials](docs/7-Client-EN.md)
 * [Endpoint](docs/8-Endpoint-EN.md)
 
 

@@ -32,23 +32,29 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyAuditLogConfigRequest()
             : base("R-kvstore", "2015-01-01", "ModifyAuditLogConfig", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
-
 		private string securityToken;
+
+		private int? retention;
 
 		private string resourceOwnerAccount;
 
-		private string auditCommand;
-
 		private string ownerAccount;
+
+		private bool? dbAudit;
 
 		private long? ownerId;
 
-		private string retention;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -60,19 +66,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -89,6 +82,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
+		public int? Retention
+		{
+			get
+			{
+				return retention;
+			}
+			set	
+			{
+				retention = value;
+				DictionaryUtil.Add(QueryParameters, "Retention", value.ToString());
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -99,19 +105,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string AuditCommand
-		{
-			get
-			{
-				return auditCommand;
-			}
-			set	
-			{
-				auditCommand = value;
-				DictionaryUtil.Add(QueryParameters, "AuditCommand", value);
 			}
 		}
 
@@ -128,6 +121,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
+		public bool? DbAudit
+		{
+			get
+			{
+				return dbAudit;
+			}
+			set	
+			{
+				dbAudit = value;
+				DictionaryUtil.Add(QueryParameters, "DbAudit", value.ToString());
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -141,16 +147,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string Retention
+		public string InstanceId
 		{
 			get
 			{
-				return retention;
+				return instanceId;
 			}
 			set	
 			{
-				retention = value;
-				DictionaryUtil.Add(QueryParameters, "Retention", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

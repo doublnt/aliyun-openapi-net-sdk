@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,17 +33,23 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public CreateUsageDetailDataExportTaskRequest()
             : base("Cdn", "2018-05-10", "CreateUsageDetailDataExportTask")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string domainNames;
 
 		private string taskName;
 
+		private string language;
+
 		private string startTime;
 
 		private string type;
-
-		private string action;
 
 		private string group;
 
@@ -76,6 +83,19 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
+		public string Language
+		{
+			get
+			{
+				return language;
+			}
+			set	
+			{
+				language = value;
+				DictionaryUtil.Add(QueryParameters, "Language", value);
+			}
+		}
+
 		public string StartTime
 		{
 			get
@@ -99,19 +119,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				type = value;
 				DictionaryUtil.Add(QueryParameters, "Type", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

@@ -32,13 +32,33 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public DescribeRegionsRequest()
             : base("pvtz", "2018-01-01", "DescribeRegions", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private long? authorizedUserId;
 
 		private string userClientIp;
 
 		private string acceptLanguage;
 
 		private string lang;
+
+		public long? AuthorizedUserId
+		{
+			get
+			{
+				return authorizedUserId;
+			}
+			set	
+			{
+				authorizedUserId = value;
+				DictionaryUtil.Add(QueryParameters, "AuthorizedUserId", value.ToString());
+			}
+		}
 
 		public string UserClientIp
 		{

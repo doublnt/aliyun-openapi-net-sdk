@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyReadonlyInstanceDelayReplicationTimeRequest()
             : base("Rds", "2014-08-15", "ModifyReadonlyInstanceDelayReplicationTime", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string readSQLReplicationTime;
-
 		private string resourceOwnerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
+
+		private string readSQLReplicationTime;
+
+		private string dBInstanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -54,19 +60,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ReadSQLReplicationTime
-		{
-			get
-			{
-				return readSQLReplicationTime;
-			}
-			set	
-			{
-				readSQLReplicationTime = value;
-				DictionaryUtil.Add(QueryParameters, "ReadSQLReplicationTime", value);
 			}
 		}
 
@@ -83,19 +76,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -106,6 +86,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ReadSQLReplicationTime
+		{
+			get
+			{
+				return readSQLReplicationTime;
+			}
+			set	
+			{
+				readSQLReplicationTime = value;
+				DictionaryUtil.Add(QueryParameters, "ReadSQLReplicationTime", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

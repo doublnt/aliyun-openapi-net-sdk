@@ -32,17 +32,23 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public DeleteStreamRequest()
             : base("vod", "2017-03-21", "DeleteStream", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string jobIds;
-
 		private string videoId;
 
 		private long? ownerId;
+
+		private string jobIds;
 
 		public long? ResourceOwnerId
 		{
@@ -70,19 +76,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string JobIds
-		{
-			get
-			{
-				return jobIds;
-			}
-			set	
-			{
-				jobIds = value;
-				DictionaryUtil.Add(QueryParameters, "JobIds", value);
-			}
-		}
-
 		public string VideoId
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string JobIds
+		{
+			get
+			{
+				return jobIds;
+			}
+			set	
+			{
+				jobIds = value;
+				DictionaryUtil.Add(QueryParameters, "JobIds", value);
 			}
 		}
 

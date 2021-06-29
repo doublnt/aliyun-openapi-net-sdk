@@ -32,9 +32,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public SwitchNetworkRequest()
             : base("R-kvstore", "2015-01-01", "SwitchNetwork", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string securityToken;
+
+		private string classicExpiredDays;
 
 		private string resourceOwnerAccount;
 
@@ -46,13 +56,9 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string instanceId;
 
-		private string securityToken;
-
 		private string targetNetworkType;
 
 		private string retainClassic;
-
-		private string classicExpiredDays;
 
 		private string vpcId;
 
@@ -66,6 +72,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string ClassicExpiredDays
+		{
+			get
+			{
+				return classicExpiredDays;
+			}
+			set	
+			{
+				classicExpiredDays = value;
+				DictionaryUtil.Add(QueryParameters, "ClassicExpiredDays", value);
 			}
 		}
 
@@ -134,19 +166,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
 		public string TargetNetworkType
 		{
 			get
@@ -170,19 +189,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				retainClassic = value;
 				DictionaryUtil.Add(QueryParameters, "RetainClassic", value);
-			}
-		}
-
-		public string ClassicExpiredDays
-		{
-			get
-			{
-				return classicExpiredDays;
-			}
-			set	
-			{
-				classicExpiredDays = value;
-				DictionaryUtil.Add(QueryParameters, "ClassicExpiredDays", value);
 			}
 		}
 

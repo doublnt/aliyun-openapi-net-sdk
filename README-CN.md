@@ -21,8 +21,12 @@
 欢迎使用 Alibaba Cloud SDK for .NET ，让您不用复杂编程即可访问云服务器、云监控等多个阿里云服务。
 
 
+## 使用诊断
+[Troubleshoot](https://troubleshoot.api.aliyun.com/?source=github_sdk) 提供 OpenAPI 使用诊断服务，通过 `RequestID` 或 `报错信息` ，帮助开发者快速定位，为开发者提供解决方案。
+
+
 ## 使用Demo及其示例
-您可以在 [OpenAPI Explorer](https://api.aliyun.com/#/?product=Ecs&api=DescribeAccessPoints&params={}&tab=DEMO&lang=CSHARP) 中查看您所使用的产品代码示例。
+您可以在 [阿里云 OpenAPI 开发者门户](https://next.api.aliyun.com) 中查看您所使用的产品代码示例。
 
 
 ## 环境要求
@@ -152,7 +156,7 @@ class Program
 * [超时](docs/4-Timeout-CN.md)
 * [产品Nuget包](docs/5-Packages-CN.md)
 * [日志](docs/6-Log-CN.md)
-* [客户端](docs/7-Client-CN.md)
+* [客户端与凭证](docs/7-Client-CN.md)
 * [Endpoint](docs/8-Endpoint-CN.md)
 
 

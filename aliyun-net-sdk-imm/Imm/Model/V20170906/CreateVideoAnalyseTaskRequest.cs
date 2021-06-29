@@ -32,30 +32,23 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public CreateVideoAnalyseTaskRequest()
             : base("imm", "2017-09-06", "CreateVideoAnalyseTask", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string notifyTopicName;
 
 		private string project;
 
-		private string videoUri;
-
 		private string notifyEndpoint;
 
-		private string tgtUri;
+		private string notifyTopicName;
 
-		public string NotifyTopicName
-		{
-			get
-			{
-				return notifyTopicName;
-			}
-			set	
-			{
-				notifyTopicName = value;
-				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
-			}
-		}
+		private string videoUri;
+
+		private string tgtUri;
 
 		public string Project
 		{
@@ -70,19 +63,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string VideoUri
-		{
-			get
-			{
-				return videoUri;
-			}
-			set	
-			{
-				videoUri = value;
-				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
-			}
-		}
-
 		public string NotifyEndpoint
 		{
 			get
@@ -93,6 +73,32 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				notifyEndpoint = value;
 				DictionaryUtil.Add(QueryParameters, "NotifyEndpoint", value);
+			}
+		}
+
+		public string NotifyTopicName
+		{
+			get
+			{
+				return notifyTopicName;
+			}
+			set	
+			{
+				notifyTopicName = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
+			}
+		}
+
+		public string VideoUri
+		{
+			get
+			{
+				return videoUri;
+			}
+			set	
+			{
+				videoUri = value;
+				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
 			}
 		}
 

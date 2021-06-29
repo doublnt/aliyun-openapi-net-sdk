@@ -30,21 +30,27 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class DescribeBatchResultDetailRequest : RpcAcsRequest<DescribeBatchResultDetailResponse>
     {
         public DescribeBatchResultDetailRequest()
-            : base("Alidns", "2015-01-09", "DescribeBatchResultDetail", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "DescribeBatchResultDetail", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string batchType;
 
-		private string userClientIp;
+		private int? pageNumber;
 
 		private int? pageSize;
 
 		private string lang;
 
-		private int? pageNumber;
-
 		private long? taskId;
+
+		private string status;
 
 		public string BatchType
 		{
@@ -59,16 +65,16 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public string UserClientIp
+		public int? PageNumber
 		{
 			get
 			{
-				return userClientIp;
+				return pageNumber;
 			}
 			set	
 			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -98,19 +104,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
 		public long? TaskId
 		{
 			get
@@ -121,6 +114,19 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				taskId = value;
 				DictionaryUtil.Add(QueryParameters, "TaskId", value.ToString());
+			}
+		}
+
+		public string Status
+		{
+			get
+			{
+				return status;
+			}
+			set	
+			{
+				status = value;
+				DictionaryUtil.Add(QueryParameters, "Status", value);
 			}
 		}
 

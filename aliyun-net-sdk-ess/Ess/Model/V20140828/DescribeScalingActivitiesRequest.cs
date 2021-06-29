@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DescribeScalingActivitiesRequest()
             : base("Ess", "2014-08-28", "DescribeScalingActivities", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string scalingActivityId9;
@@ -58,15 +65,9 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private int? pageNumber;
 
-		private string accessKeyId;
-
 		private string statusCode;
 
-		private string regionId;
-
 		private int? pageSize;
-
-		private string action;
 
 		private string scalingActivityId11;
 
@@ -252,19 +253,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
 		public string StatusCode
 		{
 			get
@@ -278,19 +266,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
 		public int? PageSize
 		{
 			get
@@ -301,19 +276,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

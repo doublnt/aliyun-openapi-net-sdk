@@ -32,60 +32,63 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyBackupPolicyRequest()
             : base("Rds", "2014-08-15", "ModifyBackupPolicy", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string preferredBackupPeriod;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string localLogRetentionHours;
-
-		private string ownerAccount;
 
 		private string logBackupFrequency;
 
-		private string compressType;
+		private int? archiveBackupKeepCount;
 
 		private string backupLog;
 
-		private string localLogRetentionSpace;
-
-		private long? ownerId;
-
-		private string duplication;
-
-		private string preferredBackupTime;
-
-		private string backupRetentionPeriod;
-
-		private string duplicationContent;
+		private string backupInterval;
 
 		private string highSpaceUsageProtection;
 
+		private int? logBackupLocalRetentionNumber;
+
 		private string dBInstanceId;
-
-		private string duplicationLocation;
-
-		private string logBackupRetentionPeriod;
 
 		private string enableBackupLog;
 
 		private string backupPolicyMode;
 
-		public string PreferredBackupPeriod
-		{
-			get
-			{
-				return preferredBackupPeriod;
-			}
-			set	
-			{
-				preferredBackupPeriod = value;
-				DictionaryUtil.Add(QueryParameters, "PreferredBackupPeriod", value);
-			}
-		}
+		private string preferredBackupPeriod;
+
+		private string releasedKeepPolicy;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private string compressType;
+
+		private string localLogRetentionSpace;
+
+		private long? ownerId;
+
+		private string archiveBackupKeepPolicy;
+
+		private string preferredBackupTime;
+
+		private string backupRetentionPeriod;
+
+		private string backupMethod;
+
+		private string archiveBackupRetentionPeriod;
+
+		private string category;
+
+		private string logBackupRetentionPeriod;
 
 		public long? ResourceOwnerId
 		{
@@ -97,19 +100,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -126,19 +116,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
 		public string LogBackupFrequency
 		{
 			get
@@ -152,16 +129,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string CompressType
+		public int? ArchiveBackupKeepCount
 		{
 			get
 			{
-				return compressType;
+				return archiveBackupKeepCount;
 			}
 			set	
 			{
-				compressType = value;
-				DictionaryUtil.Add(QueryParameters, "CompressType", value);
+				archiveBackupKeepCount = value;
+				DictionaryUtil.Add(QueryParameters, "ArchiveBackupKeepCount", value.ToString());
 			}
 		}
 
@@ -175,6 +152,149 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				backupLog = value;
 				DictionaryUtil.Add(QueryParameters, "BackupLog", value);
+			}
+		}
+
+		public string BackupInterval
+		{
+			get
+			{
+				return backupInterval;
+			}
+			set	
+			{
+				backupInterval = value;
+				DictionaryUtil.Add(QueryParameters, "BackupInterval", value);
+			}
+		}
+
+		public string HighSpaceUsageProtection
+		{
+			get
+			{
+				return highSpaceUsageProtection;
+			}
+			set	
+			{
+				highSpaceUsageProtection = value;
+				DictionaryUtil.Add(QueryParameters, "HighSpaceUsageProtection", value);
+			}
+		}
+
+		public int? LogBackupLocalRetentionNumber
+		{
+			get
+			{
+				return logBackupLocalRetentionNumber;
+			}
+			set	
+			{
+				logBackupLocalRetentionNumber = value;
+				DictionaryUtil.Add(QueryParameters, "LogBackupLocalRetentionNumber", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string EnableBackupLog
+		{
+			get
+			{
+				return enableBackupLog;
+			}
+			set	
+			{
+				enableBackupLog = value;
+				DictionaryUtil.Add(QueryParameters, "EnableBackupLog", value);
+			}
+		}
+
+		public string BackupPolicyMode
+		{
+			get
+			{
+				return backupPolicyMode;
+			}
+			set	
+			{
+				backupPolicyMode = value;
+				DictionaryUtil.Add(QueryParameters, "BackupPolicyMode", value);
+			}
+		}
+
+		public string PreferredBackupPeriod
+		{
+			get
+			{
+				return preferredBackupPeriod;
+			}
+			set	
+			{
+				preferredBackupPeriod = value;
+				DictionaryUtil.Add(QueryParameters, "PreferredBackupPeriod", value);
+			}
+		}
+
+		public string ReleasedKeepPolicy
+		{
+			get
+			{
+				return releasedKeepPolicy;
+			}
+			set	
+			{
+				releasedKeepPolicy = value;
+				DictionaryUtil.Add(QueryParameters, "ReleasedKeepPolicy", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string CompressType
+		{
+			get
+			{
+				return compressType;
+			}
+			set	
+			{
+				compressType = value;
+				DictionaryUtil.Add(QueryParameters, "CompressType", value);
 			}
 		}
 
@@ -204,16 +324,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string Duplication
+		public string ArchiveBackupKeepPolicy
 		{
 			get
 			{
-				return duplication;
+				return archiveBackupKeepPolicy;
 			}
 			set	
 			{
-				duplication = value;
-				DictionaryUtil.Add(QueryParameters, "Duplication", value);
+				archiveBackupKeepPolicy = value;
+				DictionaryUtil.Add(QueryParameters, "ArchiveBackupKeepPolicy", value);
 			}
 		}
 
@@ -243,55 +363,42 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DuplicationContent
+		public string BackupMethod
 		{
 			get
 			{
-				return duplicationContent;
+				return backupMethod;
 			}
 			set	
 			{
-				duplicationContent = value;
-				DictionaryUtil.Add(QueryParameters, "DuplicationContent", value);
+				backupMethod = value;
+				DictionaryUtil.Add(QueryParameters, "BackupMethod", value);
 			}
 		}
 
-		public string HighSpaceUsageProtection
+		public string ArchiveBackupRetentionPeriod
 		{
 			get
 			{
-				return highSpaceUsageProtection;
+				return archiveBackupRetentionPeriod;
 			}
 			set	
 			{
-				highSpaceUsageProtection = value;
-				DictionaryUtil.Add(QueryParameters, "HighSpaceUsageProtection", value);
+				archiveBackupRetentionPeriod = value;
+				DictionaryUtil.Add(QueryParameters, "ArchiveBackupRetentionPeriod", value);
 			}
 		}
 
-		public string DBInstanceId
+		public string Category
 		{
 			get
 			{
-				return dBInstanceId;
+				return category;
 			}
 			set	
 			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string DuplicationLocation
-		{
-			get
-			{
-				return duplicationLocation;
-			}
-			set	
-			{
-				duplicationLocation = value;
-				DictionaryUtil.Add(QueryParameters, "DuplicationLocation", value);
+				category = value;
+				DictionaryUtil.Add(QueryParameters, "Category", value);
 			}
 		}
 
@@ -305,32 +412,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				logBackupRetentionPeriod = value;
 				DictionaryUtil.Add(QueryParameters, "LogBackupRetentionPeriod", value);
-			}
-		}
-
-		public string EnableBackupLog
-		{
-			get
-			{
-				return enableBackupLog;
-			}
-			set	
-			{
-				enableBackupLog = value;
-				DictionaryUtil.Add(QueryParameters, "EnableBackupLog", value);
-			}
-		}
-
-		public string BackupPolicyMode
-		{
-			get
-			{
-				return backupPolicyMode;
-			}
-			set	
-			{
-				backupPolicyMode = value;
-				DictionaryUtil.Add(QueryParameters, "BackupPolicyMode", value);
 			}
 		}
 

@@ -32,21 +32,64 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public AttachLoadBalancersRequest()
             : base("Ess", "2014-08-28", "AttachLoadBalancers", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> loadBalancers;
-
-		private string resourceOwnerAccount;
+		private string clientToken;
 
 		private string scalingGroupId;
 
-		private string action;
-
 		private bool? forceAttach;
+
+		private List<string> loadBalancers = new List<string>(){ };
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string accessKeyId;
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string ScalingGroupId
+		{
+			get
+			{
+				return scalingGroupId;
+			}
+			set	
+			{
+				scalingGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
+			}
+		}
+
+		public bool? ForceAttach
+		{
+			get
+			{
+				return forceAttach;
+			}
+			set	
+			{
+				forceAttach = value;
+				DictionaryUtil.Add(QueryParameters, "ForceAttach", value.ToString());
+			}
+		}
 
 		public List<string> LoadBalancers
 		{
@@ -78,45 +121,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string ScalingGroupId
-		{
-			get
-			{
-				return scalingGroupId;
-			}
-			set	
-			{
-				scalingGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public bool? ForceAttach
-		{
-			get
-			{
-				return forceAttach;
-			}
-			set	
-			{
-				forceAttach = value;
-				DictionaryUtil.Add(QueryParameters, "ForceAttach", value.ToString());
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -127,19 +131,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

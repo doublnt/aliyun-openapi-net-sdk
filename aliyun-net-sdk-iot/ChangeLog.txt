@@ -1,3 +1,79 @@
+2020-08-06 Version: 7.12.0
+- Update OTA API, including CreateOTAStaticUpgradeJob,CreateOTADynamicUpgradeJob and QueryOTAJob.
+
+2020-07-23 Version: 7.11.0
+- Update OTA API, including GenerateOTAUploadURL.
+
+2020-07-14 Version: 7.10.0
+- Add Dynamic Registration APIs, including TransformClientId, DeleteClientIds, QueryClientIds, etc.
+- Update OTA API, including CreateOTAStaticUpgradeJob and QueryOTAJob.
+- Update Device Shadow API UpdateDeviceShadow.
+
+2020-06-12 Version: 7.9.0
+- Add CreateProduct API ProductSecret in Response.
+- Add AMQP APIs, including CreateSubscribeRelation, CreateConsumerGroup, etc.
+- Add LinkIoTEdge CreateSceneRule API.
+- Add LinkIoTEdge DeleteSceneRule API.
+- Add LinkIoTEdge UpdateSceneRule API.
+- Add LinkIoTEdge GetSceneRule API.
+- Add LinkIoTEdge QuerySceneRule API.
+- Add LinkIoTEdge EnableSceneRule API.
+- Add LinkIoTEdge DisableSceneRule API.
+- Add LinkIoTEdge TriggerSceneRule API.
+- Add LinkIoTEdge QuerySummarySceneRuleLog API.
+- Add LinkIoTEdge QueryDetailSceneRuleLog API.
+- Add LinkIoTEdge BindSceneRuleToEdgeInstance API.
+- Add LinkIoTEdge UnbindSceneRuleFromEdgeInstance API.
+- Add LinkIoTEdge QueryEdgeInstanceSceneRule API.
+
+2020-05-15 Version: 7.8.0
+- Add LinkIoTEdge CreateEdgeInstanceChannel, BatchDeleteEdgeInstanceChannel, UpdateEdgeInstanceChannel, BatchGetEdgeInstanceChannel, QueryEdgeInstanceChannel, QueryEdgeInstanceDeviceByDriver, BatchGetEdgeInstanceDeviceDriver, BatchSetEdgeInstanceDeviceChannel, BatchGetEdgeInstanceDeviceChannel API.
+- Add LinkIoTEdge BindApplicationToEdgeInstance, UnbindApplicationFromEdgeInstance API.
+- Add LinkIoTEdge ReplaceEdgeInstanceGateway, ReleaseEdgeDriverVersion, BatchGetDeviceBindStatus API.
+
+2020-03-06 Version: 7.7.0
+- Add LinkIoTEdge CreateEdgeOssPreSignedAddress API.
+
+2020-03-05 Version: 7.6.0
+- Add CreateEdgeDriver, DeleteEdgeDriver, BatchGetEdgeDriver, QueryEdgeDriver, CreateEdgeDriverVersion, DeleteEdgeDriverVersion, UpdateEdgeDriverVersion, GetEdgeDriverVersion, QueryEdgeDriverVersion API.
+- Add ResetThing API, support reset thing topo and 
+
+2020-02-11 Version 7.5.0
+- Add Thing Model APIs, including CreateThingModel, UpdateThingModel, etc.
+- Add OTA API ListOTATaskByJob.
+- Update OTA API ListOTAJobByFirmware.
+- Update Thing Core Model API InvokeThingsService.
+
+2020-01-20 Version 7.4.0
+- Add Thing Model APIs, including QueryThingModel, PublishThingModel, etc.
+
+2019-12-31 Version 7.3.0
+- Add OTA APIs, including GenerateOTAUploadURL, CreateOTAFirmware, etc.
+- Add UpdateProductFilterConfig interface, support setting product filter config.
+
+2019-12-11 Version 7.2.0
+- Add api `BatchAddThingTopo`, support add multiple sub-devices for a gateway.
+- Add api `QueryDeviceByStatus`, support query device list by device status.
+- Support grouping products and rules.
+- Support using RAM to authorize resouces, including products, devices, rules, groups and instances, to RAM users.
+
+2019-10-18 Version 7.1.0
+- Add X509 API, including queryDeviceCert, queryCertUrlByApplyId, createDeviceCert.
+- Add authType parameter of APIs, including createProduct, queryProduct, queryProductList, CreateProductPop, QueryProductAllInfo, QueryProductListPop, ListProductConsole, QueryAllProductListPop, QueryDeviceBatchList.
+
+2019-09-17 Version 7.0.2
+- Fixed Response Unmarshaller.
+
+2019-08-23 Version 7.0.1
+- Fixed NullReferenceException Error.
+2019-08-16 Version 7.0.0
+- Add LinkIoTEdge API.
+2019-08-14 Version 6.11.1
+Generated 2018-01-20 for `Iot`.
+
+2019-08-14 Version 6.11.0
+Generated 2018-01-20 for `Iot`.
+
 2019-07-04 Version 6.11.0
 - Supported batch querying for device detail.
 2019-06-12 Version 6.10.0

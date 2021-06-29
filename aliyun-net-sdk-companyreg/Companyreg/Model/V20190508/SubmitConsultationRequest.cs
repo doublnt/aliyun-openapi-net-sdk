@@ -36,9 +36,11 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 
 		private string data;
 
+		private string vcode;
+
 		private string consultRequestId;
 
-		private string vcode;
+		private string bizSubCode;
 
 		public string Data
 		{
@@ -50,6 +52,19 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 			{
 				data = value;
 				DictionaryUtil.Add(QueryParameters, "Data", value);
+			}
+		}
+
+		public string Vcode
+		{
+			get
+			{
+				return vcode;
+			}
+			set	
+			{
+				vcode = value;
+				DictionaryUtil.Add(QueryParameters, "Vcode", value);
 			}
 		}
 
@@ -66,16 +81,16 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 			}
 		}
 
-		public string Vcode
+		public string BizSubCode
 		{
 			get
 			{
-				return vcode;
+				return bizSubCode;
 			}
 			set	
 			{
-				vcode = value;
-				DictionaryUtil.Add(QueryParameters, "Vcode", value);
+				bizSubCode = value;
+				DictionaryUtil.Add(QueryParameters, "BizSubCode", value);
 			}
 		}
 

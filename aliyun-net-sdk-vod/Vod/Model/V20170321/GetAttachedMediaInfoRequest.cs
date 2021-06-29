@@ -32,21 +32,27 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public GetAttachedMediaInfoRequest()
             : base("vod", "2017-03-21", "GetAttachedMediaInfo", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private long? resourceRealOwnerId;
 
 		private string outputType;
 
 		private string mediaIds;
 
-		private long? resourceRealOwnerId;
+		private long? authTimeout;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
-
-		private long? authTimeout;
 
 		public long? ResourceOwnerId
 		{
@@ -61,16 +67,16 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public long? ResourceRealOwnerId
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return resourceRealOwnerId;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				resourceRealOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
 			}
 		}
 
@@ -100,16 +106,29 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public long? ResourceRealOwnerId
+		public long? AuthTimeout
 		{
 			get
 			{
-				return resourceRealOwnerId;
+				return authTimeout;
 			}
 			set	
 			{
-				resourceRealOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
+				authTimeout = value;
+				DictionaryUtil.Add(QueryParameters, "AuthTimeout", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -123,19 +142,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public long? AuthTimeout
-		{
-			get
-			{
-				return authTimeout;
-			}
-			set	
-			{
-				authTimeout = value;
-				DictionaryUtil.Add(QueryParameters, "AuthTimeout", value.ToString());
 			}
 		}
 

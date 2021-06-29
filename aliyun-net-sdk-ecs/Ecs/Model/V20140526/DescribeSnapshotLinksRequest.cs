@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,25 +32,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeSnapshotLinksRequest()
             : base("Ecs", "2014-05-26", "DescribeSnapshotLinks", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
-
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
+		private int? pageNumber;
 
 		private int? pageSize;
 
 		private string diskIds;
 
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
 		private string snapshotLinkIds;
 
 		private long? ownerId;
 
-		private int? pageNumber;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -66,42 +71,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InstanceId
+		public int? PageNumber
 		{
 			get
 			{
-				return instanceId;
+				return pageNumber;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -131,6 +110,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public string SnapshotLinkIds
 		{
 			get
@@ -157,16 +162,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? PageNumber
+		public string InstanceId
 		{
 			get
 			{
-				return pageNumber;
+				return instanceId;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

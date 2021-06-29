@@ -32,17 +32,23 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public UpdateVodDomainRequest()
             : base("vod", "2017-03-21", "UpdateVodDomain", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string topLevelDomain;
 
 		private string sources;
 
-		private string securityToken;
-
 		private string domainName;
 
 		private long? ownerId;
+
+		private string securityToken;
 
 		public string TopLevelDomain
 		{
@@ -70,19 +76,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
 		public string DomainName
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 

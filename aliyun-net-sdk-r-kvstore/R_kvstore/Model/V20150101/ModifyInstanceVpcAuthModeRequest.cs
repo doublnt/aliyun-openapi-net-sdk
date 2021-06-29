@@ -32,21 +32,27 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyInstanceVpcAuthModeRequest()
             : base("R-kvstore", "2015-01-01", "ModifyInstanceVpcAuthMode", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
-
 		private string securityToken;
+
+		private string vpcAuthMode;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string vpcAuthMode;
-
 		private long? ownerId;
+
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -61,19 +67,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -84,6 +77,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string VpcAuthMode
+		{
+			get
+			{
+				return vpcAuthMode;
+			}
+			set	
+			{
+				vpcAuthMode = value;
+				DictionaryUtil.Add(QueryParameters, "VpcAuthMode", value);
 			}
 		}
 
@@ -113,19 +119,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string VpcAuthMode
-		{
-			get
-			{
-				return vpcAuthMode;
-			}
-			set	
-			{
-				vpcAuthMode = value;
-				DictionaryUtil.Add(QueryParameters, "VpcAuthMode", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -136,6 +129,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

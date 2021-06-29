@@ -32,32 +32,25 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CreateBackupRequest()
             : base("Rds", "2014-08-15", "CreateBackup", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string backupMethod;
 
 		private long? resourceOwnerId;
 
 		private string backupStrategy;
 
-		private string dBName;
-
 		private string dBInstanceId;
 
 		private string backupType;
 
-		public string BackupMethod
-		{
-			get
-			{
-				return backupMethod;
-			}
-			set	
-			{
-				backupMethod = value;
-				DictionaryUtil.Add(QueryParameters, "BackupMethod", value);
-			}
-		}
+		private string backupMethod;
+
+		private string dBName;
 
 		public long? ResourceOwnerId
 		{
@@ -85,19 +78,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBName
-		{
-			get
-			{
-				return dBName;
-			}
-			set	
-			{
-				dBName = value;
-				DictionaryUtil.Add(QueryParameters, "DBName", value);
-			}
-		}
-
 		public string DBInstanceId
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				backupType = value;
 				DictionaryUtil.Add(QueryParameters, "BackupType", value);
+			}
+		}
+
+		public string BackupMethod
+		{
+			get
+			{
+				return backupMethod;
+			}
+			set	
+			{
+				backupMethod = value;
+				DictionaryUtil.Add(QueryParameters, "BackupMethod", value);
+			}
+		}
+
+		public string DBName
+		{
+			get
+			{
+				return dBName;
+			}
+			set	
+			{
+				dBName = value;
+				DictionaryUtil.Add(QueryParameters, "DBName", value);
 			}
 		}
 

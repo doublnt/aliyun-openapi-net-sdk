@@ -32,7 +32,17 @@ namespace Aliyun.Acs.live.Model.V20161101
         public CreateCasterRequest()
             : base("live", "2016-11-01", "CreateCaster", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string clientToken;
+
+		private string casterName;
 
 		private string casterTemplate;
 
@@ -40,15 +50,37 @@ namespace Aliyun.Acs.live.Model.V20161101
 
 		private int? normType;
 
-		private string casterName;
-
-		private string clientToken;
-
-		private string chargeType;
-
 		private long? ownerId;
 
 		private string purchaseTime;
+
+		private string chargeType;
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string CasterName
+		{
+			get
+			{
+				return casterName;
+			}
+			set	
+			{
+				casterName = value;
+				DictionaryUtil.Add(QueryParameters, "CasterName", value);
+			}
+		}
 
 		public string CasterTemplate
 		{
@@ -89,45 +121,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string CasterName
-		{
-			get
-			{
-				return casterName;
-			}
-			set	
-			{
-				casterName = value;
-				DictionaryUtil.Add(QueryParameters, "CasterName", value);
-			}
-		}
-
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public string ChargeType
-		{
-			get
-			{
-				return chargeType;
-			}
-			set	
-			{
-				chargeType = value;
-				DictionaryUtil.Add(QueryParameters, "ChargeType", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -151,6 +144,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				purchaseTime = value;
 				DictionaryUtil.Add(QueryParameters, "PurchaseTime", value);
+			}
+		}
+
+		public string ChargeType
+		{
+			get
+			{
+				return chargeType;
+			}
+			set	
+			{
+				chargeType = value;
+				DictionaryUtil.Add(QueryParameters, "ChargeType", value);
 			}
 		}
 

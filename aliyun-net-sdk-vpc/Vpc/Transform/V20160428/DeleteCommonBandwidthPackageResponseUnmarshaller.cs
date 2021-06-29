@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteCommonBandwidthPackageResponseUnmarshaller
     {
-        public static DeleteCommonBandwidthPackageResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteCommonBandwidthPackageResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteCommonBandwidthPackageResponse deleteCommonBandwidthPackageResponse = new DeleteCommonBandwidthPackageResponse();
 
-			deleteCommonBandwidthPackageResponse.HttpResponse = context.HttpResponse;
-			deleteCommonBandwidthPackageResponse.RequestId = context.StringValue("DeleteCommonBandwidthPackage.RequestId");
+			deleteCommonBandwidthPackageResponse.HttpResponse = _ctx.HttpResponse;
+			deleteCommonBandwidthPackageResponse.RequestId = _ctx.StringValue("DeleteCommonBandwidthPackage.RequestId");
         
 			return deleteCommonBandwidthPackageResponse;
         }

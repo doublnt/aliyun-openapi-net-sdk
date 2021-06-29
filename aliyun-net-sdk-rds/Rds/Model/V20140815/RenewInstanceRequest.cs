@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public RenewInstanceRequest()
             : base("Rds", "2014-08-15", "RenewInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string period;
+		private string clientToken;
+
+		private string dBInstanceId;
+
+		private int? period;
 
 		private string autoPay;
 
 		private string resourceOwnerAccount;
-
-		private string clientToken;
-
-		private string dBInstanceId;
 
 		private long? ownerId;
 
@@ -58,45 +64,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string Period
-		{
-			get
-			{
-				return period;
-			}
-			set	
-			{
-				period = value;
-				DictionaryUtil.Add(QueryParameters, "Period", value);
-			}
-		}
-
-		public string AutoPay
-		{
-			get
-			{
-				return autoPay;
-			}
-			set	
-			{
-				autoPay = value;
-				DictionaryUtil.Add(QueryParameters, "AutoPay", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -123,6 +90,45 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				dBInstanceId = value;
 				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public int? Period
+		{
+			get
+			{
+				return period;
+			}
+			set	
+			{
+				period = value;
+				DictionaryUtil.Add(QueryParameters, "Period", value.ToString());
+			}
+		}
+
+		public string AutoPay
+		{
+			get
+			{
+				return autoPay;
+			}
+			set	
+			{
+				autoPay = value;
+				DictionaryUtil.Add(QueryParameters, "AutoPay", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 

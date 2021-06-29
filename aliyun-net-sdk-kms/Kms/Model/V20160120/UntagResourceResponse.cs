@@ -25,17 +25,17 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 	public class UntagResourceResponse : AcsResponse
 	{
 
-		private string keyId;
+		private string requestId;
 
-		public string KeyId
+		public string RequestId
 		{
 			get
 			{
-				return keyId;
+				return requestId;
 			}
 			set	
 			{
-				keyId = value;
+				requestId = value;
 			}
 		}
 	}

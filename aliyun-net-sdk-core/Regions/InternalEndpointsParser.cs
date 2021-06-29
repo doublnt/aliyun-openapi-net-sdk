@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -21,67 +21,45 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Xml;
 
 using Aliyun.Acs.Core.Auth;
+using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Core.Regions.Location;
-
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace Aliyun.Acs.Core.Regions
 {
     internal class InternalEndpointsParser : IEndpointsProvider
     {
-        private const string BUNDLED_ENDPOINTS_RESOURCE_PATH = "endpoints.xml";
+        private readonly IDictionary<string, string> globalEndpointCollection;
 
-        public Endpoint GetEndpoint(string region, string product)
+        private readonly IDictionary<string, string> regionIdEndpointCollection;
+
+        public InternalEndpointsParser()
         {
-            var allProducts = GetProducts();
+            regionIdEndpointCollection = EndpointResource.GetRegionalEndpoints();
+            globalEndpointCollection = EndpointResource.GetGlobalEndpoints();
+        }
 
-            ISet<string> regionSet = new HashSet<string>();
-            var productDomains = new List<ProductDomain>();
-            foreach (var p in allProducts)
+        public Endpoint GetEndpoint(string regionId, string productName)
+        {
+            string domain;
+
+            regionIdEndpointCollection.TryGetValue(string.Format("{0}_{1}", productName.ToLower(), regionId), out domain);
+
+            if (string.IsNullOrEmpty(domain))
             {
-                if (!string.Equals(product, p.Code, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    continue;
-                }
-
-                foreach (var e in p.RegionalEndpoints)
-                {
-                    if (!string.Equals(region, e.Key, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        continue;
-                    }
-
-                    regionSet.Add(region);
-
-                    var productDomain = new ProductDomain();
-                    productDomain.ProductName = product;
-                    productDomain.DomianName = e.Value;
-                    productDomains.Add(productDomain);
-                }
-
-                if (regionSet.Count == 0)
-                {
-                    if (string.IsNullOrEmpty(p.GlobalEndpoint))
-                    {
-                        return null;
-                    }
-
-                    regionSet.Add(region);
-
-                    var productDomain = new ProductDomain();
-                    productDomain.ProductName = product;
-                    productDomain.DomianName = p.GlobalEndpoint;
-                    productDomains.Add(productDomain);
-                }
-
-                break;
+                globalEndpointCollection.TryGetValue(productName.ToLower(), out domain);
             }
 
-            return new Endpoint(region, regionSet, productDomains);
+            if (string.IsNullOrEmpty(domain))
+            {
+                return null;
+            }
+
+            var regionHashset = new HashSet<string> {regionId};
+            var productDomain = new List<ProductDomain> {new ProductDomain(productName, domain)};
+
+            return new Endpoint(productName, regionHashset, productDomain);
         }
 
         public Endpoint GetEndpoint(string region, string product, string serviceCode, string endpointType,
@@ -90,53 +68,7 @@ namespace Aliyun.Acs.Core.Regions
             throw new NotSupportedException();
         }
 
-        private static List<Product> ParseProducts(Stream stream)
-        {
-            var doc = new XmlDocument();
-            doc.Load(stream);
-            using (var productNodes = doc.GetElementsByTagName("product"))
-            {
-                var products = new List<Product>();
-                foreach (XmlNode node in productNodes)
-                {
-                    var product = new Product();
-                    product.Code = node.SelectSingleNode("code").InnerText;
-                    product.LocationServiceCode = node.SelectSingleNode("location_service_code").InnerText;
-                    product.DocumentId = node.SelectSingleNode("document_id").InnerText;
-
-                    product.RegionalEndpoints = new Dictionary<string, string>();
-                    using (var regional_endpoints =
-                        node.SelectSingleNode("regional_endpoints").SelectNodes("regional_endpoint"))
-                    {
-                        foreach (XmlNode regionalNode in regional_endpoints)
-                        {
-                            product.RegionalEndpoints.Add(regionalNode.SelectSingleNode("region_id").InnerText,
-                                regionalNode.SelectSingleNode("endpoint").InnerText);
-                        }
-
-                        product.GlobalEndpoint = node.SelectSingleNode("global_endpoint").InnerText;
-                        product.RegionalEndpointPattern = node.SelectSingleNode("regional_endpoint_pattern").InnerText;
-                        products.Add(product);
-                    }
-                }
-
-                return products;
-            }
-        }
-
-        public virtual List<Product> GetProducts()
-        {
-            var type = MethodBase.GetCurrentMethod().DeclaringType;
-            var _namespace = type.Namespace;
-            var _assembly = Assembly.GetExecutingAssembly();
-            var resourceName = _namespace + "." + BUNDLED_ENDPOINTS_RESOURCE_PATH;
-            using (var stream = _assembly.GetManifestResourceStream(resourceName))
-            {
-                return ParseProducts(stream);
-            }
-        }
-
-        public class Product
+        internal class Product
         {
             public string Code { get; set; }
             public string LocationServiceCode { get; set; }

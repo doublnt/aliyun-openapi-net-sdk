@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,13 +30,33 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class ScrollDomainListRequest : RpcAcsRequest<ScrollDomainListResponse>
     {
         public ScrollDomainListRequest()
-            : base("Domain", "2018-01-29", "ScrollDomainList")
+            : base("Domain", "2018-01-29", "ScrollDomainList", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? endExpirationDate;
-
 		private string productDomainType;
+
+		private string excluded;
+
+		private int? startLength;
+
+		private bool? excludedSuffix;
+
+		private int? pageSize;
+
+		private string lang;
+
+		private bool? excludedPrefix;
+
+		private string keyWord;
+
+		private long? endExpirationDate;
 
 		private string suffixs;
 
@@ -51,15 +70,9 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string scrollId;
 
-		private string excluded;
-
 		private bool? keyWordPrefix;
 
-		private int? startLength;
-
 		private int? tradeType;
-
-		private bool? excludedSuffix;
 
 		private long? endRegistrationDate;
 
@@ -67,30 +80,9 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string userClientIp;
 
-		private int? pageSize;
-
-		private string lang;
-
-		private bool? excludedPrefix;
-
-		private string keyWord;
-
 		private long? startRegistrationDate;
 
 		private int? endLength;
-
-		public long? EndExpirationDate
-		{
-			get
-			{
-				return endExpirationDate;
-			}
-			set	
-			{
-				endExpirationDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndExpirationDate", value.ToString());
-			}
-		}
 
 		public string ProductDomainType
 		{
@@ -102,6 +94,110 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				productDomainType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductDomainType", value);
+			}
+		}
+
+		public string Excluded
+		{
+			get
+			{
+				return excluded;
+			}
+			set	
+			{
+				excluded = value;
+				DictionaryUtil.Add(QueryParameters, "Excluded", value);
+			}
+		}
+
+		public int? StartLength
+		{
+			get
+			{
+				return startLength;
+			}
+			set	
+			{
+				startLength = value;
+				DictionaryUtil.Add(QueryParameters, "StartLength", value.ToString());
+			}
+		}
+
+		public bool? ExcludedSuffix
+		{
+			get
+			{
+				return excludedSuffix;
+			}
+			set	
+			{
+				excludedSuffix = value;
+				DictionaryUtil.Add(QueryParameters, "ExcludedSuffix", value.ToString());
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public bool? ExcludedPrefix
+		{
+			get
+			{
+				return excludedPrefix;
+			}
+			set	
+			{
+				excludedPrefix = value;
+				DictionaryUtil.Add(QueryParameters, "ExcludedPrefix", value.ToString());
+			}
+		}
+
+		public string KeyWord
+		{
+			get
+			{
+				return keyWord;
+			}
+			set	
+			{
+				keyWord = value;
+				DictionaryUtil.Add(QueryParameters, "KeyWord", value);
+			}
+		}
+
+		public long? EndExpirationDate
+		{
+			get
+			{
+				return endExpirationDate;
+			}
+			set	
+			{
+				endExpirationDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndExpirationDate", value.ToString());
 			}
 		}
 
@@ -183,19 +279,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string Excluded
-		{
-			get
-			{
-				return excluded;
-			}
-			set	
-			{
-				excluded = value;
-				DictionaryUtil.Add(QueryParameters, "Excluded", value);
-			}
-		}
-
 		public bool? KeyWordPrefix
 		{
 			get
@@ -209,19 +292,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public int? StartLength
-		{
-			get
-			{
-				return startLength;
-			}
-			set	
-			{
-				startLength = value;
-				DictionaryUtil.Add(QueryParameters, "StartLength", value.ToString());
-			}
-		}
-
 		public int? TradeType
 		{
 			get
@@ -232,19 +302,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				tradeType = value;
 				DictionaryUtil.Add(QueryParameters, "TradeType", value.ToString());
-			}
-		}
-
-		public bool? ExcludedSuffix
-		{
-			get
-			{
-				return excludedSuffix;
-			}
-			set	
-			{
-				excludedSuffix = value;
-				DictionaryUtil.Add(QueryParameters, "ExcludedSuffix", value.ToString());
 			}
 		}
 
@@ -284,58 +341,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				userClientIp = value;
 				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public bool? ExcludedPrefix
-		{
-			get
-			{
-				return excludedPrefix;
-			}
-			set	
-			{
-				excludedPrefix = value;
-				DictionaryUtil.Add(QueryParameters, "ExcludedPrefix", value.ToString());
-			}
-		}
-
-		public string KeyWord
-		{
-			get
-			{
-				return keyWord;
-			}
-			set	
-			{
-				keyWord = value;
-				DictionaryUtil.Add(QueryParameters, "KeyWord", value);
 			}
 		}
 

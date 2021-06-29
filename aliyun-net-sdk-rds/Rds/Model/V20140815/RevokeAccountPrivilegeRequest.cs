@@ -32,21 +32,27 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public RevokeAccountPrivilegeRequest()
             : base("Rds", "2014-08-15", "RevokeAccountPrivilege", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string accountName;
 
-		private string dBName;
+		private string dBInstanceId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
+
+		private string dBName;
 
 		public long? ResourceOwnerId
 		{
@@ -74,16 +80,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBName
+		public string DBInstanceId
 		{
 			get
 			{
-				return dBName;
+				return dBInstanceId;
 			}
 			set	
 			{
-				dBName = value;
-				DictionaryUtil.Add(QueryParameters, "DBName", value);
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -113,19 +119,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -136,6 +129,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string DBName
+		{
+			get
+			{
+				return dBName;
+			}
+			set	
+			{
+				dBName = value;
+				DictionaryUtil.Add(QueryParameters, "DBName", value);
 			}
 		}
 

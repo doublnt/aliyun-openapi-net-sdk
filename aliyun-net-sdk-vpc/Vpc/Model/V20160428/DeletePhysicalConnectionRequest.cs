@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,25 +32,25 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public DeletePhysicalConnectionRequest()
             : base("Vpc", "2016-04-28", "DeletePhysicalConnection", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string regionId;
+		private string clientToken;
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
-		private string physicalConnectionId;
-
 		private string ownerAccount;
 
-		private string action;
-
-		private string userCidr;
-
 		private long? ownerId;
+
+		private string physicalConnectionId;
 
 		public long? ResourceOwnerId
 		{
@@ -61,32 +62,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -103,16 +78,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string PhysicalConnectionId
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return physicalConnectionId;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				physicalConnectionId = value;
-				DictionaryUtil.Add(QueryParameters, "PhysicalConnectionId", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -129,32 +104,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string UserCidr
-		{
-			get
-			{
-				return userCidr;
-			}
-			set	
-			{
-				userCidr = value;
-				DictionaryUtil.Add(QueryParameters, "UserCidr", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -168,7 +117,20 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override DeletePhysicalConnectionResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string PhysicalConnectionId
+		{
+			get
+			{
+				return physicalConnectionId;
+			}
+			set	
+			{
+				physicalConnectionId = value;
+				DictionaryUtil.Add(QueryParameters, "PhysicalConnectionId", value);
+			}
+		}
+
+        public override DeletePhysicalConnectionResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DeletePhysicalConnectionResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

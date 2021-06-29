@@ -32,11 +32,17 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryAppDeviceListRequest()
             : base("Iot", "2018-01-20", "QueryAppDeviceList", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> productKeyLists;
+		private List<TagList> tagLists = new List<TagList>(){ };
 
-		private List<string> categoryKeyLists;
+		private List<string> productKeyLists = new List<string>(){ };
 
 		private string iotInstanceId;
 
@@ -44,9 +50,27 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 		private int? currentPage;
 
+		private List<string> categoryKeyLists = new List<string>(){ };
+
 		private string appKey;
 
-		private List<TagList> tagLists;
+		public List<TagList> TagLists
+		{
+			get
+			{
+				return tagLists;
+			}
+
+			set
+			{
+				tagLists = value;
+				for (int i = 0; i < tagLists.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"TagList." + (i + 1) + ".TagName", tagLists[i].TagName);
+					DictionaryUtil.Add(QueryParameters,"TagList." + (i + 1) + ".TagValue", tagLists[i].TagValue);
+				}
+			}
+		}
 
 		public List<string> ProductKeyLists
 		{
@@ -61,23 +85,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 				for (int i = 0; i < productKeyLists.Count; i++)
 				{
 					DictionaryUtil.Add(QueryParameters,"ProductKeyList." + (i + 1) , productKeyLists[i]);
-				}
-			}
-		}
-
-		public List<string> CategoryKeyLists
-		{
-			get
-			{
-				return categoryKeyLists;
-			}
-
-			set
-			{
-				categoryKeyLists = value;
-				for (int i = 0; i < categoryKeyLists.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"CategoryKeyList." + (i + 1) , categoryKeyLists[i]);
 				}
 			}
 		}
@@ -121,6 +128,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
+		public List<string> CategoryKeyLists
+		{
+			get
+			{
+				return categoryKeyLists;
+			}
+
+			set
+			{
+				categoryKeyLists = value;
+				for (int i = 0; i < categoryKeyLists.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"CategoryKeyList." + (i + 1) , categoryKeyLists[i]);
+				}
+			}
+		}
+
 		public string AppKey
 		{
 			get
@@ -131,24 +155,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				appKey = value;
 				DictionaryUtil.Add(QueryParameters, "AppKey", value);
-			}
-		}
-
-		public List<TagList> TagLists
-		{
-			get
-			{
-				return tagLists;
-			}
-
-			set
-			{
-				tagLists = value;
-				for (int i = 0; i < tagLists.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"TagList." + (i + 1) + ".TagName", tagLists[i].TagName);
-					DictionaryUtil.Add(QueryParameters,"TagList." + (i + 1) + ".TagValue", tagLists[i].TagValue);
-				}
 			}
 		}
 

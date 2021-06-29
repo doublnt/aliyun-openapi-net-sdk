@@ -32,17 +32,29 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public DescribeIncrementBackupListRequest()
             : base("Dbs", "2019-03-06", "DescribeIncrementBackupList", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string clientToken;
-
-		private int? pageSize;
 
 		private string backupPlanId;
 
 		private int? pageNum;
 
 		private string ownerId;
+
+		private long? startTimestamp;
+
+		private long? endTimestamp;
+
+		private bool? showStorageType;
+
+		private int? pageSize;
 
 		public string ClientToken
 		{
@@ -54,19 +66,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 
@@ -106,6 +105,58 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public long? StartTimestamp
+		{
+			get
+			{
+				return startTimestamp;
+			}
+			set	
+			{
+				startTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "StartTimestamp", value.ToString());
+			}
+		}
+
+		public long? EndTimestamp
+		{
+			get
+			{
+				return endTimestamp;
+			}
+			set	
+			{
+				endTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "EndTimestamp", value.ToString());
+			}
+		}
+
+		public bool? ShowStorageType
+		{
+			get
+			{
+				return showStorageType;
+			}
+			set	
+			{
+				showStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "ShowStorageType", value.ToString());
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

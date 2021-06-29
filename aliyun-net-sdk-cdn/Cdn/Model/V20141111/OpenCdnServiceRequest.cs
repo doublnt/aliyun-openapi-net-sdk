@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20141111;
 
@@ -32,15 +33,32 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
         public OpenCdnServiceRequest()
             : base("Cdn", "2014-11-11", "OpenCdnService")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? ownerId;
 
 		private string securityToken;
 
 		private string internetChargeType;
 
-		private string action;
-
-		private long? ownerId;
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
 
 		public string SecurityToken
 		{
@@ -65,32 +83,6 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				internetChargeType = value;
 				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

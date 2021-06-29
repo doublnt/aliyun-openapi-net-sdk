@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,23 +33,29 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public SetRenewalRequest()
             : base("BssOpenApi", "2017-12-14", "SetRenewal")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
 
-		private string instanceIDs;
-
 		private string subscriptionType;
-
-		private string renewalStatus;
-
-		private string renewalPeriodUnit;
 
 		private int? renewalPeriod;
 
 		private long? ownerId;
 
 		private string productType;
+
+		private string instanceIDs;
+
+		private string renewalStatus;
+
+		private string renewalPeriodUnit;
 
 		public string ProductCode
 		{
@@ -63,19 +70,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			}
 		}
 
-		public string InstanceIDs
-		{
-			get
-			{
-				return instanceIDs;
-			}
-			set	
-			{
-				instanceIDs = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceIDs", value);
-			}
-		}
-
 		public string SubscriptionType
 		{
 			get
@@ -86,32 +80,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscriptionType = value;
 				DictionaryUtil.Add(QueryParameters, "SubscriptionType", value);
-			}
-		}
-
-		public string RenewalStatus
-		{
-			get
-			{
-				return renewalStatus;
-			}
-			set	
-			{
-				renewalStatus = value;
-				DictionaryUtil.Add(QueryParameters, "RenewalStatus", value);
-			}
-		}
-
-		public string RenewalPeriodUnit
-		{
-			get
-			{
-				return renewalPeriodUnit;
-			}
-			set	
-			{
-				renewalPeriodUnit = value;
-				DictionaryUtil.Add(QueryParameters, "RenewalPeriodUnit", value);
 			}
 		}
 
@@ -151,6 +119,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public string InstanceIDs
+		{
+			get
+			{
+				return instanceIDs;
+			}
+			set	
+			{
+				instanceIDs = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceIDs", value);
+			}
+		}
+
+		public string RenewalStatus
+		{
+			get
+			{
+				return renewalStatus;
+			}
+			set	
+			{
+				renewalStatus = value;
+				DictionaryUtil.Add(QueryParameters, "RenewalStatus", value);
+			}
+		}
+
+		public string RenewalPeriodUnit
+		{
+			get
+			{
+				return renewalPeriodUnit;
+			}
+			set	
+			{
+				renewalPeriodUnit = value;
+				DictionaryUtil.Add(QueryParameters, "RenewalPeriodUnit", value);
 			}
 		}
 

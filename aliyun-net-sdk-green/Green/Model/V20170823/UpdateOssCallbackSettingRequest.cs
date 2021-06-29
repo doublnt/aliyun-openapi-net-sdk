@@ -32,32 +32,25 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UpdateOssCallbackSettingRequest()
             : base("Green", "2017-08-23", "UpdateOssCallbackSetting", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private bool? scanCallback;
 
 		private string scanCallbackSuggestions;
 
 		private string callbackSeed;
 
-		private bool? auditCallback;
-
-		private string callbackUrl;
-
 		private string serviceModules;
 
-		public bool? ScanCallback
-		{
-			get
-			{
-				return scanCallback;
-			}
-			set	
-			{
-				scanCallback = value;
-				DictionaryUtil.Add(QueryParameters, "ScanCallback", value.ToString());
-			}
-		}
+		private bool? auditCallback;
+
+		private bool? scanCallback;
+
+		private string callbackUrl;
 
 		public string ScanCallbackSuggestions
 		{
@@ -85,6 +78,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
+		public string ServiceModules
+		{
+			get
+			{
+				return serviceModules;
+			}
+			set	
+			{
+				serviceModules = value;
+				DictionaryUtil.Add(QueryParameters, "ServiceModules", value);
+			}
+		}
+
 		public bool? AuditCallback
 		{
 			get
@@ -98,6 +104,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
+		public bool? ScanCallback
+		{
+			get
+			{
+				return scanCallback;
+			}
+			set	
+			{
+				scanCallback = value;
+				DictionaryUtil.Add(QueryParameters, "ScanCallback", value.ToString());
+			}
+		}
+
 		public string CallbackUrl
 		{
 			get
@@ -108,19 +127,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				callbackUrl = value;
 				DictionaryUtil.Add(QueryParameters, "CallbackUrl", value);
-			}
-		}
-
-		public string ServiceModules
-		{
-			get
-			{
-				return serviceModules;
-			}
-			set	
-			{
-				serviceModules = value;
-				DictionaryUtil.Add(QueryParameters, "ServiceModules", value);
 			}
 		}
 

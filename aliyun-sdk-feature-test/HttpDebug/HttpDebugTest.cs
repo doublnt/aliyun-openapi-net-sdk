@@ -25,15 +25,14 @@ using Xunit;
 
 namespace Aliyun.Acs.Feature.Test.HttpDebug
 {
-    [Trait("Category", "FeatureTest")]
-    public class HttpDebugTest : FeatureTestBase
+    public class HttpDebugTest
     {
         [Fact]
         public void EcsHttpDebugTest()
         {
             Environment.SetEnvironmentVariable("DEBUG", "sdk");
             var request = new DescribeRegionsRequest();
-            var response = client.GetAcsResponse(request);
+            var response = FeatureTest.DefaultClient.GetAcsResponse(request);
 
             Assert.True(null != response.RequestId);
             Assert.Null(Environment.GetEnvironmentVariable("DEBUG"));

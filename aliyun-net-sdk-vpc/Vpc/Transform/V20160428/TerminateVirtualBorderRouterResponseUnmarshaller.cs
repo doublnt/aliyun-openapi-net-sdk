@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class TerminateVirtualBorderRouterResponseUnmarshaller
     {
-        public static TerminateVirtualBorderRouterResponse Unmarshall(UnmarshallerContext context)
+        public static TerminateVirtualBorderRouterResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			TerminateVirtualBorderRouterResponse terminateVirtualBorderRouterResponse = new TerminateVirtualBorderRouterResponse();
 
-			terminateVirtualBorderRouterResponse.HttpResponse = context.HttpResponse;
-			terminateVirtualBorderRouterResponse.RequestId = context.StringValue("TerminateVirtualBorderRouter.RequestId");
+			terminateVirtualBorderRouterResponse.HttpResponse = _ctx.HttpResponse;
+			terminateVirtualBorderRouterResponse.RequestId = _ctx.StringValue("TerminateVirtualBorderRouter.RequestId");
         
 			return terminateVirtualBorderRouterResponse;
         }

@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryDeviceFileRequest()
             : base("Iot", "2018-01-20", "QueryDeviceFile", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotId;
 
 		private string iotInstanceId;
 
-		private string deviceName;
+		private string fileId;
 
 		private string productKey;
 
-		private string fileId;
+		private string deviceName;
 
 		public string IotId
 		{
@@ -70,16 +76,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
+		public string FileId
 		{
 			get
 			{
-				return deviceName;
+				return fileId;
 			}
 			set	
 			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
+				fileId = value;
+				DictionaryUtil.Add(QueryParameters, "FileId", value);
 			}
 		}
 
@@ -96,16 +102,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string FileId
+		public string DeviceName
 		{
 			get
 			{
-				return fileId;
+				return deviceName;
 			}
 			set	
 			{
-				fileId = value;
-				DictionaryUtil.Add(QueryParameters, "FileId", value);
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

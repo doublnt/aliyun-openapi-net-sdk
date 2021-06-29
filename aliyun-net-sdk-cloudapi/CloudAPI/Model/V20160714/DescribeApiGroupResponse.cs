@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -49,6 +50,20 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 		private int? trafficLimit;
 
 		private string vpcDomain;
+
+		private string instanceType;
+
+		private string instanceId;
+
+		private string httpsPolicy;
+
+		private string userLogConfig;
+
+		private string customTraceConfig;
+
+		private string rpcPattern;
+
+		private string compatibleFlags;
 
 		private List<DescribeApiGroup_DomainItem> customDomains;
 
@@ -210,6 +225,90 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
+		public string InstanceType
+		{
+			get
+			{
+				return instanceType;
+			}
+			set	
+			{
+				instanceType = value;
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+			}
+		}
+
+		public string HttpsPolicy
+		{
+			get
+			{
+				return httpsPolicy;
+			}
+			set	
+			{
+				httpsPolicy = value;
+			}
+		}
+
+		public string UserLogConfig
+		{
+			get
+			{
+				return userLogConfig;
+			}
+			set	
+			{
+				userLogConfig = value;
+			}
+		}
+
+		public string CustomTraceConfig
+		{
+			get
+			{
+				return customTraceConfig;
+			}
+			set	
+			{
+				customTraceConfig = value;
+			}
+		}
+
+		public string RpcPattern
+		{
+			get
+			{
+				return rpcPattern;
+			}
+			set	
+			{
+				rpcPattern = value;
+			}
+		}
+
+		public string CompatibleFlags
+		{
+			get
+			{
+				return compatibleFlags;
+			}
+			set	
+			{
+				compatibleFlags = value;
+			}
+		}
+
 		public List<DescribeApiGroup_DomainItem> CustomDomains
 		{
 			get
@@ -246,6 +345,8 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			private string domainCNAMEStatus;
 
 			private string domainBindingStatus;
+
+			private string bindStageName;
 
 			private string domainLegalStatus;
 
@@ -310,6 +411,18 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 				set	
 				{
 					domainBindingStatus = value;
+				}
+			}
+
+			public string BindStageName
+			{
+				get
+				{
+					return bindStageName;
+				}
+				set	
+				{
+					bindStageName = value;
 				}
 			}
 

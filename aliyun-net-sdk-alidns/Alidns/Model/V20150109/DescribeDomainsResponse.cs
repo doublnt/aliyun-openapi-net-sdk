@@ -126,6 +126,16 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 			private bool? instanceExpired;
 
+			private bool? starmark;
+
+			private string createTime;
+
+			private long? createTimestamp;
+
+			private string resourceGroupId;
+
+			private List<DescribeDomains_Tag> tags;
+
 			private List<string> dnsServers;
 
 			public string DomainId
@@ -296,6 +306,66 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 				}
 			}
 
+			public bool? Starmark
+			{
+				get
+				{
+					return starmark;
+				}
+				set	
+				{
+					starmark = value;
+				}
+			}
+
+			public string CreateTime
+			{
+				get
+				{
+					return createTime;
+				}
+				set	
+				{
+					createTime = value;
+				}
+			}
+
+			public long? CreateTimestamp
+			{
+				get
+				{
+					return createTimestamp;
+				}
+				set	
+				{
+					createTimestamp = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
+				}
+			}
+
+			public List<DescribeDomains_Tag> Tags
+			{
+				get
+				{
+					return tags;
+				}
+				set	
+				{
+					tags = value;
+				}
+			}
+
 			public List<string> DnsServers
 			{
 				get
@@ -305,6 +375,38 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 				set	
 				{
 					dnsServers = value;
+				}
+			}
+
+			public class DescribeDomains_Tag
+			{
+
+				private string key;
+
+				private string _value;
+
+				public string Key
+				{
+					get
+					{
+						return key;
+					}
+					set	
+					{
+						key = value;
+					}
+				}
+
+				public string _Value
+				{
+					get
+					{
+						return _value;
+					}
+					set	
+					{
+						_value = value;
+					}
 				}
 			}
 		}

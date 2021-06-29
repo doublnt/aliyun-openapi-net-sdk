@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -121,6 +122,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private string status;
 
+			private string natType;
+
+			private string internetChargeType;
+
+			private string resourceGroupId;
+
+			private bool? deletionProtection;
+
+			private bool? ecsMetricEnabled;
+
 			private List<DescribeNatGateways_IpList> ipLists;
 
 			private List<string> forwardTableIds;
@@ -128,6 +139,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private List<string> snatTableIds;
 
 			private List<string> bandwidthPackageIds;
+
+			private DescribeNatGateways_NatGatewayPrivateInfo natGatewayPrivateInfo;
 
 			public string NatGatewayId
 			{
@@ -273,6 +286,66 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string NatType
+			{
+				get
+				{
+					return natType;
+				}
+				set	
+				{
+					natType = value;
+				}
+			}
+
+			public string InternetChargeType
+			{
+				get
+				{
+					return internetChargeType;
+				}
+				set	
+				{
+					internetChargeType = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
+				}
+			}
+
+			public bool? DeletionProtection
+			{
+				get
+				{
+					return deletionProtection;
+				}
+				set	
+				{
+					deletionProtection = value;
+				}
+			}
+
+			public bool? EcsMetricEnabled
+			{
+				get
+				{
+					return ecsMetricEnabled;
+				}
+				set	
+				{
+					ecsMetricEnabled = value;
+				}
+			}
+
 			public List<DescribeNatGateways_IpList> IpLists
 			{
 				get
@@ -321,6 +394,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public DescribeNatGateways_NatGatewayPrivateInfo NatGatewayPrivateInfo
+			{
+				get
+				{
+					return natGatewayPrivateInfo;
+				}
+				set	
+				{
+					natGatewayPrivateInfo = value;
+				}
+			}
+
 			public class DescribeNatGateways_IpList
 			{
 
@@ -331,6 +416,10 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				private string usingStatus;
 
 				private bool? apAccessEnabled;
+
+				private bool? snatEntryEnabled;
+
+				private string privateIpAddress;
 
 				public string AllocationId
 				{
@@ -377,6 +466,118 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 					set	
 					{
 						apAccessEnabled = value;
+					}
+				}
+
+				public bool? SnatEntryEnabled
+				{
+					get
+					{
+						return snatEntryEnabled;
+					}
+					set	
+					{
+						snatEntryEnabled = value;
+					}
+				}
+
+				public string PrivateIpAddress
+				{
+					get
+					{
+						return privateIpAddress;
+					}
+					set	
+					{
+						privateIpAddress = value;
+					}
+				}
+			}
+
+			public class DescribeNatGateways_NatGatewayPrivateInfo
+			{
+
+				private string eniInstanceId;
+
+				private string privateIpAddress;
+
+				private string vswitchId;
+
+				private string izNo;
+
+				private int? maxBandwidth;
+
+				private string eniType;
+
+				public string EniInstanceId
+				{
+					get
+					{
+						return eniInstanceId;
+					}
+					set	
+					{
+						eniInstanceId = value;
+					}
+				}
+
+				public string PrivateIpAddress
+				{
+					get
+					{
+						return privateIpAddress;
+					}
+					set	
+					{
+						privateIpAddress = value;
+					}
+				}
+
+				public string VswitchId
+				{
+					get
+					{
+						return vswitchId;
+					}
+					set	
+					{
+						vswitchId = value;
+					}
+				}
+
+				public string IzNo
+				{
+					get
+					{
+						return izNo;
+					}
+					set	
+					{
+						izNo = value;
+					}
+				}
+
+				public int? MaxBandwidth
+				{
+					get
+					{
+						return maxBandwidth;
+					}
+					set	
+					{
+						maxBandwidth = value;
+					}
+				}
+
+				public string EniType
+				{
+					get
+					{
+						return eniType;
+					}
+					set	
+					{
+						eniType = value;
 					}
 				}
 			}

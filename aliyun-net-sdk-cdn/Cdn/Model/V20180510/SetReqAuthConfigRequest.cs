@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,11 +33,21 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public SetReqAuthConfigRequest()
             : base("Cdn", "2018-05-10", "SetReqAuthConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string key1;
 
 		private string key2;
+
+		private string timeOut;
+
+		private string authType;
 
 		private string authRemoteDesc;
 
@@ -44,13 +55,7 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 
 		private string domainName;
 
-		private string action;
-
 		private long? ownerId;
-
-		private string timeOut;
-
-		private string authType;
 
 		public string Key1
 		{
@@ -75,6 +80,32 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				key2 = value;
 				DictionaryUtil.Add(QueryParameters, "Key2", value);
+			}
+		}
+
+		public string TimeOut
+		{
+			get
+			{
+				return timeOut;
+			}
+			set	
+			{
+				timeOut = value;
+				DictionaryUtil.Add(QueryParameters, "TimeOut", value);
+			}
+		}
+
+		public string AuthType
+		{
+			get
+			{
+				return authType;
+			}
+			set	
+			{
+				authType = value;
+				DictionaryUtil.Add(QueryParameters, "AuthType", value);
 			}
 		}
 
@@ -117,19 +148,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -140,32 +158,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string TimeOut
-		{
-			get
-			{
-				return timeOut;
-			}
-			set	
-			{
-				timeOut = value;
-				DictionaryUtil.Add(QueryParameters, "TimeOut", value);
-			}
-		}
-
-		public string AuthType
-		{
-			get
-			{
-				return authType;
-			}
-			set	
-			{
-				authType = value;
-				DictionaryUtil.Add(QueryParameters, "AuthType", value);
 			}
 		}
 

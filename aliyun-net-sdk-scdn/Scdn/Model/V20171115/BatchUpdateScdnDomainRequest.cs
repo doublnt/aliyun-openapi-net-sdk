@@ -16,49 +16,53 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.scdn;
 using Aliyun.Acs.scdn.Transform;
 using Aliyun.Acs.scdn.Transform.V20171115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.scdn.Model.V20171115
 {
     public class BatchUpdateScdnDomainRequest : RpcAcsRequest<BatchUpdateScdnDomainResponse>
     {
         public BatchUpdateScdnDomainRequest()
-            : base("scdn", "2017-11-15", "BatchUpdateScdnDomain", "scdn", "openAPI")
+            : base("scdn", "2017-11-15", "BatchUpdateScdnDomain")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string topLevelDomain;
-
-		private string resourceGroupId;
 
 		private string sources;
 
+		private string resourceGroupId;
+
 		private string securityToken;
+
+		private string topLevelDomain;
 
 		private string domainName;
 
-		private string action;
-
 		private long? ownerId;
 
-		private string accessKeyId;
-
-		public string TopLevelDomain
+		public string Sources
 		{
 			get
 			{
-				return topLevelDomain;
+				return sources;
 			}
 			set	
 			{
-				topLevelDomain = value;
-				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+				sources = value;
+				DictionaryUtil.Add(QueryParameters, "Sources", value);
 			}
 		}
 
@@ -75,19 +79,6 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string Sources
-		{
-			get
-			{
-				return sources;
-			}
-			set	
-			{
-				sources = value;
-				DictionaryUtil.Add(QueryParameters, "Sources", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -98,6 +89,19 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string TopLevelDomain
+		{
+			get
+			{
+				return topLevelDomain;
+			}
+			set	
+			{
+				topLevelDomain = value;
+				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
 			}
 		}
 
@@ -114,19 +118,6 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -140,20 +131,7 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override BatchUpdateScdnDomainResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override BatchUpdateScdnDomainResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return BatchUpdateScdnDomainResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

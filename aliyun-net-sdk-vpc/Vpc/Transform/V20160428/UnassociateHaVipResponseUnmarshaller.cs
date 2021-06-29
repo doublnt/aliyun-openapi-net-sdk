@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class UnassociateHaVipResponseUnmarshaller
     {
-        public static UnassociateHaVipResponse Unmarshall(UnmarshallerContext context)
+        public static UnassociateHaVipResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			UnassociateHaVipResponse unassociateHaVipResponse = new UnassociateHaVipResponse();
 
-			unassociateHaVipResponse.HttpResponse = context.HttpResponse;
-			unassociateHaVipResponse.RequestId = context.StringValue("UnassociateHaVip.RequestId");
+			unassociateHaVipResponse.HttpResponse = _ctx.HttpResponse;
+			unassociateHaVipResponse.RequestId = _ctx.StringValue("UnassociateHaVip.RequestId");
         
 			return unassociateHaVipResponse;
         }

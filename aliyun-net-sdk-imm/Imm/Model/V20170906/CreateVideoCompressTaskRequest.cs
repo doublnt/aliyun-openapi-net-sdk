@@ -32,28 +32,79 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public CreateVideoCompressTaskRequest()
             : base("imm", "2017-09-06", "CreateVideoCompressTask", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string videoUri;
+		private string project;
+
+		private string notifyEndpoint;
+
+		private string targetContainer;
+
+		private string customMessage;
 
 		private string notifyTopicName;
 
 		private string targetList;
 
-		private string notifyEndpoint;
+		private string videoUri;
 
-		private string project;
+		private string targetSegment;
 
-		public string VideoUri
+		public string Project
 		{
 			get
 			{
-				return videoUri;
+				return project;
 			}
 			set	
 			{
-				videoUri = value;
-				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string NotifyEndpoint
+		{
+			get
+			{
+				return notifyEndpoint;
+			}
+			set	
+			{
+				notifyEndpoint = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyEndpoint", value);
+			}
+		}
+
+		public string TargetContainer
+		{
+			get
+			{
+				return targetContainer;
+			}
+			set	
+			{
+				targetContainer = value;
+				DictionaryUtil.Add(QueryParameters, "TargetContainer", value);
+			}
+		}
+
+		public string CustomMessage
+		{
+			get
+			{
+				return customMessage;
+			}
+			set	
+			{
+				customMessage = value;
+				DictionaryUtil.Add(QueryParameters, "CustomMessage", value);
 			}
 		}
 
@@ -83,29 +134,29 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string NotifyEndpoint
+		public string VideoUri
 		{
 			get
 			{
-				return notifyEndpoint;
+				return videoUri;
 			}
 			set	
 			{
-				notifyEndpoint = value;
-				DictionaryUtil.Add(QueryParameters, "NotifyEndpoint", value);
+				videoUri = value;
+				DictionaryUtil.Add(QueryParameters, "VideoUri", value);
 			}
 		}
 
-		public string Project
+		public string TargetSegment
 		{
 			get
 			{
-				return project;
+				return targetSegment;
 			}
 			set	
 			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
+				targetSegment = value;
+				DictionaryUtil.Add(QueryParameters, "TargetSegment", value);
 			}
 		}
 

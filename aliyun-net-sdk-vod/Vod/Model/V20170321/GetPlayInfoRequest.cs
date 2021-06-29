@@ -32,27 +32,17 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public GetPlayInfoRequest()
             : base("vod", "2017-03-21", "GetPlayInfo", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string streamType;
-
 		private string formats;
-
-		private string resourceOwnerAccount;
-
-		private string channel;
-
-		private string videoId;
-
-		private string playerVersion;
-
-		private long? ownerId;
-
-		private string resultType;
-
-		private string rand;
 
 		private string reAuthInfo;
 
@@ -64,7 +54,15 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private long? authTimeout;
 
-		private string authInfo;
+		private string streamType;
+
+		private string resourceOwnerAccount;
+
+		private string videoId;
+
+		private long? ownerId;
+
+		private string resultType;
 
 		public long? ResourceOwnerId
 		{
@@ -79,19 +77,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string StreamType
-		{
-			get
-			{
-				return streamType;
-			}
-			set	
-			{
-				streamType = value;
-				DictionaryUtil.Add(QueryParameters, "StreamType", value);
-			}
-		}
-
 		public string Formats
 		{
 			get
@@ -102,97 +87,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				formats = value;
 				DictionaryUtil.Add(QueryParameters, "Formats", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string Channel
-		{
-			get
-			{
-				return channel;
-			}
-			set	
-			{
-				channel = value;
-				DictionaryUtil.Add(QueryParameters, "Channel", value);
-			}
-		}
-
-		public string VideoId
-		{
-			get
-			{
-				return videoId;
-			}
-			set	
-			{
-				videoId = value;
-				DictionaryUtil.Add(QueryParameters, "VideoId", value);
-			}
-		}
-
-		public string PlayerVersion
-		{
-			get
-			{
-				return playerVersion;
-			}
-			set	
-			{
-				playerVersion = value;
-				DictionaryUtil.Add(QueryParameters, "PlayerVersion", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string ResultType
-		{
-			get
-			{
-				return resultType;
-			}
-			set	
-			{
-				resultType = value;
-				DictionaryUtil.Add(QueryParameters, "ResultType", value);
-			}
-		}
-
-		public string Rand
-		{
-			get
-			{
-				return rand;
-			}
-			set	
-			{
-				rand = value;
-				DictionaryUtil.Add(QueryParameters, "Rand", value);
 			}
 		}
 
@@ -261,16 +155,68 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string AuthInfo
+		public string StreamType
 		{
 			get
 			{
-				return authInfo;
+				return streamType;
 			}
 			set	
 			{
-				authInfo = value;
-				DictionaryUtil.Add(QueryParameters, "AuthInfo", value);
+				streamType = value;
+				DictionaryUtil.Add(QueryParameters, "StreamType", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string VideoId
+		{
+			get
+			{
+				return videoId;
+			}
+			set	
+			{
+				videoId = value;
+				DictionaryUtil.Add(QueryParameters, "VideoId", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ResultType
+		{
+			get
+			{
+				return resultType;
+			}
+			set	
+			{
+				resultType = value;
+				DictionaryUtil.Add(QueryParameters, "ResultType", value);
 			}
 		}
 

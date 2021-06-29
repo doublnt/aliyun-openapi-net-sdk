@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyVSwitchAttributeResponseUnmarshaller
     {
-        public static ModifyVSwitchAttributeResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyVSwitchAttributeResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyVSwitchAttributeResponse modifyVSwitchAttributeResponse = new ModifyVSwitchAttributeResponse();
 
-			modifyVSwitchAttributeResponse.HttpResponse = context.HttpResponse;
-			modifyVSwitchAttributeResponse.RequestId = context.StringValue("ModifyVSwitchAttribute.RequestId");
+			modifyVSwitchAttributeResponse.HttpResponse = _ctx.HttpResponse;
+			modifyVSwitchAttributeResponse.RequestId = _ctx.StringValue("ModifyVSwitchAttribute.RequestId");
         
 			return modifyVSwitchAttributeResponse;
         }

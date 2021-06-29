@@ -25,7 +25,21 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 	public class ResizeDiskResponse : AcsResponse
 	{
 
+		private string orderId;
+
 		private string requestId;
+
+		public string OrderId
+		{
+			get
+			{
+				return orderId;
+			}
+			set	
+			{
+				orderId = value;
+			}
+		}
 
 		public string RequestId
 		{

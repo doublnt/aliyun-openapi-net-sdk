@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public ModifyRiskSingleResultStatusRequest()
             : base("Sas", "2018-12-03", "ModifyRiskSingleResultStatus", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string sourceIp;
 
-		private List<string> idss;
+		private List<string> idss = new List<string>(){ };
 
 		private string lang;
 

@@ -29,6 +29,8 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private int? taskId;
 
+		private string orderId;
+
 		public string RequestId
 		{
 			get
@@ -50,6 +52,18 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			set	
 			{
 				taskId = value;
+			}
+		}
+
+		public string OrderId
+		{
+			get
+			{
+				return orderId;
+			}
+			set	
+			{
+				orderId = value;
 			}
 		}
 	}

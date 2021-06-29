@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,23 +31,24 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class CreateJobFileRequest : RpcAcsRequest<CreateJobFileResponse>
     {
         public CreateJobFileRequest()
-            : base("EHPC", "2018-04-12", "CreateJobFile", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "CreateJobFile")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string targetFile;
 
 		private string runasUserPassword;
 
-		private string action;
-
 		private string runasUser;
 
 		private string clusterId;
 
 		private string content;
-
-		private string accessKeyId;
 
 		public string TargetFile
 		{
@@ -71,19 +73,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				runasUserPassword = value;
 				DictionaryUtil.Add(QueryParameters, "RunasUserPassword", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -123,19 +112,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				content = value;
 				DictionaryUtil.Add(QueryParameters, "Content", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

@@ -32,9 +32,17 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UploadImageToLibRequest()
             : base("Green", "2017-08-23", "UploadImageToLib", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string images;
+
+		private string urls;
 
 		private string sourceIp;
 
@@ -50,6 +58,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				images = value;
 				DictionaryUtil.Add(QueryParameters, "Images", value);
+			}
+		}
+
+		public string Urls
+		{
+			get
+			{
+				return urls;
+			}
+			set	
+			{
+				urls = value;
+				DictionaryUtil.Add(QueryParameters, "Urls", value);
 			}
 		}
 

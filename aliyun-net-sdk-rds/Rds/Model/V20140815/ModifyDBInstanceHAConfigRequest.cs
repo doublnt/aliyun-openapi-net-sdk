@@ -32,9 +32,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyDBInstanceHAConfigRequest()
             : base("Rds", "2014-08-15", "ModifyDBInstanceHAConfig", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string dbInstanceId;
+
+		private string hAMode;
 
 		private string resourceOwnerAccount;
 
@@ -42,11 +52,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string syncMode;
 
-		private string dbInstanceId;
-
 		private long? ownerId;
-
-		private string hAMode;
 
 		public long? ResourceOwnerId
 		{
@@ -58,6 +64,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DbInstanceId
+		{
+			get
+			{
+				return dbInstanceId;
+			}
+			set	
+			{
+				dbInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DbInstanceId", value);
+			}
+		}
+
+		public string HAMode
+		{
+			get
+			{
+				return hAMode;
+			}
+			set	
+			{
+				hAMode = value;
+				DictionaryUtil.Add(QueryParameters, "HAMode", value);
 			}
 		}
 
@@ -100,19 +132,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DbInstanceId
-		{
-			get
-			{
-				return dbInstanceId;
-			}
-			set	
-			{
-				dbInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DbInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -123,19 +142,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string HAMode
-		{
-			get
-			{
-				return hAMode;
-			}
-			set	
-			{
-				hAMode = value;
-				DictionaryUtil.Add(QueryParameters, "HAMode", value);
 			}
 		}
 

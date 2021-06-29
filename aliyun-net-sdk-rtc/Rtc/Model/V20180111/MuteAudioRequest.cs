@@ -32,13 +32,19 @@ namespace Aliyun.Acs.rtc.Model.V20180111
         public MuteAudioRequest()
             : base("rtc", "2018-01-11", "MuteAudio", "rtc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> participantIdss;
-
-		private long? ownerId;
+		private List<string> participantIdss = new List<string>(){ };
 
 		private string conferenceId;
+
+		private long? ownerId;
 
 		private string appId;
 
@@ -59,19 +65,6 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string ConferenceId
 		{
 			get
@@ -82,6 +75,19 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			{
 				conferenceId = value;
 				DictionaryUtil.Add(QueryParameters, "ConferenceId", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

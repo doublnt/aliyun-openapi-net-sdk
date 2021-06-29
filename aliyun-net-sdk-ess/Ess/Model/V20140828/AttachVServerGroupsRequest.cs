@@ -32,47 +32,36 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public AttachVServerGroupsRequest()
             : base("Ess", "2014-08-28", "AttachVServerGroups", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string resourceOwnerAccount;
-
-		private string regionId;
+		private string clientToken;
 
 		private string scalingGroupId;
 
-		private string action;
-
 		private bool? forceAttach;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private List<VServerGroup> vServerGroups;
+		private List<VServerGroup> vServerGroups = new List<VServerGroup>(){ };
 
-		private string accessKeyId;
-
-		public string ResourceOwnerAccount
+		public string ClientToken
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return clientToken;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
 			}
 		}
 
@@ -89,19 +78,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public bool? ForceAttach
 		{
 			get
@@ -112,6 +88,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				forceAttach = value;
 				DictionaryUtil.Add(QueryParameters, "ForceAttach", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -149,25 +138,12 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
 		public class VServerGroup
 		{
 
 			private string loadBalancerId;
 
-			private List<VServerGroupAttribute> vServerGroupAttributes;
+			private List<VServerGroupAttribute> vServerGroupAttributes = new List<VServerGroupAttribute>(){ };
 
 			public string LoadBalancerId
 			{

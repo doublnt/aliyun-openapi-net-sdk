@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,13 +30,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class QueryTaskInfoHistoryRequest : RpcAcsRequest<QueryTaskInfoHistoryResponse>
     {
         public QueryTaskInfoHistoryRequest()
-            : base("Domain", "2018-01-29", "QueryTaskInfoHistory")
+            : base("Domain", "2018-01-29", "QueryTaskInfoHistory", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? beginCreateTime;
-
 		private long? endCreateTime;
+
+		private long? beginCreateTime;
 
 		private string taskNoCursor;
 
@@ -49,19 +54,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private long? createTimeCursor;
 
-		public long? BeginCreateTime
-		{
-			get
-			{
-				return beginCreateTime;
-			}
-			set	
-			{
-				beginCreateTime = value;
-				DictionaryUtil.Add(QueryParameters, "BeginCreateTime", value.ToString());
-			}
-		}
-
 		public long? EndCreateTime
 		{
 			get
@@ -72,6 +64,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				endCreateTime = value;
 				DictionaryUtil.Add(QueryParameters, "EndCreateTime", value.ToString());
+			}
+		}
+
+		public long? BeginCreateTime
+		{
+			get
+			{
+				return beginCreateTime;
+			}
+			set	
+			{
+				beginCreateTime = value;
+				DictionaryUtil.Add(QueryParameters, "BeginCreateTime", value.ToString());
 			}
 		}
 

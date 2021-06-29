@@ -33,11 +33,13 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyPhysicalConnectionAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyPhysicalConnectionAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string redundantPhysicalConnectionId;
-
-		private string peerLocation;
 
 		private long? resourceOwnerId;
 
@@ -45,15 +47,21 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string circuitCode;
 
-		private int? bandwidth;
-
 		private string clientToken;
+
+		private string description;
+
+		private string userCidr;
+
+		private string redundantPhysicalConnectionId;
+
+		private string peerLocation;
+
+		private int? bandwidth;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
-
-		private string description;
 
 		private long? ownerId;
 
@@ -62,34 +70,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string physicalConnectionId;
 
 		private string name;
-
-		private string userCidr;
-
-		public string RedundantPhysicalConnectionId
-		{
-			get
-			{
-				return redundantPhysicalConnectionId;
-			}
-			set	
-			{
-				redundantPhysicalConnectionId = value;
-				DictionaryUtil.Add(QueryParameters, "RedundantPhysicalConnectionId", value);
-			}
-		}
-
-		public string PeerLocation
-		{
-			get
-			{
-				return peerLocation;
-			}
-			set	
-			{
-				peerLocation = value;
-				DictionaryUtil.Add(QueryParameters, "PeerLocation", value);
-			}
-		}
 
 		public long? ResourceOwnerId
 		{
@@ -130,19 +110,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? Bandwidth
-		{
-			get
-			{
-				return bandwidth;
-			}
-			set	
-			{
-				bandwidth = value;
-				DictionaryUtil.Add(QueryParameters, "bandwidth", value.ToString());
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -153,6 +120,71 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string UserCidr
+		{
+			get
+			{
+				return userCidr;
+			}
+			set	
+			{
+				userCidr = value;
+				DictionaryUtil.Add(QueryParameters, "UserCidr", value);
+			}
+		}
+
+		public string RedundantPhysicalConnectionId
+		{
+			get
+			{
+				return redundantPhysicalConnectionId;
+			}
+			set	
+			{
+				redundantPhysicalConnectionId = value;
+				DictionaryUtil.Add(QueryParameters, "RedundantPhysicalConnectionId", value);
+			}
+		}
+
+		public string PeerLocation
+		{
+			get
+			{
+				return peerLocation;
+			}
+			set	
+			{
+				peerLocation = value;
+				DictionaryUtil.Add(QueryParameters, "PeerLocation", value);
+			}
+		}
+
+		public int? Bandwidth
+		{
+			get
+			{
+				return bandwidth;
+			}
+			set	
+			{
+				bandwidth = value;
+				DictionaryUtil.Add(QueryParameters, "bandwidth", value.ToString());
 			}
 		}
 
@@ -179,19 +211,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 
@@ -244,19 +263,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				name = value;
 				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
-		public string UserCidr
-		{
-			get
-			{
-				return userCidr;
-			}
-			set	
-			{
-				userCidr = value;
-				DictionaryUtil.Add(QueryParameters, "UserCidr", value);
 			}
 		}
 

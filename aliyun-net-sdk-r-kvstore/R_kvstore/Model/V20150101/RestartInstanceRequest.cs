@@ -32,21 +32,29 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public RestartInstanceRequest()
             : base("R-kvstore", "2015-01-01", "RestartInstance", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private bool? upgradeMinorVersion;
 
 		private string securityToken;
 
-		private string resourceOwnerAccount;
-
 		private string effectiveTime;
+
+		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -61,16 +69,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
+		public bool? UpgradeMinorVersion
 		{
 			get
 			{
-				return instanceId;
+				return upgradeMinorVersion;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				upgradeMinorVersion = value;
+				DictionaryUtil.Add(QueryParameters, "UpgradeMinorVersion", value.ToString());
 			}
 		}
 
@@ -87,19 +95,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string EffectiveTime
 		{
 			get
@@ -110,6 +105,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				effectiveTime = value;
 				DictionaryUtil.Add(QueryParameters, "EffectiveTime", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -136,6 +144,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

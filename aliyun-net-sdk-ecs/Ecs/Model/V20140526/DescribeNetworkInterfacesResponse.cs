@@ -25,15 +25,53 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 	public class DescribeNetworkInterfacesResponse : AcsResponse
 	{
 
+		private string nextToken;
+
+		private int? pageSize;
+
+		private int? pageNumber;
+
 		private string requestId;
 
 		private int? totalCount;
 
-		private int? pageNumber;
-
-		private int? pageSize;
-
 		private List<DescribeNetworkInterfaces_NetworkInterfaceSet> networkInterfaceSets;
+
+		public string NextToken
+		{
+			get
+			{
+				return nextToken;
+			}
+			set	
+			{
+				nextToken = value;
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+			}
+		}
+
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+			}
+		}
 
 		public string RequestId
 		{
@@ -59,30 +97,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-			}
-		}
-
 		public List<DescribeNetworkInterfaces_NetworkInterfaceSet> NetworkInterfaceSets
 		{
 			get
@@ -98,35 +112,43 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		public class DescribeNetworkInterfaces_NetworkInterfaceSet
 		{
 
-			private string networkInterfaceId;
-
-			private string status;
-
-			private string type;
+			private string creationTime;
 
 			private string vpcId;
 
+			private string type;
+
+			private string status;
+
+			private string networkInterfaceTrafficMode;
+
+			private string networkInterfaceName;
+
+			private string macAddress;
+
+			private int? queuePairNumber;
+
+			private string networkInterfaceId;
+
+			private long? serviceID;
+
+			private string instanceId;
+
+			private string ownerId;
+
+			private bool? serviceManaged;
+
 			private string vSwitchId;
+
+			private string description;
+
+			private string resourceGroupId;
 
 			private string zoneId;
 
 			private string privateIpAddress;
 
-			private string macAddress;
-
-			private string networkInterfaceName;
-
-			private string description;
-
-			private string instanceId;
-
-			private string creationTime;
-
-			private string resourceGroupId;
-
-			private long? serviceID;
-
-			private bool? serviceManaged;
+			private int? queueNumber;
 
 			private List<DescribeNetworkInterfaces_PrivateIpSet> privateIpSets;
 
@@ -138,39 +160,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private DescribeNetworkInterfaces_AssociatedPublicIp associatedPublicIp;
 
-			public string NetworkInterfaceId
-			{
-				get
-				{
-					return networkInterfaceId;
-				}
-				set	
-				{
-					networkInterfaceId = value;
-				}
-			}
+			private DescribeNetworkInterfaces_Attachment attachment;
 
-			public string Status
+			public string CreationTime
 			{
 				get
 				{
-					return status;
+					return creationTime;
 				}
 				set	
 				{
-					status = value;
-				}
-			}
-
-			public string Type
-			{
-				get
-				{
-					return type;
-				}
-				set	
-				{
-					type = value;
+					creationTime = value;
 				}
 			}
 
@@ -186,6 +186,138 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public string Type
+			{
+				get
+				{
+					return type;
+				}
+				set	
+				{
+					type = value;
+				}
+			}
+
+			public string Status
+			{
+				get
+				{
+					return status;
+				}
+				set	
+				{
+					status = value;
+				}
+			}
+
+			public string NetworkInterfaceTrafficMode
+			{
+				get
+				{
+					return networkInterfaceTrafficMode;
+				}
+				set	
+				{
+					networkInterfaceTrafficMode = value;
+				}
+			}
+
+			public string NetworkInterfaceName
+			{
+				get
+				{
+					return networkInterfaceName;
+				}
+				set	
+				{
+					networkInterfaceName = value;
+				}
+			}
+
+			public string MacAddress
+			{
+				get
+				{
+					return macAddress;
+				}
+				set	
+				{
+					macAddress = value;
+				}
+			}
+
+			public int? QueuePairNumber
+			{
+				get
+				{
+					return queuePairNumber;
+				}
+				set	
+				{
+					queuePairNumber = value;
+				}
+			}
+
+			public string NetworkInterfaceId
+			{
+				get
+				{
+					return networkInterfaceId;
+				}
+				set	
+				{
+					networkInterfaceId = value;
+				}
+			}
+
+			public long? ServiceID
+			{
+				get
+				{
+					return serviceID;
+				}
+				set	
+				{
+					serviceID = value;
+				}
+			}
+
+			public string InstanceId
+			{
+				get
+				{
+					return instanceId;
+				}
+				set	
+				{
+					instanceId = value;
+				}
+			}
+
+			public string OwnerId
+			{
+				get
+				{
+					return ownerId;
+				}
+				set	
+				{
+					ownerId = value;
+				}
+			}
+
+			public bool? ServiceManaged
+			{
+				get
+				{
+					return serviceManaged;
+				}
+				set	
+				{
+					serviceManaged = value;
+				}
+			}
+
 			public string VSwitchId
 			{
 				get
@@ -195,6 +327,30 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					vSwitchId = value;
+				}
+			}
+
+			public string Description
+			{
+				get
+				{
+					return description;
+				}
+				set	
+				{
+					description = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
 				}
 			}
 
@@ -222,99 +378,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
-			public string MacAddress
+			public int? QueueNumber
 			{
 				get
 				{
-					return macAddress;
+					return queueNumber;
 				}
 				set	
 				{
-					macAddress = value;
-				}
-			}
-
-			public string NetworkInterfaceName
-			{
-				get
-				{
-					return networkInterfaceName;
-				}
-				set	
-				{
-					networkInterfaceName = value;
-				}
-			}
-
-			public string Description
-			{
-				get
-				{
-					return description;
-				}
-				set	
-				{
-					description = value;
-				}
-			}
-
-			public string InstanceId
-			{
-				get
-				{
-					return instanceId;
-				}
-				set	
-				{
-					instanceId = value;
-				}
-			}
-
-			public string CreationTime
-			{
-				get
-				{
-					return creationTime;
-				}
-				set	
-				{
-					creationTime = value;
-				}
-			}
-
-			public string ResourceGroupId
-			{
-				get
-				{
-					return resourceGroupId;
-				}
-				set	
-				{
-					resourceGroupId = value;
-				}
-			}
-
-			public long? ServiceID
-			{
-				get
-				{
-					return serviceID;
-				}
-				set	
-				{
-					serviceID = value;
-				}
-			}
-
-			public bool? ServiceManaged
-			{
-				get
-				{
-					return serviceManaged;
-				}
-				set	
-				{
-					serviceManaged = value;
+					queueNumber = value;
 				}
 			}
 
@@ -375,6 +447,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					associatedPublicIp = value;
+				}
+			}
+
+			public DescribeNetworkInterfaces_Attachment Attachment
+			{
+				get
+				{
+					return attachment;
+				}
+				set	
+				{
+					attachment = value;
 				}
 			}
 
@@ -477,21 +561,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			public class DescribeNetworkInterfaces_Tag
 			{
 
-				private string tagKey;
-
 				private string tagValue;
 
-				public string TagKey
-				{
-					get
-					{
-						return tagKey;
-					}
-					set	
-					{
-						tagKey = value;
-					}
-				}
+				private string tagKey;
 
 				public string TagValue
 				{
@@ -502,6 +574,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					set	
 					{
 						tagValue = value;
+					}
+				}
+
+				public string TagKey
+				{
+					get
+					{
+						return tagKey;
+					}
+					set	
+					{
+						tagKey = value;
 					}
 				}
 			}
@@ -534,6 +618,52 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					set	
 					{
 						allocationId = value;
+					}
+				}
+			}
+
+			public class DescribeNetworkInterfaces_Attachment
+			{
+
+				private int? deviceIndex;
+
+				private string instanceId;
+
+				private string trunkNetworkInterfaceId;
+
+				public int? DeviceIndex
+				{
+					get
+					{
+						return deviceIndex;
+					}
+					set	
+					{
+						deviceIndex = value;
+					}
+				}
+
+				public string InstanceId
+				{
+					get
+					{
+						return instanceId;
+					}
+					set	
+					{
+						instanceId = value;
+					}
+				}
+
+				public string TrunkNetworkInterfaceId
+				{
+					get
+					{
+						return trunkNetworkInterfaceId;
+					}
+					set	
+					{
+						trunkNetworkInterfaceId = value;
 					}
 				}
 			}

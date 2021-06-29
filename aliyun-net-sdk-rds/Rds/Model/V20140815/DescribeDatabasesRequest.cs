@@ -32,25 +32,31 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeDatabasesRequest()
             : base("Rds", "2014-08-15", "DescribeDatabases", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string dBName;
-
-		private string resourceOwnerAccount;
+		private int? pageNumber;
 
 		private string dBStatus;
-
-		private string ownerAccount;
 
 		private int? pageSize;
 
 		private string dBInstanceId;
 
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
 		private long? ownerId;
 
-		private int? pageNumber;
+		private string dBName;
 
 		public long? ResourceOwnerId
 		{
@@ -65,29 +71,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBName
+		public int? PageNumber
 		{
 			get
 			{
-				return dBName;
+				return pageNumber;
 			}
 			set	
 			{
-				dBName = value;
-				DictionaryUtil.Add(QueryParameters, "DBName", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -101,19 +94,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				dBStatus = value;
 				DictionaryUtil.Add(QueryParameters, "DBStatus", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -143,6 +123,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -156,16 +162,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public int? PageNumber
+		public string DBName
 		{
 			get
 			{
-				return pageNumber;
+				return dBName;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				dBName = value;
+				DictionaryUtil.Add(QueryParameters, "DBName", value);
 			}
 		}
 

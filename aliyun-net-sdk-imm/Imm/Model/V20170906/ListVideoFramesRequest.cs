@@ -32,15 +32,34 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public ListVideoFramesRequest()
             : base("imm", "2017-09-06", "ListVideoFrames", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string project;
 
 		private string videoUri;
 
 		private string marker;
 
-		private string project;
-
 		private string setId;
+
+		public string Project
+		{
+			get
+			{
+				return project;
+			}
+			set	
+			{
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
 
 		public string VideoUri
 		{
@@ -65,19 +84,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				marker = value;
 				DictionaryUtil.Add(QueryParameters, "Marker", value);
-			}
-		}
-
-		public string Project
-		{
-			get
-			{
-				return project;
-			}
-			set	
-			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
 		}
 

@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,32 +32,30 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public ModifyApiGroupRequest()
             : base("CloudAPI", "2016-07-14", "ModifyApiGroup", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
-		private string securityToken;
-
 		private string groupId;
-
-		private string action;
 
 		private string description;
 
 		private string groupName;
 
-		private string accessKeyId;
+		private string securityToken;
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
+		private string compatibleFlags;
+
+		private string rpcPattern;
+
+		private string userLogConfig;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string customTraceConfig;
 
 		public string GroupId
 		{
@@ -68,19 +67,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				groupId = value;
 				DictionaryUtil.Add(QueryParameters, "GroupId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -110,20 +96,122 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string SecurityToken
 		{
 			get
 			{
-				return accessKeyId;
+				return securityToken;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
-        public override ModifyApiGroupResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string CompatibleFlags
+		{
+			get
+			{
+				return compatibleFlags;
+			}
+			set	
+			{
+				compatibleFlags = value;
+				DictionaryUtil.Add(QueryParameters, "CompatibleFlags", value);
+			}
+		}
+
+		public string RpcPattern
+		{
+			get
+			{
+				return rpcPattern;
+			}
+			set	
+			{
+				rpcPattern = value;
+				DictionaryUtil.Add(QueryParameters, "RpcPattern", value);
+			}
+		}
+
+		public string UserLogConfig
+		{
+			get
+			{
+				return userLogConfig;
+			}
+			set	
+			{
+				userLogConfig = value;
+				DictionaryUtil.Add(QueryParameters, "UserLogConfig", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public string CustomTraceConfig
+		{
+			get
+			{
+				return customTraceConfig;
+			}
+			set	
+			{
+				customTraceConfig = value;
+				DictionaryUtil.Add(QueryParameters, "CustomTraceConfig", value);
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
+			}
+		}
+
+        public override ModifyApiGroupResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ModifyApiGroupResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

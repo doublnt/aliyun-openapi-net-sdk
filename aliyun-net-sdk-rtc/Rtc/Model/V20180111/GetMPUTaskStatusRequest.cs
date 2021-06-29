@@ -32,13 +32,32 @@ namespace Aliyun.Acs.rtc.Model.V20180111
         public GetMPUTaskStatusRequest()
             : base("rtc", "2018-01-11", "GetMPUTaskStatus", "rtc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.rtc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string taskId;
 
 		private long? ownerId;
 
 		private string appId;
 
-		private string taskId;
+		public string TaskId
+		{
+			get
+			{
+				return taskId;
+			}
+			set	
+			{
+				taskId = value;
+				DictionaryUtil.Add(QueryParameters, "TaskId", value);
+			}
+		}
 
 		public long? OwnerId
 		{
@@ -63,19 +82,6 @@ namespace Aliyun.Acs.rtc.Model.V20180111
 			{
 				appId = value;
 				DictionaryUtil.Add(QueryParameters, "AppId", value);
-			}
-		}
-
-		public string TaskId
-		{
-			get
-			{
-				return taskId;
-			}
-			set	
-			{
-				taskId = value;
-				DictionaryUtil.Add(QueryParameters, "TaskId", value);
 			}
 		}
 

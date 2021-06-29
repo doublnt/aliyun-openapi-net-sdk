@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,36 +31,36 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListNodesRequest : RpcAcsRequest<ListNodesResponse>
     {
         public ListNodesRequest()
-            : base("EHPC", "2018-04-12", "ListNodes", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListNodes")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string hostName;
 
 		private string role;
 
+		private int? pageNumber;
+
+		private string hostName;
+
 		private int? pageSize;
 
-		private string action;
+		private string hostNamePrefix;
 
 		private string clusterId;
 
-		private int? pageNumber;
+		private string hostNameSuffix;
 
-		private string accessKeyId;
+		private string filter;
 
-		public string HostName
-		{
-			get
-			{
-				return hostName;
-			}
-			set	
-			{
-				hostName = value;
-				DictionaryUtil.Add(QueryParameters, "HostName", value);
-			}
-		}
+		private string privateIpAddress;
+
+		private string sequence;
+
+		private string sortBy;
 
 		public string Role
 		{
@@ -71,45 +72,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				role = value;
 				DictionaryUtil.Add(QueryParameters, "Role", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ClusterId
-		{
-			get
-			{
-				return clusterId;
-			}
-			set	
-			{
-				clusterId = value;
-				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
 			}
 		}
 
@@ -126,16 +88,120 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string HostName
 		{
 			get
 			{
-				return accessKeyId;
+				return hostName;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				hostName = value;
+				DictionaryUtil.Add(QueryParameters, "HostName", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string HostNamePrefix
+		{
+			get
+			{
+				return hostNamePrefix;
+			}
+			set	
+			{
+				hostNamePrefix = value;
+				DictionaryUtil.Add(QueryParameters, "HostNamePrefix", value);
+			}
+		}
+
+		public string ClusterId
+		{
+			get
+			{
+				return clusterId;
+			}
+			set	
+			{
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
+
+		public string HostNameSuffix
+		{
+			get
+			{
+				return hostNameSuffix;
+			}
+			set	
+			{
+				hostNameSuffix = value;
+				DictionaryUtil.Add(QueryParameters, "HostNameSuffix", value);
+			}
+		}
+
+		public string Filter
+		{
+			get
+			{
+				return filter;
+			}
+			set	
+			{
+				filter = value;
+				DictionaryUtil.Add(QueryParameters, "Filter", value);
+			}
+		}
+
+		public string PrivateIpAddress
+		{
+			get
+			{
+				return privateIpAddress;
+			}
+			set	
+			{
+				privateIpAddress = value;
+				DictionaryUtil.Add(QueryParameters, "PrivateIpAddress", value);
+			}
+		}
+
+		public string Sequence
+		{
+			get
+			{
+				return sequence;
+			}
+			set	
+			{
+				sequence = value;
+				DictionaryUtil.Add(QueryParameters, "Sequence", value);
+			}
+		}
+
+		public string SortBy
+		{
+			get
+			{
+				return sortBy;
+			}
+			set	
+			{
+				sortBy = value;
+				DictionaryUtil.Add(QueryParameters, "SortBy", value);
 			}
 		}
 

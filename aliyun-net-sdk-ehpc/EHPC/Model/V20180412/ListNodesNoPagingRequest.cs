@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,34 +31,24 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListNodesNoPagingRequest : RpcAcsRequest<ListNodesNoPagingResponse>
     {
         public ListNodesNoPagingRequest()
-            : base("EHPC", "2018-04-12", "ListNodesNoPaging", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListNodesNoPaging")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string hostName;
 
 		private string role;
 
-		private string action;
-
 		private string clusterId;
 
+		private string sequence;
+
+		private string hostName;
+
 		private bool? onlyDetached;
-
-		private string accessKeyId;
-
-		public string HostName
-		{
-			get
-			{
-				return hostName;
-			}
-			set	
-			{
-				hostName = value;
-				DictionaryUtil.Add(QueryParameters, "HostName", value);
-			}
-		}
 
 		public string Role
 		{
@@ -69,19 +60,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				role = value;
 				DictionaryUtil.Add(QueryParameters, "Role", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -98,6 +76,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
+		public string Sequence
+		{
+			get
+			{
+				return sequence;
+			}
+			set	
+			{
+				sequence = value;
+				DictionaryUtil.Add(QueryParameters, "Sequence", value);
+			}
+		}
+
+		public string HostName
+		{
+			get
+			{
+				return hostName;
+			}
+			set	
+			{
+				hostName = value;
+				DictionaryUtil.Add(QueryParameters, "HostName", value);
+			}
+		}
+
 		public bool? OnlyDetached
 		{
 			get
@@ -108,19 +112,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				onlyDetached = value;
 				DictionaryUtil.Add(QueryParameters, "OnlyDetached", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,29 +30,23 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class QueryDomainListRequest : RpcAcsRequest<QueryDomainListResponse>
     {
         public QueryDomainListRequest()
-            : base("Domain", "2018-01-29", "QueryDomainList")
+            : base("Domain", "2018-01-29", "QueryDomainList", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? endExpirationDate;
 
 		private string productDomainType;
 
 		private string orderKeyType;
 
-		private string domainName;
-
-		private long? startExpirationDate;
-
 		private int? pageNum;
 
 		private string orderByType;
-
-		private string domainGroupId;
-
-		private long? endRegistrationDate;
-
-		private string userClientIp;
 
 		private int? pageSize;
 
@@ -61,20 +54,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string queryType;
 
-		private long? startRegistrationDate;
+		private long? endExpirationDate;
 
-		public long? EndExpirationDate
-		{
-			get
-			{
-				return endExpirationDate;
-			}
-			set	
-			{
-				endExpirationDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndExpirationDate", value.ToString());
-			}
-		}
+		private string domainName;
+
+		private long? startExpirationDate;
+
+		private string domainGroupId;
+
+		private long? endRegistrationDate;
+
+		private string userClientIp;
+
+		private long? startRegistrationDate;
 
 		public string ProductDomainType
 		{
@@ -102,32 +94,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public long? StartExpirationDate
-		{
-			get
-			{
-				return startExpirationDate;
-			}
-			set	
-			{
-				startExpirationDate = value;
-				DictionaryUtil.Add(QueryParameters, "StartExpirationDate", value.ToString());
-			}
-		}
-
 		public int? PageNum
 		{
 			get
@@ -151,45 +117,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				orderByType = value;
 				DictionaryUtil.Add(QueryParameters, "OrderByType", value);
-			}
-		}
-
-		public string DomainGroupId
-		{
-			get
-			{
-				return domainGroupId;
-			}
-			set	
-			{
-				domainGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "DomainGroupId", value);
-			}
-		}
-
-		public long? EndRegistrationDate
-		{
-			get
-			{
-				return endRegistrationDate;
-			}
-			set	
-			{
-				endRegistrationDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndRegistrationDate", value.ToString());
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 
@@ -229,6 +156,84 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				queryType = value;
 				DictionaryUtil.Add(QueryParameters, "QueryType", value);
+			}
+		}
+
+		public long? EndExpirationDate
+		{
+			get
+			{
+				return endExpirationDate;
+			}
+			set	
+			{
+				endExpirationDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndExpirationDate", value.ToString());
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public long? StartExpirationDate
+		{
+			get
+			{
+				return startExpirationDate;
+			}
+			set	
+			{
+				startExpirationDate = value;
+				DictionaryUtil.Add(QueryParameters, "StartExpirationDate", value.ToString());
+			}
+		}
+
+		public string DomainGroupId
+		{
+			get
+			{
+				return domainGroupId;
+			}
+			set	
+			{
+				domainGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "DomainGroupId", value);
+			}
+		}
+
+		public long? EndRegistrationDate
+		{
+			get
+			{
+				return endRegistrationDate;
+			}
+			set	
+			{
+				endRegistrationDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndRegistrationDate", value.ToString());
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

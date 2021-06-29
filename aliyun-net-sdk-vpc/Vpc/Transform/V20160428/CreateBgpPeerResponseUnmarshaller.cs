@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateBgpPeerResponseUnmarshaller
     {
-        public static CreateBgpPeerResponse Unmarshall(UnmarshallerContext context)
+        public static CreateBgpPeerResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateBgpPeerResponse createBgpPeerResponse = new CreateBgpPeerResponse();
 
-			createBgpPeerResponse.HttpResponse = context.HttpResponse;
-			createBgpPeerResponse.RequestId = context.StringValue("CreateBgpPeer.RequestId");
-			createBgpPeerResponse.BgpPeerId = context.StringValue("CreateBgpPeer.BgpPeerId");
+			createBgpPeerResponse.HttpResponse = _ctx.HttpResponse;
+			createBgpPeerResponse.RequestId = _ctx.StringValue("CreateBgpPeer.RequestId");
+			createBgpPeerResponse.BgpPeerId = _ctx.StringValue("CreateBgpPeer.BgpPeerId");
         
 			return createBgpPeerResponse;
         }

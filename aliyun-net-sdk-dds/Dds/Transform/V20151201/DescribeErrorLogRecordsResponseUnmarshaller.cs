@@ -26,25 +26,25 @@ namespace Aliyun.Acs.Dds.Transform.V20151201
 {
     public class DescribeErrorLogRecordsResponseUnmarshaller
     {
-        public static DescribeErrorLogRecordsResponse Unmarshall(UnmarshallerContext context)
+        public static DescribeErrorLogRecordsResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DescribeErrorLogRecordsResponse describeErrorLogRecordsResponse = new DescribeErrorLogRecordsResponse();
 
-			describeErrorLogRecordsResponse.HttpResponse = context.HttpResponse;
-			describeErrorLogRecordsResponse.RequestId = context.StringValue("DescribeErrorLogRecords.RequestId");
-			describeErrorLogRecordsResponse.Engine = context.StringValue("DescribeErrorLogRecords.Engine");
-			describeErrorLogRecordsResponse.TotalRecordCount = context.IntegerValue("DescribeErrorLogRecords.TotalRecordCount");
-			describeErrorLogRecordsResponse.PageNumber = context.IntegerValue("DescribeErrorLogRecords.PageNumber");
-			describeErrorLogRecordsResponse.PageRecordCount = context.IntegerValue("DescribeErrorLogRecords.PageRecordCount");
+			describeErrorLogRecordsResponse.HttpResponse = _ctx.HttpResponse;
+			describeErrorLogRecordsResponse.TotalRecordCount = _ctx.IntegerValue("DescribeErrorLogRecords.TotalRecordCount");
+			describeErrorLogRecordsResponse.PageRecordCount = _ctx.IntegerValue("DescribeErrorLogRecords.PageRecordCount");
+			describeErrorLogRecordsResponse.RequestId = _ctx.StringValue("DescribeErrorLogRecords.RequestId");
+			describeErrorLogRecordsResponse.PageNumber = _ctx.IntegerValue("DescribeErrorLogRecords.PageNumber");
+			describeErrorLogRecordsResponse.Engine = _ctx.StringValue("DescribeErrorLogRecords.Engine");
 
 			List<DescribeErrorLogRecordsResponse.DescribeErrorLogRecords_LogRecords> describeErrorLogRecordsResponse_items = new List<DescribeErrorLogRecordsResponse.DescribeErrorLogRecords_LogRecords>();
-			for (int i = 0; i < context.Length("DescribeErrorLogRecords.Items.Length"); i++) {
+			for (int i = 0; i < _ctx.Length("DescribeErrorLogRecords.Items.Length"); i++) {
 				DescribeErrorLogRecordsResponse.DescribeErrorLogRecords_LogRecords logRecords = new DescribeErrorLogRecordsResponse.DescribeErrorLogRecords_LogRecords();
-				logRecords.Id = context.IntegerValue("DescribeErrorLogRecords.Items["+ i +"].Id");
-				logRecords.CreateTime = context.StringValue("DescribeErrorLogRecords.Items["+ i +"].CreateTime");
-				logRecords.Category = context.StringValue("DescribeErrorLogRecords.Items["+ i +"].Category");
-				logRecords.ConnInfo = context.StringValue("DescribeErrorLogRecords.Items["+ i +"].ConnInfo");
-				logRecords.Content = context.LongValue("DescribeErrorLogRecords.Items["+ i +"].Content");
+				logRecords.ConnInfo = _ctx.StringValue("DescribeErrorLogRecords.Items["+ i +"].ConnInfo");
+				logRecords.Category = _ctx.StringValue("DescribeErrorLogRecords.Items["+ i +"].Category");
+				logRecords.Content = _ctx.StringValue("DescribeErrorLogRecords.Items["+ i +"].Content");
+				logRecords.CreateTime = _ctx.StringValue("DescribeErrorLogRecords.Items["+ i +"].CreateTime");
+				logRecords.Id = _ctx.IntegerValue("DescribeErrorLogRecords.Items["+ i +"].Id");
 
 				describeErrorLogRecordsResponse_items.Add(logRecords);
 			}

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,21 +32,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeInstanceRamRoleRequest()
             : base("Ecs", "2014-05-26", "DescribeInstanceRamRole", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private string instanceIds;
+		private int? pageNumber;
 
 		private int? pageSize;
+
+		private string resourceOwnerAccount;
 
 		private string ramRoleName;
 
 		private long? ownerId;
 
-		private int? pageNumber;
+		private string instanceIds;
 
 		public long? ResourceOwnerId
 		{
@@ -62,29 +67,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public int? PageNumber
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return pageNumber;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string InstanceIds
-		{
-			get
-			{
-				return instanceIds;
-			}
-			set	
-			{
-				instanceIds = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceIds", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -98,6 +90,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -127,16 +132,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? PageNumber
+		public string InstanceIds
 		{
 			get
 			{
-				return pageNumber;
+				return instanceIds;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				instanceIds = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceIds", value);
 			}
 		}
 

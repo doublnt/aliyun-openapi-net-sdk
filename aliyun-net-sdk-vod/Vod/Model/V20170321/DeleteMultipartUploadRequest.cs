@@ -32,15 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public DeleteMultipartUploadRequest()
             : base("vod", "2017-03-21", "DeleteMultipartUpload", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string resourceOwnerId;
 
+		private long? resourceRealOwnerId;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
-
-		private long? resourceRealOwnerId;
 
 		private string ownerId;
 
@@ -58,6 +64,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value);
+			}
+		}
+
+		public long? ResourceRealOwnerId
+		{
+			get
+			{
+				return resourceRealOwnerId;
+			}
+			set	
+			{
+				resourceRealOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
 			}
 		}
 
@@ -84,19 +103,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public long? ResourceRealOwnerId
-		{
-			get
-			{
-				return resourceRealOwnerId;
-			}
-			set	
-			{
-				resourceRealOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
 			}
 		}
 

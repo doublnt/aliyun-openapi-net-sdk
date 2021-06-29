@@ -25,27 +25,15 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 	public class ListKeysResponse : AcsResponse
 	{
 
-		private int? totalCount;
-
 		private int? pageNumber;
 
 		private int? pageSize;
 
 		private string requestId;
 
-		private List<ListKeys_Key> keys;
+		private int? totalCount;
 
-		public int? TotalCount
-		{
-			get
-			{
-				return totalCount;
-			}
-			set	
-			{
-				totalCount = value;
-			}
-		}
+		private List<ListKeys_Key> keys;
 
 		public int? PageNumber
 		{
@@ -83,6 +71,18 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 			}
 		}
 
+		public int? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+			}
+		}
+
 		public List<ListKeys_Key> Keys
 		{
 			get
@@ -98,21 +98,9 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 		public class ListKeys_Key
 		{
 
-			private string keyId;
-
 			private string keyArn;
 
-			public string KeyId
-			{
-				get
-				{
-					return keyId;
-				}
-				set	
-				{
-					keyId = value;
-				}
-			}
+			private string keyId;
 
 			public string KeyArn
 			{
@@ -123,6 +111,18 @@ namespace Aliyun.Acs.Kms.Model.V20160120
 				set	
 				{
 					keyArn = value;
+				}
+			}
+
+			public string KeyId
+			{
+				get
+				{
+					return keyId;
+				}
+				set	
+				{
+					keyId = value;
 				}
 			}
 		}

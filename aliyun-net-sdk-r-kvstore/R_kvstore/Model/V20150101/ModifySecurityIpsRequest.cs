@@ -32,9 +32,21 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifySecurityIpsRequest()
             : base("R-kvstore", "2015-01-01", "ModifySecurityIps", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string securityIps;
+
+		private string securityIpGroupName;
+
+		private string securityToken;
 
 		private string modifyMode;
 
@@ -42,15 +54,9 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string ownerAccount;
 
-		private string securityIps;
-
 		private long? ownerId;
 
-		private string securityIpGroupName;
-
 		private string instanceId;
-
-		private string securityToken;
 
 		private string securityIpGroupAttribute;
 
@@ -64,6 +70,45 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityIps
+		{
+			get
+			{
+				return securityIps;
+			}
+			set	
+			{
+				securityIps = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityIps", value);
+			}
+		}
+
+		public string SecurityIpGroupName
+		{
+			get
+			{
+				return securityIpGroupName;
+			}
+			set	
+			{
+				securityIpGroupName = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityIpGroupName", value);
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -106,19 +151,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string SecurityIps
-		{
-			get
-			{
-				return securityIps;
-			}
-			set	
-			{
-				securityIps = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityIps", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -132,19 +164,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string SecurityIpGroupName
-		{
-			get
-			{
-				return securityIpGroupName;
-			}
-			set	
-			{
-				securityIpGroupName = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityIpGroupName", value);
-			}
-		}
-
 		public string InstanceId
 		{
 			get
@@ -155,19 +174,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				instanceId = value;
 				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 

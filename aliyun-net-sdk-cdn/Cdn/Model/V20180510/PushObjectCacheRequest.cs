@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,28 +33,32 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public PushObjectCacheRequest()
             : base("Cdn", "2018-05-10", "PushObjectCache")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string area;
-
-		private string securityToken;
 
 		private string objectPath;
 
-		private string action;
+		private string securityToken;
+
+		private string area;
 
 		private long? ownerId;
 
-		public string Area
+		public string ObjectPath
 		{
 			get
 			{
-				return area;
+				return objectPath;
 			}
 			set	
 			{
-				area = value;
-				DictionaryUtil.Add(QueryParameters, "Area", value);
+				objectPath = value;
+				DictionaryUtil.Add(QueryParameters, "ObjectPath", value);
 			}
 		}
 
@@ -70,29 +75,16 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string ObjectPath
+		public string Area
 		{
 			get
 			{
-				return objectPath;
+				return area;
 			}
 			set	
 			{
-				objectPath = value;
-				DictionaryUtil.Add(QueryParameters, "ObjectPath", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				area = value;
+				DictionaryUtil.Add(QueryParameters, "Area", value);
 			}
 		}
 

@@ -16,20 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.ROS.Model.V20150901;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.ROS.Model.V20150901;
 
 namespace Aliyun.Acs.ROS.Transform.V20150901
 {
     public class ValidateTemplateResponseUnmarshaller
     {
-        public static ValidateTemplateResponse Unmarshall(UnmarshallerContext context)
+        public static ValidateTemplateResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ValidateTemplateResponse validateTemplateResponse = new ValidateTemplateResponse();
 
-			validateTemplateResponse.HttpResponse = context.HttpResponse;
+			validateTemplateResponse.HttpResponse = _ctx.HttpResponse;
         
 			return validateTemplateResponse;
         }

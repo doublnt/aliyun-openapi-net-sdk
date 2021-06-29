@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,15 +33,21 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public CreateResellerUserQuotaRequest()
             : base("BssOpenApi", "2017-12-14", "CreateResellerUserQuota")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string amount;
 
 		private string outBizId;
 
-		private string currency;
-
 		private long? ownerId;
+
+		private string currency;
 
 		public string Amount
 		{
@@ -68,19 +75,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			}
 		}
 
-		public string Currency
-		{
-			get
-			{
-				return currency;
-			}
-			set	
-			{
-				currency = value;
-				DictionaryUtil.Add(QueryParameters, "Currency", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -91,6 +85,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Currency
+		{
+			get
+			{
+				return currency;
+			}
+			set	
+			{
+				currency = value;
+				DictionaryUtil.Add(QueryParameters, "Currency", value);
 			}
 		}
 

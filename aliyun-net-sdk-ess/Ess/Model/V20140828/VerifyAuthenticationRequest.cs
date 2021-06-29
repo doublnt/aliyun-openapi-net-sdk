@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,32 +33,23 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public VerifyAuthenticationRequest()
             : base("Ess", "2014-08-28", "VerifyAuthentication", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? uid;
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string action;
-
 		private long? ownerId;
 
-		private string accessKeyId;
+		private bool? onlyCheck;
 
-		public long? Uid
-		{
-			get
-			{
-				return uid;
-			}
-			set	
-			{
-				uid = value;
-				DictionaryUtil.Add(QueryParameters, "Uid", value.ToString());
-			}
-		}
+		private long? uid;
 
 		public long? ResourceOwnerId
 		{
@@ -85,19 +77,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -111,16 +90,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
+		public bool? OnlyCheck
 		{
 			get
 			{
-				return accessKeyId;
+				return onlyCheck;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				onlyCheck = value;
+				DictionaryUtil.Add(QueryParameters, "OnlyCheck", value.ToString());
+			}
+		}
+
+		public long? Uid
+		{
+			get
+			{
+				return uid;
+			}
+			set	
+			{
+				uid = value;
+				DictionaryUtil.Add(QueryParameters, "Uid", value.ToString());
 			}
 		}
 

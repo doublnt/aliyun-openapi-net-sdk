@@ -32,25 +32,31 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CreateAccountRequest()
             : base("Rds", "2014-08-15", "CreateAccount", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string accountPassword;
+		private string accountType;
+
+		private string accountDescription;
 
 		private string accountName;
+
+		private string dBInstanceId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string accountType;
-
-		private string dBInstanceId;
-
 		private long? ownerId;
 
-		private string accountDescription;
+		private string accountPassword;
 
 		public long? ResourceOwnerId
 		{
@@ -65,16 +71,29 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string AccountPassword
+		public string AccountType
 		{
 			get
 			{
-				return accountPassword;
+				return accountType;
 			}
 			set	
 			{
-				accountPassword = value;
-				DictionaryUtil.Add(QueryParameters, "AccountPassword", value);
+				accountType = value;
+				DictionaryUtil.Add(QueryParameters, "AccountType", value);
+			}
+		}
+
+		public string AccountDescription
+		{
+			get
+			{
+				return accountDescription;
+			}
+			set	
+			{
+				accountDescription = value;
+				DictionaryUtil.Add(QueryParameters, "AccountDescription", value);
 			}
 		}
 
@@ -88,6 +107,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				accountName = value;
 				DictionaryUtil.Add(QueryParameters, "AccountName", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -117,32 +149,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string AccountType
-		{
-			get
-			{
-				return accountType;
-			}
-			set	
-			{
-				accountType = value;
-				DictionaryUtil.Add(QueryParameters, "AccountType", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -156,16 +162,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string AccountDescription
+		public string AccountPassword
 		{
 			get
 			{
-				return accountDescription;
+				return accountPassword;
 			}
 			set	
 			{
-				accountDescription = value;
-				DictionaryUtil.Add(QueryParameters, "AccountDescription", value);
+				accountPassword = value;
+				DictionaryUtil.Add(QueryParameters, "AccountPassword", value);
 			}
 		}
 

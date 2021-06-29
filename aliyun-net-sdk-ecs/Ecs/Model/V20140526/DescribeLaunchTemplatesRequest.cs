@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeLaunchTemplatesRequest()
             : base("Ecs", "2014-05-26", "DescribeLaunchTemplates", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> launchTemplateNames;
+		private List<string> launchTemplateNames = new List<string>(){ };
 
 		private long? resourceOwnerId;
 
@@ -42,9 +48,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? pageSize;
 
-		private List<TemplateTag> templateTags;
+		private List<TemplateTag> templateTags = new List<TemplateTag>(){ };
 
-		private List<string> launchTemplateIds;
+		private List<string> launchTemplateIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 

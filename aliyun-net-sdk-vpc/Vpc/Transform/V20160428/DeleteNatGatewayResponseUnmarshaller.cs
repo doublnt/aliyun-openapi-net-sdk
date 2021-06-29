@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteNatGatewayResponseUnmarshaller
     {
-        public static DeleteNatGatewayResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteNatGatewayResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteNatGatewayResponse deleteNatGatewayResponse = new DeleteNatGatewayResponse();
 
-			deleteNatGatewayResponse.HttpResponse = context.HttpResponse;
-			deleteNatGatewayResponse.RequestId = context.StringValue("DeleteNatGateway.RequestId");
+			deleteNatGatewayResponse.HttpResponse = _ctx.HttpResponse;
+			deleteNatGatewayResponse.RequestId = _ctx.StringValue("DeleteNatGateway.RequestId");
         
 			return deleteNatGatewayResponse;
         }

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,15 +32,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeInvocationsRequest()
             : base("Ecs", "2014-05-26", "DescribeInvocations", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string invokeStatus;
 
+		private bool? includeOutput;
+
 		private string commandId;
 
 		private long? pageNumber;
+
+		private string contentEncoding;
+
+		private string repeatMode;
 
 		private long? pageSize;
 
@@ -87,6 +98,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public bool? IncludeOutput
+		{
+			get
+			{
+				return includeOutput;
+			}
+			set	
+			{
+				includeOutput = value;
+				DictionaryUtil.Add(QueryParameters, "IncludeOutput", value.ToString());
+			}
+		}
+
 		public string CommandId
 		{
 			get
@@ -110,6 +134,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				pageNumber = value;
 				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string ContentEncoding
+		{
+			get
+			{
+				return contentEncoding;
+			}
+			set	
+			{
+				contentEncoding = value;
+				DictionaryUtil.Add(QueryParameters, "ContentEncoding", value);
+			}
+		}
+
+		public string RepeatMode
+		{
+			get
+			{
+				return repeatMode;
+			}
+			set	
+			{
+				repeatMode = value;
+				DictionaryUtil.Add(QueryParameters, "RepeatMode", value);
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,8 +31,14 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class CreateShardingDBInstanceRequest : RpcAcsRequest<CreateShardingDBInstanceResponse>
     {
         public CreateShardingDBInstanceRequest()
-            : base("Dds", "2015-12-01", "CreateShardingDBInstance", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "CreateShardingDBInstance")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -42,17 +49,13 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string networkType;
 
-		private List<ReplicaSet> replicaSets;
-
-		private string accessKeyId;
+		private List<ReplicaSet> replicaSets = new List<ReplicaSet>(){ };
 
 		private string storageEngine;
 
 		private string securityToken;
 
 		private string engine;
-
-		private string action;
 
 		private string dBInstanceDescription;
 
@@ -66,15 +69,15 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string ownerAccount;
 
-		private List<ConfigServer> configServers;
+		private List<ConfigServer> configServers = new List<ConfigServer>(){ };
 
 		private long? ownerId;
-
-		private List<Mongos> mongoss;
 
 		private string securityIPList;
 
 		private string vSwitchId;
+
+		private List<Mongos> mongoss = new List<Mongos>(){ };
 
 		private string accountPassword;
 
@@ -83,6 +86,8 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 		private string vpcId;
 
 		private string zoneId;
+
+		private string protocolType;
 
 		private string chargeType;
 
@@ -150,22 +155,10 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				replicaSets = value;
 				for (int i = 0; i < replicaSets.Count; i++)
 				{
+					DictionaryUtil.Add(QueryParameters,"ReplicaSet." + (i + 1) + ".ReadonlyReplicas", replicaSets[i].ReadonlyReplicas);
 					DictionaryUtil.Add(QueryParameters,"ReplicaSet." + (i + 1) + ".Storage", replicaSets[i].Storage);
 					DictionaryUtil.Add(QueryParameters,"ReplicaSet." + (i + 1) + ".Class", replicaSets[i].Class);
 				}
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -205,19 +198,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				engine = value;
 				DictionaryUtil.Add(QueryParameters, "Engine", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -330,23 +310,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public List<Mongos> Mongoss
-		{
-			get
-			{
-				return mongoss;
-			}
-
-			set
-			{
-				mongoss = value;
-				for (int i = 0; i < mongoss.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"Mongos." + (i + 1) + ".Class", mongoss[i].Class);
-				}
-			}
-		}
-
 		public string SecurityIPList
 		{
 			get
@@ -370,6 +333,23 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				vSwitchId = value;
 				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public List<Mongos> Mongoss
+		{
+			get
+			{
+				return mongoss;
+			}
+
+			set
+			{
+				mongoss = value;
+				for (int i = 0; i < mongoss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Mongos." + (i + 1) + ".Class", mongoss[i].Class);
+				}
 			}
 		}
 
@@ -425,6 +405,19 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
+		public string ProtocolType
+		{
+			get
+			{
+				return protocolType;
+			}
+			set	
+			{
+				protocolType = value;
+				DictionaryUtil.Add(QueryParameters, "ProtocolType", value);
+			}
+		}
+
 		public string ChargeType
 		{
 			get
@@ -441,9 +434,23 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 		public class ReplicaSet
 		{
 
+			private int? readonlyReplicas;
+
 			private int? storage;
 
 			private string class_;
+
+			public int? ReadonlyReplicas
+			{
+				get
+				{
+					return readonlyReplicas;
+				}
+				set	
+				{
+					readonlyReplicas = value;
+				}
+			}
 
 			public int? Storage
 			{

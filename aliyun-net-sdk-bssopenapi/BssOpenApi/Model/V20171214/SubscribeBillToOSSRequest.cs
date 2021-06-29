@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,11 +33,36 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public SubscribeBillToOSSRequest()
             : base("BssOpenApi", "2017-12-14", "SubscribeBillToOSS")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? bucketOwnerId;
 
 		private string subscribeType;
 
 		private string subscribeBucket;
+
+		private string beginBillingCycle;
+
+		private string multAccountRelSubscribe;
+
+		public long? BucketOwnerId
+		{
+			get
+			{
+				return bucketOwnerId;
+			}
+			set	
+			{
+				bucketOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "BucketOwnerId", value.ToString());
+			}
+		}
 
 		public string SubscribeType
 		{
@@ -61,6 +87,32 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscribeBucket = value;
 				DictionaryUtil.Add(QueryParameters, "SubscribeBucket", value);
+			}
+		}
+
+		public string BeginBillingCycle
+		{
+			get
+			{
+				return beginBillingCycle;
+			}
+			set	
+			{
+				beginBillingCycle = value;
+				DictionaryUtil.Add(QueryParameters, "BeginBillingCycle", value);
+			}
+		}
+
+		public string MultAccountRelSubscribe
+		{
+			get
+			{
+				return multAccountRelSubscribe;
+			}
+			set	
+			{
+				multAccountRelSubscribe = value;
+				DictionaryUtil.Add(QueryParameters, "MultAccountRelSubscribe", value);
 			}
 		}
 

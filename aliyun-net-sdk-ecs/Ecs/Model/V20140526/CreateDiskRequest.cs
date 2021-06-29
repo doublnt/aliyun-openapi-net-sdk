@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,45 +32,61 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateDiskRequest()
             : base("Ecs", "2014-05-26", "CreateDisk", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string snapshotId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string performanceLevel;
-
-		private string ownerAccount;
+		private string encryptAlgorithm;
 
 		private string description;
-
-		private long? ownerId;
 
 		private string diskName;
 
 		private string resourceGroupId;
 
+		private string diskCategory;
+
+		private int? storageSetPartitionNumber;
+
+		private string multiAttach;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string advancedFeatures;
+
+		private List<Arn> arns = new List<Arn>(){ };
+
+		private string dedicatedBlockStorageClusterId;
+
+		private string resourceOwnerAccount;
+
+		private string performanceLevel;
+
+		private string ownerAccount;
+
+		private long? ownerId;
+
 		private string instanceId;
+
+		private string storageSetId;
 
 		private int? size;
 
 		private bool? encrypted;
 
-		private string diskCategory;
-
 		private string zoneId;
 
-		private List<Tag> tags;
-
-		private List<Arn> arns;
-
 		private string kMSKeyId;
-
-		private string advancedFeatures;
 
 		public long? ResourceOwnerId
 		{
@@ -99,19 +114,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -125,29 +127,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string PerformanceLevel
+		public string EncryptAlgorithm
 		{
 			get
 			{
-				return performanceLevel;
+				return encryptAlgorithm;
 			}
 			set	
 			{
-				performanceLevel = value;
-				DictionaryUtil.Add(QueryParameters, "PerformanceLevel", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				encryptAlgorithm = value;
+				DictionaryUtil.Add(QueryParameters, "EncryptAlgorithm", value);
 			}
 		}
 
@@ -161,19 +150,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				description = value;
 				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -203,6 +179,160 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string DiskCategory
+		{
+			get
+			{
+				return diskCategory;
+			}
+			set	
+			{
+				diskCategory = value;
+				DictionaryUtil.Add(QueryParameters, "DiskCategory", value);
+			}
+		}
+
+		public int? StorageSetPartitionNumber
+		{
+			get
+			{
+				return storageSetPartitionNumber;
+			}
+			set	
+			{
+				storageSetPartitionNumber = value;
+				DictionaryUtil.Add(QueryParameters, "StorageSetPartitionNumber", value.ToString());
+			}
+		}
+
+		public string MultiAttach
+		{
+			get
+			{
+				return multiAttach;
+			}
+			set	
+			{
+				multiAttach = value;
+				DictionaryUtil.Add(QueryParameters, "MultiAttach", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public string AdvancedFeatures
+		{
+			get
+			{
+				return advancedFeatures;
+			}
+			set	
+			{
+				advancedFeatures = value;
+				DictionaryUtil.Add(QueryParameters, "AdvancedFeatures", value);
+			}
+		}
+
+		public List<Arn> Arns
+		{
+			get
+			{
+				return arns;
+			}
+
+			set
+			{
+				arns = value;
+				for (int i = 0; i < arns.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".Rolearn", arns[i].Rolearn);
+					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".RoleType", arns[i].RoleType);
+					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".AssumeRoleFor", arns[i].AssumeRoleFor);
+				}
+			}
+		}
+
+		public string DedicatedBlockStorageClusterId
+		{
+			get
+			{
+				return dedicatedBlockStorageClusterId;
+			}
+			set	
+			{
+				dedicatedBlockStorageClusterId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedBlockStorageClusterId", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string PerformanceLevel
+		{
+			get
+			{
+				return performanceLevel;
+			}
+			set	
+			{
+				performanceLevel = value;
+				DictionaryUtil.Add(QueryParameters, "PerformanceLevel", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
 		public string InstanceId
 		{
 			get
@@ -213,6 +343,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				instanceId = value;
 				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string StorageSetId
+		{
+			get
+			{
+				return storageSetId;
+			}
+			set	
+			{
+				storageSetId = value;
+				DictionaryUtil.Add(QueryParameters, "StorageSetId", value);
 			}
 		}
 
@@ -242,19 +385,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string DiskCategory
-		{
-			get
-			{
-				return diskCategory;
-			}
-			set	
-			{
-				diskCategory = value;
-				DictionaryUtil.Add(QueryParameters, "DiskCategory", value);
-			}
-		}
-
 		public string ZoneId
 		{
 			get
@@ -268,43 +398,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public List<Tag> Tags
-		{
-			get
-			{
-				return tags;
-			}
-
-			set
-			{
-				tags = value;
-				for (int i = 0; i < tags.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
-					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
-				}
-			}
-		}
-
-		public List<Arn> Arns
-		{
-			get
-			{
-				return arns;
-			}
-
-			set
-			{
-				arns = value;
-				for (int i = 0; i < arns.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".Rolearn", arns[i].Rolearn);
-					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".RoleType", arns[i].RoleType);
-					DictionaryUtil.Add(QueryParameters,"Arn." + (i + 1) + ".AssumeRoleFor", arns[i].AssumeRoleFor);
-				}
-			}
-		}
-
 		public string KMSKeyId
 		{
 			get
@@ -315,19 +408,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				kMSKeyId = value;
 				DictionaryUtil.Add(QueryParameters, "KMSKeyId", value);
-			}
-		}
-
-		public string AdvancedFeatures
-		{
-			get
-			{
-				return advancedFeatures;
-			}
-			set	
-			{
-				advancedFeatures = value;
-				DictionaryUtil.Add(QueryParameters, "AdvancedFeatures", value);
 			}
 		}
 

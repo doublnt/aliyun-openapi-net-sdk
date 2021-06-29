@@ -32,13 +32,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public ListOfficeConversionTaskRequest()
             : base("imm", "2017-09-06", "ListOfficeConversionTask", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private int? maxKeys;
 
-		private string marker;
-
 		private string project;
+
+		private string marker;
 
 		public int? MaxKeys
 		{
@@ -53,19 +59,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Marker
-		{
-			get
-			{
-				return marker;
-			}
-			set	
-			{
-				marker = value;
-				DictionaryUtil.Add(QueryParameters, "Marker", value);
-			}
-		}
-
 		public string Project
 		{
 			get
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string Marker
+		{
+			get
+			{
+				return marker;
+			}
+			set	
+			{
+				marker = value;
+				DictionaryUtil.Add(QueryParameters, "Marker", value);
 			}
 		}
 

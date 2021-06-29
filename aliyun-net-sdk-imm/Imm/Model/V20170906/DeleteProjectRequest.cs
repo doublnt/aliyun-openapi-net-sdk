@@ -32,6 +32,12 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public DeleteProjectRequest()
             : base("imm", "2017-09-06", "DeleteProject", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string project;
@@ -47,6 +53,11 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override DeleteProjectResponse GetResponse(UnmarshallerContext unmarshallerContext)

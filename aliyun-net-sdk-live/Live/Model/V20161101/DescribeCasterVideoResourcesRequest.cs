@@ -32,6 +32,12 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DescribeCasterVideoResourcesRequest()
             : base("live", "2016-11-01", "DescribeCasterVideoResources", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string casterId;

@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,15 +30,17 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveSingleTaskForUpdatingContactInfoRequest : RpcAcsRequest<SaveSingleTaskForUpdatingContactInfoResponse>
     {
         public SaveSingleTaskForUpdatingContactInfoRequest()
-            : base("Domain", "2018-01-29", "SaveSingleTaskForUpdatingContactInfo")
+            : base("Domain", "2018-01-29", "SaveSingleTaskForUpdatingContactInfo", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string instanceId;
-
 		private string contactType;
-
-		private string userClientIp;
 
 		private string domainName;
 
@@ -47,20 +48,11 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private bool? addTransferLock;
 
-		private string lang;
+		private string instanceId;
 
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
+		private string userClientIp;
+
+		private string lang;
 
 		public string ContactType
 		{
@@ -72,19 +64,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				contactType = value;
 				DictionaryUtil.Add(QueryParameters, "ContactType", value);
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 
@@ -124,6 +103,32 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				addTransferLock = value;
 				DictionaryUtil.Add(QueryParameters, "AddTransferLock", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.CloudAPI.Model.V20160714;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.CloudAPI.Model.V20160714;
 
 namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 {
@@ -69,6 +70,7 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 			serviceConfig.MockResult = context.StringValue("DescribeDeployedApi.ServiceConfig.MockResult");
 			serviceConfig.ServiceVpcEnable = context.StringValue("DescribeDeployedApi.ServiceConfig.ServiceVpcEnable");
 			serviceConfig.MockStatusCode = context.IntegerValue("DescribeDeployedApi.ServiceConfig.MockStatusCode");
+			serviceConfig.VpcId = context.StringValue("DescribeDeployedApi.ServiceConfig.VpcId");
 
 			DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_VpcConfig vpcConfig = new DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_VpcConfig();
 			vpcConfig.Name = context.StringValue("DescribeDeployedApi.ServiceConfig.VpcConfig.Name");
@@ -76,6 +78,13 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 			vpcConfig.InstanceId = context.StringValue("DescribeDeployedApi.ServiceConfig.VpcConfig.InstanceId");
 			vpcConfig.Port = context.IntegerValue("DescribeDeployedApi.ServiceConfig.VpcConfig.Port");
 			serviceConfig.VpcConfig = vpcConfig;
+
+			DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_FunctionComputeConfig functionComputeConfig = new DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_FunctionComputeConfig();
+			functionComputeConfig.RegionId = context.StringValue("DescribeDeployedApi.ServiceConfig.FunctionComputeConfig.RegionId");
+			functionComputeConfig.ServiceName = context.StringValue("DescribeDeployedApi.ServiceConfig.FunctionComputeConfig.ServiceName");
+			functionComputeConfig.FunctionName = context.StringValue("DescribeDeployedApi.ServiceConfig.FunctionComputeConfig.FunctionName");
+			functionComputeConfig.RoleArn = context.StringValue("DescribeDeployedApi.ServiceConfig.FunctionComputeConfig.RoleArn");
+			serviceConfig.FunctionComputeConfig = functionComputeConfig;
 
 			List<DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_MockHeader> serviceConfig_mockHeaders = new List<DescribeDeployedApiResponse.DescribeDeployedApi_ServiceConfig.DescribeDeployedApi_MockHeader>();
 			for (int i = 0; i < context.Length("DescribeDeployedApi.ServiceConfig.MockHeaders.Length"); i++) {
@@ -179,6 +188,7 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 				requestParameter.DocShow = context.StringValue("DescribeDeployedApi.RequestParameters["+ i +"].DocShow");
 				requestParameter.DocOrder = context.IntegerValue("DescribeDeployedApi.RequestParameters["+ i +"].DocOrder");
 				requestParameter.Description = context.StringValue("DescribeDeployedApi.RequestParameters["+ i +"].Description");
+				requestParameter.ArrayItemsType = context.StringValue("DescribeDeployedApi.RequestParameters["+ i +"].ArrayItemsType");
 
 				describeDeployedApiResponse_requestParameters.Add(requestParameter);
 			}

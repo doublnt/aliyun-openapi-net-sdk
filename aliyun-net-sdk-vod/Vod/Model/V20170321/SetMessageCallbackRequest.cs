@@ -32,11 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SetMessageCallbackRequest()
             : base("vod", "2017-03-21", "SetMessageCallback", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string authKey;
 
 		private string resourceOwnerId;
+
+		private long? resourceRealOwnerId;
+
+		private string callbackType;
 
 		private string resourceOwnerAccount;
 
@@ -46,11 +56,7 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private string mnsQueueName;
 
-		private long? resourceRealOwnerId;
-
 		private string ownerId;
-
-		private string callbackType;
 
 		private string mnsEndpoint;
 
@@ -83,6 +89,32 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value);
+			}
+		}
+
+		public long? ResourceRealOwnerId
+		{
+			get
+			{
+				return resourceRealOwnerId;
+			}
+			set	
+			{
+				resourceRealOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
+			}
+		}
+
+		public string CallbackType
+		{
+			get
+			{
+				return callbackType;
+			}
+			set	
+			{
+				callbackType = value;
+				DictionaryUtil.Add(QueryParameters, "CallbackType", value);
 			}
 		}
 
@@ -138,19 +170,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public long? ResourceRealOwnerId
-		{
-			get
-			{
-				return resourceRealOwnerId;
-			}
-			set	
-			{
-				resourceRealOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
-			}
-		}
-
 		public string OwnerId
 		{
 			get
@@ -161,19 +180,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
-			}
-		}
-
-		public string CallbackType
-		{
-			get
-			{
-				return callbackType;
-			}
-			set	
-			{
-				callbackType = value;
-				DictionaryUtil.Add(QueryParameters, "CallbackType", value);
 			}
 		}
 

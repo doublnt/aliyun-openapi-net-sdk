@@ -32,11 +32,15 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeImageFromLibRequest()
             : base("Green", "2017-08-23", "DescribeImageFromLib", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private int? totalCount;
-
-		private string endDate;
+		private string startDate;
 
 		private string sourceIp;
 
@@ -44,35 +48,24 @@ namespace Aliyun.Acs.Green.Model.V20170823
 
 		private int? pageSize;
 
-		private int? currentPage;
-
 		private long? id;
 
-		private string startDate;
+		private int? totalCount;
 
-		public int? TotalCount
+		private int? currentPage;
+
+		private string endDate;
+
+		public string StartDate
 		{
 			get
 			{
-				return totalCount;
+				return startDate;
 			}
 			set	
 			{
-				totalCount = value;
-				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
-			}
-		}
-
-		public string EndDate
-		{
-			get
-			{
-				return endDate;
-			}
-			set	
-			{
-				endDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndDate", value);
+				startDate = value;
+				DictionaryUtil.Add(QueryParameters, "StartDate", value);
 			}
 		}
 
@@ -115,19 +108,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
-			}
-		}
-
 		public long? Id
 		{
 			get
@@ -141,16 +121,42 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public string StartDate
+		public int? TotalCount
 		{
 			get
 			{
-				return startDate;
+				return totalCount;
 			}
 			set	
 			{
-				startDate = value;
-				DictionaryUtil.Add(QueryParameters, "StartDate", value);
+				totalCount = value;
+				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
+			}
+		}
+
+		public string EndDate
+		{
+			get
+			{
+				return endDate;
+			}
+			set	
+			{
+				endDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndDate", value);
 			}
 		}
 

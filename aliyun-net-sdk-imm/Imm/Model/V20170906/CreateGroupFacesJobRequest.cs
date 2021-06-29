@@ -32,26 +32,32 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public CreateGroupFacesJobRequest()
             : base("imm", "2017-09-06", "CreateGroupFacesJob", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string notifyTopicName;
-
-		private string notifyEndpoint;
 
 		private string project;
 
+		private string notifyEndpoint;
+
+		private string notifyTopicName;
+
 		private string setId;
 
-		public string NotifyTopicName
+		public string Project
 		{
 			get
 			{
-				return notifyTopicName;
+				return project;
 			}
 			set	
 			{
-				notifyTopicName = value;
-				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
 		}
 
@@ -68,16 +74,16 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
+		public string NotifyTopicName
 		{
 			get
 			{
-				return project;
+				return notifyTopicName;
 			}
 			set	
 			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
+				notifyTopicName = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
 			}
 		}
 

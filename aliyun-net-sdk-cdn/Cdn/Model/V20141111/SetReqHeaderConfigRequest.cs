@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20141111;
 
@@ -32,21 +33,25 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
         public SetReqHeaderConfigRequest()
             : base("Cdn", "2014-11-11", "SetReqHeaderConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string securityToken;
 
-		private long? configId;
-
-		private string domainName;
-
-		private string action;
-
-		private long? ownerId;
-
 		private string _value;
 
 		private string key;
+
+		private string domainName;
+
+		private long? ownerId;
+
+		private long? configId;
 
 		public string SecurityToken
 		{
@@ -58,58 +63,6 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public long? ConfigId
-		{
-			get
-			{
-				return configId;
-			}
-			set	
-			{
-				configId = value;
-				DictionaryUtil.Add(QueryParameters, "ConfigId", value.ToString());
-			}
-		}
-
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -136,6 +89,45 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				key = value;
 				DictionaryUtil.Add(QueryParameters, "Key", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public long? ConfigId
+		{
+			get
+			{
+				return configId;
+			}
+			set	
+			{
+				configId = value;
+				DictionaryUtil.Add(QueryParameters, "ConfigId", value.ToString());
 			}
 		}
 

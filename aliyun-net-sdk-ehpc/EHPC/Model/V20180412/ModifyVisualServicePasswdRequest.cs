@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,34 +31,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ModifyVisualServicePasswdRequest : RpcAcsRequest<ModifyVisualServicePasswdResponse>
     {
         public ModifyVisualServicePasswdRequest()
-            : base("EHPC", "2018-04-12", "ModifyVisualServicePasswd", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ModifyVisualServicePasswd")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
-		private string passwd;
-
 		private string runasUserPassword;
-
-		private string action;
 
 		private string runasUser;
 
 		private string clusterId;
 
-		private string accessKeyId;
-
-		public string Passwd
-		{
-			get
-			{
-				return passwd;
-			}
-			set	
-			{
-				passwd = value;
-				DictionaryUtil.Add(QueryParameters, "Passwd", value);
-			}
-		}
+		private string passwd;
 
 		public string RunasUserPassword
 		{
@@ -69,19 +58,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				runasUserPassword = value;
 				DictionaryUtil.Add(QueryParameters, "RunasUserPassword", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -111,16 +87,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string Passwd
 		{
 			get
 			{
-				return accessKeyId;
+				return passwd;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				passwd = value;
+				DictionaryUtil.Add(QueryParameters, "Passwd", value);
 			}
 		}
 

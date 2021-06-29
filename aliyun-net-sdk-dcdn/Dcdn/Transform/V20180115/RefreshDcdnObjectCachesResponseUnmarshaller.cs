@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.dcdn.Model.V20180115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.dcdn.Model.V20180115;
 
 namespace Aliyun.Acs.dcdn.Transform.V20180115
 {
     public class RefreshDcdnObjectCachesResponseUnmarshaller
     {
-        public static RefreshDcdnObjectCachesResponse Unmarshall(UnmarshallerContext context)
+        public static RefreshDcdnObjectCachesResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			RefreshDcdnObjectCachesResponse refreshDcdnObjectCachesResponse = new RefreshDcdnObjectCachesResponse();
 
-			refreshDcdnObjectCachesResponse.HttpResponse = context.HttpResponse;
-			refreshDcdnObjectCachesResponse.RequestId = context.StringValue("RefreshDcdnObjectCaches.RequestId");
-			refreshDcdnObjectCachesResponse.RefreshTaskId = context.StringValue("RefreshDcdnObjectCaches.RefreshTaskId");
+			refreshDcdnObjectCachesResponse.HttpResponse = _ctx.HttpResponse;
+			refreshDcdnObjectCachesResponse.RequestId = _ctx.StringValue("RefreshDcdnObjectCaches.RequestId");
+			refreshDcdnObjectCachesResponse.RefreshTaskId = _ctx.StringValue("RefreshDcdnObjectCaches.RefreshTaskId");
         
 			return refreshDcdnObjectCachesResponse;
         }

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,19 +33,25 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public ConvertChargeTypeRequest()
             : base("BssOpenApi", "2017-12-14", "ConvertChargeType")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private int? period;
 
 		private string productCode;
 
-		private string instanceId;
-
 		private string subscriptionType;
 
 		private long? ownerId;
 
 		private string productType;
+
+		private string instanceId;
 
 		public int? Period
 		{
@@ -69,19 +76,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productCode = value;
 				DictionaryUtil.Add(QueryParameters, "ProductCode", value);
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -121,6 +115,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

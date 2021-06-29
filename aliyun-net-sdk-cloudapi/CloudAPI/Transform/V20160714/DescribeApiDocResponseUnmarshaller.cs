@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.CloudAPI.Model.V20160714;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.CloudAPI.Model.V20160714;
 
 namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 {
@@ -102,6 +103,7 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 				requestParameter.DocShow = context.StringValue("DescribeApiDoc.RequestParameters["+ i +"].DocShow");
 				requestParameter.DocOrder = context.IntegerValue("DescribeApiDoc.RequestParameters["+ i +"].DocOrder");
 				requestParameter.Description = context.StringValue("DescribeApiDoc.RequestParameters["+ i +"].Description");
+				requestParameter.ArrayItemsType = context.StringValue("DescribeApiDoc.RequestParameters["+ i +"].ArrayItemsType");
 
 				describeApiDocResponse_requestParameters.Add(requestParameter);
 			}

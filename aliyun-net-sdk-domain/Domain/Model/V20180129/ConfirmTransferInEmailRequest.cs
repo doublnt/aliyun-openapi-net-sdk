@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,30 +30,23 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class ConfirmTransferInEmailRequest : RpcAcsRequest<ConfirmTransferInEmailResponse>
     {
         public ConfirmTransferInEmailRequest()
-            : base("Domain", "2018-01-29", "ConfirmTransferInEmail")
+            : base("Domain", "2018-01-29", "ConfirmTransferInEmail", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string userClientIp;
+		private List<string> domainNames = new List<string>(){ };
 
-		private List<string> domainNames;
+		private string userClientIp;
 
 		private string lang;
 
 		private string email;
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
 
 		public List<string> DomainNames
 		{
@@ -70,6 +62,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 				{
 					DictionaryUtil.Add(QueryParameters,"DomainName." + (i + 1) , domainNames[i]);
 				}
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

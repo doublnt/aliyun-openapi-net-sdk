@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeReservedInstancesRequest()
             : base("Ecs", "2014-05-26", "DescribeReservedInstances", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -46,6 +52,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string instanceType;
 
+		private List<Tag> tags = new List<Tag>(){ };
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
@@ -54,7 +62,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> reservedInstanceIds;
+		private List<string> reservedInstanceIds = new List<string>(){ };
 
 		private string offeringType;
 
@@ -62,7 +70,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string reservedInstanceName;
 
-		private List<string> statuss;
+		private List<string> statuss = new List<string>(){ };
+
+		private string allocationType;
 
 		public long? ResourceOwnerId
 		{
@@ -139,6 +149,24 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				instanceType = value;
 				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+				}
 			}
 		}
 
@@ -263,6 +291,51 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				for (int i = 0; i < statuss.Count; i++)
 				{
 					DictionaryUtil.Add(QueryParameters,"Status." + (i + 1) , statuss[i]);
+				}
+			}
+		}
+
+		public string AllocationType
+		{
+			get
+			{
+				return allocationType;
+			}
+			set	
+			{
+				allocationType = value;
+				DictionaryUtil.Add(QueryParameters, "AllocationType", value);
+			}
+		}
+
+		public class Tag
+		{
+
+			private string key;
+
+			private string value_;
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
+			}
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
 				}
 			}
 		}

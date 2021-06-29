@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,31 +31,33 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class CreateRecommendationTaskRequest : RpcAcsRequest<CreateRecommendationTaskResponse>
     {
         public CreateRecommendationTaskRequest()
-            : base("Dds", "2015-12-01", "CreateRecommendationTask", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "CreateRecommendationTask")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string startTime;
 
 		private string securityToken;
+
+		private string nodeId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string action;
-
 		private string endTime;
-
-		private string startTime;
 
 		private long? ownerId;
 
-		private string nodeId;
-
-		private string accessKeyId;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -69,16 +72,16 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string InstanceId
+		public string StartTime
 		{
 			get
 			{
-				return instanceId;
+				return startTime;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 
@@ -92,6 +95,19 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string NodeId
+		{
+			get
+			{
+				return nodeId;
+			}
+			set	
+			{
+				nodeId = value;
+				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 
@@ -121,19 +137,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string EndTime
 		{
 			get
@@ -144,19 +147,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				endTime = value;
 				DictionaryUtil.Add(QueryParameters, "EndTime", value);
-			}
-		}
-
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 
@@ -173,29 +163,16 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string NodeId
+		public string InstanceId
 		{
 			get
 			{
-				return nodeId;
+				return instanceId;
 			}
 			set	
 			{
-				nodeId = value;
-				DictionaryUtil.Add(QueryParameters, "NodeId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

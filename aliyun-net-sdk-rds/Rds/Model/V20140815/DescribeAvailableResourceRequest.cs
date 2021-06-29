@@ -32,21 +32,31 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeAvailableResourceRequest()
             : base("Rds", "2014-08-15", "DescribeAvailableResource", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string engineVersion;
 
-		private string dBInstanceClass;
-
 		private string engine;
+
+		private string dBInstanceStorageType;
+
+		private string instanceChargeType;
+
+		private int? dispenseMode;
+
+		private string dBInstanceClass;
 
 		private string zoneId;
 
-		private string dBInstanceId;
-
-		private string instanceChargeType;
+		private string category;
 
 		private string orderType;
 
@@ -76,19 +86,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceClass
-		{
-			get
-			{
-				return dBInstanceClass;
-			}
-			set	
-			{
-				dBInstanceClass = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceClass", value);
-			}
-		}
-
 		public string Engine
 		{
 			get
@@ -99,6 +96,58 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				engine = value;
 				DictionaryUtil.Add(QueryParameters, "Engine", value);
+			}
+		}
+
+		public string DBInstanceStorageType
+		{
+			get
+			{
+				return dBInstanceStorageType;
+			}
+			set	
+			{
+				dBInstanceStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceStorageType", value);
+			}
+		}
+
+		public string InstanceChargeType
+		{
+			get
+			{
+				return instanceChargeType;
+			}
+			set	
+			{
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
+			}
+		}
+
+		public int? DispenseMode
+		{
+			get
+			{
+				return dispenseMode;
+			}
+			set	
+			{
+				dispenseMode = value;
+				DictionaryUtil.Add(QueryParameters, "DispenseMode", value.ToString());
+			}
+		}
+
+		public string DBInstanceClass
+		{
+			get
+			{
+				return dBInstanceClass;
+			}
+			set	
+			{
+				dBInstanceClass = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceClass", value);
 			}
 		}
 
@@ -115,29 +164,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
+		public string Category
 		{
 			get
 			{
-				return dBInstanceId;
+				return category;
 			}
 			set	
 			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string InstanceChargeType
-		{
-			get
-			{
-				return instanceChargeType;
-			}
-			set	
-			{
-				instanceChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
+				category = value;
+				DictionaryUtil.Add(QueryParameters, "Category", value);
 			}
 		}
 

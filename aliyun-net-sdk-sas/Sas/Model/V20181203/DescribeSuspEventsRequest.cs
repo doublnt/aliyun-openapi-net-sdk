@@ -32,92 +32,66 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public DescribeSuspEventsRequest()
             : base("Sas", "2018-12-03", "DescribeSuspEvents", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string alarmUniqueInfo;
-
-		private string sourceIp;
-
-		private string name;
-
-		private string pageSize;
-
-		private string dealed;
+		private string targetType;
 
 		private string remark;
 
-		private string currentPage;
+		private string source;
+
+		private string containerFieldName;
+
+		private string sourceIp;
+
+		private string containerFieldValue;
+
+		private string pageSize;
 
 		private string from;
 
 		private string lang;
 
+		private string alarmUniqueInfo;
+
+		private string uniqueInfo;
+
+		private long? groupId;
+
+		private string dealed;
+
+		private string currentPage;
+
+		private string clusterId;
+
+		private List<string> operateErrorCodeLists = new List<string>(){ };
+
+		private string name;
+
 		private string levels;
 
 		private string parentEventTypes;
 
-		public string AlarmUniqueInfo
-		{
-			get
-			{
-				return alarmUniqueInfo;
-			}
-			set	
-			{
-				alarmUniqueInfo = value;
-				DictionaryUtil.Add(QueryParameters, "AlarmUniqueInfo", value);
-			}
-		}
+		private string status;
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
+		private string uuids;
 
-		public string Name
+		public string TargetType
 		{
 			get
 			{
-				return name;
+				return targetType;
 			}
 			set	
 			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
-		public string PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value);
-			}
-		}
-
-		public string Dealed
-		{
-			get
-			{
-				return dealed;
-			}
-			set	
-			{
-				dealed = value;
-				DictionaryUtil.Add(QueryParameters, "Dealed", value);
+				targetType = value;
+				DictionaryUtil.Add(QueryParameters, "TargetType", value);
 			}
 		}
 
@@ -134,16 +108,68 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
-		public string CurrentPage
+		public string Source
 		{
 			get
 			{
-				return currentPage;
+				return source;
 			}
 			set	
 			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value);
+				source = value;
+				DictionaryUtil.Add(QueryParameters, "Source", value);
+			}
+		}
+
+		public string ContainerFieldName
+		{
+			get
+			{
+				return containerFieldName;
+			}
+			set	
+			{
+				containerFieldName = value;
+				DictionaryUtil.Add(QueryParameters, "ContainerFieldName", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
+			}
+		}
+
+		public string ContainerFieldValue
+		{
+			get
+			{
+				return containerFieldValue;
+			}
+			set	
+			{
+				containerFieldValue = value;
+				DictionaryUtil.Add(QueryParameters, "ContainerFieldValue", value);
+			}
+		}
+
+		public string PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value);
 			}
 		}
 
@@ -173,6 +199,114 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
+		public string AlarmUniqueInfo
+		{
+			get
+			{
+				return alarmUniqueInfo;
+			}
+			set	
+			{
+				alarmUniqueInfo = value;
+				DictionaryUtil.Add(QueryParameters, "AlarmUniqueInfo", value);
+			}
+		}
+
+		public string UniqueInfo
+		{
+			get
+			{
+				return uniqueInfo;
+			}
+			set	
+			{
+				uniqueInfo = value;
+				DictionaryUtil.Add(QueryParameters, "UniqueInfo", value);
+			}
+		}
+
+		public long? GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value.ToString());
+			}
+		}
+
+		public string Dealed
+		{
+			get
+			{
+				return dealed;
+			}
+			set	
+			{
+				dealed = value;
+				DictionaryUtil.Add(QueryParameters, "Dealed", value);
+			}
+		}
+
+		public string CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value);
+			}
+		}
+
+		public string ClusterId
+		{
+			get
+			{
+				return clusterId;
+			}
+			set	
+			{
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
+
+		public List<string> OperateErrorCodeLists
+		{
+			get
+			{
+				return operateErrorCodeLists;
+			}
+
+			set
+			{
+				operateErrorCodeLists = value;
+				for (int i = 0; i < operateErrorCodeLists.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"OperateErrorCodeList." + (i + 1) , operateErrorCodeLists[i]);
+				}
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
+			}
+		}
+
 		public string Levels
 		{
 			get
@@ -196,6 +330,32 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				parentEventTypes = value;
 				DictionaryUtil.Add(QueryParameters, "ParentEventTypes", value);
+			}
+		}
+
+		public string Status
+		{
+			get
+			{
+				return status;
+			}
+			set	
+			{
+				status = value;
+				DictionaryUtil.Add(QueryParameters, "Status", value);
+			}
+		}
+
+		public string Uuids
+		{
+			get
+			{
+				return uuids;
+			}
+			set	
+			{
+				uuids = value;
+				DictionaryUtil.Add(QueryParameters, "Uuids", value);
 			}
 		}
 

@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,58 +32,20 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeApisBySignatureRequest()
             : base("CloudAPI", "2016-07-14", "DescribeApisBySignature", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string securityToken;
-
-		private int? pageSize;
-
-		private string action;
 
 		private string signatureId;
 
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private string securityToken;
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
+		private int? pageSize;
 
 		public string SignatureId
 		{
@@ -110,20 +73,33 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string SecurityToken
 		{
 			get
 			{
-				return accessKeyId;
+				return securityToken;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
-        public override DescribeApisBySignatureResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+        public override DescribeApisBySignatureResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeApisBySignatureResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

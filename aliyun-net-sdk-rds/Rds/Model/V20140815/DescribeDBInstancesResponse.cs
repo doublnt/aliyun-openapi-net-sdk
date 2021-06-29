@@ -158,6 +158,34 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 			private string resourceGroupId;
 
+			private string autoUpgradeMinorVersion;
+
+			private string dedicatedHostGroupId;
+
+			private string dedicatedHostIdForMaster;
+
+			private string dedicatedHostIdForSlave;
+
+			private string dedicatedHostIdForLog;
+
+			private string dedicatedHostNameForMaster;
+
+			private string dedicatedHostNameForSlave;
+
+			private string dedicatedHostNameForLog;
+
+			private string dedicatedHostZoneIdForMaster;
+
+			private string dedicatedHostZoneIdForSlave;
+
+			private string dedicatedHostZoneIdForLog;
+
+			private string vpcName;
+
+			private string dedicatedHostGroupName;
+
+			private string connectionString;
+
 			private List<DescribeDBInstances_ReadOnlyDBInstanceId> readOnlyDBInstanceIds;
 
 			public int? InsId
@@ -517,6 +545,174 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 				set	
 				{
 					resourceGroupId = value;
+				}
+			}
+
+			public string AutoUpgradeMinorVersion
+			{
+				get
+				{
+					return autoUpgradeMinorVersion;
+				}
+				set	
+				{
+					autoUpgradeMinorVersion = value;
+				}
+			}
+
+			public string DedicatedHostGroupId
+			{
+				get
+				{
+					return dedicatedHostGroupId;
+				}
+				set	
+				{
+					dedicatedHostGroupId = value;
+				}
+			}
+
+			public string DedicatedHostIdForMaster
+			{
+				get
+				{
+					return dedicatedHostIdForMaster;
+				}
+				set	
+				{
+					dedicatedHostIdForMaster = value;
+				}
+			}
+
+			public string DedicatedHostIdForSlave
+			{
+				get
+				{
+					return dedicatedHostIdForSlave;
+				}
+				set	
+				{
+					dedicatedHostIdForSlave = value;
+				}
+			}
+
+			public string DedicatedHostIdForLog
+			{
+				get
+				{
+					return dedicatedHostIdForLog;
+				}
+				set	
+				{
+					dedicatedHostIdForLog = value;
+				}
+			}
+
+			public string DedicatedHostNameForMaster
+			{
+				get
+				{
+					return dedicatedHostNameForMaster;
+				}
+				set	
+				{
+					dedicatedHostNameForMaster = value;
+				}
+			}
+
+			public string DedicatedHostNameForSlave
+			{
+				get
+				{
+					return dedicatedHostNameForSlave;
+				}
+				set	
+				{
+					dedicatedHostNameForSlave = value;
+				}
+			}
+
+			public string DedicatedHostNameForLog
+			{
+				get
+				{
+					return dedicatedHostNameForLog;
+				}
+				set	
+				{
+					dedicatedHostNameForLog = value;
+				}
+			}
+
+			public string DedicatedHostZoneIdForMaster
+			{
+				get
+				{
+					return dedicatedHostZoneIdForMaster;
+				}
+				set	
+				{
+					dedicatedHostZoneIdForMaster = value;
+				}
+			}
+
+			public string DedicatedHostZoneIdForSlave
+			{
+				get
+				{
+					return dedicatedHostZoneIdForSlave;
+				}
+				set	
+				{
+					dedicatedHostZoneIdForSlave = value;
+				}
+			}
+
+			public string DedicatedHostZoneIdForLog
+			{
+				get
+				{
+					return dedicatedHostZoneIdForLog;
+				}
+				set	
+				{
+					dedicatedHostZoneIdForLog = value;
+				}
+			}
+
+			public string VpcName
+			{
+				get
+				{
+					return vpcName;
+				}
+				set	
+				{
+					vpcName = value;
+				}
+			}
+
+			public string DedicatedHostGroupName
+			{
+				get
+				{
+					return dedicatedHostGroupName;
+				}
+				set	
+				{
+					dedicatedHostGroupName = value;
+				}
+			}
+
+			public string ConnectionString
+			{
+				get
+				{
+					return connectionString;
+				}
+				set	
+				{
+					connectionString = value;
 				}
 			}
 

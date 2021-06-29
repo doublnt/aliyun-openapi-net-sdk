@@ -32,15 +32,25 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public IndexVideoRequest()
             : base("imm", "2017-09-06", "IndexVideo", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string remarksB;
 
 		private string project;
 
-		private string remarksA;
-
 		private string externalId;
+
+		private string notifyEndpoint;
+
+		private string notifyTopicName;
+
+		private string remarksB;
+
+		private string remarksA;
 
 		private string videoUri;
 
@@ -51,19 +61,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 		private string setId;
 
 		private string tgtUri;
-
-		public string RemarksB
-		{
-			get
-			{
-				return remarksB;
-			}
-			set	
-			{
-				remarksB = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksB", value);
-			}
-		}
 
 		public string Project
 		{
@@ -78,19 +75,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string RemarksA
-		{
-			get
-			{
-				return remarksA;
-			}
-			set	
-			{
-				remarksA = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksA", value);
-			}
-		}
-
 		public string ExternalId
 		{
 			get
@@ -101,6 +85,58 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				externalId = value;
 				DictionaryUtil.Add(QueryParameters, "ExternalId", value);
+			}
+		}
+
+		public string NotifyEndpoint
+		{
+			get
+			{
+				return notifyEndpoint;
+			}
+			set	
+			{
+				notifyEndpoint = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyEndpoint", value);
+			}
+		}
+
+		public string NotifyTopicName
+		{
+			get
+			{
+				return notifyTopicName;
+			}
+			set	
+			{
+				notifyTopicName = value;
+				DictionaryUtil.Add(QueryParameters, "NotifyTopicName", value);
+			}
+		}
+
+		public string RemarksB
+		{
+			get
+			{
+				return remarksB;
+			}
+			set	
+			{
+				remarksB = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksB", value);
+			}
+		}
+
+		public string RemarksA
+		{
+			get
+			{
+				return remarksA;
+			}
+			set	
+			{
+				remarksA = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksA", value);
 			}
 		}
 

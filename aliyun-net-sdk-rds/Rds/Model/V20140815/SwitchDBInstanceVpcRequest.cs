@@ -32,17 +32,49 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public SwitchDBInstanceVpcRequest()
             : base("Rds", "2014-08-15", "SwitchDBInstanceVpc", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? resourceOwnerId;
+
+		private string dBInstanceId;
 
 		private string vSwitchId;
 
 		private string privateIpAddress;
 
-		private long? resourceOwnerId;
-
 		private string vPCId;
 
-		private string dBInstanceId;
+		public long? ResourceOwnerId
+		{
+			get
+			{
+				return resourceOwnerId;
+			}
+			set	
+			{
+				resourceOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
 
 		public string VSwitchId
 		{
@@ -70,19 +102,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public long? ResourceOwnerId
-		{
-			get
-			{
-				return resourceOwnerId;
-			}
-			set	
-			{
-				resourceOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
 		public string VPCId
 		{
 			get
@@ -93,19 +112,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				vPCId = value;
 				DictionaryUtil.Add(QueryParameters, "VPCId", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

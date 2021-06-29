@@ -32,40 +32,33 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public DescribeDeviceInfoRequest()
             : base("Cloudauth", "2018-09-16", "DescribeDeviceInfo", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string bizType;
-
 		private string userDeviceId;
-
-		private int? totalCount;
 
 		private string sourceIp;
 
 		private int? pageSize;
 
-		private int? currentPage;
-
 		private string lang;
-
-		private string expiredEndDay;
-
-		private string deviceId;
 
 		private string expiredStartDay;
 
-		public string BizType
-		{
-			get
-			{
-				return bizType;
-			}
-			set	
-			{
-				bizType = value;
-				DictionaryUtil.Add(QueryParameters, "BizType", value);
-			}
-		}
+		private int? totalCount;
+
+		private int? currentPage;
+
+		private string deviceId;
+
+		private string bizType;
+
+		private string expiredEndDay;
 
 		public string UserDeviceId
 		{
@@ -77,19 +70,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				userDeviceId = value;
 				DictionaryUtil.Add(QueryParameters, "UserDeviceId", value);
-			}
-		}
-
-		public int? TotalCount
-		{
-			get
-			{
-				return totalCount;
-			}
-			set	
-			{
-				totalCount = value;
-				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
 			}
 		}
 
@@ -119,19 +99,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
-			}
-		}
-
 		public string Lang
 		{
 			get
@@ -145,16 +112,42 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string ExpiredEndDay
+		public string ExpiredStartDay
 		{
 			get
 			{
-				return expiredEndDay;
+				return expiredStartDay;
 			}
 			set	
 			{
-				expiredEndDay = value;
-				DictionaryUtil.Add(QueryParameters, "ExpiredEndDay", value);
+				expiredStartDay = value;
+				DictionaryUtil.Add(QueryParameters, "ExpiredStartDay", value);
+			}
+		}
+
+		public int? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 
@@ -171,16 +164,29 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string ExpiredStartDay
+		public string BizType
 		{
 			get
 			{
-				return expiredStartDay;
+				return bizType;
 			}
 			set	
 			{
-				expiredStartDay = value;
-				DictionaryUtil.Add(QueryParameters, "ExpiredStartDay", value);
+				bizType = value;
+				DictionaryUtil.Add(QueryParameters, "BizType", value);
+			}
+		}
+
+		public string ExpiredEndDay
+		{
+			get
+			{
+				return expiredEndDay;
+			}
+			set	
+			{
+				expiredEndDay = value;
+				DictionaryUtil.Add(QueryParameters, "ExpiredEndDay", value);
 			}
 		}
 

@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public CreateLoRaNodesTaskRequest()
             : base("Iot", "2018-01-20", "CreateLoRaNodesTask", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;
 
-		private string productKey;
+		private List<DeviceInfo> deviceInfos = new List<DeviceInfo>(){ };
 
-		private List<DeviceInfo> deviceInfos;
+		private string productKey;
 
 		public string IotInstanceId
 		{
@@ -50,19 +56,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				iotInstanceId = value;
 				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 
@@ -81,6 +74,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 					DictionaryUtil.Add(QueryParameters,"DeviceInfo." + (i + 1) + ".PinCode", deviceInfos[i].PinCode);
 					DictionaryUtil.Add(QueryParameters,"DeviceInfo." + (i + 1) + ".DevEui", deviceInfos[i].DevEui);
 				}
+			}
+		}
+
+		public string ProductKey
+		{
+			get
+			{
+				return productKey;
+			}
+			set	
+			{
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 

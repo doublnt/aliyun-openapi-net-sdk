@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,6 +32,12 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public AssociatePhysicalConnectionToVirtualBorderRouterRequest()
             : base("Vpc", "2016-04-28", "AssociatePhysicalConnectionToVirtualBorderRouter", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -39,27 +46,31 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 		private string vlanId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string ownerAccount;
+		private string enableIpv6;
 
 		private string vbrId;
 
-		private long? ownerId;
-
 		private string peerGatewayIp;
+
+		private string peerIpv6GatewayIp;
 
 		private string peeringSubnetMask;
 
-		private string regionId;
+		private string localGatewayIp;
+
+		private string peeringIpv6SubnetMask;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
 
 		private string physicalConnectionId;
 
-		private string localGatewayIp;
-
-		private string action;
+		private string localIpv6GatewayIp;
 
 		public long? ResourceOwnerId
 		{
@@ -100,19 +111,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -126,16 +124,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string OwnerAccount
+		public string EnableIpv6
 		{
 			get
 			{
-				return ownerAccount;
+				return enableIpv6;
 			}
 			set	
 			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				enableIpv6 = value;
+				DictionaryUtil.Add(QueryParameters, "EnableIpv6", value);
 			}
 		}
 
@@ -152,19 +150,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string PeerGatewayIp
 		{
 			get
@@ -175,6 +160,19 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				peerGatewayIp = value;
 				DictionaryUtil.Add(QueryParameters, "PeerGatewayIp", value);
+			}
+		}
+
+		public string PeerIpv6GatewayIp
+		{
+			get
+			{
+				return peerIpv6GatewayIp;
+			}
+			set	
+			{
+				peerIpv6GatewayIp = value;
+				DictionaryUtil.Add(QueryParameters, "PeerIpv6GatewayIp", value);
 			}
 		}
 
@@ -191,16 +189,68 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
+		public string LocalGatewayIp
 		{
 			get
 			{
-				return regionId;
+				return localGatewayIp;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
+				localGatewayIp = value;
+				DictionaryUtil.Add(QueryParameters, "LocalGatewayIp", value);
+			}
+		}
+
+		public string PeeringIpv6SubnetMask
+		{
+			get
+			{
+				return peeringIpv6SubnetMask;
+			}
+			set	
+			{
+				peeringIpv6SubnetMask = value;
+				DictionaryUtil.Add(QueryParameters, "PeeringIpv6SubnetMask", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -217,33 +267,20 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string LocalGatewayIp
+		public string LocalIpv6GatewayIp
 		{
 			get
 			{
-				return localGatewayIp;
+				return localIpv6GatewayIp;
 			}
 			set	
 			{
-				localGatewayIp = value;
-				DictionaryUtil.Add(QueryParameters, "LocalGatewayIp", value);
+				localIpv6GatewayIp = value;
+				DictionaryUtil.Add(QueryParameters, "LocalIpv6GatewayIp", value);
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-        public override AssociatePhysicalConnectionToVirtualBorderRouterResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override AssociatePhysicalConnectionToVirtualBorderRouterResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return AssociatePhysicalConnectionToVirtualBorderRouterResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

@@ -64,6 +64,8 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 
 			private string displayName;
 
+			private string templateName;
+
 			private string instanceId;
 
 			private string status;
@@ -117,6 +119,18 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 				set	
 				{
 					displayName = value;
+				}
+			}
+
+			public string TemplateName
+			{
+				get
+				{
+					return templateName;
+				}
+				set	
+				{
+					templateName = value;
 				}
 			}
 

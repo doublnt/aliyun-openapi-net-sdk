@@ -33,23 +33,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public RenewInstanceRequest()
             : base("Ecs", "2014-05-26", "RenewInstance", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private int? period;
-
-		private string periodUnit;
-
-		private string instanceId;
-
 		private string clientToken;
+
+		private int? period;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
+		private int? expectedRenewDay;
+
 		private long? ownerId;
+
+		private string periodUnit;
+
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -64,45 +72,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? Period
-		{
-			get
-			{
-				return period;
-			}
-			set	
-			{
-				period = value;
-				DictionaryUtil.Add(QueryParameters, "Period", value.ToString());
-			}
-		}
-
-		public string PeriodUnit
-		{
-			get
-			{
-				return periodUnit;
-			}
-			set	
-			{
-				periodUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PeriodUnit", value);
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -113,6 +82,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public int? Period
+		{
+			get
+			{
+				return period;
+			}
+			set	
+			{
+				period = value;
+				DictionaryUtil.Add(QueryParameters, "Period", value.ToString());
 			}
 		}
 
@@ -142,6 +124,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? ExpectedRenewDay
+		{
+			get
+			{
+				return expectedRenewDay;
+			}
+			set	
+			{
+				expectedRenewDay = value;
+				DictionaryUtil.Add(QueryParameters, "ExpectedRenewDay", value.ToString());
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -152,6 +147,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string PeriodUnit
+		{
+			get
+			{
+				return periodUnit;
+			}
+			set	
+			{
+				periodUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PeriodUnit", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

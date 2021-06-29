@@ -32,21 +32,26 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public UpdateZoneRecordRequest()
             : base("pvtz", "2018-01-01", "UpdateZoneRecord", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string rr;
-
-		private long? recordId;
-
-		private string userClientIp;
-
-		private string lang;
 
 		private string type;
 
 		private int? priority;
 
 		private int? ttl;
+
+		private long? recordId;
+
+		private string userClientIp;
+
+		private string lang;
 
 		private string _value;
 
@@ -60,45 +65,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				rr = value;
 				DictionaryUtil.Add(QueryParameters, "Rr", value);
-			}
-		}
-
-		public long? RecordId
-		{
-			get
-			{
-				return recordId;
-			}
-			set	
-			{
-				recordId = value;
-				DictionaryUtil.Add(QueryParameters, "RecordId", value.ToString());
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 
@@ -138,6 +104,45 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				ttl = value;
 				DictionaryUtil.Add(QueryParameters, "Ttl", value.ToString());
+			}
+		}
+
+		public long? RecordId
+		{
+			get
+			{
+				return recordId;
+			}
+			set	
+			{
+				recordId = value;
+				DictionaryUtil.Add(QueryParameters, "RecordId", value.ToString());
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

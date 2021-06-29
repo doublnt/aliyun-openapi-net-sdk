@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeAppInfoRequest()
             : base("Green", "2017-08-23", "DescribeAppInfo", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private int? totalCount;
+
+		private int? currentPage;
+
+		private string platform;
 
 		private string sourceIp;
 
 		private int? pageSize;
 
-		private int? currentPage;
-
 		private string lang;
-
-		private string platform;
 
 		public int? TotalCount
 		{
@@ -56,6 +62,32 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				totalCount = value;
 				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
+			}
+		}
+
+		public string Platform
+		{
+			get
+			{
+				return platform;
+			}
+			set	
+			{
+				platform = value;
+				DictionaryUtil.Add(QueryParameters, "Platform", value);
 			}
 		}
 
@@ -85,19 +117,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
-			}
-		}
-
 		public string Lang
 		{
 			get
@@ -108,19 +127,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string Platform
-		{
-			get
-			{
-				return platform;
-			}
-			set	
-			{
-				platform = value;
-				DictionaryUtil.Add(QueryParameters, "Platform", value);
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,15 +31,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class DeleteJobTemplatesRequest : RpcAcsRequest<DeleteJobTemplatesResponse>
     {
         public DeleteJobTemplatesRequest()
-            : base("EHPC", "2018-04-12", "DeleteJobTemplates", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "DeleteJobTemplates")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string templates;
-
-		private string action;
-
-		private string accessKeyId;
 
 		public string Templates
 		{
@@ -50,32 +52,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				templates = value;
 				DictionaryUtil.Add(QueryParameters, "Templates", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

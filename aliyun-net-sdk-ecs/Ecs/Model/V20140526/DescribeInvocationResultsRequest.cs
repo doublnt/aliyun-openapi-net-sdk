@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeInvocationResultsRequest()
             : base("Ecs", "2014-05-26", "DescribeInvocationResults", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -40,6 +45,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string commandId;
 
 		private long? pageNumber;
+
+		private string contentEncoding;
 
 		private long? pageSize;
 
@@ -54,6 +61,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string instanceId;
 
 		private string invokeRecordStatus;
+
+		private bool? includeHistory;
 
 		public long? ResourceOwnerId
 		{
@@ -91,6 +100,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				pageNumber = value;
 				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string ContentEncoding
+		{
+			get
+			{
+				return contentEncoding;
+			}
+			set	
+			{
+				contentEncoding = value;
+				DictionaryUtil.Add(QueryParameters, "ContentEncoding", value);
 			}
 		}
 
@@ -182,6 +204,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				invokeRecordStatus = value;
 				DictionaryUtil.Add(QueryParameters, "InvokeRecordStatus", value);
+			}
+		}
+
+		public bool? IncludeHistory
+		{
+			get
+			{
+				return includeHistory;
+			}
+			set	
+			{
+				includeHistory = value;
+				DictionaryUtil.Add(QueryParameters, "IncludeHistory", value.ToString());
 			}
 		}
 

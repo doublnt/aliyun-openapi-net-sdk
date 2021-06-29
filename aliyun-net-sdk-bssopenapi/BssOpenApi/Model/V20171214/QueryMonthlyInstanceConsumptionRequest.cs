@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,13 +33,17 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryMonthlyInstanceConsumptionRequest()
             : base("BssOpenApi", "2017-12-14", "QueryMonthlyInstanceConsumption")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
 
 		private string subscriptionType;
-
-		private int? pageSize;
 
 		private string billingCycle;
 
@@ -47,6 +52,8 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 		private int? pageNum;
 
 		private string productType;
+
+		private int? pageSize;
 
 		public string ProductCode
 		{
@@ -71,19 +78,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscriptionType = value;
 				DictionaryUtil.Add(QueryParameters, "SubscriptionType", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 
@@ -136,6 +130,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

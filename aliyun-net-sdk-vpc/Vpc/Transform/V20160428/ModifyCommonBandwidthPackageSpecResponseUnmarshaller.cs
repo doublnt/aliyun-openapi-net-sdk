@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyCommonBandwidthPackageSpecResponseUnmarshaller
     {
-        public static ModifyCommonBandwidthPackageSpecResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyCommonBandwidthPackageSpecResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyCommonBandwidthPackageSpecResponse modifyCommonBandwidthPackageSpecResponse = new ModifyCommonBandwidthPackageSpecResponse();
 
-			modifyCommonBandwidthPackageSpecResponse.HttpResponse = context.HttpResponse;
-			modifyCommonBandwidthPackageSpecResponse.RequestId = context.StringValue("ModifyCommonBandwidthPackageSpec.RequestId");
+			modifyCommonBandwidthPackageSpecResponse.HttpResponse = _ctx.HttpResponse;
+			modifyCommonBandwidthPackageSpecResponse.RequestId = _ctx.StringValue("ModifyCommonBandwidthPackageSpec.RequestId");
         
 			return modifyCommonBandwidthPackageSpecResponse;
         }

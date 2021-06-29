@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,23 +32,30 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeAuthorizedAppsRequest()
             : base("CloudAPI", "2016-07-14", "DescribeAuthorizedApps", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string stageName;
 
-		private string securityToken;
-
 		private string groupId;
 
-		private int? pageSize;
-
-		private string action;
-
-		private string apiId;
+		private long? appOwnerId;
 
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private string appName;
+
+		private string securityToken;
+
+		private long? appId;
+
+		private int? pageSize;
+
+		private string apiId;
 
 		public string StageName
 		{
@@ -59,19 +67,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				stageName = value;
 				DictionaryUtil.Add(QueryParameters, "StageName", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -88,42 +83,16 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public int? PageSize
+		public long? AppOwnerId
 		{
 			get
 			{
-				return pageSize;
+				return appOwnerId;
 			}
 			set	
 			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ApiId
-		{
-			get
-			{
-				return apiId;
-			}
-			set	
-			{
-				apiId = value;
-				DictionaryUtil.Add(QueryParameters, "ApiId", value);
+				appOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "AppOwnerId", value.ToString());
 			}
 		}
 
@@ -140,20 +109,72 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string AppName
 		{
 			get
 			{
-				return accessKeyId;
+				return appName;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				appName = value;
+				DictionaryUtil.Add(QueryParameters, "AppName", value);
 			}
 		}
 
-        public override DescribeAuthorizedAppsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public long? AppId
+		{
+			get
+			{
+				return appId;
+			}
+			set	
+			{
+				appId = value;
+				DictionaryUtil.Add(QueryParameters, "AppId", value.ToString());
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string ApiId
+		{
+			get
+			{
+				return apiId;
+			}
+			set	
+			{
+				apiId = value;
+				DictionaryUtil.Add(QueryParameters, "ApiId", value);
+			}
+		}
+
+        public override DescribeAuthorizedAppsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeAuthorizedAppsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

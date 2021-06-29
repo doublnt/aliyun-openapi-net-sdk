@@ -32,7 +32,18 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public DescribeChangeLogsRequest()
             : base("pvtz", "2018-01-01", "DescribeChangeLogs", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private long? startTimestamp;
+
+		private int? pageNumber;
+
+		private long? endTimestamp;
 
 		private string entityType;
 
@@ -46,11 +57,44 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 
 		private string lang;
 
-		private long? startTimestamp;
+		public long? StartTimestamp
+		{
+			get
+			{
+				return startTimestamp;
+			}
+			set	
+			{
+				startTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "StartTimestamp", value.ToString());
+			}
+		}
 
-		private int? pageNumber;
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
 
-		private long? endTimestamp;
+		public long? EndTimestamp
+		{
+			get
+			{
+				return endTimestamp;
+			}
+			set	
+			{
+				endTimestamp = value;
+				DictionaryUtil.Add(QueryParameters, "EndTimestamp", value.ToString());
+			}
+		}
 
 		public string EntityType
 		{
@@ -127,45 +171,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public long? StartTimestamp
-		{
-			get
-			{
-				return startTimestamp;
-			}
-			set	
-			{
-				startTimestamp = value;
-				DictionaryUtil.Add(QueryParameters, "StartTimestamp", value.ToString());
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public long? EndTimestamp
-		{
-			get
-			{
-				return endTimestamp;
-			}
-			set	
-			{
-				endTimestamp = value;
-				DictionaryUtil.Add(QueryParameters, "EndTimestamp", value.ToString());
 			}
 		}
 

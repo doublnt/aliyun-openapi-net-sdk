@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,27 +32,84 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeApisRequest()
             : base("CloudAPI", "2016-07-14", "DescribeApis", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private string visibility;
+
+		private string groupId;
+
+		private bool? enableTagAuth;
+
+		private int? pageNumber;
 
 		private string apiName;
 
 		private string catalogId;
 
-		private string visibility;
-
 		private string securityToken;
-
-		private string groupId;
 
 		private int? pageSize;
 
-		private string action;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string apiId;
 
-		private int? pageNumber;
+		public string Visibility
+		{
+			get
+			{
+				return visibility;
+			}
+			set	
+			{
+				visibility = value;
+				DictionaryUtil.Add(QueryParameters, "Visibility", value);
+			}
+		}
 
-		private string accessKeyId;
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public bool? EnableTagAuth
+		{
+			get
+			{
+				return enableTagAuth;
+			}
+			set	
+			{
+				enableTagAuth = value;
+				DictionaryUtil.Add(QueryParameters, "EnableTagAuth", value.ToString());
+			}
+		}
+
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
 
 		public string ApiName
 		{
@@ -79,19 +137,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string Visibility
-		{
-			get
-			{
-				return visibility;
-			}
-			set	
-			{
-				visibility = value;
-				DictionaryUtil.Add(QueryParameters, "Visibility", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -102,19 +147,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public string GroupId
-		{
-			get
-			{
-				return groupId;
-			}
-			set	
-			{
-				groupId = value;
-				DictionaryUtil.Add(QueryParameters, "GroupId", value);
 			}
 		}
 
@@ -131,16 +163,21 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string Action
+		public List<Tag> Tags
 		{
 			get
 			{
-				return action;
+				return tags;
 			}
-			set	
+
+			set
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
 			}
 		}
 
@@ -157,33 +194,39 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public int? PageNumber
+		public class Tag
 		{
-			get
+
+			private string value_;
+
+			private string key;
+
+			public string Value
 			{
-				return pageNumber;
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
 			}
-			set	
+
+			public string Key
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override DescribeApisResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeApisResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeApisResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

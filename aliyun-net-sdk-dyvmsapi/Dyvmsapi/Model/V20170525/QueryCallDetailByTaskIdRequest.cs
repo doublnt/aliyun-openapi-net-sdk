@@ -30,25 +30,26 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class QueryCallDetailByTaskIdRequest : RpcAcsRequest<QueryCallDetailByTaskIdResponse>
     {
         public QueryCallDetailByTaskIdRequest()
-            : base("Dyvmsapi", "2017-05-25", "QueryCallDetailByTaskId")
+            : base("Dyvmsapi", "2017-05-25", "QueryCallDetailByTaskId", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
+
+		private string callee;
+
+		private string taskId;
 
 		private long? queryDate;
 
 		private string resourceOwnerAccount;
 
-		private string callee;
-
-		private string action;
-
 		private long? ownerId;
-
-		private string taskId;
-
-		private string accessKeyId;
 
 		public long? ResourceOwnerId
 		{
@@ -60,6 +61,32 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string Callee
+		{
+			get
+			{
+				return callee;
+			}
+			set	
+			{
+				callee = value;
+				DictionaryUtil.Add(QueryParameters, "Callee", value);
+			}
+		}
+
+		public string TaskId
+		{
+			get
+			{
+				return taskId;
+			}
+			set	
+			{
+				taskId = value;
+				DictionaryUtil.Add(QueryParameters, "TaskId", value);
 			}
 		}
 
@@ -89,32 +116,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Callee
-		{
-			get
-			{
-				return callee;
-			}
-			set	
-			{
-				callee = value;
-				DictionaryUtil.Add(QueryParameters, "Callee", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -125,32 +126,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string TaskId
-		{
-			get
-			{
-				return taskId;
-			}
-			set	
-			{
-				taskId = value;
-				DictionaryUtil.Add(QueryParameters, "TaskId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public PurgeDBInstanceLogRequest()
             : base("Rds", "2014-08-15", "PurgeDBInstanceLog", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -42,9 +48,9 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string ownerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
+
+		private string dBInstanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -98,19 +104,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,6 +114,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

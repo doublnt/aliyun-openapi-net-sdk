@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,23 +32,24 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public SwitchApiRequest()
             : base("CloudAPI", "2016-07-14", "SwitchApi", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string stageName;
 
-		private string securityToken;
-
 		private string groupId;
 
-		private string action;
-
 		private string description;
+
+		private string securityToken;
 
 		private string apiId;
 
 		private string historyVersion;
-
-		private string accessKeyId;
 
 		public string StageName
 		{
@@ -59,19 +61,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				stageName = value;
 				DictionaryUtil.Add(QueryParameters, "StageName", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -88,19 +77,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string Description
 		{
 			get
@@ -111,6 +87,19 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				description = value;
 				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -140,20 +129,7 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override SwitchApiResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override SwitchApiResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return SwitchApiResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

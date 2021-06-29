@@ -30,13 +30,17 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class DescribeBatchResultCountRequest : RpcAcsRequest<DescribeBatchResultCountResponse>
     {
         public DescribeBatchResultCountRequest()
-            : base("Alidns", "2015-01-09", "DescribeBatchResultCount", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "DescribeBatchResultCount", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string batchType;
-
-		private string userClientIp;
 
 		private string lang;
 
@@ -52,19 +56,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				batchType = value;
 				DictionaryUtil.Add(QueryParameters, "BatchType", value);
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

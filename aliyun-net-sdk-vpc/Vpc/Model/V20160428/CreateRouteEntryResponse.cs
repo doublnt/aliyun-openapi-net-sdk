@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -25,6 +26,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 	{
 
 		private string requestId;
+
+		private string routeEntryId;
 
 		public string RequestId
 		{
@@ -35,6 +38,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			set	
 			{
 				requestId = value;
+			}
+		}
+
+		public string RouteEntryId
+		{
+			get
+			{
+				return routeEntryId;
+			}
+			set	
+			{
+				routeEntryId = value;
 			}
 		}
 	}

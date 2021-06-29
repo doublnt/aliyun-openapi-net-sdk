@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,13 +33,17 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public DescribeRealtimeDeliveryAccRequest()
             : base("Cdn", "2018-05-10", "DescribeRealtimeDeliveryAcc")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string project;
 
 		private string startTime;
-
-		private string action;
 
 		private string endTime;
 
@@ -71,19 +76,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

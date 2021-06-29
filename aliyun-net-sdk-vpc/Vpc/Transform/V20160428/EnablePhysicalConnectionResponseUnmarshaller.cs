@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class EnablePhysicalConnectionResponseUnmarshaller
     {
-        public static EnablePhysicalConnectionResponse Unmarshall(UnmarshallerContext context)
+        public static EnablePhysicalConnectionResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			EnablePhysicalConnectionResponse enablePhysicalConnectionResponse = new EnablePhysicalConnectionResponse();
 
-			enablePhysicalConnectionResponse.HttpResponse = context.HttpResponse;
-			enablePhysicalConnectionResponse.RequestId = context.StringValue("EnablePhysicalConnection.RequestId");
+			enablePhysicalConnectionResponse.HttpResponse = _ctx.HttpResponse;
+			enablePhysicalConnectionResponse.RequestId = _ctx.StringValue("EnablePhysicalConnection.RequestId");
         
 			return enablePhysicalConnectionResponse;
         }

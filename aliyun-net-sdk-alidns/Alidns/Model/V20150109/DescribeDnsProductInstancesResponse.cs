@@ -33,6 +33,8 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 		private long? pageSize;
 
+		private string domainType;
+
 		private List<DescribeDnsProductInstances_DnsProduct> dnsProducts;
 
 		public string RequestId
@@ -80,6 +82,18 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			set	
 			{
 				pageSize = value;
+			}
+		}
+
+		public string DomainType
+		{
+			get
+			{
+				return domainType;
+			}
+			set	
+			{
+				domainType = value;
 			}
 		}
 
@@ -159,6 +173,8 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			private long? bindDomainUsedCount;
 
 			private string dnsSecurity;
+
+			private string paymentType;
 
 			public string InstanceId
 			{
@@ -529,6 +545,18 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 				set	
 				{
 					dnsSecurity = value;
+				}
+			}
+
+			public string PaymentType
+			{
+				get
+				{
+					return paymentType;
+				}
+				set	
+				{
+					paymentType = value;
 				}
 			}
 		}

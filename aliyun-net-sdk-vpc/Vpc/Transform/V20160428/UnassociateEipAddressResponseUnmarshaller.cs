@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class UnassociateEipAddressResponseUnmarshaller
     {
-        public static UnassociateEipAddressResponse Unmarshall(UnmarshallerContext context)
+        public static UnassociateEipAddressResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			UnassociateEipAddressResponse unassociateEipAddressResponse = new UnassociateEipAddressResponse();
 
-			unassociateEipAddressResponse.HttpResponse = context.HttpResponse;
-			unassociateEipAddressResponse.RequestId = context.StringValue("UnassociateEipAddress.RequestId");
+			unassociateEipAddressResponse.HttpResponse = _ctx.HttpResponse;
+			unassociateEipAddressResponse.RequestId = _ctx.StringValue("UnassociateEipAddress.RequestId");
         
 			return unassociateEipAddressResponse;
         }

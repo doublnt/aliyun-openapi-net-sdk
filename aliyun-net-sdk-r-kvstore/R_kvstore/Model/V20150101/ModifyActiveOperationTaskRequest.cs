@@ -32,21 +32,27 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyActiveOperationTaskRequest()
             : base("R-kvstore", "2015-01-01", "ModifyActiveOperationTask", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string securityToken;
 
+		private string switchTime;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string ids;
-
-		private string switchTime;
-
 		private long? ownerId;
+
+		private string ids;
 
 		public long? ResourceOwnerId
 		{
@@ -71,6 +77,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string SwitchTime
+		{
+			get
+			{
+				return switchTime;
+			}
+			set	
+			{
+				switchTime = value;
+				DictionaryUtil.Add(QueryParameters, "SwitchTime", value);
 			}
 		}
 
@@ -100,32 +119,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string Ids
-		{
-			get
-			{
-				return ids;
-			}
-			set	
-			{
-				ids = value;
-				DictionaryUtil.Add(QueryParameters, "Ids", value);
-			}
-		}
-
-		public string SwitchTime
-		{
-			get
-			{
-				return switchTime;
-			}
-			set	
-			{
-				switchTime = value;
-				DictionaryUtil.Add(QueryParameters, "SwitchTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -136,6 +129,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Ids
+		{
+			get
+			{
+				return ids;
+			}
+			set	
+			{
+				ids = value;
+				DictionaryUtil.Add(QueryParameters, "Ids", value);
 			}
 		}
 

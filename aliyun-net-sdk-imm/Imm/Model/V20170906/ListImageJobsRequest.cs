@@ -32,15 +32,16 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public ListImageJobsRequest()
             : base("imm", "2017-09-06", "ListImageJobs", "imm", "openAPI")
         {
+			Method = MethodType.POST;
         }
 
 		private int? maxKeys;
 
-		private string marker;
-
 		private string project;
 
 		private string jobType;
+
+		private string marker;
 
 		public int? MaxKeys
 		{
@@ -52,19 +53,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				maxKeys = value;
 				DictionaryUtil.Add(QueryParameters, "MaxKeys", value.ToString());
-			}
-		}
-
-		public string Marker
-		{
-			get
-			{
-				return marker;
-			}
-			set	
-			{
-				marker = value;
-				DictionaryUtil.Add(QueryParameters, "Marker", value);
 			}
 		}
 
@@ -91,6 +79,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				jobType = value;
 				DictionaryUtil.Add(QueryParameters, "JobType", value);
+			}
+		}
+
+		public string Marker
+		{
+			get
+			{
+				return marker;
+			}
+			set	
+			{
+				marker = value;
+				DictionaryUtil.Add(QueryParameters, "Marker", value);
 			}
 		}
 

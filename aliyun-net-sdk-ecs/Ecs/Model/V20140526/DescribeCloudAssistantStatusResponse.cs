@@ -27,6 +27,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string requestId;
 
+		private long? totalCount;
+
+		private long? pageNumber;
+
+		private long? pageSize;
+
 		private List<DescribeCloudAssistantStatus_InstanceCloudAssistantStatus> instanceCloudAssistantStatusSet;
 
 		public string RequestId
@@ -38,6 +44,42 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			set	
 			{
 				requestId = value;
+			}
+		}
+
+		public long? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+			}
+		}
+
+		public long? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+			}
+		}
+
+		public long? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
 			}
 		}
 
@@ -58,7 +100,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string instanceId;
 
+			private string oSType;
+
 			private string cloudAssistantStatus;
+
+			private string cloudAssistantVersion;
+
+			private long? invocationCount;
+
+			private long? activeTaskCount;
+
+			private string lastInvokedTime;
+
+			private string lastHeartbeatTime;
 
 			public string InstanceId
 			{
@@ -72,6 +126,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public string OSType
+			{
+				get
+				{
+					return oSType;
+				}
+				set	
+				{
+					oSType = value;
+				}
+			}
+
 			public string CloudAssistantStatus
 			{
 				get
@@ -81,6 +147,66 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					cloudAssistantStatus = value;
+				}
+			}
+
+			public string CloudAssistantVersion
+			{
+				get
+				{
+					return cloudAssistantVersion;
+				}
+				set	
+				{
+					cloudAssistantVersion = value;
+				}
+			}
+
+			public long? InvocationCount
+			{
+				get
+				{
+					return invocationCount;
+				}
+				set	
+				{
+					invocationCount = value;
+				}
+			}
+
+			public long? ActiveTaskCount
+			{
+				get
+				{
+					return activeTaskCount;
+				}
+				set	
+				{
+					activeTaskCount = value;
+				}
+			}
+
+			public string LastInvokedTime
+			{
+				get
+				{
+					return lastInvokedTime;
+				}
+				set	
+				{
+					lastInvokedTime = value;
+				}
+			}
+
+			public string LastHeartbeatTime
+			{
+				get
+				{
+					return lastHeartbeatTime;
+				}
+				set	
+				{
+					lastHeartbeatTime = value;
 				}
 			}
 		}

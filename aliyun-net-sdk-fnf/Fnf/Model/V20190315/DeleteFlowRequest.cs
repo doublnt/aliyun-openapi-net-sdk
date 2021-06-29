@@ -32,6 +32,11 @@ namespace Aliyun.Acs.fnf.Model.V20190315
         public DeleteFlowRequest()
             : base("fnf", "2019-03-15", "DeleteFlow", "fnf", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string requestId;

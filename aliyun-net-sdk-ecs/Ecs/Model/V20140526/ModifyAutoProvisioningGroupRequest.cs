@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyAutoProvisioningGroupRequest()
             : base("Ecs", "2014-05-26", "ModifyAutoProvisioningGroup", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -41,6 +48,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string defaultTargetCapacityType;
 
 		private string excessCapacityTerminationPolicy;
+
+		private List<LaunchTemplateConfig> launchTemplateConfigs = new List<LaunchTemplateConfig>(){ };
 
 		private string resourceOwnerAccount;
 
@@ -109,6 +118,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				excessCapacityTerminationPolicy = value;
 				DictionaryUtil.Add(QueryParameters, "ExcessCapacityTerminationPolicy", value);
+			}
+		}
+
+		public List<LaunchTemplateConfig> LaunchTemplateConfigs
+		{
+			get
+			{
+				return launchTemplateConfigs;
+			}
+
+			set
+			{
+				launchTemplateConfigs = value;
+				for (int i = 0; i < launchTemplateConfigs.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".InstanceType", launchTemplateConfigs[i].InstanceType);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".MaxPrice", launchTemplateConfigs[i].MaxPrice);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".VSwitchId", launchTemplateConfigs[i].VSwitchId);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".WeightedCapacity", launchTemplateConfigs[i].WeightedCapacity);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".Priority", launchTemplateConfigs[i].Priority);
+				}
 			}
 		}
 
@@ -226,6 +256,80 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				autoProvisioningGroupName = value;
 				DictionaryUtil.Add(QueryParameters, "AutoProvisioningGroupName", value);
+			}
+		}
+
+		public class LaunchTemplateConfig
+		{
+
+			private string instanceType;
+
+			private double? maxPrice;
+
+			private string vSwitchId;
+
+			private double? weightedCapacity;
+
+			private int? priority;
+
+			public string InstanceType
+			{
+				get
+				{
+					return instanceType;
+				}
+				set	
+				{
+					instanceType = value;
+				}
+			}
+
+			public double? MaxPrice
+			{
+				get
+				{
+					return maxPrice;
+				}
+				set	
+				{
+					maxPrice = value;
+				}
+			}
+
+			public string VSwitchId
+			{
+				get
+				{
+					return vSwitchId;
+				}
+				set	
+				{
+					vSwitchId = value;
+				}
+			}
+
+			public double? WeightedCapacity
+			{
+				get
+				{
+					return weightedCapacity;
+				}
+				set	
+				{
+					weightedCapacity = value;
+				}
+			}
+
+			public int? Priority
+			{
+				get
+				{
+					return priority;
+				}
+				set	
+				{
+					priority = value;
+				}
 			}
 		}
 

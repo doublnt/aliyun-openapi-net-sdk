@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public BatchAddDeviceGroupRelationsRequest()
             : base("Iot", "2018-01-20", "BatchAddDeviceGroupRelations", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;
 
 		private string groupId;
 
-		private List<Device> devices;
+		private List<Device> devices = new List<Device>(){ };
 
 		public string IotInstanceId
 		{

@@ -56,25 +56,35 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		public class DescribeRecommendInstanceType_RecommendInstanceType
 		{
 
-			private string regionNo;
+			private string regionId;
 
 			private string commodityCode;
 
 			private string scene;
 
+			private string instanceChargeType;
+
+			private string spotStrategy;
+
+			private int? priority;
+
+			private string zoneId;
+
+			private string networkType;
+
 			private List<DescribeRecommendInstanceType_Zone> zones;
 
 			private DescribeRecommendInstanceType_InstanceType instanceType;
 
-			public string RegionNo
+			public string RegionId
 			{
 				get
 				{
-					return regionNo;
+					return regionId;
 				}
 				set	
 				{
-					regionNo = value;
+					regionId = value;
 				}
 			}
 
@@ -99,6 +109,66 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					scene = value;
+				}
+			}
+
+			public string InstanceChargeType
+			{
+				get
+				{
+					return instanceChargeType;
+				}
+				set	
+				{
+					instanceChargeType = value;
+				}
+			}
+
+			public string SpotStrategy
+			{
+				get
+				{
+					return spotStrategy;
+				}
+				set	
+				{
+					spotStrategy = value;
+				}
+			}
+
+			public int? Priority
+			{
+				get
+				{
+					return priority;
+				}
+				set	
+				{
+					priority = value;
+				}
+			}
+
+			public string ZoneId
+			{
+				get
+				{
+					return zoneId;
+				}
+				set	
+				{
+					zoneId = value;
+				}
+			}
+
+			public string NetworkType
+			{
+				get
+				{
+					return networkType;
+				}
+				set	
+				{
+					networkType = value;
 				}
 			}
 

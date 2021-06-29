@@ -32,25 +32,29 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifySecurityIpsRequest()
             : base("Rds", "2014-08-15", "ModifySecurityIps", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string dBInstanceIPArrayName;
 
 		private long? resourceOwnerId;
 
-		private string modifyMode;
-
 		private string securityIps;
 
-		private string securityGroupId;
-
 		private string whitelistNetworkType;
-
-		private string dBInstanceIPArrayAttribute;
 
 		private string securityIPType;
 
 		private string dBInstanceId;
+
+		private string modifyMode;
+
+		private string dBInstanceIPArrayAttribute;
 
 		public string DBInstanceIPArrayName
 		{
@@ -78,19 +82,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ModifyMode
-		{
-			get
-			{
-				return modifyMode;
-			}
-			set	
-			{
-				modifyMode = value;
-				DictionaryUtil.Add(QueryParameters, "ModifyMode", value);
-			}
-		}
-
 		public string SecurityIps
 		{
 			get
@@ -104,19 +95,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string SecurityGroupId
-		{
-			get
-			{
-				return securityGroupId;
-			}
-			set	
-			{
-				securityGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityGroupId", value);
-			}
-		}
-
 		public string WhitelistNetworkType
 		{
 			get
@@ -127,19 +105,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				whitelistNetworkType = value;
 				DictionaryUtil.Add(QueryParameters, "WhitelistNetworkType", value);
-			}
-		}
-
-		public string DBInstanceIPArrayAttribute
-		{
-			get
-			{
-				return dBInstanceIPArrayAttribute;
-			}
-			set	
-			{
-				dBInstanceIPArrayAttribute = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceIPArrayAttribute", value);
 			}
 		}
 
@@ -166,6 +131,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				dBInstanceId = value;
 				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string ModifyMode
+		{
+			get
+			{
+				return modifyMode;
+			}
+			set	
+			{
+				modifyMode = value;
+				DictionaryUtil.Add(QueryParameters, "ModifyMode", value);
+			}
+		}
+
+		public string DBInstanceIPArrayAttribute
+		{
+			get
+			{
+				return dBInstanceIPArrayAttribute;
+			}
+			set	
+			{
+				dBInstanceIPArrayAttribute = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceIPArrayAttribute", value);
 			}
 		}
 

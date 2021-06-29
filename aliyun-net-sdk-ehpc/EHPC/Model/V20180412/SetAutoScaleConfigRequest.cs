@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,9 +31,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class SetAutoScaleConfigRequest : RpcAcsRequest<SetAutoScaleConfigResponse>
     {
         public SetAutoScaleConfigRequest()
-            : base("EHPC", "2018-04-12", "SetAutoScaleConfig", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "SetAutoScaleConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private string imageId;
+
+		private float? spotPriceLimit;
+
+		private string excludeNodes;
+
+		private int? extraNodesGrowRatio;
 
 		private int? shrinkIdleTimes;
 
@@ -42,29 +56,71 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private bool? enableAutoGrow;
 
-		private float? spotPriceLimit;
-
 		private bool? enableAutoShrink;
-
-		private string accessKeyId;
 
 		private string spotStrategy;
 
 		private int? maxNodesInCluster;
 
-		private string excludeNodes;
-
 		private int? shrinkIntervalInMinutes;
 
-		private List<Queues> queuess;
-
-		private string action;
-
-		private int? extraNodesGrowRatio;
+		private List<Queues> queuess = new List<Queues>(){ };
 
 		private int? growIntervalInMinutes;
 
 		private int? growRatio;
+
+		public string ImageId
+		{
+			get
+			{
+				return imageId;
+			}
+			set	
+			{
+				imageId = value;
+				DictionaryUtil.Add(QueryParameters, "ImageId", value);
+			}
+		}
+
+		public float? SpotPriceLimit
+		{
+			get
+			{
+				return spotPriceLimit;
+			}
+			set	
+			{
+				spotPriceLimit = value;
+				DictionaryUtil.Add(QueryParameters, "SpotPriceLimit", value.ToString());
+			}
+		}
+
+		public string ExcludeNodes
+		{
+			get
+			{
+				return excludeNodes;
+			}
+			set	
+			{
+				excludeNodes = value;
+				DictionaryUtil.Add(QueryParameters, "ExcludeNodes", value);
+			}
+		}
+
+		public int? ExtraNodesGrowRatio
+		{
+			get
+			{
+				return extraNodesGrowRatio;
+			}
+			set	
+			{
+				extraNodesGrowRatio = value;
+				DictionaryUtil.Add(QueryParameters, "ExtraNodesGrowRatio", value.ToString());
+			}
+		}
 
 		public int? ShrinkIdleTimes
 		{
@@ -118,19 +174,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public float? SpotPriceLimit
-		{
-			get
-			{
-				return spotPriceLimit;
-			}
-			set	
-			{
-				spotPriceLimit = value;
-				DictionaryUtil.Add(QueryParameters, "SpotPriceLimit", value.ToString());
-			}
-		}
-
 		public bool? EnableAutoShrink
 		{
 			get
@@ -141,19 +184,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				enableAutoShrink = value;
 				DictionaryUtil.Add(QueryParameters, "EnableAutoShrink", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -180,19 +210,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				maxNodesInCluster = value;
 				DictionaryUtil.Add(QueryParameters, "MaxNodesInCluster", value.ToString());
-			}
-		}
-
-		public string ExcludeNodes
-		{
-			get
-			{
-				return excludeNodes;
-			}
-			set	
-			{
-				excludeNodes = value;
-				DictionaryUtil.Add(QueryParameters, "ExcludeNodes", value);
 			}
 		}
 
@@ -223,41 +240,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				{
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".SpotStrategy", queuess[i].SpotStrategy);
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".QueueName", queuess[i].QueueName);
+					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".MinNodesInQueue", queuess[i].MinNodesInQueue);
 					for (int j = 0; j < queuess[i].InstanceTypess.Count; j++)
 					{
 						DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".InstanceTypes." +(j + 1), queuess[i].InstanceTypess[j]);
 					}
+					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".MaxNodesInQueue", queuess[i].MaxNodesInQueue);
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".InstanceType", queuess[i].InstanceType);
+					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".QueueImageId", queuess[i].QueueImageId);
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".EnableAutoGrow", queuess[i].EnableAutoGrow);
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".SpotPriceLimit", queuess[i].SpotPriceLimit);
 					DictionaryUtil.Add(QueryParameters,"Queues." + (i + 1) + ".EnableAutoShrink", queuess[i].EnableAutoShrink);
 				}
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public int? ExtraNodesGrowRatio
-		{
-			get
-			{
-				return extraNodesGrowRatio;
-			}
-			set	
-			{
-				extraNodesGrowRatio = value;
-				DictionaryUtil.Add(QueryParameters, "ExtraNodesGrowRatio", value.ToString());
 			}
 		}
 
@@ -294,9 +288,15 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 			private string queueName;
 
-			private List<InstanceTypes> instanceTypess;
+			private int? minNodesInQueue;
+
+			private List<InstanceTypes> instanceTypess = new List<InstanceTypes>(){ };
+
+			private int? maxNodesInQueue;
 
 			private string instanceType;
+
+			private string queueImageId;
 
 			private bool? enableAutoGrow;
 
@@ -328,6 +328,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				}
 			}
 
+			public int? MinNodesInQueue
+			{
+				get
+				{
+					return minNodesInQueue;
+				}
+				set	
+				{
+					minNodesInQueue = value;
+				}
+			}
+
 			public List<InstanceTypes> InstanceTypess
 			{
 				get
@@ -340,6 +352,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				}
 			}
 
+			public int? MaxNodesInQueue
+			{
+				get
+				{
+					return maxNodesInQueue;
+				}
+				set	
+				{
+					maxNodesInQueue = value;
+				}
+			}
+
 			public string InstanceType
 			{
 				get
@@ -349,6 +373,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					instanceType = value;
+				}
+			}
+
+			public string QueueImageId
+			{
+				get
+				{
+					return queueImageId;
+				}
+				set	
+				{
+					queueImageId = value;
 				}
 			}
 
@@ -399,6 +435,8 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 				private string zoneId;
 
+				private string hostNamePrefix;
+
 				private float? spotPriceLimit;
 
 				public string SpotStrategy
@@ -446,6 +484,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 					set	
 					{
 						zoneId = value;
+					}
+				}
+
+				public string HostNamePrefix
+				{
+					get
+					{
+						return hostNamePrefix;
+					}
+					set	
+					{
+						hostNamePrefix = value;
 					}
 				}
 

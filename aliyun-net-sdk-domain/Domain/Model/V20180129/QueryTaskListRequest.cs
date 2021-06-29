@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,34 +30,27 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class QueryTaskListRequest : RpcAcsRequest<QueryTaskListResponse>
     {
         public QueryTaskListRequest()
-            : base("Domain", "2018-01-29", "QueryTaskList")
+            : base("Domain", "2018-01-29", "QueryTaskList", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? beginCreateTime;
-
 		private long? endCreateTime;
+
+		private int? pageNum;
+
+		private long? beginCreateTime;
 
 		private string userClientIp;
 
 		private int? pageSize;
 
 		private string lang;
-
-		private int? pageNum;
-
-		public long? BeginCreateTime
-		{
-			get
-			{
-				return beginCreateTime;
-			}
-			set	
-			{
-				beginCreateTime = value;
-				DictionaryUtil.Add(QueryParameters, "BeginCreateTime", value.ToString());
-			}
-		}
 
 		public long? EndCreateTime
 		{
@@ -70,6 +62,32 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				endCreateTime = value;
 				DictionaryUtil.Add(QueryParameters, "EndCreateTime", value.ToString());
+			}
+		}
+
+		public int? PageNum
+		{
+			get
+			{
+				return pageNum;
+			}
+			set	
+			{
+				pageNum = value;
+				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
+			}
+		}
+
+		public long? BeginCreateTime
+		{
+			get
+			{
+				return beginCreateTime;
+			}
+			set	
+			{
+				beginCreateTime = value;
+				DictionaryUtil.Add(QueryParameters, "BeginCreateTime", value.ToString());
 			}
 		}
 
@@ -109,19 +127,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public int? PageNum
-		{
-			get
-			{
-				return pageNum;
-			}
-			set	
-			{
-				pageNum = value;
-				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
 			}
 		}
 

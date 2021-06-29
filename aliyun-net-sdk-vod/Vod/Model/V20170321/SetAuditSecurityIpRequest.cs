@@ -32,26 +32,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SetAuditSecurityIpRequest()
             : base("vod", "2017-03-21", "SetAuditSecurityIp", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string operateMode;
 
 		private string securityGroupName;
 
-		private string ips;
+		private string operateMode;
 
-		public string OperateMode
-		{
-			get
-			{
-				return operateMode;
-			}
-			set	
-			{
-				operateMode = value;
-				DictionaryUtil.Add(QueryParameters, "OperateMode", value);
-			}
-		}
+		private string ips;
 
 		public string SecurityGroupName
 		{
@@ -63,6 +56,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				securityGroupName = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityGroupName", value);
+			}
+		}
+
+		public string OperateMode
+		{
+			get
+			{
+				return operateMode;
+			}
+			set	
+			{
+				operateMode = value;
+				DictionaryUtil.Add(QueryParameters, "OperateMode", value);
 			}
 		}
 

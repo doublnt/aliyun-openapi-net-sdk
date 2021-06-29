@@ -16,21 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.ROS.Transform;
 using Aliyun.Acs.ROS.Transform.V20150901;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.ROS.Model.V20150901
 {
     public class DescribeResourcesRequest : RoaAcsRequest<DescribeResourcesResponse>
     {
         public DescribeResourcesRequest()
-            : base("ROS", "2015-09-01", "DescribeResources")
+            : base("ROS", "2015-09-01", "DescribeResources", "ros", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.ROS.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.ROS.Endpoint.endpointRegionalType, null);
+            }
 			UriPattern = "/stacks/[StackName]/[StackId]/resources";
 			Method = MethodType.GET;
         }
@@ -65,7 +72,7 @@ namespace Aliyun.Acs.ROS.Model.V20150901
 			}
 		}
 
-        public override DescribeResourcesResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeResourcesResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeResourcesResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

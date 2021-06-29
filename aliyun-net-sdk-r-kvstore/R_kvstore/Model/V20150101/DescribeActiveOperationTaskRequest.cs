@@ -32,17 +32,15 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeActiveOperationTaskRequest()
             : base("R-kvstore", "2015-01-01", "DescribeActiveOperationTask", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string taskType;
-
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
-
-		private long? ownerId;
 
 		private int? pageNumber;
 
@@ -51,6 +49,14 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		private string securityToken;
 
 		private int? pageSize;
+
+		private string taskType;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
 
 		private string region;
 
@@ -64,58 +70,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string TaskType
-		{
-			get
-			{
-				return taskType;
-			}
-			set	
-			{
-				taskType = value;
-				DictionaryUtil.Add(QueryParameters, "TaskType", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -168,6 +122,58 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string TaskType
+		{
+			get
+			{
+				return taskType;
+			}
+			set	
+			{
+				taskType = value;
+				DictionaryUtil.Add(QueryParameters, "TaskType", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

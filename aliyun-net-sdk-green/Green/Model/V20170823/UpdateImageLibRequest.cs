@@ -32,21 +32,40 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UpdateImageLibRequest()
             : base("Green", "2017-08-23", "UpdateImageLib", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string scene;
 
 		private string sourceIp;
 
 		private bool? enable;
 
-		private string name;
+		private int? id;
 
 		private string bizTypes;
 
-		private int? id;
+		private string name;
 
 		private string category;
 
-		private string scene;
+		public string Scene
+		{
+			get
+			{
+				return scene;
+			}
+			set	
+			{
+				scene = value;
+				DictionaryUtil.Add(QueryParameters, "Scene", value);
+			}
+		}
 
 		public string SourceIp
 		{
@@ -74,16 +93,16 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public string Name
+		public int? Id
 		{
 			get
 			{
-				return name;
+				return id;
 			}
 			set	
 			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
+				id = value;
+				DictionaryUtil.Add(QueryParameters, "Id", value.ToString());
 			}
 		}
 
@@ -100,16 +119,16 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public int? Id
+		public string Name
 		{
 			get
 			{
-				return id;
+				return name;
 			}
 			set	
 			{
-				id = value;
-				DictionaryUtil.Add(QueryParameters, "Id", value.ToString());
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
 			}
 		}
 
@@ -123,19 +142,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				category = value;
 				DictionaryUtil.Add(QueryParameters, "Category", value);
-			}
-		}
-
-		public string Scene
-		{
-			get
-			{
-				return scene;
-			}
-			set	
-			{
-				scene = value;
-				DictionaryUtil.Add(QueryParameters, "Scene", value);
 			}
 		}
 

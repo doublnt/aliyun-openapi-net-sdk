@@ -91,6 +91,28 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 		private string reservedInfoActiveTime;
 
+		private string deleteProtection;
+
+		private string associatedCenId;
+
+		private string associatedCenStatus;
+
+		private string cloudInstanceType;
+
+		private string cloudInstanceId;
+
+		private string tunnelType;
+
+		private long? cloudInstanceUid;
+
+		private bool? supportPrivateLink;
+
+		private string businessStatus;
+
+		private string modificationProtectionStatus;
+
+		private string modificationProtectionReason;
+
 		private List<DescribeLoadBalancerAttribute_ListenerPortAndProtocal> listenerPortsAndProtocal;
 
 		private List<DescribeLoadBalancerAttribute_ListenerPortAndProtocol> listenerPortsAndProtocol;
@@ -98,6 +120,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private List<DescribeLoadBalancerAttribute_BackendServer> backendServers;
 
 		private List<string> listenerPorts;
+
+		private List<string> labels;
 
 		public string RequestId
 		{
@@ -495,6 +519,138 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			}
 		}
 
+		public string DeleteProtection
+		{
+			get
+			{
+				return deleteProtection;
+			}
+			set	
+			{
+				deleteProtection = value;
+			}
+		}
+
+		public string AssociatedCenId
+		{
+			get
+			{
+				return associatedCenId;
+			}
+			set	
+			{
+				associatedCenId = value;
+			}
+		}
+
+		public string AssociatedCenStatus
+		{
+			get
+			{
+				return associatedCenStatus;
+			}
+			set	
+			{
+				associatedCenStatus = value;
+			}
+		}
+
+		public string CloudInstanceType
+		{
+			get
+			{
+				return cloudInstanceType;
+			}
+			set	
+			{
+				cloudInstanceType = value;
+			}
+		}
+
+		public string CloudInstanceId
+		{
+			get
+			{
+				return cloudInstanceId;
+			}
+			set	
+			{
+				cloudInstanceId = value;
+			}
+		}
+
+		public string TunnelType
+		{
+			get
+			{
+				return tunnelType;
+			}
+			set	
+			{
+				tunnelType = value;
+			}
+		}
+
+		public long? CloudInstanceUid
+		{
+			get
+			{
+				return cloudInstanceUid;
+			}
+			set	
+			{
+				cloudInstanceUid = value;
+			}
+		}
+
+		public bool? SupportPrivateLink
+		{
+			get
+			{
+				return supportPrivateLink;
+			}
+			set	
+			{
+				supportPrivateLink = value;
+			}
+		}
+
+		public string BusinessStatus
+		{
+			get
+			{
+				return businessStatus;
+			}
+			set	
+			{
+				businessStatus = value;
+			}
+		}
+
+		public string ModificationProtectionStatus
+		{
+			get
+			{
+				return modificationProtectionStatus;
+			}
+			set	
+			{
+				modificationProtectionStatus = value;
+			}
+		}
+
+		public string ModificationProtectionReason
+		{
+			get
+			{
+				return modificationProtectionReason;
+			}
+			set	
+			{
+				modificationProtectionReason = value;
+			}
+		}
+
 		public List<DescribeLoadBalancerAttribute_ListenerPortAndProtocal> ListenerPortsAndProtocal
 		{
 			get
@@ -540,6 +696,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				listenerPorts = value;
+			}
+		}
+
+		public List<string> Labels
+		{
+			get
+			{
+				return labels;
+			}
+			set	
+			{
+				labels = value;
 			}
 		}
 

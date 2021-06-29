@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CheckAccountNameAvailableRequest()
             : base("Rds", "2014-08-15", "CheckAccountNameAvailable", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string clientToken;
+
 		private string accountName;
+
+		private string dBInstanceId;
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
 		private string ownerAccount;
-
-		private string dBInstanceId;
 
 		private long? ownerId;
 
@@ -61,6 +67,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
 		public string AccountName
 		{
 			get
@@ -71,6 +90,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				accountName = value;
 				DictionaryUtil.Add(QueryParameters, "AccountName", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -87,19 +119,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -110,19 +129,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

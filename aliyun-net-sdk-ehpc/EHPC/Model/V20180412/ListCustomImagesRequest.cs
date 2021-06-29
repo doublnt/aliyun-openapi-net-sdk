@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,28 +31,46 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListCustomImagesRequest : RpcAcsRequest<ListCustomImagesResponse>
     {
         public ListCustomImagesRequest()
-            : base("EHPC", "2018-04-12", "ListCustomImages", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListCustomImages")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
-		private string action;
-
-		private string baseOsTag;
-
-		private string accessKeyId;
+		private string clusterId;
 
 		private string imageOwnerAlias;
 
-		public string Action
+		private string baseOsTag;
+
+		private string instanceType;
+
+		public string ClusterId
 		{
 			get
 			{
-				return action;
+				return clusterId;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
+
+		public string ImageOwnerAlias
+		{
+			get
+			{
+				return imageOwnerAlias;
+			}
+			set	
+			{
+				imageOwnerAlias = value;
+				DictionaryUtil.Add(QueryParameters, "ImageOwnerAlias", value);
 			}
 		}
 
@@ -68,29 +87,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string InstanceType
 		{
 			get
 			{
-				return accessKeyId;
+				return instanceType;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string ImageOwnerAlias
-		{
-			get
-			{
-				return imageOwnerAlias;
-			}
-			set	
-			{
-				imageOwnerAlias = value;
-				DictionaryUtil.Add(QueryParameters, "ImageOwnerAlias", value);
+				instanceType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
 			}
 		}
 

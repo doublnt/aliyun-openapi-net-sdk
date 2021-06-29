@@ -32,11 +32,17 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyAccountDescriptionRequest()
             : base("R-kvstore", "2015-01-01", "ModifyAccountDescription", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string accountDescription;
 
 		private string accountName;
 
@@ -48,7 +54,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private long? ownerId;
 
-		private string accountDescription;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -63,16 +69,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
+		public string AccountDescription
 		{
 			get
 			{
-				return instanceId;
+				return accountDescription;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				accountDescription = value;
+				DictionaryUtil.Add(QueryParameters, "AccountDescription", value);
 			}
 		}
 
@@ -141,16 +147,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string AccountDescription
+		public string InstanceId
 		{
 			get
 			{
-				return accountDescription;
+				return instanceId;
 			}
 			set	
 			{
-				accountDescription = value;
-				DictionaryUtil.Add(QueryParameters, "AccountDescription", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

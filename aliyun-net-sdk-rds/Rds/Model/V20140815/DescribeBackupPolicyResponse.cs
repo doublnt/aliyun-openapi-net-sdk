@@ -55,6 +55,26 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string compressType;
 
+		private string archiveBackupRetentionPeriod;
+
+		private string archiveBackupKeepPolicy;
+
+		private string archiveBackupKeepCount;
+
+		private string releasedKeepPolicy;
+
+		private int? logBackupLocalRetentionNumber;
+
+		private string category;
+
+		private int? supportReleasedKeep;
+
+		private string backupInterval;
+
+		private int? supportVolumeShadowCopy;
+
+		private string backupMethod;
+
 		private DescribeBackupPolicy_DuplicationLocation duplicationLocation;
 
 		public string RequestId
@@ -234,6 +254,126 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				compressType = value;
+			}
+		}
+
+		public string ArchiveBackupRetentionPeriod
+		{
+			get
+			{
+				return archiveBackupRetentionPeriod;
+			}
+			set	
+			{
+				archiveBackupRetentionPeriod = value;
+			}
+		}
+
+		public string ArchiveBackupKeepPolicy
+		{
+			get
+			{
+				return archiveBackupKeepPolicy;
+			}
+			set	
+			{
+				archiveBackupKeepPolicy = value;
+			}
+		}
+
+		public string ArchiveBackupKeepCount
+		{
+			get
+			{
+				return archiveBackupKeepCount;
+			}
+			set	
+			{
+				archiveBackupKeepCount = value;
+			}
+		}
+
+		public string ReleasedKeepPolicy
+		{
+			get
+			{
+				return releasedKeepPolicy;
+			}
+			set	
+			{
+				releasedKeepPolicy = value;
+			}
+		}
+
+		public int? LogBackupLocalRetentionNumber
+		{
+			get
+			{
+				return logBackupLocalRetentionNumber;
+			}
+			set	
+			{
+				logBackupLocalRetentionNumber = value;
+			}
+		}
+
+		public string Category
+		{
+			get
+			{
+				return category;
+			}
+			set	
+			{
+				category = value;
+			}
+		}
+
+		public int? SupportReleasedKeep
+		{
+			get
+			{
+				return supportReleasedKeep;
+			}
+			set	
+			{
+				supportReleasedKeep = value;
+			}
+		}
+
+		public string BackupInterval
+		{
+			get
+			{
+				return backupInterval;
+			}
+			set	
+			{
+				backupInterval = value;
+			}
+		}
+
+		public int? SupportVolumeShadowCopy
+		{
+			get
+			{
+				return supportVolumeShadowCopy;
+			}
+			set	
+			{
+				supportVolumeShadowCopy = value;
+			}
+		}
+
+		public string BackupMethod
+		{
+			get
+			{
+				return backupMethod;
+			}
+			set	
+			{
+				backupMethod = value;
 			}
 		}
 

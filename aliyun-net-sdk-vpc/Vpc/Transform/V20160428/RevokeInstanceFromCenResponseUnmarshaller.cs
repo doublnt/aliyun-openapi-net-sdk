@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class RevokeInstanceFromCenResponseUnmarshaller
     {
-        public static RevokeInstanceFromCenResponse Unmarshall(UnmarshallerContext context)
+        public static RevokeInstanceFromCenResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			RevokeInstanceFromCenResponse revokeInstanceFromCenResponse = new RevokeInstanceFromCenResponse();
 
-			revokeInstanceFromCenResponse.HttpResponse = context.HttpResponse;
-			revokeInstanceFromCenResponse.RequestId = context.StringValue("RevokeInstanceFromCen.RequestId");
+			revokeInstanceFromCenResponse.HttpResponse = _ctx.HttpResponse;
+			revokeInstanceFromCenResponse.RequestId = _ctx.StringValue("RevokeInstanceFromCen.RequestId");
         
 			return revokeInstanceFromCenResponse;
         }

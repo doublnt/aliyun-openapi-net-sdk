@@ -30,30 +30,25 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class DescribeDomainStatisticsRequest : RpcAcsRequest<DescribeDomainStatisticsResponse>
     {
         public DescribeDomainStatisticsRequest()
-            : base("Alidns", "2015-01-09", "DescribeDomainStatistics", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "DescribeDomainStatistics", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string endDate;
 
 		private string domainName;
 
-		private string lang;
-
 		private string startDate;
 
-		public string EndDate
-		{
-			get
-			{
-				return endDate;
-			}
-			set	
-			{
-				endDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndDate", value);
-			}
-		}
+		private string endDate;
+
+		private string domainType;
+
+		private string lang;
 
 		public string DomainName
 		{
@@ -68,19 +63,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
 		public string StartDate
 		{
 			get
@@ -91,6 +73,45 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				startDate = value;
 				DictionaryUtil.Add(QueryParameters, "StartDate", value);
+			}
+		}
+
+		public string EndDate
+		{
+			get
+			{
+				return endDate;
+			}
+			set	
+			{
+				endDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndDate", value);
+			}
+		}
+
+		public string DomainType
+		{
+			get
+			{
+				return domainType;
+			}
+			set	
+			{
+				domainType = value;
+				DictionaryUtil.Add(QueryParameters, "DomainType", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

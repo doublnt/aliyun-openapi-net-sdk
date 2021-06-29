@@ -33,34 +33,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyVSwitchAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyVSwitchAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string vSwitchId;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private string description;
 
-		private string vSwitchName;
+		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string description;
-
 		private long? ownerId;
 
-		public string VSwitchId
-		{
-			get
-			{
-				return vSwitchId;
-			}
-			set	
-			{
-				vSwitchId = value;
-				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
-			}
-		}
+		private string vSwitchId;
+
+		private string vSwitchName;
 
 		public long? ResourceOwnerId
 		{
@@ -72,45 +65,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string VSwitchName
-		{
-			get
-			{
-				return vSwitchName;
-			}
-			set	
-			{
-				vSwitchName = value;
-				DictionaryUtil.Add(QueryParameters, "VSwitchName", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -127,6 +81,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -137,6 +117,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string VSwitchId
+		{
+			get
+			{
+				return vSwitchId;
+			}
+			set	
+			{
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public string VSwitchName
+		{
+			get
+			{
+				return vSwitchName;
+			}
+			set	
+			{
+				vSwitchName = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchName", value);
 			}
 		}
 

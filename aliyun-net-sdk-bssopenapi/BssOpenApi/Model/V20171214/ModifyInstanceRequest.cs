@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,23 +33,29 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public ModifyInstanceRequest()
             : base("BssOpenApi", "2017-12-14", "ModifyInstance")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
-
-		private string instanceId;
 
 		private string clientToken;
 
 		private string subscriptionType;
 
-		private string modifyType;
-
-		private List<Parameter> parameters;
-
 		private long? ownerId;
 
 		private string productType;
+
+		private string instanceId;
+
+		private string modifyType;
+
+		private List<Parameter> parameters = new List<Parameter>(){ };
 
 		public string ProductCode
 		{
@@ -60,19 +67,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productCode = value;
 				DictionaryUtil.Add(QueryParameters, "ProductCode", value);
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -99,6 +93,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscriptionType = value;
 				DictionaryUtil.Add(QueryParameters, "SubscriptionType", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ProductType
+		{
+			get
+			{
+				return productType;
+			}
+			set	
+			{
+				productType = value;
+				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -130,32 +163,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					DictionaryUtil.Add(QueryParameters,"Parameter." + (i + 1) + ".Code", parameters[i].Code);
 					DictionaryUtil.Add(QueryParameters,"Parameter." + (i + 1) + ".Value", parameters[i].Value);
 				}
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string ProductType
-		{
-			get
-			{
-				return productType;
-			}
-			set	
-			{
-				productType = value;
-				DictionaryUtil.Add(QueryParameters, "ProductType", value);
 			}
 		}
 

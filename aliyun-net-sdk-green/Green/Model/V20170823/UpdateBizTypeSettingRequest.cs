@@ -32,15 +32,53 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UpdateBizTypeSettingRequest()
             : base("Green", "2017-08-23", "UpdateBizTypeSetting", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string antispam;
+
+		private string porn;
 
 		private string terrorism;
 
 		private string bizTypeName;
 
+		private string live;
+
+		private string ad;
+
 		private string resourceType;
 
-		private string porn;
+		public string Antispam
+		{
+			get
+			{
+				return antispam;
+			}
+			set	
+			{
+				antispam = value;
+				DictionaryUtil.Add(QueryParameters, "Antispam", value);
+			}
+		}
+
+		public string Porn
+		{
+			get
+			{
+				return porn;
+			}
+			set	
+			{
+				porn = value;
+				DictionaryUtil.Add(QueryParameters, "Porn", value);
+			}
+		}
 
 		public string Terrorism
 		{
@@ -68,6 +106,32 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
+		public string Live
+		{
+			get
+			{
+				return live;
+			}
+			set	
+			{
+				live = value;
+				DictionaryUtil.Add(QueryParameters, "Live", value);
+			}
+		}
+
+		public string Ad
+		{
+			get
+			{
+				return ad;
+			}
+			set	
+			{
+				ad = value;
+				DictionaryUtil.Add(QueryParameters, "Ad", value);
+			}
+		}
+
 		public string ResourceType
 		{
 			get
@@ -78,19 +142,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				resourceType = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
-			}
-		}
-
-		public string Porn
-		{
-			get
-			{
-				return porn;
-			}
-			set	
-			{
-				porn = value;
-				DictionaryUtil.Add(QueryParameters, "Porn", value);
 			}
 		}
 

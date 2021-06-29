@@ -30,21 +30,22 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class AddRtcAccountRequest : RpcAcsRequest<AddRtcAccountResponse>
     {
         public AddRtcAccountRequest()
-            : base("Dyvmsapi", "2017-05-25", "AddRtcAccount")
+            : base("Dyvmsapi", "2017-05-25", "AddRtcAccount", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string action;
-
 		private long? ownerId;
 
 		private string deviceId;
-
-		private string accessKeyId;
 
 		public long? ResourceOwnerId
 		{
@@ -72,19 +73,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -108,19 +96,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				deviceId = value;
 				DictionaryUtil.Add(QueryParameters, "DeviceId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

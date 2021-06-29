@@ -32,11 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeAccountAttributesRequest()
             : base("Ecs", "2014-05-26", "DescribeAccountAttributes", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private List<string> attributeNames;
+		private List<string> attributeNames = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 

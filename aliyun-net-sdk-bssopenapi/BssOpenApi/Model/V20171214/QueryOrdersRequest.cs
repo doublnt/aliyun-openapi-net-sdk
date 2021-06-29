@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,17 +33,17 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryOrdersRequest()
             : base("BssOpenApi", "2017-12-14", "QueryOrders")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
 
 		private string subscriptionType;
-
-		private int? pageSize;
-
-		private string paymentStatus;
-
-		private string createTimeStart;
 
 		private int? pageNum;
 
@@ -51,6 +52,12 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 		private string createTimeEnd;
 
 		private string productType;
+
+		private int? pageSize;
+
+		private string paymentStatus;
+
+		private string createTimeStart;
 
 		private string orderType;
 
@@ -77,45 +84,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscriptionType = value;
 				DictionaryUtil.Add(QueryParameters, "SubscriptionType", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string PaymentStatus
-		{
-			get
-			{
-				return paymentStatus;
-			}
-			set	
-			{
-				paymentStatus = value;
-				DictionaryUtil.Add(QueryParameters, "PaymentStatus", value);
-			}
-		}
-
-		public string CreateTimeStart
-		{
-			get
-			{
-				return createTimeStart;
-			}
-			set	
-			{
-				createTimeStart = value;
-				DictionaryUtil.Add(QueryParameters, "CreateTimeStart", value);
 			}
 		}
 
@@ -168,6 +136,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string PaymentStatus
+		{
+			get
+			{
+				return paymentStatus;
+			}
+			set	
+			{
+				paymentStatus = value;
+				DictionaryUtil.Add(QueryParameters, "PaymentStatus", value);
+			}
+		}
+
+		public string CreateTimeStart
+		{
+			get
+			{
+				return createTimeStart;
+			}
+			set	
+			{
+				createTimeStart = value;
+				DictionaryUtil.Add(QueryParameters, "CreateTimeStart", value);
 			}
 		}
 

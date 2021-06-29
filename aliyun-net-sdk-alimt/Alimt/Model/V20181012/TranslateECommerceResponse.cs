@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.alimt.Model.V20181012
 {
@@ -85,6 +86,8 @@ namespace Aliyun.Acs.alimt.Model.V20181012
 
 			private string translated;
 
+			private string wordCount;
+
 			public string Translated
 			{
 				get
@@ -94,6 +97,18 @@ namespace Aliyun.Acs.alimt.Model.V20181012
 				set	
 				{
 					translated = value;
+				}
+			}
+
+			public string WordCount
+			{
+				get
+				{
+					return wordCount;
+				}
+				set	
+				{
+					wordCount = value;
 				}
 			}
 		}

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,43 +31,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class AddLocalNodesRequest : RpcAcsRequest<AddLocalNodesResponse>
     {
         public AddLocalNodesRequest()
-            : base("EHPC", "2018-04-12", "AddLocalNodes", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "AddLocalNodes")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string nodes;
-
-		private string action;
 
 		private string clusterId;
 
-		private string accessKeyId;
-
-		public string Nodes
-		{
-			get
-			{
-				return nodes;
-			}
-			set	
-			{
-				nodes = value;
-				DictionaryUtil.Add(QueryParameters, "Nodes", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
+		private string nodes;
 
 		public string ClusterId
 		{
@@ -81,16 +57,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string Nodes
 		{
 			get
 			{
-				return accessKeyId;
+				return nodes;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				nodes = value;
+				DictionaryUtil.Add(QueryParameters, "Nodes", value);
 			}
 		}
 

@@ -32,19 +32,37 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CloneDBInstanceRequest()
             : base("Rds", "2014-08-15", "CloneDBInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private int? dBInstanceStorage;
+
+		private string tableMeta;
+
+		private string dBInstanceId;
+
+		private string dBInstanceStorageType;
+
+		private string dedicatedHostGroupId;
+
+		private string backupType;
 
 		private string restoreTime;
 
 		private string period;
 
-		private int? dBInstanceStorage;
-
 		private string backupId;
 
-		private string usedTime;
+		private string restoreTable;
+
+		private int? usedTime;
 
 		private string dBInstanceClass;
 
@@ -58,7 +76,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string zoneId;
 
-		private string dBInstanceId;
+		private string category;
 
 		private string payType;
 
@@ -74,6 +92,84 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public int? DBInstanceStorage
+		{
+			get
+			{
+				return dBInstanceStorage;
+			}
+			set	
+			{
+				dBInstanceStorage = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceStorage", value.ToString());
+			}
+		}
+
+		public string TableMeta
+		{
+			get
+			{
+				return tableMeta;
+			}
+			set	
+			{
+				tableMeta = value;
+				DictionaryUtil.Add(QueryParameters, "TableMeta", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string DBInstanceStorageType
+		{
+			get
+			{
+				return dBInstanceStorageType;
+			}
+			set	
+			{
+				dBInstanceStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceStorageType", value);
+			}
+		}
+
+		public string DedicatedHostGroupId
+		{
+			get
+			{
+				return dedicatedHostGroupId;
+			}
+			set	
+			{
+				dedicatedHostGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostGroupId", value);
+			}
+		}
+
+		public string BackupType
+		{
+			get
+			{
+				return backupType;
+			}
+			set	
+			{
+				backupType = value;
+				DictionaryUtil.Add(QueryParameters, "BackupType", value);
 			}
 		}
 
@@ -103,19 +199,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public int? DBInstanceStorage
-		{
-			get
-			{
-				return dBInstanceStorage;
-			}
-			set	
-			{
-				dBInstanceStorage = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceStorage", value.ToString());
-			}
-		}
-
 		public string BackupId
 		{
 			get
@@ -129,7 +212,20 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string UsedTime
+		public string RestoreTable
+		{
+			get
+			{
+				return restoreTable;
+			}
+			set	
+			{
+				restoreTable = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTable", value);
+			}
+		}
+
+		public int? UsedTime
 		{
 			get
 			{
@@ -138,7 +234,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				usedTime = value;
-				DictionaryUtil.Add(QueryParameters, "UsedTime", value);
+				DictionaryUtil.Add(QueryParameters, "UsedTime", value.ToString());
 			}
 		}
 
@@ -220,16 +316,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
+		public string Category
 		{
 			get
 			{
-				return dBInstanceId;
+				return category;
 			}
 			set	
 			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+				category = value;
+				DictionaryUtil.Add(QueryParameters, "Category", value);
 			}
 		}
 

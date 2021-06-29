@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,34 +32,28 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeApiGroupsRequest()
             : base("CloudAPI", "2016-07-14", "DescribeApiGroups", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string securityToken;
 
 		private string groupId;
 
-		private int? pageSize;
-
-		private string action;
+		private bool? enableTagAuth;
 
 		private string groupName;
 
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private string instanceId;
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
+		private string securityToken;
+
+		private int? pageSize;
+
+		private List<Tag> tags = new List<Tag>(){ };
 
 		public string GroupId
 		{
@@ -73,29 +68,16 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public int? PageSize
+		public bool? EnableTagAuth
 		{
 			get
 			{
-				return pageSize;
+				return enableTagAuth;
 			}
 			set	
 			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				enableTagAuth = value;
+				DictionaryUtil.Add(QueryParameters, "EnableTagAuth", value.ToString());
 			}
 		}
 
@@ -125,20 +107,96 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string InstanceId
 		{
 			get
 			{
-				return accessKeyId;
+				return instanceId;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
-        public override DescribeApiGroupsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
+			}
+		}
+
+        public override DescribeApiGroupsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeApiGroupsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

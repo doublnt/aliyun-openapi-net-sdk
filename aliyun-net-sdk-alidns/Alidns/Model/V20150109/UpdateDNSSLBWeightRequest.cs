@@ -30,17 +30,36 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class UpdateDNSSLBWeightRequest : RpcAcsRequest<UpdateDNSSLBWeightResponse>
     {
         public UpdateDNSSLBWeightRequest()
-            : base("Alidns", "2015-01-09", "UpdateDNSSLBWeight", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "UpdateDNSSLBWeight", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private int? weight;
 
 		private string recordId;
 
 		private string userClientIp;
 
-		private int? weight;
-
 		private string lang;
+
+		public int? Weight
+		{
+			get
+			{
+				return weight;
+			}
+			set	
+			{
+				weight = value;
+				DictionaryUtil.Add(QueryParameters, "Weight", value.ToString());
+			}
+		}
 
 		public string RecordId
 		{
@@ -65,19 +84,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				userClientIp = value;
 				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public int? Weight
-		{
-			get
-			{
-				return weight;
-			}
-			set	
-			{
-				weight = value;
-				DictionaryUtil.Add(QueryParameters, "Weight", value.ToString());
 			}
 		}
 

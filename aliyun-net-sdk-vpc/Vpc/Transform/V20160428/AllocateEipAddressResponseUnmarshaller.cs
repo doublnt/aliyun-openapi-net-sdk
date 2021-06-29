@@ -16,25 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class AllocateEipAddressResponseUnmarshaller
     {
-        public static AllocateEipAddressResponse Unmarshall(UnmarshallerContext context)
+        public static AllocateEipAddressResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			AllocateEipAddressResponse allocateEipAddressResponse = new AllocateEipAddressResponse();
 
-			allocateEipAddressResponse.HttpResponse = context.HttpResponse;
-			allocateEipAddressResponse.RequestId = context.StringValue("AllocateEipAddress.RequestId");
-			allocateEipAddressResponse.AllocationId = context.StringValue("AllocateEipAddress.AllocationId");
-			allocateEipAddressResponse.EipAddress = context.StringValue("AllocateEipAddress.EipAddress");
-			allocateEipAddressResponse.OrderId = context.LongValue("AllocateEipAddress.OrderId");
-			allocateEipAddressResponse.ResourceGroupId = context.StringValue("AllocateEipAddress.ResourceGroupId");
+			allocateEipAddressResponse.HttpResponse = _ctx.HttpResponse;
+			allocateEipAddressResponse.RequestId = _ctx.StringValue("AllocateEipAddress.RequestId");
+			allocateEipAddressResponse.AllocationId = _ctx.StringValue("AllocateEipAddress.AllocationId");
+			allocateEipAddressResponse.EipAddress = _ctx.StringValue("AllocateEipAddress.EipAddress");
+			allocateEipAddressResponse.OrderId = _ctx.LongValue("AllocateEipAddress.OrderId");
+			allocateEipAddressResponse.ResourceGroupId = _ctx.StringValue("AllocateEipAddress.ResourceGroupId");
         
 			return allocateEipAddressResponse;
         }

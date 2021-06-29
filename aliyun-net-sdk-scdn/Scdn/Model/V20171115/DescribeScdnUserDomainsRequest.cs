@@ -16,38 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.scdn;
 using Aliyun.Acs.scdn.Transform;
 using Aliyun.Acs.scdn.Transform.V20171115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.scdn.Model.V20171115
 {
     public class DescribeScdnUserDomainsRequest : RpcAcsRequest<DescribeScdnUserDomainsResponse>
     {
         public DescribeScdnUserDomainsRequest()
-            : base("scdn", "2017-11-15", "DescribeScdnUserDomains", "scdn", "openAPI")
+            : base("scdn", "2017-11-15", "DescribeScdnUserDomains")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string funcFilter;
-
-		private string domainName;
-
-		private long? ownerId;
-
-		private string funcId;
-
 		private int? pageNumber;
-
-		private string domainStatus;
-
-		private string accessKeyId;
-
-		private string domainSearchType;
 
 		private bool? checkDomainShow;
 
@@ -55,61 +49,19 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 
 		private string securityToken;
 
+		private string changeEndTime;
+
 		private int? pageSize;
 
-		private string action;
+		private string domainName;
 
-		public string FuncFilter
-		{
-			get
-			{
-				return funcFilter;
-			}
-			set	
-			{
-				funcFilter = value;
-				DictionaryUtil.Add(QueryParameters, "FuncFilter", value);
-			}
-		}
+		private long? ownerId;
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
+		private string domainStatus;
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
+		private string domainSearchType;
 
-		public string FuncId
-		{
-			get
-			{
-				return funcId;
-			}
-			set	
-			{
-				funcId = value;
-				DictionaryUtil.Add(QueryParameters, "FuncId", value);
-			}
-		}
+		private string changeStartTime;
 
 		public int? PageNumber
 		{
@@ -121,45 +73,6 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			{
 				pageNumber = value;
 				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string DomainStatus
-		{
-			get
-			{
-				return domainStatus;
-			}
-			set	
-			{
-				domainStatus = value;
-				DictionaryUtil.Add(QueryParameters, "DomainStatus", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string DomainSearchType
-		{
-			get
-			{
-				return domainSearchType;
-			}
-			set	
-			{
-				domainSearchType = value;
-				DictionaryUtil.Add(QueryParameters, "DomainSearchType", value);
 			}
 		}
 
@@ -202,6 +115,19 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
+		public string ChangeEndTime
+		{
+			get
+			{
+				return changeEndTime;
+			}
+			set	
+			{
+				changeEndTime = value;
+				DictionaryUtil.Add(QueryParameters, "ChangeEndTime", value);
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -215,20 +141,72 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string Action
+		public string DomainName
 		{
 			get
 			{
-				return action;
+				return domainName;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
 			}
 		}
 
-        public override DescribeScdnUserDomainsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string DomainStatus
+		{
+			get
+			{
+				return domainStatus;
+			}
+			set	
+			{
+				domainStatus = value;
+				DictionaryUtil.Add(QueryParameters, "DomainStatus", value);
+			}
+		}
+
+		public string DomainSearchType
+		{
+			get
+			{
+				return domainSearchType;
+			}
+			set	
+			{
+				domainSearchType = value;
+				DictionaryUtil.Add(QueryParameters, "DomainSearchType", value);
+			}
+		}
+
+		public string ChangeStartTime
+		{
+			get
+			{
+				return changeStartTime;
+			}
+			set	
+			{
+				changeStartTime = value;
+				DictionaryUtil.Add(QueryParameters, "ChangeStartTime", value);
+			}
+		}
+
+        public override DescribeScdnUserDomainsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeScdnUserDomainsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

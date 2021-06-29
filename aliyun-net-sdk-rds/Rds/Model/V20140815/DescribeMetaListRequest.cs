@@ -32,31 +32,37 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeMetaListRequest()
             : base("Rds", "2014-08-15", "DescribeMetaList", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string restoreTime;
-
-		private string resourceOwnerAccount;
 
 		private string clientToken;
 
 		private string pattern;
 
-		private string backupSetID;
+		private int? pageSize;
+
+		private string dBInstanceId;
+
+		private int? pageIndex;
+
+		private string restoreTime;
+
+		private string resourceOwnerAccount;
+
+		private int? backupSetID;
 
 		private long? ownerId;
 
 		private string getDbName;
 
 		private string restoreType;
-
-		private string pageSize;
-
-		private string dBInstanceId;
-
-		private string pageIndex;
 
 		public long? ResourceOwnerId
 		{
@@ -68,32 +74,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string RestoreTime
-		{
-			get
-			{
-				return restoreTime;
-			}
-			set	
-			{
-				restoreTime = value;
-				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -123,7 +103,72 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string BackupSetID
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public int? PageIndex
+		{
+			get
+			{
+				return pageIndex;
+			}
+			set	
+			{
+				pageIndex = value;
+				DictionaryUtil.Add(QueryParameters, "PageIndex", value.ToString());
+			}
+		}
+
+		public string RestoreTime
+		{
+			get
+			{
+				return restoreTime;
+			}
+			set	
+			{
+				restoreTime = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public int? BackupSetID
 		{
 			get
 			{
@@ -132,7 +177,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				backupSetID = value;
-				DictionaryUtil.Add(QueryParameters, "BackupSetID", value);
+				DictionaryUtil.Add(QueryParameters, "BackupSetID", value.ToString());
 			}
 		}
 
@@ -172,45 +217,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				restoreType = value;
 				DictionaryUtil.Add(QueryParameters, "RestoreType", value);
-			}
-		}
-
-		public string PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string PageIndex
-		{
-			get
-			{
-				return pageIndex;
-			}
-			set	
-			{
-				pageIndex = value;
-				DictionaryUtil.Add(QueryParameters, "PageIndex", value);
 			}
 		}
 

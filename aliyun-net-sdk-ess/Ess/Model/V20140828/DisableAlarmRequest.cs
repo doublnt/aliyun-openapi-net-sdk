@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,19 +33,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DisableAlarmRequest()
             : base("Ess", "2014-08-28", "DisableAlarm", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string resourceOwnerAccount;
 
-		private string regionId;
-
-		private string action;
-
 		private long? ownerId;
 
 		private string alarmTaskId;
-
-		private string accessKeyId;
 
 		public string ResourceOwnerAccount
 		{
@@ -56,32 +57,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -108,19 +83,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				alarmTaskId = value;
 				DictionaryUtil.Add(QueryParameters, "AlarmTaskId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

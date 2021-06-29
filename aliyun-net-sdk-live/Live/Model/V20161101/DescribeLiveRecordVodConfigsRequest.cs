@@ -32,19 +32,38 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DescribeLiveRecordVodConfigsRequest()
             : base("live", "2016-11-01", "DescribeLiveRecordVodConfigs", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string appName;
-
-		private string domainName;
-
-		private long? pageSize;
-
-		private long? ownerId;
 
 		private long? pageNum;
 
+		private string appName;
+
+		private long? pageSize;
+
 		private string streamName;
+
+		private string domainName;
+
+		private long? ownerId;
+
+		public long? PageNum
+		{
+			get
+			{
+				return pageNum;
+			}
+			set	
+			{
+				pageNum = value;
+				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
+			}
+		}
 
 		public string AppName
 		{
@@ -56,19 +75,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				appName = value;
 				DictionaryUtil.Add(QueryParameters, "AppName", value);
-			}
-		}
-
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
 			}
 		}
 
@@ -85,32 +91,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public long? PageNum
-		{
-			get
-			{
-				return pageNum;
-			}
-			set	
-			{
-				pageNum = value;
-				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
-			}
-		}
-
 		public string StreamName
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				streamName = value;
 				DictionaryUtil.Add(QueryParameters, "StreamName", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

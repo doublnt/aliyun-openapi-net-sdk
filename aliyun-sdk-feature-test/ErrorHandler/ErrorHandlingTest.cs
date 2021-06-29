@@ -21,6 +21,7 @@ using System.Text;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
+using Aliyun.Acs.Core.Profile;
 using Aliyun.Acs.Vpc.Model.V20160428;
 
 using Xunit;
@@ -28,13 +29,16 @@ using Xunit;
 namespace Aliyun.Acs.Feature.Test.ErrorHandler
 {
     [Trait("Category", "FeatureTest")]
-    public class ErrorHandlingTest : FeatureTestBase
+    public class ErrorHandlingTest
     {
         [Fact]
         public void BadFormatTypeTest()
         {
             var request = new ActiveFlowLogRequest();
             request.FlowLogId = "testFlow";
+
+            var profile = DefaultProfile.GetProfile("cn-hangzhou", FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret);
+            var client = new DefaultAcsClient(profile);
 
             var exceptionMsg = Assert.Throws<ClientException>(() =>
             {
@@ -53,7 +57,7 @@ namespace Aliyun.Acs.Feature.Test.ErrorHandler
             request.Version = "2014-05-26";
             request.Action = "actionError";
 
-            var response = client.GetCommonResponse(request);
+            var response = FeatureTest.DefaultClient.GetCommonResponse(request);
             var content = Encoding.UTF8.GetString(response.HttpResponse.Content);
 
             Assert.Contains("Keyword=InvalidParameter", content);

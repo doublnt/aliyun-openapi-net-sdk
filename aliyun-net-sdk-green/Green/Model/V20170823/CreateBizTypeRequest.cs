@@ -32,13 +32,62 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public CreateBizTypeRequest()
             : base("Green", "2017-08-23", "CreateBizType", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string description;
+
+		private string bizTypeImport;
+
+		private bool? citeTemplate;
 
 		private string industryInfo;
 
 		private string bizTypeName;
 
-		private string bizTypeImport;
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string BizTypeImport
+		{
+			get
+			{
+				return bizTypeImport;
+			}
+			set	
+			{
+				bizTypeImport = value;
+				DictionaryUtil.Add(QueryParameters, "BizTypeImport", value);
+			}
+		}
+
+		public bool? CiteTemplate
+		{
+			get
+			{
+				return citeTemplate;
+			}
+			set	
+			{
+				citeTemplate = value;
+				DictionaryUtil.Add(QueryParameters, "CiteTemplate", value.ToString());
+			}
+		}
 
 		public string IndustryInfo
 		{
@@ -63,19 +112,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				bizTypeName = value;
 				DictionaryUtil.Add(QueryParameters, "BizTypeName", value);
-			}
-		}
-
-		public string BizTypeImport
-		{
-			get
-			{
-				return bizTypeImport;
-			}
-			set	
-			{
-				bizTypeImport = value;
-				DictionaryUtil.Add(QueryParameters, "BizTypeImport", value);
 			}
 		}
 

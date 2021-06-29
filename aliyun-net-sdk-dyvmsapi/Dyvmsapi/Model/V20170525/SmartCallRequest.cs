@@ -30,8 +30,13 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class SmartCallRequest : RpcAcsRequest<SmartCallResponse>
     {
         public SmartCallRequest()
-            : base("Dyvmsapi", "2017-05-25", "SmartCall")
+            : base("Dyvmsapi", "2017-05-25", "SmartCall", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
@@ -42,7 +47,7 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private int? speed;
 
-		private string accessKeyId;
+		private string asrBaseId;
 
 		private int? sessionTimeout;
 
@@ -55,8 +60,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 		private string voiceCode;
 
 		private string calledShowNumber;
-
-		private string action;
 
 		private int? actionCodeTimeBreak;
 
@@ -136,16 +139,16 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string AccessKeyId
+		public string AsrBaseId
 		{
 			get
 			{
-				return accessKeyId;
+				return asrBaseId;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				asrBaseId = value;
+				DictionaryUtil.Add(QueryParameters, "AsrBaseId", value);
 			}
 		}
 
@@ -224,19 +227,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				calledShowNumber = value;
 				DictionaryUtil.Add(QueryParameters, "CalledShowNumber", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

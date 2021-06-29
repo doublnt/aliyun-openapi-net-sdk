@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,11 +33,21 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyDiskSpecRequest()
             : base("Ecs", "2014-05-26", "ModifyDiskSpec", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string diskCategory;
+
 		private string diskId;
+
+		private bool? dryRun;
 
 		private string resourceOwnerAccount;
 
@@ -59,6 +70,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string DiskCategory
+		{
+			get
+			{
+				return diskCategory;
+			}
+			set	
+			{
+				diskCategory = value;
+				DictionaryUtil.Add(QueryParameters, "DiskCategory", value);
+			}
+		}
+
 		public string DiskId
 		{
 			get
@@ -69,6 +93,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				diskId = value;
 				DictionaryUtil.Add(QueryParameters, "DiskId", value);
+			}
+		}
+
+		public bool? DryRun
+		{
+			get
+			{
+				return dryRun;
+			}
+			set	
+			{
+				dryRun = value;
+				DictionaryUtil.Add(QueryParameters, "DryRun", value.ToString());
 			}
 		}
 

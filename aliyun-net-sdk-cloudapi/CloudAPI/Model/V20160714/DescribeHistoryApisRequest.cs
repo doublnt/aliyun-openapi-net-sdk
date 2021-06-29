@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,25 +32,26 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DescribeHistoryApisRequest()
             : base("CloudAPI", "2016-07-14", "DescribeHistoryApis", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string stageName;
+
+		private string groupId;
+
+		private string pageNumber;
 
 		private string apiName;
 
 		private string securityToken;
 
-		private string groupId;
-
 		private string pageSize;
 
-		private string action;
-
 		private string apiId;
-
-		private string pageNumber;
-
-		private string accessKeyId;
 
 		public string StageName
 		{
@@ -61,6 +63,32 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				stageName = value;
 				DictionaryUtil.Add(QueryParameters, "StageName", value);
+			}
+		}
+
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public string PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value);
 			}
 		}
 
@@ -90,19 +118,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string GroupId
-		{
-			get
-			{
-				return groupId;
-			}
-			set	
-			{
-				groupId = value;
-				DictionaryUtil.Add(QueryParameters, "GroupId", value);
-			}
-		}
-
 		public string PageSize
 		{
 			get
@@ -113,19 +128,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -142,33 +144,7 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override DescribeHistoryApisResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeHistoryApisResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeHistoryApisResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public CreateInstanceRequest()
             : base("BssOpenApi", "2017-12-14", "CreateInstance")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
@@ -42,15 +49,17 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 		private string subscriptionType;
 
-		private int? renewPeriod;
-
-		private List<Parameter> parameters;
-
-		private string renewalStatus;
+		private string logistics;
 
 		private long? ownerId;
 
 		private string productType;
+
+		private int? renewPeriod;
+
+		private List<Parameter> parameters = new List<Parameter>(){ };
+
+		private string renewalStatus;
 
 		public string ProductCode
 		{
@@ -104,6 +113,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			}
 		}
 
+		public string Logistics
+		{
+			get
+			{
+				return logistics;
+			}
+			set	
+			{
+				logistics = value;
+				DictionaryUtil.Add(QueryParameters, "Logistics", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ProductType
+		{
+			get
+			{
+				return productType;
+			}
+			set	
+			{
+				productType = value;
+				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
 		public int? RenewPeriod
 		{
 			get
@@ -145,32 +193,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				renewalStatus = value;
 				DictionaryUtil.Add(QueryParameters, "RenewalStatus", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string ProductType
-		{
-			get
-			{
-				return productType;
-			}
-			set	
-			{
-				productType = value;
-				DictionaryUtil.Add(QueryParameters, "ProductType", value);
 			}
 		}
 

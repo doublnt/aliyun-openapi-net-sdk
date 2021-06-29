@@ -32,41 +32,21 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsGroupCreateRequest()
             : base("Ons", "2019-02-14", "OnsGroupCreate", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? preventCache;
-
-		private string instanceId;
 
 		private string groupId;
 
 		private string remark;
 
-		public long? PreventCache
-		{
-			get
-			{
-				return preventCache;
-			}
-			set	
-			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
-			}
-		}
+		private string instanceId;
 
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
+		private string groupType;
 
 		public string GroupId
 		{
@@ -91,6 +71,32 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			{
 				remark = value;
 				DictionaryUtil.Add(QueryParameters, "Remark", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string GroupType
+		{
+			get
+			{
+				return groupType;
+			}
+			set	
+			{
+				groupType = value;
+				DictionaryUtil.Add(QueryParameters, "GroupType", value);
 			}
 		}
 

@@ -32,19 +32,38 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public RRpcRequest()
             : base("Iot", "2018-01-20", "RRpc", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private int? timeout;
 
 		private string iotInstanceId;
 
 		private string requestBase64Byte;
 
+		private string productKey;
+
 		private string topic;
 
 		private string deviceName;
 
-		private string productKey;
-
-		private int? timeout;
+		public int? Timeout
+		{
+			get
+			{
+				return timeout;
+			}
+			set	
+			{
+				timeout = value;
+				DictionaryUtil.Add(QueryParameters, "Timeout", value.ToString());
+			}
+		}
 
 		public string IotInstanceId
 		{
@@ -72,6 +91,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
+		public string ProductKey
+		{
+			get
+			{
+				return productKey;
+			}
+			set	
+			{
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
 		public string Topic
 		{
 			get
@@ -95,32 +127,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				deviceName = value;
 				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
-			}
-		}
-
-		public int? Timeout
-		{
-			get
-			{
-				return timeout;
-			}
-			set	
-			{
-				timeout = value;
-				DictionaryUtil.Add(QueryParameters, "Timeout", value.ToString());
 			}
 		}
 

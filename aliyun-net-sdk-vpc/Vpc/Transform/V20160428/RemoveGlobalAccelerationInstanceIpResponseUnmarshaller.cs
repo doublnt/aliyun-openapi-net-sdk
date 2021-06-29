@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class RemoveGlobalAccelerationInstanceIpResponseUnmarshaller
     {
-        public static RemoveGlobalAccelerationInstanceIpResponse Unmarshall(UnmarshallerContext context)
+        public static RemoveGlobalAccelerationInstanceIpResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			RemoveGlobalAccelerationInstanceIpResponse removeGlobalAccelerationInstanceIpResponse = new RemoveGlobalAccelerationInstanceIpResponse();
 
-			removeGlobalAccelerationInstanceIpResponse.HttpResponse = context.HttpResponse;
-			removeGlobalAccelerationInstanceIpResponse.RequestId = context.StringValue("RemoveGlobalAccelerationInstanceIp.RequestId");
+			removeGlobalAccelerationInstanceIpResponse.HttpResponse = _ctx.HttpResponse;
+			removeGlobalAccelerationInstanceIpResponse.RequestId = _ctx.StringValue("RemoveGlobalAccelerationInstanceIp.RequestId");
         
 			return removeGlobalAccelerationInstanceIpResponse;
         }

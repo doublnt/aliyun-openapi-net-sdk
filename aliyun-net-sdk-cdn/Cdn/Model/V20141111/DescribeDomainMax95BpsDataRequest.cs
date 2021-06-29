@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20141111;
 
@@ -32,17 +33,25 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
         public DescribeDomainMax95BpsDataRequest()
             : base("Cdn", "2014-11-11", "DescribeDomainMax95BpsData")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string startTime;
 
-		private string action;
+		private string cycle;
 
 		private string domainName;
 
 		private string endTime;
 
 		private long? ownerId;
+
+		private string timePoint;
 
 		public string StartTime
 		{
@@ -57,16 +66,16 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			}
 		}
 
-		public string Action
+		public string Cycle
 		{
 			get
 			{
-				return action;
+				return cycle;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				cycle = value;
+				DictionaryUtil.Add(QueryParameters, "Cycle", value);
 			}
 		}
 
@@ -106,6 +115,19 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string TimePoint
+		{
+			get
+			{
+				return timePoint;
+			}
+			set	
+			{
+				timePoint = value;
+				DictionaryUtil.Add(QueryParameters, "TimePoint", value);
 			}
 		}
 

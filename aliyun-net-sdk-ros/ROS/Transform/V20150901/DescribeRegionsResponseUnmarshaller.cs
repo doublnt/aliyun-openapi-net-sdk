@@ -16,20 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.ROS.Model.V20150901;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.ROS.Model.V20150901;
 
 namespace Aliyun.Acs.ROS.Transform.V20150901
 {
     public class DescribeRegionsResponseUnmarshaller
     {
-        public static DescribeRegionsResponse Unmarshall(UnmarshallerContext context)
+        public static DescribeRegionsResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DescribeRegionsResponse describeRegionsResponse = new DescribeRegionsResponse();
 
-			describeRegionsResponse.HttpResponse = context.HttpResponse;
+			describeRegionsResponse.HttpResponse = _ctx.HttpResponse;
         
 			return describeRegionsResponse;
         }

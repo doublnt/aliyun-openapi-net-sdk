@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateSimulatedSystemEventsRequest()
             : base("Ecs", "2014-05-26", "CreateSimulatedSystemEvents", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -44,7 +50,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> instanceIds;
+		private List<string> instanceIds = new List<string>(){ };
 
 		private string eventType;
 

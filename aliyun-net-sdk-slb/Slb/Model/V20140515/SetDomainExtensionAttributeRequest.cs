@@ -32,9 +32,17 @@ namespace Aliyun.Acs.Slb.Model.V20140515
         public SetDomainExtensionAttributeRequest()
             : base("Slb", "2014-05-15", "SetDomainExtensionAttribute", "slb", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Slb.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Slb.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string domainExtensionId;
 
 		private string resourceOwnerAccount;
 
@@ -43,8 +51,6 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private long? ownerId;
 
 		private string serverCertificateId;
-
-		private string domainExtensionId;
 
 		public long? ResourceOwnerId
 		{
@@ -56,6 +62,19 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DomainExtensionId
+		{
+			get
+			{
+				return domainExtensionId;
+			}
+			set	
+			{
+				domainExtensionId = value;
+				DictionaryUtil.Add(QueryParameters, "DomainExtensionId", value);
 			}
 		}
 
@@ -108,19 +127,6 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			{
 				serverCertificateId = value;
 				DictionaryUtil.Add(QueryParameters, "ServerCertificateId", value);
-			}
-		}
-
-		public string DomainExtensionId
-		{
-			get
-			{
-				return domainExtensionId;
-			}
-			set	
-			{
-				domainExtensionId = value;
-				DictionaryUtil.Add(QueryParameters, "DomainExtensionId", value);
 			}
 		}
 

@@ -32,11 +32,15 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public ModifyCreateVulWhitelistRequest()
             : base("Sas", "2018-12-03", "ModifyCreateVulWhitelist", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string reason;
-
-		private string sourceIp;
 
 		private string whitelist;
 
@@ -50,19 +54,6 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				reason = value;
 				DictionaryUtil.Add(QueryParameters, "Reason", value);
-			}
-		}
-
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
 			}
 		}
 

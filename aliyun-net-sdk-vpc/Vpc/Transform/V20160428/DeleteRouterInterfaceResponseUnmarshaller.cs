@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteRouterInterfaceResponseUnmarshaller
     {
-        public static DeleteRouterInterfaceResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteRouterInterfaceResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteRouterInterfaceResponse deleteRouterInterfaceResponse = new DeleteRouterInterfaceResponse();
 
-			deleteRouterInterfaceResponse.HttpResponse = context.HttpResponse;
-			deleteRouterInterfaceResponse.RequestId = context.StringValue("DeleteRouterInterface.RequestId");
+			deleteRouterInterfaceResponse.HttpResponse = _ctx.HttpResponse;
+			deleteRouterInterfaceResponse.RequestId = _ctx.StringValue("DeleteRouterInterface.RequestId");
         
 			return deleteRouterInterfaceResponse;
         }

@@ -38,13 +38,13 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 
 		private string city;
 
+		private int? pageNum;
+
 		private int? pageSize;
 
 		private string bizId;
 
 		private long? startGmtCreate;
-
-		private int? pageNum;
 
 		public long? EndGmtCreate
 		{
@@ -69,6 +69,19 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 			{
 				city = value;
 				DictionaryUtil.Add(QueryParameters, "City", value);
+			}
+		}
+
+		public int? PageNum
+		{
+			get
+			{
+				return pageNum;
+			}
+			set	
+			{
+				pageNum = value;
+				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
 			}
 		}
 
@@ -108,19 +121,6 @@ namespace Aliyun.Acs.companyreg.Model.V20190508
 			{
 				startGmtCreate = value;
 				DictionaryUtil.Add(QueryParameters, "StartGmtCreate", value.ToString());
-			}
-		}
-
-		public int? PageNum
-		{
-			get
-			{
-				return pageNum;
-			}
-			set	
-			{
-				pageNum = value;
-				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
 			}
 		}
 

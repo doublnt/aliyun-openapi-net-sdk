@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,9 +32,25 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public ModifyForwardEntryRequest()
             : base("Vpc", "2016-04-28", "ModifyForwardEntry", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private string forwardTableId;
+
+		private string internalIp;
+
+		private string forwardEntryId;
+
+		private string externalIp;
 
 		private string resourceOwnerAccount;
 
@@ -43,21 +60,11 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 		private string ownerAccount;
 
-		private string forwardTableId;
-
 		private long? ownerId;
-
-		private string internalIp;
-
-		private string regionId;
-
-		private string forwardEntryId;
 
 		private string internalPort;
 
-		private string action;
-
-		private string externalIp;
+		private bool? portBreak;
 
 		private string externalPort;
 
@@ -71,6 +78,71 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string ForwardTableId
+		{
+			get
+			{
+				return forwardTableId;
+			}
+			set	
+			{
+				forwardTableId = value;
+				DictionaryUtil.Add(QueryParameters, "ForwardTableId", value);
+			}
+		}
+
+		public string InternalIp
+		{
+			get
+			{
+				return internalIp;
+			}
+			set	
+			{
+				internalIp = value;
+				DictionaryUtil.Add(QueryParameters, "InternalIp", value);
+			}
+		}
+
+		public string ForwardEntryId
+		{
+			get
+			{
+				return forwardEntryId;
+			}
+			set	
+			{
+				forwardEntryId = value;
+				DictionaryUtil.Add(QueryParameters, "ForwardEntryId", value);
+			}
+		}
+
+		public string ExternalIp
+		{
+			get
+			{
+				return externalIp;
+			}
+			set	
+			{
+				externalIp = value;
+				DictionaryUtil.Add(QueryParameters, "ExternalIp", value);
 			}
 		}
 
@@ -126,19 +198,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ForwardTableId
-		{
-			get
-			{
-				return forwardTableId;
-			}
-			set	
-			{
-				forwardTableId = value;
-				DictionaryUtil.Add(QueryParameters, "ForwardTableId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -149,45 +208,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string InternalIp
-		{
-			get
-			{
-				return internalIp;
-			}
-			set	
-			{
-				internalIp = value;
-				DictionaryUtil.Add(QueryParameters, "InternalIp", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string ForwardEntryId
-		{
-			get
-			{
-				return forwardEntryId;
-			}
-			set	
-			{
-				forwardEntryId = value;
-				DictionaryUtil.Add(QueryParameters, "ForwardEntryId", value);
 			}
 		}
 
@@ -204,29 +224,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
+		public bool? PortBreak
 		{
 			get
 			{
-				return action;
+				return portBreak;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ExternalIp
-		{
-			get
-			{
-				return externalIp;
-			}
-			set	
-			{
-				externalIp = value;
-				DictionaryUtil.Add(QueryParameters, "ExternalIp", value);
+				portBreak = value;
+				DictionaryUtil.Add(QueryParameters, "PortBreak", value.ToString());
 			}
 		}
 
@@ -243,7 +250,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override ModifyForwardEntryResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override ModifyForwardEntryResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ModifyForwardEntryResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

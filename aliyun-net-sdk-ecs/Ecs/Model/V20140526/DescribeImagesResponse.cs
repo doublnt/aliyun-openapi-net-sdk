@@ -118,6 +118,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string imageName;
 
+			private string imageFamily;
+
 			private string imageVersion;
 
 			private string description;
@@ -193,6 +195,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					imageName = value;
+				}
+			}
+
+			public string ImageFamily
+			{
+				get
+				{
+					return imageFamily;
+				}
+				set	
+				{
+					imageFamily = value;
 				}
 			}
 

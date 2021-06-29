@@ -144,7 +144,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 			private string endTime;
 
-			private string hasRenewChangeOrder;
+			private bool? hasRenewChangeOrder;
 
 			private bool? isRds;
 
@@ -161,6 +161,14 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			private string destroyTime;
 
 			private string connectionMode;
+
+			private string vpcCloudInstanceId;
+
+			private string resourceGroupId;
+
+			private int? shardCount;
+
+			private int? proxyCount;
 
 			private List<DescribeInstances_Tag> tags;
 
@@ -440,7 +448,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				}
 			}
 
-			public string HasRenewChangeOrder
+			public bool? HasRenewChangeOrder
 			{
 				get
 				{
@@ -545,6 +553,54 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					connectionMode = value;
+				}
+			}
+
+			public string VpcCloudInstanceId
+			{
+				get
+				{
+					return vpcCloudInstanceId;
+				}
+				set	
+				{
+					vpcCloudInstanceId = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
+				}
+			}
+
+			public int? ShardCount
+			{
+				get
+				{
+					return shardCount;
+				}
+				set	
+				{
+					shardCount = value;
+				}
+			}
+
+			public int? ProxyCount
+			{
+				get
+				{
+					return proxyCount;
+				}
+				set	
+				{
+					proxyCount = value;
 				}
 			}
 

@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.dcdn.Model.V20180115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.dcdn.Model.V20180115;
 
 namespace Aliyun.Acs.dcdn.Transform.V20180115
 {
     public class PreloadDcdnObjectCachesResponseUnmarshaller
     {
-        public static PreloadDcdnObjectCachesResponse Unmarshall(UnmarshallerContext context)
+        public static PreloadDcdnObjectCachesResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			PreloadDcdnObjectCachesResponse preloadDcdnObjectCachesResponse = new PreloadDcdnObjectCachesResponse();
 
-			preloadDcdnObjectCachesResponse.HttpResponse = context.HttpResponse;
-			preloadDcdnObjectCachesResponse.RequestId = context.StringValue("PreloadDcdnObjectCaches.RequestId");
-			preloadDcdnObjectCachesResponse.PreloadTaskId = context.StringValue("PreloadDcdnObjectCaches.PreloadTaskId");
+			preloadDcdnObjectCachesResponse.HttpResponse = _ctx.HttpResponse;
+			preloadDcdnObjectCachesResponse.RequestId = _ctx.StringValue("PreloadDcdnObjectCaches.RequestId");
+			preloadDcdnObjectCachesResponse.PreloadTaskId = _ctx.StringValue("PreloadDcdnObjectCaches.PreloadTaskId");
         
 			return preloadDcdnObjectCachesResponse;
         }

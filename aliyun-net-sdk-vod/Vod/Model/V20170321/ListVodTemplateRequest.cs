@@ -32,17 +32,23 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public ListVodTemplateRequest()
             : base("vod", "2017-03-21", "ListVodTemplate", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
+		private long? ownerId;
+
 		private string templateType;
 
 		private string appId;
-
-		private long? ownerId;
 
 		public long? ResourceOwnerId
 		{
@@ -70,6 +76,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
 		public string TemplateType
 		{
 			get
@@ -93,19 +112,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				appId = value;
 				DictionaryUtil.Add(QueryParameters, "AppId", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,17 +32,47 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribePriceRequest()
             : base("Ecs", "2014-05-26", "DescribePrice", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string dataDisk3PerformanceLevel;
 
 		private int? dataDisk3Size;
 
 		private long? resourceOwnerId;
 
-		private string imageId;
-
 		private string dataDisk3Category;
+
+		private string isp;
+
+		private int? dataDisk4Size;
+
+		private string priceUnit;
+
+		private int? period;
+
+		private string dataDisk1PerformanceLevel;
+
+		private string assuranceTimes;
+
+		private long? ownerId;
+
+		private int? instanceCpuCoreCount;
+
+		private string internetChargeType;
+
+		private string instanceNetworkType;
+
+		private int? instanceAmount;
+
+		private List<string> instanceTypeLists = new List<string>(){ };
+
+		private string dataDisk3PerformanceLevel;
+
+		private string imageId;
 
 		private string ioOptimized;
 
@@ -51,23 +80,25 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string systemDiskCategory;
 
+		private string platform;
+
+		private int? capacity;
+
 		private string systemDiskPerformanceLevel;
 
 		private string dataDisk4Category;
 
 		private string dataDisk4PerformanceLevel;
 
-		private int? dataDisk4Size;
-
-		private string priceUnit;
+		private string scope;
 
 		private string instanceType;
+
+		private string dedicatedHostType;
 
 		private string dataDisk2Category;
 
 		private int? dataDisk1Size;
-
-		private int? period;
 
 		private int? amount;
 
@@ -77,10 +108,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? dataDisk2Size;
 
-		private string dataDisk1PerformanceLevel;
-
-		private long? ownerId;
-
 		private string resourceType;
 
 		private string dataDisk1Category;
@@ -89,22 +116,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? systemDiskSize;
 
-		private string internetChargeType;
-
-		private string instanceNetworkType;
-
-		public string DataDisk3PerformanceLevel
-		{
-			get
-			{
-				return dataDisk3PerformanceLevel;
-			}
-			set	
-			{
-				dataDisk3PerformanceLevel = value;
-				DictionaryUtil.Add(QueryParameters, "DataDisk.3.PerformanceLevel", value);
-			}
-		}
+		private string offeringType;
 
 		public int? DataDisk3Size
 		{
@@ -132,19 +144,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ImageId
-		{
-			get
-			{
-				return imageId;
-			}
-			set	
-			{
-				imageId = value;
-				DictionaryUtil.Add(QueryParameters, "ImageId", value);
-			}
-		}
-
 		public string DataDisk3Category
 		{
 			get
@@ -155,6 +154,192 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				dataDisk3Category = value;
 				DictionaryUtil.Add(QueryParameters, "DataDisk.3.Category", value);
+			}
+		}
+
+		public string Isp
+		{
+			get
+			{
+				return isp;
+			}
+			set	
+			{
+				isp = value;
+				DictionaryUtil.Add(QueryParameters, "Isp", value);
+			}
+		}
+
+		public int? DataDisk4Size
+		{
+			get
+			{
+				return dataDisk4Size;
+			}
+			set	
+			{
+				dataDisk4Size = value;
+				DictionaryUtil.Add(QueryParameters, "DataDisk.4.Size", value.ToString());
+			}
+		}
+
+		public string PriceUnit
+		{
+			get
+			{
+				return priceUnit;
+			}
+			set	
+			{
+				priceUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
+			}
+		}
+
+		public int? Period
+		{
+			get
+			{
+				return period;
+			}
+			set	
+			{
+				period = value;
+				DictionaryUtil.Add(QueryParameters, "Period", value.ToString());
+			}
+		}
+
+		public string DataDisk1PerformanceLevel
+		{
+			get
+			{
+				return dataDisk1PerformanceLevel;
+			}
+			set	
+			{
+				dataDisk1PerformanceLevel = value;
+				DictionaryUtil.Add(QueryParameters, "DataDisk.1.PerformanceLevel", value);
+			}
+		}
+
+		public string AssuranceTimes
+		{
+			get
+			{
+				return assuranceTimes;
+			}
+			set	
+			{
+				assuranceTimes = value;
+				DictionaryUtil.Add(QueryParameters, "AssuranceTimes", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? InstanceCpuCoreCount
+		{
+			get
+			{
+				return instanceCpuCoreCount;
+			}
+			set	
+			{
+				instanceCpuCoreCount = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceCpuCoreCount", value.ToString());
+			}
+		}
+
+		public string InternetChargeType
+		{
+			get
+			{
+				return internetChargeType;
+			}
+			set	
+			{
+				internetChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
+			}
+		}
+
+		public string InstanceNetworkType
+		{
+			get
+			{
+				return instanceNetworkType;
+			}
+			set	
+			{
+				instanceNetworkType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceNetworkType", value);
+			}
+		}
+
+		public int? InstanceAmount
+		{
+			get
+			{
+				return instanceAmount;
+			}
+			set	
+			{
+				instanceAmount = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceAmount", value.ToString());
+			}
+		}
+
+		public List<string> InstanceTypeLists
+		{
+			get
+			{
+				return instanceTypeLists;
+			}
+
+			set
+			{
+				instanceTypeLists = value;
+				for (int i = 0; i < instanceTypeLists.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"InstanceTypeList." + (i + 1) , instanceTypeLists[i]);
+				}
+			}
+		}
+
+		public string DataDisk3PerformanceLevel
+		{
+			get
+			{
+				return dataDisk3PerformanceLevel;
+			}
+			set	
+			{
+				dataDisk3PerformanceLevel = value;
+				DictionaryUtil.Add(QueryParameters, "DataDisk.3.PerformanceLevel", value);
+			}
+		}
+
+		public string ImageId
+		{
+			get
+			{
+				return imageId;
+			}
+			set	
+			{
+				imageId = value;
+				DictionaryUtil.Add(QueryParameters, "ImageId", value);
 			}
 		}
 
@@ -197,6 +382,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string Platform
+		{
+			get
+			{
+				return platform;
+			}
+			set	
+			{
+				platform = value;
+				DictionaryUtil.Add(QueryParameters, "Platform", value);
+			}
+		}
+
+		public int? Capacity
+		{
+			get
+			{
+				return capacity;
+			}
+			set	
+			{
+				capacity = value;
+				DictionaryUtil.Add(QueryParameters, "Capacity", value.ToString());
+			}
+		}
+
 		public string SystemDiskPerformanceLevel
 		{
 			get
@@ -236,29 +447,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? DataDisk4Size
+		public string Scope
 		{
 			get
 			{
-				return dataDisk4Size;
+				return scope;
 			}
 			set	
 			{
-				dataDisk4Size = value;
-				DictionaryUtil.Add(QueryParameters, "DataDisk.4.Size", value.ToString());
-			}
-		}
-
-		public string PriceUnit
-		{
-			get
-			{
-				return priceUnit;
-			}
-			set	
-			{
-				priceUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
+				scope = value;
+				DictionaryUtil.Add(QueryParameters, "Scope", value);
 			}
 		}
 
@@ -272,6 +470,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				instanceType = value;
 				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
+			}
+		}
+
+		public string DedicatedHostType
+		{
+			get
+			{
+				return dedicatedHostType;
+			}
+			set	
+			{
+				dedicatedHostType = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostType", value);
 			}
 		}
 
@@ -298,19 +509,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				dataDisk1Size = value;
 				DictionaryUtil.Add(QueryParameters, "DataDisk.1.Size", value.ToString());
-			}
-		}
-
-		public int? Period
-		{
-			get
-			{
-				return period;
-			}
-			set	
-			{
-				period = value;
-				DictionaryUtil.Add(QueryParameters, "Period", value.ToString());
 			}
 		}
 
@@ -366,32 +564,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string DataDisk1PerformanceLevel
-		{
-			get
-			{
-				return dataDisk1PerformanceLevel;
-			}
-			set	
-			{
-				dataDisk1PerformanceLevel = value;
-				DictionaryUtil.Add(QueryParameters, "DataDisk.1.PerformanceLevel", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string ResourceType
 		{
 			get
@@ -444,29 +616,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InternetChargeType
+		public string OfferingType
 		{
 			get
 			{
-				return internetChargeType;
+				return offeringType;
 			}
 			set	
 			{
-				internetChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
-			}
-		}
-
-		public string InstanceNetworkType
-		{
-			get
-			{
-				return instanceNetworkType;
-			}
-			set	
-			{
-				instanceNetworkType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceNetworkType", value);
+				offeringType = value;
+				DictionaryUtil.Add(QueryParameters, "OfferingType", value);
 			}
 		}
 

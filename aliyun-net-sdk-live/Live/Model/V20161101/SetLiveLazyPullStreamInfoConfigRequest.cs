@@ -32,17 +32,15 @@ namespace Aliyun.Acs.live.Model.V20161101
         public SetLiveLazyPullStreamInfoConfigRequest()
             : base("live", "2016-11-01", "SetLiveLazyPullStreamInfoConfig", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string pullArgs;
-
 		private string appName;
-
-		private string liveapiRequestFrom;
-
-		private string pullAuthKey;
-
-		private string pullAuthType;
 
 		private string domainName;
 
@@ -54,19 +52,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 
 		private string pullProtocol;
 
-		public string PullArgs
-		{
-			get
-			{
-				return pullArgs;
-			}
-			set	
-			{
-				pullArgs = value;
-				DictionaryUtil.Add(QueryParameters, "PullArgs", value);
-			}
-		}
-
 		public string AppName
 		{
 			get
@@ -77,45 +62,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				appName = value;
 				DictionaryUtil.Add(QueryParameters, "AppName", value);
-			}
-		}
-
-		public string LiveapiRequestFrom
-		{
-			get
-			{
-				return liveapiRequestFrom;
-			}
-			set	
-			{
-				liveapiRequestFrom = value;
-				DictionaryUtil.Add(QueryParameters, "LiveapiRequestFrom", value);
-			}
-		}
-
-		public string PullAuthKey
-		{
-			get
-			{
-				return pullAuthKey;
-			}
-			set	
-			{
-				pullAuthKey = value;
-				DictionaryUtil.Add(QueryParameters, "PullAuthKey", value);
-			}
-		}
-
-		public string PullAuthType
-		{
-			get
-			{
-				return pullAuthType;
-			}
-			set	
-			{
-				pullAuthType = value;
-				DictionaryUtil.Add(QueryParameters, "PullAuthType", value);
 			}
 		}
 

@@ -32,11 +32,15 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public ModifyBackupStrategyRequest()
             : base("Dbs", "2019-03-06", "ModifyBackupStrategy", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string backupPeriod;
-
-		private string backupStartTime;
+		private int? backupLogIntervalSeconds;
 
 		private string clientToken;
 
@@ -44,29 +48,22 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 
 		private string ownerId;
 
-		public string BackupPeriod
-		{
-			get
-			{
-				return backupPeriod;
-			}
-			set	
-			{
-				backupPeriod = value;
-				DictionaryUtil.Add(QueryParameters, "BackupPeriod", value);
-			}
-		}
+		private string backupPeriod;
 
-		public string BackupStartTime
+		private string backupStartTime;
+
+		private string backupStrategyType;
+
+		public int? BackupLogIntervalSeconds
 		{
 			get
 			{
-				return backupStartTime;
+				return backupLogIntervalSeconds;
 			}
 			set	
 			{
-				backupStartTime = value;
-				DictionaryUtil.Add(QueryParameters, "BackupStartTime", value);
+				backupLogIntervalSeconds = value;
+				DictionaryUtil.Add(QueryParameters, "BackupLogIntervalSeconds", value.ToString());
 			}
 		}
 
@@ -106,6 +103,45 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public string BackupPeriod
+		{
+			get
+			{
+				return backupPeriod;
+			}
+			set	
+			{
+				backupPeriod = value;
+				DictionaryUtil.Add(QueryParameters, "BackupPeriod", value);
+			}
+		}
+
+		public string BackupStartTime
+		{
+			get
+			{
+				return backupStartTime;
+			}
+			set	
+			{
+				backupStartTime = value;
+				DictionaryUtil.Add(QueryParameters, "BackupStartTime", value);
+			}
+		}
+
+		public string BackupStrategyType
+		{
+			get
+			{
+				return backupStrategyType;
+			}
+			set	
+			{
+				backupStrategyType = value;
+				DictionaryUtil.Add(QueryParameters, "BackupStrategyType", value);
 			}
 		}
 

@@ -32,6 +32,11 @@ namespace Aliyun.Acs.retailcloud.Model.V20180313
         public GetRdsBackUpRequest()
             : base("retailcloud", "2018-03-13", "GetRdsBackUp", "retailcloud", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.retailcloud.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.retailcloud.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 

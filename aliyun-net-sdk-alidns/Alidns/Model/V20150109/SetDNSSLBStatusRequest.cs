@@ -30,9 +30,21 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class SetDNSSLBStatusRequest : RpcAcsRequest<SetDNSSLBStatusResponse>
     {
         public SetDNSSLBStatusRequest()
-            : base("Alidns", "2015-01-09", "SetDNSSLBStatus", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "SetDNSSLBStatus", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string line;
+
+		private string domainName;
+
+		private string type;
 
 		private string userClientIp;
 
@@ -41,6 +53,45 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 		private string lang;
 
 		private bool? open;
+
+		public string Line
+		{
+			get
+			{
+				return line;
+			}
+			set	
+			{
+				line = value;
+				DictionaryUtil.Add(QueryParameters, "Line", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public string Type
+		{
+			get
+			{
+				return type;
+			}
+			set	
+			{
+				type = value;
+				DictionaryUtil.Add(QueryParameters, "Type", value);
+			}
+		}
 
 		public string UserClientIp
 		{

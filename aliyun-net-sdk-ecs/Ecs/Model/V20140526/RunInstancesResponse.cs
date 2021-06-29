@@ -27,6 +27,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string requestId;
 
+		private string orderId;
+
 		private float? tradePrice;
 
 		private List<string> instanceIdSets;
@@ -40,6 +42,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			set	
 			{
 				requestId = value;
+			}
+		}
+
+		public string OrderId
+		{
+			get
+			{
+				return orderId;
+			}
+			set	
+			{
+				orderId = value;
 			}
 		}
 

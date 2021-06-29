@@ -32,9 +32,13 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public ModifyBackupPlanNameRequest()
             : base("Dbs", "2019-03-06", "ModifyBackupPlanName", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string backupPlanName;
 
 		private string clientToken;
 
@@ -42,18 +46,7 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 
 		private string ownerId;
 
-		public string BackupPlanName
-		{
-			get
-			{
-				return backupPlanName;
-			}
-			set	
-			{
-				backupPlanName = value;
-				DictionaryUtil.Add(QueryParameters, "BackupPlanName", value);
-			}
-		}
+		private string backupPlanName;
 
 		public string ClientToken
 		{
@@ -91,6 +84,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public string BackupPlanName
+		{
+			get
+			{
+				return backupPlanName;
+			}
+			set	
+			{
+				backupPlanName = value;
+				DictionaryUtil.Add(QueryParameters, "BackupPlanName", value);
 			}
 		}
 

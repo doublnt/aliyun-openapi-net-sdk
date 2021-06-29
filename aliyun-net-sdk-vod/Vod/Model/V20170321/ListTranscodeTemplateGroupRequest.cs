@@ -32,19 +32,25 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public ListTranscodeTemplateGroupRequest()
             : base("vod", "2017-03-21", "ListTranscodeTemplateGroup", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private int? pageSize;
+
 		private string resourceOwnerAccount;
+
+		private long? ownerId;
 
 		private int? pageNo;
 
 		private string appId;
-
-		private int? pageSize;
-
-		private long? ownerId;
 
 		public long? ResourceOwnerId
 		{
@@ -59,6 +65,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -69,6 +88,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -95,32 +127,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				appId = value;
 				DictionaryUtil.Add(QueryParameters, "AppId", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

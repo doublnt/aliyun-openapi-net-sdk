@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,15 +31,31 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListSoftwaresRequest : RpcAcsRequest<ListSoftwaresResponse>
     {
         public ListSoftwaresRequest()
-            : base("EHPC", "2018-04-12", "ListSoftwares", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListSoftwares")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private string osTag;
 
 		private string ehpcVersion;
 
-		private string action;
-
-		private string accessKeyId;
+		public string OsTag
+		{
+			get
+			{
+				return osTag;
+			}
+			set	
+			{
+				osTag = value;
+				DictionaryUtil.Add(QueryParameters, "OsTag", value);
+			}
+		}
 
 		public string EhpcVersion
 		{
@@ -50,32 +67,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				ehpcVersion = value;
 				DictionaryUtil.Add(QueryParameters, "EhpcVersion", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

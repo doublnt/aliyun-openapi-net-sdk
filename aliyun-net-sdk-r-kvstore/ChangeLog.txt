@@ -1,3 +1,54 @@
+2020-08-20 Version: 2.6.0
+- Added Global Distribute Cache OpenAPIs.
+- Added direct connection OpenAPIs.
+
+2020-08-12 Version: 2.5.1
+- Generated 2015-01-01 for `R-kvstore`.
+- SyncDtsStatus API add TaskId parameter.
+
+2020-07-22 Version: 2.5.0
+- Generated 2015-01-01 for `R-kvstore`.
+- Add SyncDtsStatus API.
+
+2020-05-23 Version: 2.4.0
+- Generated 2015-01-01 for `R-kvstore`.
+- Add ModifyResourceGroup API.
+- DescribeInstanceAttribute return ResourceGroupId.
+
+2020-05-14 Version: 2.3.2
+- Generated 2015-01-01 for `R-kvstore`.
+- Fix DescribeCacheAnalysisReport return empty BigKeys because of wrong type defination.
+
+2020-04-25 Version: 2.3.1
+- Generated 2015-01-01 for `R-kvstore`.
+- Add RestoreTime for CreateInstance API.
+
+2020-04-09 Version: 2.3.0
+- Generated 2015-01-01 for `R-kvstore`.
+- Add DescribePrice API.
+
+2020-03-23 Version: 2.2.0
+- Generated 2015-01-01 for `R-kvstore`.
+- Add DescribeSecurityGroupConfiguration API.
+- Add ModifySecurityGroupConfiguration API.
+
+2020-02-26 Version: 2.1.5
+- Generated 2015-01-01 for `R-kvstore`.
+- Add VpcCloudInstanceId for DescribeInstanceAttribute.
+
+2020-01-16 Version 2.1.4
+- Generated 2015-01-01 for `R-kvstore`.
+- Update DescribeAvailableResource.
+
+2019-12-14 Version 2.1.3
+- Generated 2015-01-01 for `R-kvstore`.
+
+2019-12-14 Version 2.0.9
+- Update DescribeAvailableResource.
+
+2019-12-14 Version 2.0.8
+- Update DescribeAvailableResource.
+
 2019-06-13 Version 2.1.1
 Generated 2015-01-01 for `R-kvstore`
 

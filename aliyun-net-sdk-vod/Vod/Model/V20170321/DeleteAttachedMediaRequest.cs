@@ -32,15 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public DeleteAttachedMediaRequest()
             : base("vod", "2017-03-21", "DeleteAttachedMedia", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string mediaIds;
-
 		private long? ownerId;
+
+		private string mediaIds;
 
 		public long? ResourceOwnerId
 		{
@@ -68,19 +74,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string MediaIds
-		{
-			get
-			{
-				return mediaIds;
-			}
-			set	
-			{
-				mediaIds = value;
-				DictionaryUtil.Add(QueryParameters, "MediaIds", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -91,6 +84,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string MediaIds
+		{
+			get
+			{
+				return mediaIds;
+			}
+			set	
+			{
+				mediaIds = value;
+				DictionaryUtil.Add(QueryParameters, "MediaIds", value);
 			}
 		}
 

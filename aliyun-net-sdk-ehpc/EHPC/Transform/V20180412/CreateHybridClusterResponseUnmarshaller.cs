@@ -26,13 +26,14 @@ namespace Aliyun.Acs.EHPC.Transform.V20180412
 {
     public class CreateHybridClusterResponseUnmarshaller
     {
-        public static CreateHybridClusterResponse Unmarshall(UnmarshallerContext context)
+        public static CreateHybridClusterResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateHybridClusterResponse createHybridClusterResponse = new CreateHybridClusterResponse();
 
-			createHybridClusterResponse.HttpResponse = context.HttpResponse;
-			createHybridClusterResponse.RequestId = context.StringValue("CreateHybridCluster.RequestId");
-			createHybridClusterResponse.ClusterId = context.StringValue("CreateHybridCluster.ClusterId");
+			createHybridClusterResponse.HttpResponse = _ctx.HttpResponse;
+			createHybridClusterResponse.RequestId = _ctx.StringValue("CreateHybridCluster.RequestId");
+			createHybridClusterResponse.ClusterId = _ctx.StringValue("CreateHybridCluster.ClusterId");
+			createHybridClusterResponse.TaskId = _ctx.StringValue("CreateHybridCluster.TaskId");
         
 			return createHybridClusterResponse;
         }

@@ -32,15 +32,22 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public AddZoneRequest()
             : base("pvtz", "2018-01-01", "AddZone", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string proxyPattern;
 
+		private string zoneName;
+
+		private string resourceGroupId;
+
 		private string userClientIp;
 
 		private string lang;
-
-		private string zoneName;
 
 		public string ProxyPattern
 		{
@@ -52,6 +59,32 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				proxyPattern = value;
 				DictionaryUtil.Add(QueryParameters, "ProxyPattern", value);
+			}
+		}
+
+		public string ZoneName
+		{
+			get
+			{
+				return zoneName;
+			}
+			set	
+			{
+				zoneName = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneName", value);
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 
@@ -78,19 +111,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string ZoneName
-		{
-			get
-			{
-				return zoneName;
-			}
-			set	
-			{
-				zoneName = value;
-				DictionaryUtil.Add(QueryParameters, "ZoneName", value);
 			}
 		}
 

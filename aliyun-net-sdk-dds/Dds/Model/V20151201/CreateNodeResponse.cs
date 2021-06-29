@@ -27,6 +27,8 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string requestId;
 
+		private string nodeId;
+
 		private string orderId;
 
 		public string RequestId
@@ -38,6 +40,18 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			set	
 			{
 				requestId = value;
+			}
+		}
+
+		public string NodeId
+		{
+			get
+			{
+				return nodeId;
+			}
+			set	
+			{
+				nodeId = value;
 			}
 		}
 

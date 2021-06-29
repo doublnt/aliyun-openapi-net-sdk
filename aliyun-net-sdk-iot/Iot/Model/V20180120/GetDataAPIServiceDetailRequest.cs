@@ -32,9 +32,30 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public GetDataAPIServiceDetailRequest()
             : base("Iot", "2018-01-20", "GetDataAPIServiceDetail", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
+		private string iotInstanceId;
+
 		private string apiSrn;
+
+		public string IotInstanceId
+		{
+			get
+			{
+				return iotInstanceId;
+			}
+			set	
+			{
+				iotInstanceId = value;
+				DictionaryUtil.Add(BodyParameters, "IotInstanceId", value);
+			}
+		}
 
 		public string ApiSrn
 		{
@@ -45,7 +66,7 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			set	
 			{
 				apiSrn = value;
-				DictionaryUtil.Add(QueryParameters, "ApiSrn", value);
+				DictionaryUtil.Add(BodyParameters, "ApiSrn", value);
 			}
 		}
 

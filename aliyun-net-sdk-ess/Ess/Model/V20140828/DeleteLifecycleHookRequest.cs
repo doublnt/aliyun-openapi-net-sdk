@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,7 +33,15 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DeleteLifecycleHookRequest()
             : base("Ess", "2014-08-28", "DeleteLifecycleHook", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string scalingGroupId;
 
 		private string lifecycleHookName;
 
@@ -40,15 +49,22 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string lifecycleHookId;
 
-		private string scalingGroupId;
-
 		private string ownerAccount;
-
-		private string action;
 
 		private long? ownerId;
 
-		private string accessKeyId;
+		public string ScalingGroupId
+		{
+			get
+			{
+				return scalingGroupId;
+			}
+			set	
+			{
+				scalingGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
+			}
+		}
 
 		public string LifecycleHookName
 		{
@@ -89,19 +105,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string ScalingGroupId
-		{
-			get
-			{
-				return scalingGroupId;
-			}
-			set	
-			{
-				scalingGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -115,19 +118,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -138,19 +128,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

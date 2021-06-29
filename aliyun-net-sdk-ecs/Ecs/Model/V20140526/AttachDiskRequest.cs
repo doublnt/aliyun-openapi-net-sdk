@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,23 +32,35 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public AttachDiskRequest()
             : base("Ecs", "2014-05-26", "AttachDisk", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string keyPairName;
+
+		private bool? bootable;
+
+		private string password;
+
+		private string diskId;
+
+		private bool? deleteWithInstance;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string diskId;
-
 		private long? ownerId;
 
-		private string device;
+		private string instanceId;
 
-		private bool? deleteWithInstance;
+		private string device;
 
 		public long? ResourceOwnerId
 		{
@@ -64,16 +75,68 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InstanceId
+		public string KeyPairName
 		{
 			get
 			{
-				return instanceId;
+				return keyPairName;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				keyPairName = value;
+				DictionaryUtil.Add(QueryParameters, "KeyPairName", value);
+			}
+		}
+
+		public bool? Bootable
+		{
+			get
+			{
+				return bootable;
+			}
+			set	
+			{
+				bootable = value;
+				DictionaryUtil.Add(QueryParameters, "Bootable", value.ToString());
+			}
+		}
+
+		public string Password
+		{
+			get
+			{
+				return password;
+			}
+			set	
+			{
+				password = value;
+				DictionaryUtil.Add(QueryParameters, "Password", value);
+			}
+		}
+
+		public string DiskId
+		{
+			get
+			{
+				return diskId;
+			}
+			set	
+			{
+				diskId = value;
+				DictionaryUtil.Add(QueryParameters, "DiskId", value);
+			}
+		}
+
+		public bool? DeleteWithInstance
+		{
+			get
+			{
+				return deleteWithInstance;
+			}
+			set	
+			{
+				deleteWithInstance = value;
+				DictionaryUtil.Add(QueryParameters, "DeleteWithInstance", value.ToString());
 			}
 		}
 
@@ -103,19 +166,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string DiskId
-		{
-			get
-			{
-				return diskId;
-			}
-			set	
-			{
-				diskId = value;
-				DictionaryUtil.Add(QueryParameters, "DiskId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -129,6 +179,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
 		public string Device
 		{
 			get
@@ -139,19 +202,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				device = value;
 				DictionaryUtil.Add(QueryParameters, "Device", value);
-			}
-		}
-
-		public bool? DeleteWithInstance
-		{
-			get
-			{
-				return deleteWithInstance;
-			}
-			set	
-			{
-				deleteWithInstance = value;
-				DictionaryUtil.Add(QueryParameters, "DeleteWithInstance", value.ToString());
 			}
 		}
 

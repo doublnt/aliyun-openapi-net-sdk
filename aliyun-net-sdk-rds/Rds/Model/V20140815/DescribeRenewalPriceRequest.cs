@@ -32,35 +32,37 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeRenewalPriceRequest()
             : base("Rds", "2014-08-15", "DescribeRenewalPrice", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private string dBInstanceId;
+
+		private string businessInfo;
 
 		private int? quantity;
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
 		private string ownerAccount;
-
-		private string commodityCode;
 
 		private long? ownerId;
 
-		private string usedTime;
+		private int? usedTime;
 
 		private string dBInstanceClass;
-
-		private string promotionCode;
-
-		private string dBInstanceId;
 
 		private string timeType;
 
 		private string payType;
-
-		private string businessInfo;
 
 		private string orderType;
 
@@ -74,6 +76,45 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string BusinessInfo
+		{
+			get
+			{
+				return businessInfo;
+			}
+			set	
+			{
+				businessInfo = value;
+				DictionaryUtil.Add(QueryParameters, "BusinessInfo", value);
 			}
 		}
 
@@ -103,19 +144,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -126,19 +154,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string CommodityCode
-		{
-			get
-			{
-				return commodityCode;
-			}
-			set	
-			{
-				commodityCode = value;
-				DictionaryUtil.Add(QueryParameters, "CommodityCode", value);
 			}
 		}
 
@@ -155,7 +170,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string UsedTime
+		public int? UsedTime
 		{
 			get
 			{
@@ -164,7 +179,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				usedTime = value;
-				DictionaryUtil.Add(QueryParameters, "UsedTime", value);
+				DictionaryUtil.Add(QueryParameters, "UsedTime", value.ToString());
 			}
 		}
 
@@ -178,32 +193,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				dBInstanceClass = value;
 				DictionaryUtil.Add(QueryParameters, "DBInstanceClass", value);
-			}
-		}
-
-		public string PromotionCode
-		{
-			get
-			{
-				return promotionCode;
-			}
-			set	
-			{
-				promotionCode = value;
-				DictionaryUtil.Add(QueryParameters, "PromotionCode", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -230,19 +219,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				payType = value;
 				DictionaryUtil.Add(QueryParameters, "PayType", value);
-			}
-		}
-
-		public string BusinessInfo
-		{
-			get
-			{
-				return businessInfo;
-			}
-			set	
-			{
-				businessInfo = value;
-				DictionaryUtil.Add(QueryParameters, "BusinessInfo", value);
 			}
 		}
 

@@ -32,9 +32,13 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public ListProductByTagsRequest()
             : base("Iot", "2018-01-20", "ListProductByTags", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private List<ProductTag> productTags;
 
 		private string iotInstanceId;
 
@@ -42,23 +46,7 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 		private int? currentPage;
 
-		public List<ProductTag> ProductTags
-		{
-			get
-			{
-				return productTags;
-			}
-
-			set
-			{
-				productTags = value;
-				for (int i = 0; i < productTags.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"ProductTag." + (i + 1) + ".TagValue", productTags[i].TagValue);
-					DictionaryUtil.Add(QueryParameters,"ProductTag." + (i + 1) + ".TagKey", productTags[i].TagKey);
-				}
-			}
-		}
+		private List<ProductTag> productTags = new List<ProductTag>(){ };
 
 		public string IotInstanceId
 		{
@@ -96,6 +84,24 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				currentPage = value;
 				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
+			}
+		}
+
+		public List<ProductTag> ProductTags
+		{
+			get
+			{
+				return productTags;
+			}
+
+			set
+			{
+				productTags = value;
+				for (int i = 0; i < productTags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"ProductTag." + (i + 1) + ".TagValue", productTags[i].TagValue);
+					DictionaryUtil.Add(QueryParameters,"ProductTag." + (i + 1) + ".TagKey", productTags[i].TagKey);
+				}
 			}
 		}
 

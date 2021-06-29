@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -117,9 +118,25 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private bool? isDefault;
 
+			private string networkAclNum;
+
 			private string resourceGroupId;
 
+			private string cenStatus;
+
+			private long? ownerId;
+
+			private bool? supportAdvancedFeature;
+
+			private bool? advancedResource;
+
+			private string dhcpOptionsSetId;
+
+			private string dhcpOptionsSetStatus;
+
 			private List<DescribeVpcs_Tag> tags;
+
+			private List<DescribeVpcs_Ipv6CidrBlock> ipv6CidrBlocks;
 
 			private List<string> vSwitchIds;
 
@@ -128,6 +145,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private List<string> natGatewayIds;
 
 			private List<string> routerTableIds;
+
+			private List<string> secondaryCidrBlocks;
 
 			public string VpcId
 			{
@@ -249,6 +268,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string NetworkAclNum
+			{
+				get
+				{
+					return networkAclNum;
+				}
+				set	
+				{
+					networkAclNum = value;
+				}
+			}
+
 			public string ResourceGroupId
 			{
 				get
@@ -261,6 +292,78 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string CenStatus
+			{
+				get
+				{
+					return cenStatus;
+				}
+				set	
+				{
+					cenStatus = value;
+				}
+			}
+
+			public long? OwnerId
+			{
+				get
+				{
+					return ownerId;
+				}
+				set	
+				{
+					ownerId = value;
+				}
+			}
+
+			public bool? SupportAdvancedFeature
+			{
+				get
+				{
+					return supportAdvancedFeature;
+				}
+				set	
+				{
+					supportAdvancedFeature = value;
+				}
+			}
+
+			public bool? AdvancedResource
+			{
+				get
+				{
+					return advancedResource;
+				}
+				set	
+				{
+					advancedResource = value;
+				}
+			}
+
+			public string DhcpOptionsSetId
+			{
+				get
+				{
+					return dhcpOptionsSetId;
+				}
+				set	
+				{
+					dhcpOptionsSetId = value;
+				}
+			}
+
+			public string DhcpOptionsSetStatus
+			{
+				get
+				{
+					return dhcpOptionsSetStatus;
+				}
+				set	
+				{
+					dhcpOptionsSetStatus = value;
+				}
+			}
+
 			public List<DescribeVpcs_Tag> Tags
 			{
 				get
@@ -270,6 +373,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					tags = value;
+				}
+			}
+
+			public List<DescribeVpcs_Ipv6CidrBlock> Ipv6CidrBlocks
+			{
+				get
+				{
+					return ipv6CidrBlocks;
+				}
+				set	
+				{
+					ipv6CidrBlocks = value;
 				}
 			}
 
@@ -321,6 +436,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public List<string> SecondaryCidrBlocks
+			{
+				get
+				{
+					return secondaryCidrBlocks;
+				}
+				set	
+				{
+					secondaryCidrBlocks = value;
+				}
+			}
+
 			public class DescribeVpcs_Tag
 			{
 
@@ -349,6 +476,38 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 					set	
 					{
 						_value = value;
+					}
+				}
+			}
+
+			public class DescribeVpcs_Ipv6CidrBlock
+			{
+
+				private string ipv6CidrBlock;
+
+				private string ipv6Isp;
+
+				public string Ipv6CidrBlock
+				{
+					get
+					{
+						return ipv6CidrBlock;
+					}
+					set	
+					{
+						ipv6CidrBlock = value;
+					}
+				}
+
+				public string Ipv6Isp
+				{
+					get
+					{
+						return ipv6Isp;
+					}
+					set	
+					{
+						ipv6Isp = value;
 					}
 				}
 			}

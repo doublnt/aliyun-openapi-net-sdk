@@ -1,3 +1,22 @@
+2020-07-23 Version: 2.0.7
+- Supported AAA for BBB.
+- Fixed bugs for CCC.
+
+2020-05-13 Version: 2.0.6
+- Supported AAA for BBB.
+- Fixed bugs for CCC.
+
+2020-04-09 Version: 2.0.5
+- Generated 2018-03-13 for `retailcloud`.
+
+2020-01-17 Version 2.0.1
+- Supported AAA for BBB.
+- Fixed bugs for CCC.
+
+2020-01-07 Version 2.0.0
+- Supported AAA for BBB.
+- Fixed bugs for CCC.
+
 2019-06-26 Version 1.0.32
 Generated 2018-03-13 for `retailcloud`.
 

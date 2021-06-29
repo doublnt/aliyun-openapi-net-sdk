@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,9 +32,21 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public CreateVpnGatewayRequest()
             : base("Vpc", "2016-04-28", "CreateVpnGateway", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private bool? enableIpsec;
+
+		private string instanceChargeType;
 
 		private int? period;
 
@@ -43,25 +56,21 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 		private int? bandwidth;
 
-		private bool? enableIpsec;
-
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string vpnType;
+
+		private string vSwitchId;
 
 		private bool? enableSsl;
 
 		private int? sslConnections;
 
-		private string regionId;
-
 		private string vpcId;
 
 		private string name;
-
-		private string action;
-
-		private string instanceChargeType;
 
 		public long? ResourceOwnerId
 		{
@@ -73,6 +82,45 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public bool? EnableIpsec
+		{
+			get
+			{
+				return enableIpsec;
+			}
+			set	
+			{
+				enableIpsec = value;
+				DictionaryUtil.Add(QueryParameters, "EnableIpsec", value.ToString());
+			}
+		}
+
+		public string InstanceChargeType
+		{
+			get
+			{
+				return instanceChargeType;
+			}
+			set	
+			{
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
 			}
 		}
 
@@ -128,19 +176,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public bool? EnableIpsec
-		{
-			get
-			{
-				return enableIpsec;
-			}
-			set	
-			{
-				enableIpsec = value;
-				DictionaryUtil.Add(QueryParameters, "EnableIpsec", value.ToString());
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -164,6 +199,32 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string VpnType
+		{
+			get
+			{
+				return vpnType;
+			}
+			set	
+			{
+				vpnType = value;
+				DictionaryUtil.Add(QueryParameters, "VpnType", value);
+			}
+		}
+
+		public string VSwitchId
+		{
+			get
+			{
+				return vSwitchId;
+			}
+			set	
+			{
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
 			}
 		}
 
@@ -193,19 +254,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
 		public string VpcId
 		{
 			get
@@ -232,33 +280,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string InstanceChargeType
-		{
-			get
-			{
-				return instanceChargeType;
-			}
-			set	
-			{
-				instanceChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
-			}
-		}
-
-        public override CreateVpnGatewayResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override CreateVpnGatewayResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return CreateVpnGatewayResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

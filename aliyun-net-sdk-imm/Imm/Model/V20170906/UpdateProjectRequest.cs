@@ -32,26 +32,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public UpdateProjectRequest()
             : base("imm", "2017-09-06", "UpdateProject", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string newServiceRole;
 
 		private string project;
 
-		private int? newCU;
+		private string newServiceRole;
 
-		public string NewServiceRole
-		{
-			get
-			{
-				return newServiceRole;
-			}
-			set	
-			{
-				newServiceRole = value;
-				DictionaryUtil.Add(QueryParameters, "NewServiceRole", value);
-			}
-		}
+		private int? newCU;
 
 		public string Project
 		{
@@ -63,6 +56,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				project = value;
 				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string NewServiceRole
+		{
+			get
+			{
+				return newServiceRole;
+			}
+			set	
+			{
+				newServiceRole = value;
+				DictionaryUtil.Add(QueryParameters, "NewServiceRole", value);
 			}
 		}
 

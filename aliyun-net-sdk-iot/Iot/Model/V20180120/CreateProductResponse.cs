@@ -128,6 +128,10 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 			private string protocolType;
 
+			private string authType;
+
+			private string productSecret;
+
 			public int? DataFormat
 			{
 				get
@@ -221,6 +225,30 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 				set	
 				{
 					protocolType = value;
+				}
+			}
+
+			public string AuthType
+			{
+				get
+				{
+					return authType;
+				}
+				set	
+				{
+					authType = value;
+				}
+			}
+
+			public string ProductSecret
+			{
+				get
+				{
+					return productSecret;
+				}
+				set	
+				{
+					productSecret = value;
 				}
 			}
 		}

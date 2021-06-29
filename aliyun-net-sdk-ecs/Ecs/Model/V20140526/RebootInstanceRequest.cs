@@ -33,11 +33,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public RebootInstanceRequest()
             : base("Ecs", "2014-05-26", "RebootInstance", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private bool? forceStop;
 
 		private bool? dryRun;
 
@@ -47,7 +53,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private bool? forceStop;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -62,16 +68,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InstanceId
+		public bool? ForceStop
 		{
 			get
 			{
-				return instanceId;
+				return forceStop;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				forceStop = value;
+				DictionaryUtil.Add(QueryParameters, "ForceStop", value.ToString());
 			}
 		}
 
@@ -127,16 +133,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public bool? ForceStop
+		public string InstanceId
 		{
 			get
 			{
-				return forceStop;
+				return instanceId;
 			}
 			set	
 			{
-				forceStop = value;
-				DictionaryUtil.Add(QueryParameters, "ForceStop", value.ToString());
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

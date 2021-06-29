@@ -27,6 +27,8 @@ namespace Aliyun.Acs.Core.Http
 {
     public class HttpRequest
     {
+        private int timeout = 100000;
+
         public HttpRequest()
         {
         }
@@ -53,14 +55,13 @@ namespace Aliyun.Acs.Core.Http
         public byte[] Content { get; set; }
         public string Encoding { get; set; }
 
-        [Obsolete("timeoutInMilliSeconds is deprecated as does not match Properties rule, please use TimeoutInMilliseconds instead.")]
+        [Obsolete(
+            "timeoutInMilliSeconds is deprecated as does not match Properties rule, please use TimeoutInMilliseconds instead.")]
         public int timeoutInMilliSeconds
         {
             get { return TimeoutInMilliseconds; }
             set { TimeoutInMilliseconds = value; }
         }
-
-        private int timeout = 100000;
 
         public int TimeoutInMilliseconds
         {
@@ -92,9 +93,10 @@ namespace Aliyun.Acs.Core.Http
         {
             if (null == content)
             {
-                Headers.Remove("Content-MD5");
-                Headers.Remove("Content-Length");
-                Headers.Remove("Content-Type");
+                DictionaryUtil.Pop(Headers, "Content-MD5");
+                DictionaryUtil.Pop(Headers, "Content-Length");
+                DictionaryUtil.Pop(Headers, "Content-Type");
+
                 ContentType = null;
                 Content = null;
                 Encoding = null;
@@ -110,12 +112,16 @@ namespace Aliyun.Acs.Core.Http
                 type = format;
             }
 
-            Headers.Remove("Content-MD5");
-            Headers.Remove("Content-Length");
-            Headers.Remove("Content-Type");
-            Headers.Add("Content-MD5", strMd5);
-            Headers.Add("Content-Length", contentLen);
-            Headers.Add("Content-Type", ParameterHelper.FormatTypeToString(type));
+            DictionaryUtil.Pop(Headers, "Content-MD5");
+            DictionaryUtil.Pop(Headers, "Content-Length");
+            DictionaryUtil.Pop(Headers, "Content-Type");
+
+            DictionaryUtil.Add(Headers, "Content-MD5", strMd5);
+            if(this.Method.ToString() == "POST" || this.Method.ToString() == "PUT")
+            {
+                DictionaryUtil.Add(Headers, "Content-Length", contentLen);
+            }
+            DictionaryUtil.Add(Headers, "Content-Type", ParameterHelper.FormatTypeToString(type));
 
             Content = content;
             Encoding = encoding;

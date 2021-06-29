@@ -32,7 +32,15 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeWebsiteScanResultDetailRequest()
             : base("Green", "2017-08-23", "DescribeWebsiteScanResultDetail", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string resourceType;
 
 		private string sourceIp;
 
@@ -40,7 +48,18 @@ namespace Aliyun.Acs.Green.Model.V20170823
 
 		private string lang;
 
-		private string resourceType;
+		public string ResourceType
+		{
+			get
+			{
+				return resourceType;
+			}
+			set	
+			{
+				resourceType = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
+			}
+		}
 
 		public string SourceIp
 		{
@@ -78,19 +97,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string ResourceType
-		{
-			get
-			{
-				return resourceType;
-			}
-			set	
-			{
-				resourceType = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
 			}
 		}
 

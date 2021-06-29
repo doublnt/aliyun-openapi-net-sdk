@@ -88,6 +88,8 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 
 			private int? pageNumber;
 
+			private long? total;
+
 			private List<FindServiceStatisticalData_ServiceStatisticData> monitorStatisticData;
 
 			public int? CurrentPage
@@ -114,6 +116,18 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 				}
 			}
 
+			public long? Total
+			{
+				get
+				{
+					return total;
+				}
+				set	
+				{
+					total = value;
+				}
+			}
+
 			public List<FindServiceStatisticalData_ServiceStatisticData> MonitorStatisticData
 			{
 				get
@@ -135,11 +149,7 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 
 				private float? minRt;
 
-				private long? requestTime;
-
 				private string serviceName;
-
-				private string userId;
 
 				private FindServiceStatisticalData_Total total;
 
@@ -179,18 +189,6 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 					}
 				}
 
-				public long? RequestTime
-				{
-					get
-					{
-						return requestTime;
-					}
-					set	
-					{
-						requestTime = value;
-					}
-				}
-
 				public string ServiceName
 				{
 					get
@@ -200,18 +198,6 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 					set	
 					{
 						serviceName = value;
-					}
-				}
-
-				public string UserId
-				{
-					get
-					{
-						return userId;
-					}
-					set	
-					{
-						userId = value;
 					}
 				}
 
@@ -230,23 +216,11 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 				public class FindServiceStatisticalData_Total
 				{
 
-					private int? errorNum;
+					private long? total;
 
-					private int? total;
+					private long? errorNum;
 
-					public int? ErrorNum
-					{
-						get
-						{
-							return errorNum;
-						}
-						set	
-						{
-							errorNum = value;
-						}
-					}
-
-					public int? Total
+					public long? Total
 					{
 						get
 						{
@@ -255,6 +229,18 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 						set	
 						{
 							total = value;
+						}
+					}
+
+					public long? ErrorNum
+					{
+						get
+						{
+							return errorNum;
+						}
+						set	
+						{
+							errorNum = value;
 						}
 					}
 				}

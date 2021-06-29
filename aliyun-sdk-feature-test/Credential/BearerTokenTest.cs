@@ -28,15 +28,15 @@ using Xunit;
 namespace Aliyun.Acs.Feature.Test.Credential
 {
     [Trait("Category", "FeatureTest")]
-    public class BearerTokenTest : FeatureTestBase
+    public class BearerTokenTest
     {
         [Fact]
         public void BearerTokenAccessTest()
         {
-            var provider = new BearerTokenCredentialProvider(GetBearerToken());
+            var provider = new BearerTokenCredentialProvider(FeatureTest.BearerToken);
 
-            profile = DefaultProfile.GetProfile("cn-hangzhou");
-            client = new DefaultAcsClient(profile, provider);
+            var profile = DefaultProfile.GetProfile("cn-hangzhou");
+            var client = new DefaultAcsClient(profile, provider);
 
             var request = new ListPhoneNumbersRequest();
 

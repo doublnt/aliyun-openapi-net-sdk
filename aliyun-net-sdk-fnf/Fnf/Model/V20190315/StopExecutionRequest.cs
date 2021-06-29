@@ -32,18 +32,23 @@ namespace Aliyun.Acs.fnf.Model.V20190315
         public StopExecutionRequest()
             : base("fnf", "2019-03-15", "StopExecution", "fnf", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 
 		private string executionName;
 
-		private string requestId;
-
 		private string cause;
 
-		private string flowName;
-
 		private string error;
+
+		private string requestId;
+
+		private string flowName;
 
 		public string ExecutionName
 		{
@@ -54,7 +59,33 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			set	
 			{
 				executionName = value;
-				DictionaryUtil.Add(QueryParameters, "ExecutionName", value);
+				DictionaryUtil.Add(BodyParameters, "ExecutionName", value);
+			}
+		}
+
+		public string Cause
+		{
+			get
+			{
+				return cause;
+			}
+			set	
+			{
+				cause = value;
+				DictionaryUtil.Add(BodyParameters, "Cause", value);
+			}
+		}
+
+		public string Error
+		{
+			get
+			{
+				return error;
+			}
+			set	
+			{
+				error = value;
+				DictionaryUtil.Add(BodyParameters, "Error", value);
 			}
 		}
 
@@ -71,19 +102,6 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			}
 		}
 
-		public string Cause
-		{
-			get
-			{
-				return cause;
-			}
-			set	
-			{
-				cause = value;
-				DictionaryUtil.Add(QueryParameters, "Cause", value);
-			}
-		}
-
 		public string FlowName
 		{
 			get
@@ -93,20 +111,7 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			set	
 			{
 				flowName = value;
-				DictionaryUtil.Add(QueryParameters, "FlowName", value);
-			}
-		}
-
-		public string Error
-		{
-			get
-			{
-				return error;
-			}
-			set	
-			{
-				error = value;
-				DictionaryUtil.Add(QueryParameters, "Error", value);
+				DictionaryUtil.Add(BodyParameters, "FlowName", value);
 			}
 		}
 

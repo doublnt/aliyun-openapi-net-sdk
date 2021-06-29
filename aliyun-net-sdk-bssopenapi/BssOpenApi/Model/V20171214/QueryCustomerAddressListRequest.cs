@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,26 +33,15 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryCustomerAddressListRequest()
             : base("BssOpenApi", "2017-12-14", "QueryCustomerAddressList")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? callerBid;
-
 		private long? ownerId;
-
-		private long? callerUid;
-
-		public long? CallerBid
-		{
-			get
-			{
-				return callerBid;
-			}
-			set	
-			{
-				callerBid = value;
-				DictionaryUtil.Add(QueryParameters, "callerBid", value.ToString());
-			}
-		}
 
 		public long? OwnerId
 		{
@@ -63,19 +53,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public long? CallerUid
-		{
-			get
-			{
-				return callerUid;
-			}
-			set	
-			{
-				callerUid = value;
-				DictionaryUtil.Add(QueryParameters, "callerUid", value.ToString());
 			}
 		}
 

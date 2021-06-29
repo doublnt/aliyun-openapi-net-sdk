@@ -29,7 +29,7 @@ using Xunit;
 namespace Aliyun.Acs.Feature.Test.Core
 {
     [Trait("Category", "FeatureTest")]
-    public class CoreTest : FeatureTestBase
+    public class CoreTest
     {
         [Fact]
         public void BasicRoaConnectionsTest()
@@ -41,7 +41,7 @@ namespace Aliyun.Acs.Feature.Test.Core
             request.UriPattern = "/resource_types";
             request.Method = MethodType.GET;
 
-            var response = client.GetCommonResponse(request);
+            var response = FeatureTest.DefaultClient.GetCommonResponse(request);
 
             Assert.Equal("200", response.HttpStatus.ToString());
             Assert.NotNull(response.Data);
@@ -50,14 +50,14 @@ namespace Aliyun.Acs.Feature.Test.Core
         [Fact]
         public void BasicRoaTokenConnection()
         {
-            if (GetRoleArn().Equals("FakeRoleArn"))
+            if (FeatureTest.RoleArn.Equals("FakeRoleArn"))
             {
                 return;
             }
 
             var basciCredential =
-                new BasicSessionCredentials(GetBasicAccessKeyId(), GetBasicAccessKeySecret(), GetToken());
-            var profile = DefaultProfile.GetProfile(regionId, GetBasicAccessKeyId(), GetBasicAccessKeySecret());
+                new BasicSessionCredentials(FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret, FeatureTest.GetToken());
+            var profile = DefaultProfile.GetProfile(FeatureTest.RegionId, FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret);
             var client = new DefaultAcsClient(profile, basciCredential);
 
             var request = new CommonRequest();
@@ -80,7 +80,7 @@ namespace Aliyun.Acs.Feature.Test.Core
             request.Version = "2014-05-26";
             request.Action = "DescribeAccessPoints";
 
-            var response = client.GetCommonResponse(request);
+            var response = FeatureTest.DefaultClient.GetCommonResponse(request);
 
             Assert.Equal("200", response.HttpStatus.ToString());
             Assert.NotNull(response.Data);
@@ -89,14 +89,14 @@ namespace Aliyun.Acs.Feature.Test.Core
         [Fact]
         public void BasicRpcStsTokenConnectionsTest()
         {
-            if (GetRoleArn().Equals("FakeRoleArn"))
+            if (FeatureTest.RoleArn.Equals("FakeRoleArn"))
             {
                 return;
             }
 
             var basciCredential =
-                new BasicSessionCredentials(GetBasicAccessKeyId(), GetBasicAccessKeySecret(), GetToken());
-            var profile = DefaultProfile.GetProfile(regionId, GetBasicAccessKeyId(), GetBasicAccessKeySecret());
+                new BasicSessionCredentials(FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret, FeatureTest.GetToken());
+            var profile = DefaultProfile.GetProfile(FeatureTest.RegionId, FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret);
             var client = new DefaultAcsClient(profile, basciCredential);
 
             var request = new DescribeAccessControlListsRequest();
@@ -116,7 +116,7 @@ namespace Aliyun.Acs.Feature.Test.Core
             request.Method = MethodType.GET;
             request.Protocol = ProtocolType.HTTPS;
 
-            var response = client.GetCommonResponse(request);
+            var response = FeatureTest.DefaultClient.GetCommonResponse(request);
             Assert.Equal(200, response.HttpStatus);
             Assert.NotNull(response.Data);
         }
@@ -130,7 +130,7 @@ namespace Aliyun.Acs.Feature.Test.Core
             request.Action = "DescribeAccessPoints";
             request.Protocol = ProtocolType.HTTPS;
 
-            var response = client.GetCommonResponse(request);
+            var response = FeatureTest.DefaultClient.GetCommonResponse(request);
             Assert.Equal(200, response.HttpStatus);
             Assert.NotNull(response.Data);
         }
@@ -143,23 +143,24 @@ namespace Aliyun.Acs.Feature.Test.Core
             request.Version = "2018-11-28";
             request.Action = "serverUnreachableTest";
 
-            Assert.Throws<ClientException>(() => { client.GetCommonResponse(request); });
+            Assert.Throws<ClientException>(() => { FeatureTest.DefaultClient.GetCommonResponse(request); });
         }
 
         [Fact]
         public void UnicodeAndQueryTest()
         {
-            if (GetRoleArn().Equals("FakeRoleArn"))
+            if (FeatureTest.RoleArn.Equals("FakeRoleArn"))
             {
                 return;
             }
 
             var basciCredential =
-                new BasicSessionCredentials(GetBasicAccessKeyId(), GetBasicAccessKeySecret(), GetToken());
-            var profile = DefaultProfile.GetProfile(regionId, GetBasicAccessKeyId(), GetBasicAccessKeySecret());
+                new BasicSessionCredentials(FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret, FeatureTest.GetToken());
+            var profile = DefaultProfile.GetProfile(FeatureTest.RegionId, FeatureTest.BasicAccessKeyId, FeatureTest.BasicAccessKeySecret);
             var client = new DefaultAcsClient(profile, basciCredential);
 
             var request = new CommonRequest();
+            request.TimeoutInMilliSeconds = 30000;
             request.Domain = "ros.aliyuncs.com";
             request.Version = "2015-09-01";
             request.Action = "DescribeResourceTypes";

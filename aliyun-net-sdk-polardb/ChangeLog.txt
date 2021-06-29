@@ -1,0 +1,41 @@
+2020-07-24 Version: 1.7.2
+- Add DescribeBackupTasks.
+
+2020-07-17 Version: 1.7.1
+- Add DescribeDBClusterAuditLogCollector.
+- Add DescribeBackupPolicy.
+- Support polardb for pgsql and oracle customize endpoints.
+
+2020-05-11 Version: 1.7.0
+- Support CreationCategory for CreateDBCluster.
+
+2020-04-09 Version: 1.6.9
+- Add DescribeDBClusterAvailableResources.
+
+2020-02-15 Version 1.6.8
+- Add DescribeDBClusterSSL.
+- Add ModifyDBClusterSSL.
+
+2020-02-11 Version 1.6.7
+- Return `VpcInstanceId ` for DescribeDBClusterEndpoints.
+- Add DescribeBackupLogs.
+
+2020-01-10 Version 1.6.6
+- Return `ConsistentTime` for DescribeBackups.
+- Return `DBNodeIds` for CreateDBNodes.
+
+2019-12-19 Version 1.6.5
+- Add DescribeSlowLogRecords,DescribeSlowLogs for SlowLog.
+
+2019-10-25 Version 1.6.4
+- Add DescribeDBClusterPerformance, DescribeDBNodePerformance for performance.
+
+2019-09-05 Version 1.6.3
+Generated 2017-08-01 for `polardb`.
+
+
+2019-08-21 Version 1.6.1
+- Return backup job id when create backup.
+- Return backup set size when describe backups.
+2019-07-23 Version 1.6.0
+- Supported CreationOption of CreateDBCluster with `CloneFromPolarDB `,`CloneFromRDS`,`MigrationFromRDS`.

@@ -32,15 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public DeleteMezzaninesRequest()
             : base("vod", "2017-03-21", "DeleteMezzanines", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private bool? force;
-
 		private long? ownerId;
+
+		private bool? force;
 
 		private string videoIds;
 
@@ -70,19 +76,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public bool? Force
-		{
-			get
-			{
-				return force;
-			}
-			set	
-			{
-				force = value;
-				DictionaryUtil.Add(QueryParameters, "Force", value.ToString());
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -93,6 +86,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public bool? Force
+		{
+			get
+			{
+				return force;
+			}
+			set	
+			{
+				force = value;
+				DictionaryUtil.Add(QueryParameters, "Force", value.ToString());
 			}
 		}
 

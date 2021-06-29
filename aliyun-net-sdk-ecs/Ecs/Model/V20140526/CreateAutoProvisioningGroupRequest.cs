@@ -32,35 +32,99 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateAutoProvisioningGroupRequest()
             : base("Ecs", "2014-05-26", "CreateAutoProvisioningGroup", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private List<LaunchConfigurationDataDisk> launchConfigurationDataDisks = new List<LaunchConfigurationDataDisk>(){ };
 
 		private long? resourceOwnerId;
 
+		private string launchConfigurationSystemDiskCategory;
+
 		private string autoProvisioningGroupType;
 
-		private string description;
+		private string launchConfigurationSystemDiskPerformanceLevel;
 
-		private bool? terminateInstancesWithExpiration;
+		private List<string> launchConfigurationHostNamess = new List<string>(){ };
 
 		private string resourceGroupId;
 
-		private string spotAllocationStrategy;
+		private string launchConfigurationImageId;
 
-		private bool? terminateInstances;
+		private string launchConfigurationResourceGroupId;
 
 		private string payAsYouGoAllocationStrategy;
 
 		private string defaultTargetCapacityType;
 
-		private string excessCapacityTerminationPolicy;
+		private string launchConfigurationKeyPairName;
 
-		private List<LaunchTemplateConfig> launchTemplateConfigs;
+		private List<SystemDiskConfig> systemDiskConfigs = new List<SystemDiskConfig>(){ };
+
+		private List<DataDiskConfig> dataDiskConfigs = new List<DataDiskConfig>(){ };
 
 		private string validUntil;
 
+		private string launchTemplateId;
+
+		private long? ownerId;
+
+		private int? launchConfigurationSystemDiskSize;
+
+		private int? launchConfigurationInternetMaxBandwidthOut;
+
+		private string launchConfigurationHostName;
+
+		private string minTargetCapacity;
+
+		private float? maxSpotPrice;
+
+		private bool? launchConfigurationPasswordInherit;
+
+		private string clientToken;
+
+		private string launchConfigurationSecurityGroupId;
+
+		private string description;
+
+		private bool? terminateInstancesWithExpiration;
+
+		private string launchConfigurationUserData;
+
+		private string launchConfigurationCreditSpecification;
+
+		private string launchConfigurationInstanceName;
+
+		private string launchConfigurationInstanceDescription;
+
+		private string spotAllocationStrategy;
+
+		private bool? terminateInstances;
+
+		private string launchConfigurationSystemDiskName;
+
+		private string launchConfigurationSystemDiskDescription;
+
+		private string excessCapacityTerminationPolicy;
+
+		private List<LaunchTemplateConfig> launchTemplateConfigs = new List<LaunchTemplateConfig>(){ };
+
+		private string launchConfigurationRamRoleName;
+
+		private int? launchConfigurationInternetMaxBandwidthIn;
+
 		private string spotInstanceInterruptionBehavior;
 
-		private string launchTemplateId;
+		private string launchConfigurationSecurityEnhancementStrategy;
+
+		private List<LaunchConfigurationTag> launchConfigurationTags = new List<LaunchConfigurationTag>(){ };
+
+		private string launchConfigurationDeploymentSetId;
 
 		private string resourceOwnerAccount;
 
@@ -68,9 +132,11 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? spotInstancePoolsToUseCount;
 
-		private long? ownerId;
+		private string launchConfigurationInternetChargeType;
 
 		private string launchTemplateVersion;
+
+		private string launchConfigurationIoOptimized;
 
 		private string payAsYouGoTargetCapacity;
 
@@ -82,7 +148,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string autoProvisioningGroupName;
 
-		private float? maxSpotPrice;
+		public List<LaunchConfigurationDataDisk> LaunchConfigurationDataDisks
+		{
+			get
+			{
+				return launchConfigurationDataDisks;
+			}
+
+			set
+			{
+				launchConfigurationDataDisks = value;
+				for (int i = 0; i < launchConfigurationDataDisks.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".PerformanceLevel", launchConfigurationDataDisks[i].PerformanceLevel);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".KmsKeyId", launchConfigurationDataDisks[i].KmsKeyId);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".Description", launchConfigurationDataDisks[i].Description);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".SnapshotId", launchConfigurationDataDisks[i].SnapshotId);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".Size", launchConfigurationDataDisks[i].Size);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".Device", launchConfigurationDataDisks[i].Device);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".DiskName", launchConfigurationDataDisks[i].DiskName);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".Category", launchConfigurationDataDisks[i].Category);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".DeleteWithInstance", launchConfigurationDataDisks[i].DeleteWithInstance);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.DataDisk." + (i + 1) + ".Encrypted", launchConfigurationDataDisks[i].Encrypted);
+				}
+			}
+		}
 
 		public long? ResourceOwnerId
 		{
@@ -94,6 +184,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string LaunchConfigurationSystemDiskCategory
+		{
+			get
+			{
+				return launchConfigurationSystemDiskCategory;
+			}
+			set	
+			{
+				launchConfigurationSystemDiskCategory = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SystemDiskCategory", value);
 			}
 		}
 
@@ -110,29 +213,33 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string Description
+		public string LaunchConfigurationSystemDiskPerformanceLevel
 		{
 			get
 			{
-				return description;
+				return launchConfigurationSystemDiskPerformanceLevel;
 			}
 			set	
 			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
+				launchConfigurationSystemDiskPerformanceLevel = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SystemDiskPerformanceLevel", value);
 			}
 		}
 
-		public bool? TerminateInstancesWithExpiration
+		public List<string> LaunchConfigurationHostNamess
 		{
 			get
 			{
-				return terminateInstancesWithExpiration;
+				return launchConfigurationHostNamess;
 			}
-			set	
+
+			set
 			{
-				terminateInstancesWithExpiration = value;
-				DictionaryUtil.Add(QueryParameters, "TerminateInstancesWithExpiration", value.ToString());
+				launchConfigurationHostNamess = value;
+				for (int i = 0; i < launchConfigurationHostNamess.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.HostNames." + (i + 1) , launchConfigurationHostNamess[i]);
+				}
 			}
 		}
 
@@ -149,29 +256,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string SpotAllocationStrategy
+		public string LaunchConfigurationImageId
 		{
 			get
 			{
-				return spotAllocationStrategy;
+				return launchConfigurationImageId;
 			}
 			set	
 			{
-				spotAllocationStrategy = value;
-				DictionaryUtil.Add(QueryParameters, "SpotAllocationStrategy", value);
+				launchConfigurationImageId = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.ImageId", value);
 			}
 		}
 
-		public bool? TerminateInstances
+		public string LaunchConfigurationResourceGroupId
 		{
 			get
 			{
-				return terminateInstances;
+				return launchConfigurationResourceGroupId;
 			}
 			set	
 			{
-				terminateInstances = value;
-				DictionaryUtil.Add(QueryParameters, "TerminateInstances", value.ToString());
+				launchConfigurationResourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.ResourceGroupId", value);
 			}
 		}
 
@@ -201,6 +308,326 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string LaunchConfigurationKeyPairName
+		{
+			get
+			{
+				return launchConfigurationKeyPairName;
+			}
+			set	
+			{
+				launchConfigurationKeyPairName = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.KeyPairName", value);
+			}
+		}
+
+		public List<SystemDiskConfig> SystemDiskConfigs
+		{
+			get
+			{
+				return systemDiskConfigs;
+			}
+
+			set
+			{
+				systemDiskConfigs = value;
+				for (int i = 0; i < systemDiskConfigs.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SystemDiskConfig." + (i + 1) + ".DiskCategory", systemDiskConfigs[i].DiskCategory);
+				}
+			}
+		}
+
+		public List<DataDiskConfig> DataDiskConfigs
+		{
+			get
+			{
+				return dataDiskConfigs;
+			}
+
+			set
+			{
+				dataDiskConfigs = value;
+				for (int i = 0; i < dataDiskConfigs.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"DataDiskConfig." + (i + 1) + ".DiskCategory", dataDiskConfigs[i].DiskCategory);
+				}
+			}
+		}
+
+		public string ValidUntil
+		{
+			get
+			{
+				return validUntil;
+			}
+			set	
+			{
+				validUntil = value;
+				DictionaryUtil.Add(QueryParameters, "ValidUntil", value);
+			}
+		}
+
+		public string LaunchTemplateId
+		{
+			get
+			{
+				return launchTemplateId;
+			}
+			set	
+			{
+				launchTemplateId = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchTemplateId", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? LaunchConfigurationSystemDiskSize
+		{
+			get
+			{
+				return launchConfigurationSystemDiskSize;
+			}
+			set	
+			{
+				launchConfigurationSystemDiskSize = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SystemDiskSize", value.ToString());
+			}
+		}
+
+		public int? LaunchConfigurationInternetMaxBandwidthOut
+		{
+			get
+			{
+				return launchConfigurationInternetMaxBandwidthOut;
+			}
+			set	
+			{
+				launchConfigurationInternetMaxBandwidthOut = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.InternetMaxBandwidthOut", value.ToString());
+			}
+		}
+
+		public string LaunchConfigurationHostName
+		{
+			get
+			{
+				return launchConfigurationHostName;
+			}
+			set	
+			{
+				launchConfigurationHostName = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.HostName", value);
+			}
+		}
+
+		public string MinTargetCapacity
+		{
+			get
+			{
+				return minTargetCapacity;
+			}
+			set	
+			{
+				minTargetCapacity = value;
+				DictionaryUtil.Add(QueryParameters, "MinTargetCapacity", value);
+			}
+		}
+
+		public float? MaxSpotPrice
+		{
+			get
+			{
+				return maxSpotPrice;
+			}
+			set	
+			{
+				maxSpotPrice = value;
+				DictionaryUtil.Add(QueryParameters, "MaxSpotPrice", value.ToString());
+			}
+		}
+
+		public bool? LaunchConfigurationPasswordInherit
+		{
+			get
+			{
+				return launchConfigurationPasswordInherit;
+			}
+			set	
+			{
+				launchConfigurationPasswordInherit = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.PasswordInherit", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string LaunchConfigurationSecurityGroupId
+		{
+			get
+			{
+				return launchConfigurationSecurityGroupId;
+			}
+			set	
+			{
+				launchConfigurationSecurityGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SecurityGroupId", value);
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public bool? TerminateInstancesWithExpiration
+		{
+			get
+			{
+				return terminateInstancesWithExpiration;
+			}
+			set	
+			{
+				terminateInstancesWithExpiration = value;
+				DictionaryUtil.Add(QueryParameters, "TerminateInstancesWithExpiration", value.ToString());
+			}
+		}
+
+		public string LaunchConfigurationUserData
+		{
+			get
+			{
+				return launchConfigurationUserData;
+			}
+			set	
+			{
+				launchConfigurationUserData = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.UserData", value);
+			}
+		}
+
+		public string LaunchConfigurationCreditSpecification
+		{
+			get
+			{
+				return launchConfigurationCreditSpecification;
+			}
+			set	
+			{
+				launchConfigurationCreditSpecification = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.CreditSpecification", value);
+			}
+		}
+
+		public string LaunchConfigurationInstanceName
+		{
+			get
+			{
+				return launchConfigurationInstanceName;
+			}
+			set	
+			{
+				launchConfigurationInstanceName = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.InstanceName", value);
+			}
+		}
+
+		public string LaunchConfigurationInstanceDescription
+		{
+			get
+			{
+				return launchConfigurationInstanceDescription;
+			}
+			set	
+			{
+				launchConfigurationInstanceDescription = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.InstanceDescription", value);
+			}
+		}
+
+		public string SpotAllocationStrategy
+		{
+			get
+			{
+				return spotAllocationStrategy;
+			}
+			set	
+			{
+				spotAllocationStrategy = value;
+				DictionaryUtil.Add(QueryParameters, "SpotAllocationStrategy", value);
+			}
+		}
+
+		public bool? TerminateInstances
+		{
+			get
+			{
+				return terminateInstances;
+			}
+			set	
+			{
+				terminateInstances = value;
+				DictionaryUtil.Add(QueryParameters, "TerminateInstances", value.ToString());
+			}
+		}
+
+		public string LaunchConfigurationSystemDiskName
+		{
+			get
+			{
+				return launchConfigurationSystemDiskName;
+			}
+			set	
+			{
+				launchConfigurationSystemDiskName = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SystemDiskName", value);
+			}
+		}
+
+		public string LaunchConfigurationSystemDiskDescription
+		{
+			get
+			{
+				return launchConfigurationSystemDiskDescription;
+			}
+			set	
+			{
+				launchConfigurationSystemDiskDescription = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SystemDiskDescription", value);
+			}
+		}
+
 		public string ExcessCapacityTerminationPolicy
 		{
 			get
@@ -226,25 +653,38 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				launchTemplateConfigs = value;
 				for (int i = 0; i < launchTemplateConfigs.Count; i++)
 				{
-					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".InstanceType", launchTemplateConfigs[i].InstanceType);
-					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".MaxPrice", launchTemplateConfigs[i].MaxPrice);
 					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".VSwitchId", launchTemplateConfigs[i].VSwitchId);
-					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".WeightedCapacity", launchTemplateConfigs[i].WeightedCapacity);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".MaxPrice", launchTemplateConfigs[i].MaxPrice);
 					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".Priority", launchTemplateConfigs[i].Priority);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".InstanceType", launchTemplateConfigs[i].InstanceType);
+					DictionaryUtil.Add(QueryParameters,"LaunchTemplateConfig." + (i + 1) + ".WeightedCapacity", launchTemplateConfigs[i].WeightedCapacity);
 				}
 			}
 		}
 
-		public string ValidUntil
+		public string LaunchConfigurationRamRoleName
 		{
 			get
 			{
-				return validUntil;
+				return launchConfigurationRamRoleName;
 			}
 			set	
 			{
-				validUntil = value;
-				DictionaryUtil.Add(QueryParameters, "ValidUntil", value);
+				launchConfigurationRamRoleName = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.RamRoleName", value);
+			}
+		}
+
+		public int? LaunchConfigurationInternetMaxBandwidthIn
+		{
+			get
+			{
+				return launchConfigurationInternetMaxBandwidthIn;
+			}
+			set	
+			{
+				launchConfigurationInternetMaxBandwidthIn = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.InternetMaxBandwidthIn", value.ToString());
 			}
 		}
 
@@ -261,16 +701,47 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string LaunchTemplateId
+		public string LaunchConfigurationSecurityEnhancementStrategy
 		{
 			get
 			{
-				return launchTemplateId;
+				return launchConfigurationSecurityEnhancementStrategy;
 			}
 			set	
 			{
-				launchTemplateId = value;
-				DictionaryUtil.Add(QueryParameters, "LaunchTemplateId", value);
+				launchConfigurationSecurityEnhancementStrategy = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.SecurityEnhancementStrategy", value);
+			}
+		}
+
+		public List<LaunchConfigurationTag> LaunchConfigurationTags
+		{
+			get
+			{
+				return launchConfigurationTags;
+			}
+
+			set
+			{
+				launchConfigurationTags = value;
+				for (int i = 0; i < launchConfigurationTags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.Tag." + (i + 1) + ".Key", launchConfigurationTags[i].Key);
+					DictionaryUtil.Add(QueryParameters,"LaunchConfiguration.Tag." + (i + 1) + ".Value", launchConfigurationTags[i].Value);
+				}
+			}
+		}
+
+		public string LaunchConfigurationDeploymentSetId
+		{
+			get
+			{
+				return launchConfigurationDeploymentSetId;
+			}
+			set	
+			{
+				launchConfigurationDeploymentSetId = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.DeploymentSetId", value);
 			}
 		}
 
@@ -313,16 +784,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public long? OwnerId
+		public string LaunchConfigurationInternetChargeType
 		{
 			get
 			{
-				return ownerId;
+				return launchConfigurationInternetChargeType;
 			}
 			set	
 			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+				launchConfigurationInternetChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.InternetChargeType", value);
 			}
 		}
 
@@ -336,6 +807,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				launchTemplateVersion = value;
 				DictionaryUtil.Add(QueryParameters, "LaunchTemplateVersion", value);
+			}
+		}
+
+		public string LaunchConfigurationIoOptimized
+		{
+			get
+			{
+				return launchConfigurationIoOptimized;
+			}
+			set	
+			{
+				launchConfigurationIoOptimized = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchConfiguration.IoOptimized", value);
 			}
 		}
 
@@ -404,41 +888,208 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public float? MaxSpotPrice
+		public class LaunchConfigurationDataDisk
 		{
-			get
+
+			private string performanceLevel;
+
+			private string kmsKeyId;
+
+			private string description;
+
+			private string snapshotId;
+
+			private int? size;
+
+			private string device;
+
+			private string diskName;
+
+			private string category;
+
+			private bool? deleteWithInstance;
+
+			private bool? encrypted;
+
+			public string PerformanceLevel
 			{
-				return maxSpotPrice;
+				get
+				{
+					return performanceLevel;
+				}
+				set	
+				{
+					performanceLevel = value;
+				}
 			}
-			set	
+
+			public string KmsKeyId
 			{
-				maxSpotPrice = value;
-				DictionaryUtil.Add(QueryParameters, "MaxSpotPrice", value.ToString());
+				get
+				{
+					return kmsKeyId;
+				}
+				set	
+				{
+					kmsKeyId = value;
+				}
+			}
+
+			public string Description
+			{
+				get
+				{
+					return description;
+				}
+				set	
+				{
+					description = value;
+				}
+			}
+
+			public string SnapshotId
+			{
+				get
+				{
+					return snapshotId;
+				}
+				set	
+				{
+					snapshotId = value;
+				}
+			}
+
+			public int? Size
+			{
+				get
+				{
+					return size;
+				}
+				set	
+				{
+					size = value;
+				}
+			}
+
+			public string Device
+			{
+				get
+				{
+					return device;
+				}
+				set	
+				{
+					device = value;
+				}
+			}
+
+			public string DiskName
+			{
+				get
+				{
+					return diskName;
+				}
+				set	
+				{
+					diskName = value;
+				}
+			}
+
+			public string Category
+			{
+				get
+				{
+					return category;
+				}
+				set	
+				{
+					category = value;
+				}
+			}
+
+			public bool? DeleteWithInstance
+			{
+				get
+				{
+					return deleteWithInstance;
+				}
+				set	
+				{
+					deleteWithInstance = value;
+				}
+			}
+
+			public bool? Encrypted
+			{
+				get
+				{
+					return encrypted;
+				}
+				set	
+				{
+					encrypted = value;
+				}
+			}
+		}
+
+		public class SystemDiskConfig
+		{
+
+			private string diskCategory;
+
+			public string DiskCategory
+			{
+				get
+				{
+					return diskCategory;
+				}
+				set	
+				{
+					diskCategory = value;
+				}
+			}
+		}
+
+		public class DataDiskConfig
+		{
+
+			private string diskCategory;
+
+			public string DiskCategory
+			{
+				get
+				{
+					return diskCategory;
+				}
+				set	
+				{
+					diskCategory = value;
+				}
 			}
 		}
 
 		public class LaunchTemplateConfig
 		{
 
-			private string instanceType;
+			private string vSwitchId;
 
 			private double? maxPrice;
 
-			private string vSwitchId;
+			private int? priority;
+
+			private string instanceType;
 
 			private double? weightedCapacity;
 
-			private int? priority;
-
-			public string InstanceType
+			public string VSwitchId
 			{
 				get
 				{
-					return instanceType;
+					return vSwitchId;
 				}
 				set	
 				{
-					instanceType = value;
+					vSwitchId = value;
 				}
 			}
 
@@ -454,15 +1105,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
-			public string VSwitchId
+			public int? Priority
 			{
 				get
 				{
-					return vSwitchId;
+					return priority;
 				}
 				set	
 				{
-					vSwitchId = value;
+					priority = value;
+				}
+			}
+
+			public string InstanceType
+			{
+				get
+				{
+					return instanceType;
+				}
+				set	
+				{
+					instanceType = value;
 				}
 			}
 
@@ -477,16 +1140,36 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					weightedCapacity = value;
 				}
 			}
+		}
 
-			public int? Priority
+		public class LaunchConfigurationTag
+		{
+
+			private string key;
+
+			private string value_;
+
+			public string Key
 			{
 				get
 				{
-					return priority;
+					return key;
 				}
 				set	
 				{
-					priority = value;
+					key = value;
+				}
+			}
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
 				}
 			}
 		}

@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public StartRestoreTaskRequest()
             : base("Dbs", "2019-03-06", "StartRestoreTask", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string clientToken;
 
-		private string restoreTaskId;
-
 		private string ownerId;
+
+		private string restoreTaskId;
 
 		public string ClientToken
 		{
@@ -53,19 +59,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public string RestoreTaskId
-		{
-			get
-			{
-				return restoreTaskId;
-			}
-			set	
-			{
-				restoreTaskId = value;
-				DictionaryUtil.Add(QueryParameters, "RestoreTaskId", value);
-			}
-		}
-
 		public string OwnerId
 		{
 			get
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public string RestoreTaskId
+		{
+			get
+			{
+				return restoreTaskId;
+			}
+			set	
+			{
+				restoreTaskId = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTaskId", value);
 			}
 		}
 

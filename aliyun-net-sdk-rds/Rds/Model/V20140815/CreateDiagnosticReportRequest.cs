@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CreateDiagnosticReportRequest()
             : base("Rds", "2014-08-15", "CreateDiagnosticReport", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string endTime;
 
-		private string dBInstanceId;
-
 		private string startTime;
+
+		private string dBInstanceId;
 
 		public string EndTime
 		{
@@ -53,19 +59,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public string StartTime
 		{
 			get
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

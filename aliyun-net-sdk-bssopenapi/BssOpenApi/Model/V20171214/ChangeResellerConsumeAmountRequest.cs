@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,17 +33,17 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public ChangeResellerConsumeAmountRequest()
             : base("BssOpenApi", "2017-12-14", "ChangeResellerConsumeAmount")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string adjustType;
 
 		private string amount;
 
 		private string outBizId;
-
-		private string extendMap;
-
-		private string currency;
 
 		private string source;
 
@@ -50,18 +51,11 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 		private string businessType;
 
-		public string AdjustType
-		{
-			get
-			{
-				return adjustType;
-			}
-			set	
-			{
-				adjustType = value;
-				DictionaryUtil.Add(QueryParameters, "AdjustType", value);
-			}
-		}
+		private string adjustType;
+
+		private string extendMap;
+
+		private string currency;
 
 		public string Amount
 		{
@@ -86,32 +80,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				outBizId = value;
 				DictionaryUtil.Add(QueryParameters, "OutBizId", value);
-			}
-		}
-
-		public string ExtendMap
-		{
-			get
-			{
-				return extendMap;
-			}
-			set	
-			{
-				extendMap = value;
-				DictionaryUtil.Add(QueryParameters, "ExtendMap", value);
-			}
-		}
-
-		public string Currency
-		{
-			get
-			{
-				return currency;
-			}
-			set	
-			{
-				currency = value;
-				DictionaryUtil.Add(QueryParameters, "Currency", value);
 			}
 		}
 
@@ -151,6 +119,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				businessType = value;
 				DictionaryUtil.Add(QueryParameters, "BusinessType", value);
+			}
+		}
+
+		public string AdjustType
+		{
+			get
+			{
+				return adjustType;
+			}
+			set	
+			{
+				adjustType = value;
+				DictionaryUtil.Add(QueryParameters, "AdjustType", value);
+			}
+		}
+
+		public string ExtendMap
+		{
+			get
+			{
+				return extendMap;
+			}
+			set	
+			{
+				extendMap = value;
+				DictionaryUtil.Add(QueryParameters, "ExtendMap", value);
+			}
+		}
+
+		public string Currency
+		{
+			get
+			{
+				return currency;
+			}
+			set	
+			{
+				currency = value;
+				DictionaryUtil.Add(QueryParameters, "Currency", value);
 			}
 		}
 

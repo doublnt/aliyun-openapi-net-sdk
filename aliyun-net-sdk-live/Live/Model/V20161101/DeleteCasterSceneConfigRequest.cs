@@ -32,15 +32,34 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DeleteCasterSceneConfigRequest()
             : base("live", "2016-11-01", "DeleteCasterSceneConfig", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string type;
 
 		private string casterId;
 
-		private string sceneId;
-
 		private long? ownerId;
 
-		private string type;
+		private string sceneId;
+
+		public string Type
+		{
+			get
+			{
+				return type;
+			}
+			set	
+			{
+				type = value;
+				DictionaryUtil.Add(QueryParameters, "Type", value);
+			}
+		}
 
 		public string CasterId
 		{
@@ -52,19 +71,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				casterId = value;
 				DictionaryUtil.Add(QueryParameters, "CasterId", value);
-			}
-		}
-
-		public string SceneId
-		{
-			get
-			{
-				return sceneId;
-			}
-			set	
-			{
-				sceneId = value;
-				DictionaryUtil.Add(QueryParameters, "SceneId", value);
 			}
 		}
 
@@ -81,16 +87,16 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string Type
+		public string SceneId
 		{
 			get
 			{
-				return type;
+				return sceneId;
 			}
 			set	
 			{
-				type = value;
-				DictionaryUtil.Add(QueryParameters, "Type", value);
+				sceneId = value;
+				DictionaryUtil.Add(QueryParameters, "SceneId", value);
 			}
 		}
 

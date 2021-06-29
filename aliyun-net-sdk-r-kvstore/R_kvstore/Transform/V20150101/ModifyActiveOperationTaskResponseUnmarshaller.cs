@@ -26,13 +26,13 @@ namespace Aliyun.Acs.R_kvstore.Transform.V20150101
 {
     public class ModifyActiveOperationTaskResponseUnmarshaller
     {
-        public static ModifyActiveOperationTaskResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyActiveOperationTaskResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyActiveOperationTaskResponse modifyActiveOperationTaskResponse = new ModifyActiveOperationTaskResponse();
 
-			modifyActiveOperationTaskResponse.HttpResponse = context.HttpResponse;
-			modifyActiveOperationTaskResponse.RequestId = context.StringValue("ModifyActiveOperationTask.RequestId");
-			modifyActiveOperationTaskResponse.Ids = context.StringValue("ModifyActiveOperationTask.Ids");
+			modifyActiveOperationTaskResponse.HttpResponse = _ctx.HttpResponse;
+			modifyActiveOperationTaskResponse.RequestId = _ctx.StringValue("ModifyActiveOperationTask.RequestId");
+			modifyActiveOperationTaskResponse.Ids = _ctx.StringValue("ModifyActiveOperationTask.Ids");
         
 			return modifyActiveOperationTaskResponse;
         }

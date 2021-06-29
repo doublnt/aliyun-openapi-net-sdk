@@ -32,9 +32,13 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DeleteLiveDomainMappingRequest()
             : base("live", "2016-11-01", "DeleteLiveDomainMapping", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string pullDomain;
 
 		private string securityToken;
 
@@ -42,18 +46,7 @@ namespace Aliyun.Acs.live.Model.V20161101
 
 		private long? ownerId;
 
-		public string PullDomain
-		{
-			get
-			{
-				return pullDomain;
-			}
-			set	
-			{
-				pullDomain = value;
-				DictionaryUtil.Add(QueryParameters, "PullDomain", value);
-			}
-		}
+		private string pullDomain;
 
 		public string SecurityToken
 		{
@@ -91,6 +84,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string PullDomain
+		{
+			get
+			{
+				return pullDomain;
+			}
+			set	
+			{
+				pullDomain = value;
+				DictionaryUtil.Add(QueryParameters, "PullDomain", value);
 			}
 		}
 

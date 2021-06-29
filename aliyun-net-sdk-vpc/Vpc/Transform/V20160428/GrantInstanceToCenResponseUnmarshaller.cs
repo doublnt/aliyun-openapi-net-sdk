@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class GrantInstanceToCenResponseUnmarshaller
     {
-        public static GrantInstanceToCenResponse Unmarshall(UnmarshallerContext context)
+        public static GrantInstanceToCenResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			GrantInstanceToCenResponse grantInstanceToCenResponse = new GrantInstanceToCenResponse();
 
-			grantInstanceToCenResponse.HttpResponse = context.HttpResponse;
-			grantInstanceToCenResponse.RequestId = context.StringValue("GrantInstanceToCen.RequestId");
+			grantInstanceToCenResponse.HttpResponse = _ctx.HttpResponse;
+			grantInstanceToCenResponse.RequestId = _ctx.StringValue("GrantInstanceToCen.RequestId");
         
 			return grantInstanceToCenResponse;
         }

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,9 +31,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class GetCloudMetricLogsRequest : RpcAcsRequest<GetCloudMetricLogsResponse>
     {
         public GetCloudMetricLogsRequest()
-            : base("EHPC", "2018-04-12", "GetCloudMetricLogs", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "GetCloudMetricLogs")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private string metricScope;
+
+		private string clusterId;
+
+		private int? aggregationInterval;
+
+		private bool? reverse;
 
 		private string aggregationType;
 
@@ -40,21 +54,61 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private string metricCategories;
 
-		private string metricScope;
-
-		private string action;
-
 		private int? from;
-
-		private string clusterId;
 
 		private int? to;
 
-		private int? aggregationInterval;
+		public string MetricScope
+		{
+			get
+			{
+				return metricScope;
+			}
+			set	
+			{
+				metricScope = value;
+				DictionaryUtil.Add(QueryParameters, "MetricScope", value);
+			}
+		}
 
-		private bool? reverse;
+		public string ClusterId
+		{
+			get
+			{
+				return clusterId;
+			}
+			set	
+			{
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
 
-		private string accessKeyId;
+		public int? AggregationInterval
+		{
+			get
+			{
+				return aggregationInterval;
+			}
+			set	
+			{
+				aggregationInterval = value;
+				DictionaryUtil.Add(QueryParameters, "AggregationInterval", value.ToString());
+			}
+		}
+
+		public bool? Reverse
+		{
+			get
+			{
+				return reverse;
+			}
+			set	
+			{
+				reverse = value;
+				DictionaryUtil.Add(QueryParameters, "Reverse", value.ToString());
+			}
+		}
 
 		public string AggregationType
 		{
@@ -95,32 +149,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string MetricScope
-		{
-			get
-			{
-				return metricScope;
-			}
-			set	
-			{
-				metricScope = value;
-				DictionaryUtil.Add(QueryParameters, "MetricScope", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public int? From
 		{
 			get
@@ -134,19 +162,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string ClusterId
-		{
-			get
-			{
-				return clusterId;
-			}
-			set	
-			{
-				clusterId = value;
-				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
-			}
-		}
-
 		public int? To
 		{
 			get
@@ -157,45 +172,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				to = value;
 				DictionaryUtil.Add(QueryParameters, "To", value.ToString());
-			}
-		}
-
-		public int? AggregationInterval
-		{
-			get
-			{
-				return aggregationInterval;
-			}
-			set	
-			{
-				aggregationInterval = value;
-				DictionaryUtil.Add(QueryParameters, "AggregationInterval", value.ToString());
-			}
-		}
-
-		public bool? Reverse
-		{
-			get
-			{
-				return reverse;
-			}
-			set	
-			{
-				reverse = value;
-				DictionaryUtil.Add(QueryParameters, "Reverse", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

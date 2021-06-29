@@ -61,6 +61,10 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 		private bool? slaveDns;
 
+		private string resourceGroupId;
+
+		private string createTime;
+
 		private List<DescribeDomainInfo_RecordLine> recordLines;
 
 		private List<string> dnsServers;
@@ -280,6 +284,30 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			set	
 			{
 				slaveDns = value;
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+			}
+		}
+
+		public string CreateTime
+		{
+			get
+			{
+				return createTime;
+			}
+			set	
+			{
+				createTime = value;
 			}
 		}
 

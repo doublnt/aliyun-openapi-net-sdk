@@ -16,20 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.ROS.Model.V20150901;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.ROS.Model.V20150901;
 
 namespace Aliyun.Acs.ROS.Transform.V20150901
 {
     public class WaitConditionsResponseUnmarshaller
     {
-        public static WaitConditionsResponse Unmarshall(UnmarshallerContext context)
+        public static WaitConditionsResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			WaitConditionsResponse waitConditionsResponse = new WaitConditionsResponse();
 
-			waitConditionsResponse.HttpResponse = context.HttpResponse;
+			waitConditionsResponse.HttpResponse = _ctx.HttpResponse;
         
 			return waitConditionsResponse;
         }

@@ -32,28 +32,34 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public InvokeThingsServiceRequest()
             : base("Iot", "2018-01-20", "InvokeThingsService", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string args;
-
-		private string identifier;
 
 		private string iotInstanceId;
 
-		private List<string> deviceNames;
+		private string identifier;
 
 		private string productKey;
 
-		public string Args
+		private string args;
+
+		private List<string> deviceNames = new List<string>(){ };
+
+		public string IotInstanceId
 		{
 			get
 			{
-				return args;
+				return iotInstanceId;
 			}
 			set	
 			{
-				args = value;
-				DictionaryUtil.Add(QueryParameters, "Args", value);
+				iotInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
 			}
 		}
 
@@ -70,16 +76,29 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string IotInstanceId
+		public string ProductKey
 		{
 			get
 			{
-				return iotInstanceId;
+				return productKey;
 			}
 			set	
 			{
-				iotInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public string Args
+		{
+			get
+			{
+				return args;
+			}
+			set	
+			{
+				args = value;
+				DictionaryUtil.Add(QueryParameters, "Args", value);
 			}
 		}
 
@@ -97,19 +116,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 				{
 					DictionaryUtil.Add(QueryParameters,"DeviceName." + (i + 1) , deviceNames[i]);
 				}
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 

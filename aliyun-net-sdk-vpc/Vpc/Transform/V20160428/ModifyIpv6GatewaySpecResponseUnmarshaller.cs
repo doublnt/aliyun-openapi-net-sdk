@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyIpv6GatewaySpecResponseUnmarshaller
     {
-        public static ModifyIpv6GatewaySpecResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyIpv6GatewaySpecResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyIpv6GatewaySpecResponse modifyIpv6GatewaySpecResponse = new ModifyIpv6GatewaySpecResponse();
 
-			modifyIpv6GatewaySpecResponse.HttpResponse = context.HttpResponse;
-			modifyIpv6GatewaySpecResponse.RequestId = context.StringValue("ModifyIpv6GatewaySpec.RequestId");
+			modifyIpv6GatewaySpecResponse.HttpResponse = _ctx.HttpResponse;
+			modifyIpv6GatewaySpecResponse.RequestId = _ctx.StringValue("ModifyIpv6GatewaySpec.RequestId");
         
 			return modifyIpv6GatewaySpecResponse;
         }

@@ -32,15 +32,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public UpdateDeviceShadowRequest()
             : base("Iot", "2018-01-20", "UpdateDeviceShadow", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string shadowMessage;
 
 		private string iotInstanceId;
 
-		private string deviceName;
-
 		private string productKey;
+
+		private bool? deltaUpdate;
+
+		private string deviceName;
 
 		public string ShadowMessage
 		{
@@ -68,19 +76,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
-		{
-			get
-			{
-				return deviceName;
-			}
-			set	
-			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
 		public string ProductKey
 		{
 			get
@@ -91,6 +86,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productKey = value;
 				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public bool? DeltaUpdate
+		{
+			get
+			{
+				return deltaUpdate;
+			}
+			set	
+			{
+				deltaUpdate = value;
+				DictionaryUtil.Add(QueryParameters, "DeltaUpdate", value.ToString());
+			}
+		}
+
+		public string DeviceName
+		{
+			get
+			{
+				return deviceName;
+			}
+			set	
+			{
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

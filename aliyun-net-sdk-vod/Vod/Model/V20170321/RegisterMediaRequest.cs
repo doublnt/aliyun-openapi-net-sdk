@@ -32,34 +32,27 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public RegisterMediaRequest()
             : base("vod", "2017-03-21", "RegisterMedia", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string userData;
 
 		private long? resourceOwnerId;
 
-		private string templateGroupId;
+		private string userData;
+
+		private string registerMetadatas;
+
+		private string workflowId;
 
 		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string registerMetadatas;
-
-		private string workFlowId;
-
-		public string UserData
-		{
-			get
-			{
-				return userData;
-			}
-			set	
-			{
-				userData = value;
-				DictionaryUtil.Add(QueryParameters, "UserData", value);
-			}
-		}
+		private string templateGroupId;
 
 		public long? ResourceOwnerId
 		{
@@ -74,16 +67,42 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string TemplateGroupId
+		public string UserData
 		{
 			get
 			{
-				return templateGroupId;
+				return userData;
 			}
 			set	
 			{
-				templateGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "TemplateGroupId", value);
+				userData = value;
+				DictionaryUtil.Add(QueryParameters, "UserData", value);
+			}
+		}
+
+		public string RegisterMetadatas
+		{
+			get
+			{
+				return registerMetadatas;
+			}
+			set	
+			{
+				registerMetadatas = value;
+				DictionaryUtil.Add(QueryParameters, "RegisterMetadatas", value);
+			}
+		}
+
+		public string WorkflowId
+		{
+			get
+			{
+				return workflowId;
+			}
+			set	
+			{
+				workflowId = value;
+				DictionaryUtil.Add(QueryParameters, "WorkflowId", value);
 			}
 		}
 
@@ -113,29 +132,16 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string RegisterMetadatas
+		public string TemplateGroupId
 		{
 			get
 			{
-				return registerMetadatas;
+				return templateGroupId;
 			}
 			set	
 			{
-				registerMetadatas = value;
-				DictionaryUtil.Add(QueryParameters, "RegisterMetadatas", value);
-			}
-		}
-
-		public string WorkFlowId
-		{
-			get
-			{
-				return workFlowId;
-			}
-			set	
-			{
-				workFlowId = value;
-				DictionaryUtil.Add(QueryParameters, "WorkFlowId", value);
+				templateGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "TemplateGroupId", value);
 			}
 		}
 

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeCommandsRequest()
             : base("Ecs", "2014-05-26", "DescribeCommands", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -44,6 +49,10 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string commandId;
 
 		private long? pageNumber;
+
+		private string provider;
+
+		private string contentEncoding;
 
 		private long? pageSize;
 
@@ -117,6 +126,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				pageNumber = value;
 				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string Provider
+		{
+			get
+			{
+				return provider;
+			}
+			set	
+			{
+				provider = value;
+				DictionaryUtil.Add(QueryParameters, "Provider", value);
+			}
+		}
+
+		public string ContentEncoding
+		{
+			get
+			{
+				return contentEncoding;
+			}
+			set	
+			{
+				contentEncoding = value;
+				DictionaryUtil.Add(QueryParameters, "ContentEncoding", value);
 			}
 		}
 

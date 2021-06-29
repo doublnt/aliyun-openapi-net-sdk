@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,27 +33,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public ExecuteScalingRuleRequest()
             : base("Ess", "2014-08-28", "ExecuteScalingRule", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string scalingRuleAri;
-
-		private string resourceOwnerAccount;
 
 		private string clientToken;
 
 		private float? breachThreshold;
 
-		private string ownerAccount;
+		private string resourceOwnerAccount;
 
-		private string action;
+		private string ownerAccount;
 
 		private long? ownerId;
 
 		private float? metricValue;
 
-		private string accessKeyId;
+		private string scalingRuleAri;
 
 		public long? ResourceOwnerId
 		{
@@ -64,32 +67,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ScalingRuleAri
-		{
-			get
-			{
-				return scalingRuleAri;
-			}
-			set	
-			{
-				scalingRuleAri = value;
-				DictionaryUtil.Add(QueryParameters, "ScalingRuleAri", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -119,6 +96,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
 		public string OwnerAccount
 		{
 			get
@@ -129,19 +119,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -171,16 +148,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
+		public string ScalingRuleAri
 		{
 			get
 			{
-				return accessKeyId;
+				return scalingRuleAri;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				scalingRuleAri = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingRuleAri", value);
 			}
 		}
 

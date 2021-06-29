@@ -32,33 +32,33 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public CreateLifecycleHookRequest()
             : base("Ess", "2014-08-28", "CreateLifecycleHook", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string defaultResult;
 
-		private string resourceOwnerAccount;
-
 		private int? heartbeatTimeout;
 
 		private string scalingGroupId;
+
+		private string lifecycleTransition;
+
+		private string lifecycleHookName;
+
+		private string notificationArn;
+
+		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
 		private string notificationMetadata;
 
 		private long? ownerId;
-
-		private string lifecycleTransition;
-
-		private string accessKeyId;
-
-		private string lifecycleHookName;
-
-		private string notificationArn;
-
-		private string action;
-
-		private List<LifecycleHook> lifecycleHooks;
 
 		public string DefaultResult
 		{
@@ -70,19 +70,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				defaultResult = value;
 				DictionaryUtil.Add(QueryParameters, "DefaultResult", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -109,6 +96,58 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				scalingGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
+			}
+		}
+
+		public string LifecycleTransition
+		{
+			get
+			{
+				return lifecycleTransition;
+			}
+			set	
+			{
+				lifecycleTransition = value;
+				DictionaryUtil.Add(QueryParameters, "LifecycleTransition", value);
+			}
+		}
+
+		public string LifecycleHookName
+		{
+			get
+			{
+				return lifecycleHookName;
+			}
+			set	
+			{
+				lifecycleHookName = value;
+				DictionaryUtil.Add(QueryParameters, "LifecycleHookName", value);
+			}
+		}
+
+		public string NotificationArn
+		{
+			get
+			{
+				return notificationArn;
+			}
+			set	
+			{
+				notificationArn = value;
+				DictionaryUtil.Add(QueryParameters, "NotificationArn", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -148,181 +187,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string LifecycleTransition
-		{
-			get
-			{
-				return lifecycleTransition;
-			}
-			set	
-			{
-				lifecycleTransition = value;
-				DictionaryUtil.Add(QueryParameters, "LifecycleTransition", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string LifecycleHookName
-		{
-			get
-			{
-				return lifecycleHookName;
-			}
-			set	
-			{
-				lifecycleHookName = value;
-				DictionaryUtil.Add(QueryParameters, "LifecycleHookName", value);
-			}
-		}
-
-		public string NotificationArn
-		{
-			get
-			{
-				return notificationArn;
-			}
-			set	
-			{
-				notificationArn = value;
-				DictionaryUtil.Add(QueryParameters, "NotificationArn", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public List<LifecycleHook> LifecycleHooks
-		{
-			get
-			{
-				return lifecycleHooks;
-			}
-
-			set
-			{
-				lifecycleHooks = value;
-				for (int i = 0; i < lifecycleHooks.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".DefaultResult", lifecycleHooks[i].DefaultResult);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleHookName", lifecycleHooks[i].LifecycleHookName);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".HeartbeatTimeout", lifecycleHooks[i].HeartbeatTimeout);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationArn", lifecycleHooks[i].NotificationArn);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationMetadata", lifecycleHooks[i].NotificationMetadata);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleTransition", lifecycleHooks[i].LifecycleTransition);
-				}
-			}
-		}
-
-		public class LifecycleHook
-		{
-
-			private string defaultResult;
-
-			private string lifecycleHookName;
-
-			private int? heartbeatTimeout;
-
-			private string notificationArn;
-
-			private string notificationMetadata;
-
-			private string lifecycleTransition;
-
-			public string DefaultResult
-			{
-				get
-				{
-					return defaultResult;
-				}
-				set	
-				{
-					defaultResult = value;
-				}
-			}
-
-			public string LifecycleHookName
-			{
-				get
-				{
-					return lifecycleHookName;
-				}
-				set	
-				{
-					lifecycleHookName = value;
-				}
-			}
-
-			public int? HeartbeatTimeout
-			{
-				get
-				{
-					return heartbeatTimeout;
-				}
-				set	
-				{
-					heartbeatTimeout = value;
-				}
-			}
-
-			public string NotificationArn
-			{
-				get
-				{
-					return notificationArn;
-				}
-				set	
-				{
-					notificationArn = value;
-				}
-			}
-
-			public string NotificationMetadata
-			{
-				get
-				{
-					return notificationMetadata;
-				}
-				set	
-				{
-					notificationMetadata = value;
-				}
-			}
-
-			public string LifecycleTransition
-			{
-				get
-				{
-					return lifecycleTransition;
-				}
-				set	
-				{
-					lifecycleTransition = value;
-				}
 			}
 		}
 

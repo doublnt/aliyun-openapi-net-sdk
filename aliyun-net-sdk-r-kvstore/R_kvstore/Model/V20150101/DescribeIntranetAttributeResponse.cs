@@ -31,6 +31,8 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string expireTime;
 
+		private string bandwidthExpireTime;
+
 		public string RequestId
 		{
 			get
@@ -64,6 +66,18 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			set	
 			{
 				expireTime = value;
+			}
+		}
+
+		public string BandwidthExpireTime
+		{
+			get
+			{
+				return bandwidthExpireTime;
+			}
+			set	
+			{
+				bandwidthExpireTime = value;
 			}
 		}
 	}

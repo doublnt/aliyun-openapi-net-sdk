@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,36 +32,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeZonesRequest()
             : base("Ecs", "2014-05-26", "DescribeZones", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string spotStrategy;
-
 		private long? resourceOwnerId;
+
+		private string instanceChargeType;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string acceptLanguage;
-
 		private long? ownerId;
-
-		private string instanceChargeType;
 
 		private bool? verbose;
 
-		public string SpotStrategy
-		{
-			get
-			{
-				return spotStrategy;
-			}
-			set	
-			{
-				spotStrategy = value;
-				DictionaryUtil.Add(QueryParameters, "SpotStrategy", value);
-			}
-		}
+		private string spotStrategy;
+
+		private string acceptLanguage;
 
 		public long? ResourceOwnerId
 		{
@@ -74,6 +66,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceChargeType
+		{
+			get
+			{
+				return instanceChargeType;
+			}
+			set	
+			{
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
 			}
 		}
 
@@ -103,19 +108,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string AcceptLanguage
-		{
-			get
-			{
-				return acceptLanguage;
-			}
-			set	
-			{
-				acceptLanguage = value;
-				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -129,19 +121,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InstanceChargeType
-		{
-			get
-			{
-				return instanceChargeType;
-			}
-			set	
-			{
-				instanceChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
-			}
-		}
-
 		public bool? Verbose
 		{
 			get
@@ -152,6 +131,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				verbose = value;
 				DictionaryUtil.Add(QueryParameters, "Verbose", value.ToString());
+			}
+		}
+
+		public string SpotStrategy
+		{
+			get
+			{
+				return spotStrategy;
+			}
+			set	
+			{
+				spotStrategy = value;
+				DictionaryUtil.Add(QueryParameters, "SpotStrategy", value);
+			}
+		}
+
+		public string AcceptLanguage
+		{
+			get
+			{
+				return acceptLanguage;
+			}
+			set	
+			{
+				acceptLanguage = value;
+				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
 			}
 		}
 

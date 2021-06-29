@@ -32,29 +32,23 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeOssResultItemsRequest()
             : base("Green", "2017-08-23", "DescribeOssResultItems", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private int? totalCount;
 
 		private float? minScore;
 
-		private string suggestion;
-
-		private int? currentPage;
-
 		private float? maxScore;
+
+		private long? stockTaskId;
 
 		private string startDate;
 
-		private string resourceType;
-
 		private string scene;
-
-		private string queryId;
-
-		private string bucket;
-
-		private string endDate;
 
 		private string sourceIp;
 
@@ -64,20 +58,21 @@ namespace Aliyun.Acs.Green.Model.V20170823
 
 		private bool? stock;
 
-		private string _object;
+		private int? totalCount;
 
-		public int? TotalCount
-		{
-			get
-			{
-				return totalCount;
-			}
-			set	
-			{
-				totalCount = value;
-				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
-			}
-		}
+		private string suggestion;
+
+		private int? currentPage;
+
+		private string resourceType;
+
+		private string queryId;
+
+		private string bucket;
+
+		private string endDate;
+
+		private string _object;
 
 		public float? MinScore
 		{
@@ -89,32 +84,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				minScore = value;
 				DictionaryUtil.Add(QueryParameters, "MinScore", value.ToString());
-			}
-		}
-
-		public string Suggestion
-		{
-			get
-			{
-				return suggestion;
-			}
-			set	
-			{
-				suggestion = value;
-				DictionaryUtil.Add(QueryParameters, "Suggestion", value);
-			}
-		}
-
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 
@@ -131,6 +100,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
+		public long? StockTaskId
+		{
+			get
+			{
+				return stockTaskId;
+			}
+			set	
+			{
+				stockTaskId = value;
+				DictionaryUtil.Add(QueryParameters, "StockTaskId", value.ToString());
+			}
+		}
+
 		public string StartDate
 		{
 			get
@@ -144,19 +126,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public string ResourceType
-		{
-			get
-			{
-				return resourceType;
-			}
-			set	
-			{
-				resourceType = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
-			}
-		}
-
 		public string Scene
 		{
 			get
@@ -167,45 +136,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				scene = value;
 				DictionaryUtil.Add(QueryParameters, "Scene", value);
-			}
-		}
-
-		public string QueryId
-		{
-			get
-			{
-				return queryId;
-			}
-			set	
-			{
-				queryId = value;
-				DictionaryUtil.Add(QueryParameters, "QueryId", value);
-			}
-		}
-
-		public string Bucket
-		{
-			get
-			{
-				return bucket;
-			}
-			set	
-			{
-				bucket = value;
-				DictionaryUtil.Add(QueryParameters, "Bucket", value);
-			}
-		}
-
-		public string EndDate
-		{
-			get
-			{
-				return endDate;
-			}
-			set	
-			{
-				endDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndDate", value);
 			}
 		}
 
@@ -258,6 +188,97 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				stock = value;
 				DictionaryUtil.Add(QueryParameters, "Stock", value.ToString());
+			}
+		}
+
+		public int? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+				DictionaryUtil.Add(QueryParameters, "TotalCount", value.ToString());
+			}
+		}
+
+		public string Suggestion
+		{
+			get
+			{
+				return suggestion;
+			}
+			set	
+			{
+				suggestion = value;
+				DictionaryUtil.Add(QueryParameters, "Suggestion", value);
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
+			}
+		}
+
+		public string ResourceType
+		{
+			get
+			{
+				return resourceType;
+			}
+			set	
+			{
+				resourceType = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
+			}
+		}
+
+		public string QueryId
+		{
+			get
+			{
+				return queryId;
+			}
+			set	
+			{
+				queryId = value;
+				DictionaryUtil.Add(QueryParameters, "QueryId", value);
+			}
+		}
+
+		public string Bucket
+		{
+			get
+			{
+				return bucket;
+			}
+			set	
+			{
+				bucket = value;
+				DictionaryUtil.Add(QueryParameters, "Bucket", value);
+			}
+		}
+
+		public string EndDate
+		{
+			get
+			{
+				return endDate;
+			}
+			set	
+			{
+				endDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndDate", value);
 			}
 		}
 

@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -863,6 +864,8 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 
 			private string description;
 
+			private string arrayItemsType;
+
 			public string ApiParameterName
 			{
 				get
@@ -1052,6 +1055,18 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 				set	
 				{
 					description = value;
+				}
+			}
+
+			public string ArrayItemsType
+			{
+				get
+				{
+					return arrayItemsType;
+				}
+				set	
+				{
+					arrayItemsType = value;
 				}
 			}
 		}
@@ -1257,9 +1272,13 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 
 			private int? mockStatusCode;
 
+			private string vpcId;
+
 			private List<DescribeApiHistory_MockHeader> mockHeaders;
 
 			private DescribeApiHistory_VpcConfig vpcConfig;
+
+			private DescribeApiHistory_FunctionComputeConfig functionComputeConfig;
 
 			public string ServiceProtocol
 			{
@@ -1369,6 +1388,18 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 				}
 			}
 
+			public string VpcId
+			{
+				get
+				{
+					return vpcId;
+				}
+				set	
+				{
+					vpcId = value;
+				}
+			}
+
 			public List<DescribeApiHistory_MockHeader> MockHeaders
 			{
 				get
@@ -1390,6 +1421,18 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 				set	
 				{
 					vpcConfig = value;
+				}
+			}
+
+			public DescribeApiHistory_FunctionComputeConfig FunctionComputeConfig
+			{
+				get
+				{
+					return functionComputeConfig;
+				}
+				set	
+				{
+					functionComputeConfig = value;
 				}
 			}
 
@@ -1481,6 +1524,66 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 					set	
 					{
 						port = value;
+					}
+				}
+			}
+
+			public class DescribeApiHistory_FunctionComputeConfig
+			{
+
+				private string regionId;
+
+				private string serviceName;
+
+				private string functionName;
+
+				private string roleArn;
+
+				public string RegionId
+				{
+					get
+					{
+						return regionId;
+					}
+					set	
+					{
+						regionId = value;
+					}
+				}
+
+				public string ServiceName
+				{
+					get
+					{
+						return serviceName;
+					}
+					set	
+					{
+						serviceName = value;
+					}
+				}
+
+				public string FunctionName
+				{
+					get
+					{
+						return functionName;
+					}
+					set	
+					{
+						functionName = value;
+					}
+				}
+
+				public string RoleArn
+				{
+					get
+					{
+						return roleArn;
+					}
+					set	
+					{
+						roleArn = value;
 					}
 				}
 			}

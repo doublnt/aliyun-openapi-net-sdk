@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -101,6 +102,10 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private long? vbrOwnerUid;
 
+			private string eccId;
+
+			private string type;
+
 			private string creationTime;
 
 			private string activationTime;
@@ -111,6 +116,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private int? vlanId;
 
+			private string status;
+
 			private string circuitCode;
 
 			private string localGatewayIp;
@@ -118,6 +125,24 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private string peerGatewayIp;
 
 			private string peeringSubnetMask;
+
+			private string pConnVbrChargeType;
+
+			private string pConnVbrExpireTime;
+
+			private string pConnVbrBussinessStatus;
+
+			private string bandwidth;
+
+			private string localIpv6GatewayIp;
+
+			private string peerIpv6GatewayIp;
+
+			private string peeringIpv6SubnetMask;
+
+			private bool? enableIpv6;
+
+			private string bandwidthStatus;
 
 			public string VbrId
 			{
@@ -140,6 +165,30 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					vbrOwnerUid = value;
+				}
+			}
+
+			public string EccId
+			{
+				get
+				{
+					return eccId;
+				}
+				set	
+				{
+					eccId = value;
+				}
+			}
+
+			public string Type
+			{
+				get
+				{
+					return type;
+				}
+				set	
+				{
+					type = value;
 				}
 			}
 
@@ -203,6 +252,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string Status
+			{
+				get
+				{
+					return status;
+				}
+				set	
+				{
+					status = value;
+				}
+			}
+
 			public string CircuitCode
 			{
 				get
@@ -248,6 +309,114 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					peeringSubnetMask = value;
+				}
+			}
+
+			public string PConnVbrChargeType
+			{
+				get
+				{
+					return pConnVbrChargeType;
+				}
+				set	
+				{
+					pConnVbrChargeType = value;
+				}
+			}
+
+			public string PConnVbrExpireTime
+			{
+				get
+				{
+					return pConnVbrExpireTime;
+				}
+				set	
+				{
+					pConnVbrExpireTime = value;
+				}
+			}
+
+			public string PConnVbrBussinessStatus
+			{
+				get
+				{
+					return pConnVbrBussinessStatus;
+				}
+				set	
+				{
+					pConnVbrBussinessStatus = value;
+				}
+			}
+
+			public string Bandwidth
+			{
+				get
+				{
+					return bandwidth;
+				}
+				set	
+				{
+					bandwidth = value;
+				}
+			}
+
+			public string LocalIpv6GatewayIp
+			{
+				get
+				{
+					return localIpv6GatewayIp;
+				}
+				set	
+				{
+					localIpv6GatewayIp = value;
+				}
+			}
+
+			public string PeerIpv6GatewayIp
+			{
+				get
+				{
+					return peerIpv6GatewayIp;
+				}
+				set	
+				{
+					peerIpv6GatewayIp = value;
+				}
+			}
+
+			public string PeeringIpv6SubnetMask
+			{
+				get
+				{
+					return peeringIpv6SubnetMask;
+				}
+				set	
+				{
+					peeringIpv6SubnetMask = value;
+				}
+			}
+
+			public bool? EnableIpv6
+			{
+				get
+				{
+					return enableIpv6;
+				}
+				set	
+				{
+					enableIpv6 = value;
+				}
+			}
+
+			public string BandwidthStatus
+			{
+				get
+				{
+					return bandwidthStatus;
+				}
+				set	
+				{
+					bandwidthStatus = value;
 				}
 			}
 		}

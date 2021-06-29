@@ -32,26 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public UpdateDeviceGroupRequest()
             : base("Iot", "2018-01-20", "UpdateDeviceGroup", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string groupDesc;
 
 		private string iotInstanceId;
 
 		private string groupId;
 
-		public string GroupDesc
-		{
-			get
-			{
-				return groupDesc;
-			}
-			set	
-			{
-				groupDesc = value;
-				DictionaryUtil.Add(QueryParameters, "GroupDesc", value);
-			}
-		}
+		private string groupDesc;
 
 		public string IotInstanceId
 		{
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				groupId = value;
 				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public string GroupDesc
+		{
+			get
+			{
+				return groupDesc;
+			}
+			set	
+			{
+				groupDesc = value;
+				DictionaryUtil.Add(QueryParameters, "GroupDesc", value);
 			}
 		}
 

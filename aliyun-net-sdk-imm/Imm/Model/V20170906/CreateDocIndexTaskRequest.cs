@@ -32,7 +32,12 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public CreateDocIndexTaskRequest()
             : base("imm", "2017-09-06", "CreateDocIndexTask", "imm", "openAPI")
         {
+			Method = MethodType.POST;
         }
+
+		private string project;
+
+		private string uniqueId;
 
 		private string customKey1;
 
@@ -46,8 +51,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 		private string customKey2;
 
-		private string project;
-
 		private string customKey6;
 
 		private string contentType;
@@ -56,7 +59,31 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 		private string srcUri;
 
-		private string uniqueId;
+		public string Project
+		{
+			get
+			{
+				return project;
+			}
+			set	
+			{
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
+			}
+		}
+
+		public string UniqueId
+		{
+			get
+			{
+				return uniqueId;
+			}
+			set	
+			{
+				uniqueId = value;
+				DictionaryUtil.Add(QueryParameters, "UniqueId", value);
+			}
+		}
 
 		public string CustomKey1
 		{
@@ -136,19 +163,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
-		{
-			get
-			{
-				return project;
-			}
-			set	
-			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
-			}
-		}
-
 		public string CustomKey6
 		{
 			get
@@ -198,19 +212,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				srcUri = value;
 				DictionaryUtil.Add(QueryParameters, "SrcUri", value);
-			}
-		}
-
-		public string UniqueId
-		{
-			get
-			{
-				return uniqueId;
-			}
-			set	
-			{
-				uniqueId = value;
-				DictionaryUtil.Add(QueryParameters, "UniqueId", value);
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,9 +33,13 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryInstanceBillRequest()
             : base("BssOpenApi", "2017-12-14", "QueryInstanceBill")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private bool? isBillingItem;
 
 		private string productCode;
 
@@ -42,28 +47,23 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 		private string subscriptionType;
 
-		private int? pageSize;
-
 		private string billingCycle;
 
 		private long? ownerId;
 
 		private int? pageNum;
 
+		private long? billOwnerId;
+
+		private string billingDate;
+
 		private string productType;
 
-		public bool? IsBillingItem
-		{
-			get
-			{
-				return isBillingItem;
-			}
-			set	
-			{
-				isBillingItem = value;
-				DictionaryUtil.Add(QueryParameters, "IsBillingItem", value.ToString());
-			}
-		}
+		private bool? isBillingItem;
+
+		private string granularity;
+
+		private int? pageSize;
 
 		public string ProductCode
 		{
@@ -101,19 +101,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				subscriptionType = value;
 				DictionaryUtil.Add(QueryParameters, "SubscriptionType", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 
@@ -156,6 +143,32 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			}
 		}
 
+		public long? BillOwnerId
+		{
+			get
+			{
+				return billOwnerId;
+			}
+			set	
+			{
+				billOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "BillOwnerId", value.ToString());
+			}
+		}
+
+		public string BillingDate
+		{
+			get
+			{
+				return billingDate;
+			}
+			set	
+			{
+				billingDate = value;
+				DictionaryUtil.Add(QueryParameters, "BillingDate", value);
+			}
+		}
+
 		public string ProductType
 		{
 			get
@@ -166,6 +179,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public bool? IsBillingItem
+		{
+			get
+			{
+				return isBillingItem;
+			}
+			set	
+			{
+				isBillingItem = value;
+				DictionaryUtil.Add(QueryParameters, "IsBillingItem", value.ToString());
+			}
+		}
+
+		public string Granularity
+		{
+			get
+			{
+				return granularity;
+			}
+			set	
+			{
+				granularity = value;
+				DictionaryUtil.Add(QueryParameters, "Granularity", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

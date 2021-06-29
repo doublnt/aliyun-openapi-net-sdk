@@ -32,6 +32,11 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public SubmitVerificationRequest()
             : base("Cloudauth", "2018-09-16", "SubmitVerification", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
 			Method = MethodType.POST;
         }
@@ -42,7 +47,7 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 
 		private string sourceIp;
 
-		private List<Material> materials;
+		private List<Material> materials = new List<Material>(){ };
 
 		private string ticketId;
 

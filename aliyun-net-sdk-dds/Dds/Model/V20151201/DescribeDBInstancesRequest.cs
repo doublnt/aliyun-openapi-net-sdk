@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,8 +31,14 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class DescribeDBInstancesRequest : RpcAcsRequest<DescribeDBInstancesResponse>
     {
         public DescribeDBInstancesRequest()
-            : base("Dds", "2015-12-01", "DescribeDBInstances", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "DescribeDBInstances")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -44,7 +51,7 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string replicationFactor;
 
-		private string accessKeyId;
+		private string resourceGroupId;
 
 		private string expired;
 
@@ -54,21 +61,21 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private int? pageSize;
 
-		private string action;
-
 		private string dBInstanceId;
 
 		private string dBInstanceDescription;
 
 		private string dBInstanceStatus;
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string expireTime;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
+
+		private string connectionDomain;
 
 		private long? ownerId;
 
@@ -149,16 +156,16 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string AccessKeyId
+		public string ResourceGroupId
 		{
 			get
 			{
-				return accessKeyId;
+				return resourceGroupId;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 
@@ -211,19 +218,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -320,6 +314,19 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string ConnectionDomain
+		{
+			get
+			{
+				return connectionDomain;
+			}
+			set	
+			{
+				connectionDomain = value;
+				DictionaryUtil.Add(QueryParameters, "ConnectionDomain", value);
 			}
 		}
 

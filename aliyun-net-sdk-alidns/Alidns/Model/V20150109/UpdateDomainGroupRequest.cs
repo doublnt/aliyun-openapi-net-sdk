@@ -30,15 +30,21 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class UpdateDomainGroupRequest : RpcAcsRequest<UpdateDomainGroupResponse>
     {
         public UpdateDomainGroupRequest()
-            : base("Alidns", "2015-01-09", "UpdateDomainGroup", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "UpdateDomainGroup", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string groupId;
 
-		private string lang;
-
 		private string groupName;
+
+		private string lang;
 
 		public string GroupId
 		{
@@ -53,19 +59,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
 		public string GroupName
 		{
 			get
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				groupName = value;
 				DictionaryUtil.Add(QueryParameters, "GroupName", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

@@ -29,6 +29,8 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private List<DescribeShardingNetworkAddress_NetworkAddress> networkAddresses;
 
+		private List<DescribeShardingNetworkAddress_CompatibleConnection> compatibleConnections;
+
 		public string RequestId
 		{
 			get
@@ -53,6 +55,18 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
+		public List<DescribeShardingNetworkAddress_CompatibleConnection> CompatibleConnections
+		{
+			get
+			{
+				return compatibleConnections;
+			}
+			set	
+			{
+				compatibleConnections = value;
+			}
+		}
+
 		public class DescribeShardingNetworkAddress_NetworkAddress
 		{
 
@@ -71,6 +85,10 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			private string nodeId;
 
 			private string expiredTime;
+
+			private string nodeType;
+
+			private string role;
 
 			public string NetworkAddress
 			{
@@ -153,6 +171,132 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				set	
 				{
 					nodeId = value;
+				}
+			}
+
+			public string ExpiredTime
+			{
+				get
+				{
+					return expiredTime;
+				}
+				set	
+				{
+					expiredTime = value;
+				}
+			}
+
+			public string NodeType
+			{
+				get
+				{
+					return nodeType;
+				}
+				set	
+				{
+					nodeType = value;
+				}
+			}
+
+			public string Role
+			{
+				get
+				{
+					return role;
+				}
+				set	
+				{
+					role = value;
+				}
+			}
+		}
+
+		public class DescribeShardingNetworkAddress_CompatibleConnection
+		{
+
+			private string networkAddress;
+
+			private string iPAddress;
+
+			private string networkType;
+
+			private string port;
+
+			private string vPCId;
+
+			private string vswitchId;
+
+			private string expiredTime;
+
+			public string NetworkAddress
+			{
+				get
+				{
+					return networkAddress;
+				}
+				set	
+				{
+					networkAddress = value;
+				}
+			}
+
+			public string IPAddress
+			{
+				get
+				{
+					return iPAddress;
+				}
+				set	
+				{
+					iPAddress = value;
+				}
+			}
+
+			public string NetworkType
+			{
+				get
+				{
+					return networkType;
+				}
+				set	
+				{
+					networkType = value;
+				}
+			}
+
+			public string Port
+			{
+				get
+				{
+					return port;
+				}
+				set	
+				{
+					port = value;
+				}
+			}
+
+			public string VPCId
+			{
+				get
+				{
+					return vPCId;
+				}
+				set	
+				{
+					vPCId = value;
+				}
+			}
+
+			public string VswitchId
+			{
+				get
+				{
+					return vswitchId;
+				}
+				set	
+				{
+					vswitchId = value;
 				}
 			}
 

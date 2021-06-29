@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,11 +33,19 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public SetFileCacheExpiredConfigRequest()
             : base("Cdn", "2018-05-10", "SetFileCacheExpiredConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string action;
+		private string securityToken;
 
 		private string domainName;
+
+		private string weight;
 
 		private string cacheContent;
 
@@ -44,18 +53,16 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 
 		private string tTL;
 
-		private long? configId;
-
-		public string Action
+		public string SecurityToken
 		{
 			get
 			{
-				return action;
+				return securityToken;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -69,6 +76,19 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				domainName = value;
 				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public string Weight
+		{
+			get
+			{
+				return weight;
+			}
+			set	
+			{
+				weight = value;
+				DictionaryUtil.Add(QueryParameters, "Weight", value);
 			}
 		}
 
@@ -108,19 +128,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				tTL = value;
 				DictionaryUtil.Add(QueryParameters, "TTL", value);
-			}
-		}
-
-		public long? ConfigId
-		{
-			get
-			{
-				return configId;
-			}
-			set	
-			{
-				configId = value;
-				DictionaryUtil.Add(QueryParameters, "ConfigId", value.ToString());
 			}
 		}
 

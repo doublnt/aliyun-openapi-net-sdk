@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,35 +31,29 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class DescribeRunningLogRecordsRequest : RpcAcsRequest<DescribeRunningLogRecordsResponse>
     {
         public DescribeRunningLogRecordsRequest()
-            : base("Dds", "2015-12-01", "DescribeRunningLogRecords", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "DescribeRunningLogRecords")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? sQLId;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
-
-		private string endTime;
+		private string roleId;
 
 		private string startTime;
 
-		private long? ownerId;
-
 		private int? pageNumber;
 
-		private string accessKeyId;
-
-		private string dBName;
+		private string resourceGroupId;
 
 		private string securityToken;
 
 		private int? pageSize;
-
-		private string action;
 
 		private string dBInstanceId;
 
@@ -66,18 +61,17 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string nodeId;
 
-		public long? SQLId
-		{
-			get
-			{
-				return sQLId;
-			}
-			set	
-			{
-				sQLId = value;
-				DictionaryUtil.Add(QueryParameters, "SQLId", value.ToString());
-			}
-		}
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private string endTime;
+
+		private long? ownerId;
+
+		private string dBName;
+
+		private string orderType;
 
 		public long? ResourceOwnerId
 		{
@@ -89,6 +83,123 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string RoleId
+		{
+			get
+			{
+				return roleId;
+			}
+			set	
+			{
+				roleId = value;
+				DictionaryUtil.Add(QueryParameters, "RoleId", value);
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string RoleType
+		{
+			get
+			{
+				return roleType;
+			}
+			set	
+			{
+				roleType = value;
+				DictionaryUtil.Add(QueryParameters, "RoleType", value);
+			}
+		}
+
+		public string NodeId
+		{
+			get
+			{
+				return nodeId;
+			}
+			set	
+			{
+				nodeId = value;
+				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 
@@ -131,19 +242,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -154,32 +252,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -196,81 +268,16 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string SecurityToken
+		public string OrderType
 		{
 			get
 			{
-				return securityToken;
+				return orderType;
 			}
 			set	
 			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string RoleType
-		{
-			get
-			{
-				return roleType;
-			}
-			set	
-			{
-				roleType = value;
-				DictionaryUtil.Add(QueryParameters, "RoleType", value);
-			}
-		}
-
-		public string NodeId
-		{
-			get
-			{
-				return nodeId;
-			}
-			set	
-			{
-				nodeId = value;
-				DictionaryUtil.Add(QueryParameters, "NodeId", value);
+				orderType = value;
+				DictionaryUtil.Add(QueryParameters, "OrderType", value);
 			}
 		}
 

@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,9 +30,25 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveSingleTaskForCreatingOrderTransferRequest : RpcAcsRequest<SaveSingleTaskForCreatingOrderTransferResponse>
     {
         public SaveSingleTaskForCreatingOrderTransferRequest()
-            : base("Domain", "2018-01-29", "SaveSingleTaskForCreatingOrderTransfer")
+            : base("Domain", "2018-01-29", "SaveSingleTaskForCreatingOrderTransfer", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? registrantProfileId;
+
+		private string couponNo;
+
+		private string lang;
+
+		private string domainName;
+
+		private bool? useCoupon;
 
 		private bool? permitPremiumTransfer;
 
@@ -43,17 +58,72 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string userClientIp;
 
-		private string domainName;
-
-		private long? registrantProfileId;
-
-		private string couponNo;
-
-		private bool? useCoupon;
-
-		private string lang;
-
 		private bool? usePromotion;
+
+		public long? RegistrantProfileId
+		{
+			get
+			{
+				return registrantProfileId;
+			}
+			set	
+			{
+				registrantProfileId = value;
+				DictionaryUtil.Add(QueryParameters, "RegistrantProfileId", value.ToString());
+			}
+		}
+
+		public string CouponNo
+		{
+			get
+			{
+				return couponNo;
+			}
+			set	
+			{
+				couponNo = value;
+				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public bool? UseCoupon
+		{
+			get
+			{
+				return useCoupon;
+			}
+			set	
+			{
+				useCoupon = value;
+				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
+			}
+		}
 
 		public bool? PermitPremiumTransfer
 		{
@@ -104,71 +174,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				userClientIp = value;
 				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public long? RegistrantProfileId
-		{
-			get
-			{
-				return registrantProfileId;
-			}
-			set	
-			{
-				registrantProfileId = value;
-				DictionaryUtil.Add(QueryParameters, "RegistrantProfileId", value.ToString());
-			}
-		}
-
-		public string CouponNo
-		{
-			get
-			{
-				return couponNo;
-			}
-			set	
-			{
-				couponNo = value;
-				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
-			}
-		}
-
-		public bool? UseCoupon
-		{
-			get
-			{
-				return useCoupon;
-			}
-			set	
-			{
-				useCoupon = value;
-				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

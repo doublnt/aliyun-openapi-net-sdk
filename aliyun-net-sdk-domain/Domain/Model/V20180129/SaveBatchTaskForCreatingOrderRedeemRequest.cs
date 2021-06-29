@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,23 +30,55 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveBatchTaskForCreatingOrderRedeemRequest : RpcAcsRequest<SaveBatchTaskForCreatingOrderRedeemResponse>
     {
         public SaveBatchTaskForCreatingOrderRedeemRequest()
-            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderRedeem")
+            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderRedeem", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string promotionNo;
-
-		private List<OrderRedeemParam> orderRedeemParams;
-
-		private string userClientIp;
 
 		private string couponNo;
 
 		private bool? useCoupon;
 
+		private string promotionNo;
+
+		private List<OrderRedeemParam> orderRedeemParams = new List<OrderRedeemParam>(){ };
+
+		private string userClientIp;
+
 		private string lang;
 
 		private bool? usePromotion;
+
+		public string CouponNo
+		{
+			get
+			{
+				return couponNo;
+			}
+			set	
+			{
+				couponNo = value;
+				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
+			}
+		}
+
+		public bool? UseCoupon
+		{
+			get
+			{
+				return useCoupon;
+			}
+			set	
+			{
+				useCoupon = value;
+				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
+			}
+		}
 
 		public string PromotionNo
 		{
@@ -90,32 +121,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				userClientIp = value;
 				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public string CouponNo
-		{
-			get
-			{
-				return couponNo;
-			}
-			set	
-			{
-				couponNo = value;
-				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
-			}
-		}
-
-		public bool? UseCoupon
-		{
-			get
-			{
-				return useCoupon;
-			}
-			set	
-			{
-				useCoupon = value;
-				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
 			}
 		}
 

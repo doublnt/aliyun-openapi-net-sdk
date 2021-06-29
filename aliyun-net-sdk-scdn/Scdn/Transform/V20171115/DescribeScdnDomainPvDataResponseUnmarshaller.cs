@@ -16,31 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.scdn.Model.V20171115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.scdn.Model.V20171115;
 
 namespace Aliyun.Acs.scdn.Transform.V20171115
 {
     public class DescribeScdnDomainPvDataResponseUnmarshaller
     {
-        public static DescribeScdnDomainPvDataResponse Unmarshall(UnmarshallerContext context)
+        public static DescribeScdnDomainPvDataResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DescribeScdnDomainPvDataResponse describeScdnDomainPvDataResponse = new DescribeScdnDomainPvDataResponse();
 
-			describeScdnDomainPvDataResponse.HttpResponse = context.HttpResponse;
-			describeScdnDomainPvDataResponse.RequestId = context.StringValue("DescribeScdnDomainPvData.RequestId");
-			describeScdnDomainPvDataResponse.DomainName = context.StringValue("DescribeScdnDomainPvData.DomainName");
-			describeScdnDomainPvDataResponse.DataInterval = context.StringValue("DescribeScdnDomainPvData.DataInterval");
-			describeScdnDomainPvDataResponse.StartTime = context.StringValue("DescribeScdnDomainPvData.StartTime");
-			describeScdnDomainPvDataResponse.EndTime = context.StringValue("DescribeScdnDomainPvData.EndTime");
+			describeScdnDomainPvDataResponse.HttpResponse = _ctx.HttpResponse;
+			describeScdnDomainPvDataResponse.RequestId = _ctx.StringValue("DescribeScdnDomainPvData.RequestId");
+			describeScdnDomainPvDataResponse.DomainName = _ctx.StringValue("DescribeScdnDomainPvData.DomainName");
+			describeScdnDomainPvDataResponse.StartTime = _ctx.StringValue("DescribeScdnDomainPvData.StartTime");
+			describeScdnDomainPvDataResponse.EndTime = _ctx.StringValue("DescribeScdnDomainPvData.EndTime");
+			describeScdnDomainPvDataResponse.DataInterval = _ctx.StringValue("DescribeScdnDomainPvData.DataInterval");
 
 			List<DescribeScdnDomainPvDataResponse.DescribeScdnDomainPvData_UsageData> describeScdnDomainPvDataResponse_pvDataInterval = new List<DescribeScdnDomainPvDataResponse.DescribeScdnDomainPvData_UsageData>();
-			for (int i = 0; i < context.Length("DescribeScdnDomainPvData.PvDataInterval.Length"); i++) {
+			for (int i = 0; i < _ctx.Length("DescribeScdnDomainPvData.PvDataInterval.Length"); i++) {
 				DescribeScdnDomainPvDataResponse.DescribeScdnDomainPvData_UsageData usageData = new DescribeScdnDomainPvDataResponse.DescribeScdnDomainPvData_UsageData();
-				usageData.TimeStamp = context.StringValue("DescribeScdnDomainPvData.PvDataInterval["+ i +"].TimeStamp");
-				usageData._Value = context.StringValue("DescribeScdnDomainPvData.PvDataInterval["+ i +"].Value");
+				usageData._Value = _ctx.StringValue("DescribeScdnDomainPvData.PvDataInterval["+ i +"].Value");
+				usageData.TimeStamp = _ctx.StringValue("DescribeScdnDomainPvData.PvDataInterval["+ i +"].TimeStamp");
 
 				describeScdnDomainPvDataResponse_pvDataInterval.Add(usageData);
 			}

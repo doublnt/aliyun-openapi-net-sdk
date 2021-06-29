@@ -32,30 +32,39 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public UpdateFaceGroupRequest()
             : base("imm", "2017-09-06", "UpdateFaceGroup", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string groupId;
 
 		private string project;
 
-		private string setId;
+		private string externalId;
+
+		private string groupId;
+
+		private string remarksB;
+
+		private string remarksA;
 
 		private string groupName;
 
-		private string groupCoverFaceId;
+		private string resetItems;
 
-		public string GroupId
-		{
-			get
-			{
-				return groupId;
-			}
-			set	
-			{
-				groupId = value;
-				DictionaryUtil.Add(QueryParameters, "GroupId", value);
-			}
-		}
+		private string remarksArrayA;
+
+		private string remarksArrayB;
+
+		private string remarksD;
+
+		private string remarksC;
+
+		private string setId;
+
+		private string groupCoverFaceId;
 
 		public string Project
 		{
@@ -70,16 +79,55 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string SetId
+		public string ExternalId
 		{
 			get
 			{
-				return setId;
+				return externalId;
 			}
 			set	
 			{
-				setId = value;
-				DictionaryUtil.Add(QueryParameters, "SetId", value);
+				externalId = value;
+				DictionaryUtil.Add(QueryParameters, "ExternalId", value);
+			}
+		}
+
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public string RemarksB
+		{
+			get
+			{
+				return remarksB;
+			}
+			set	
+			{
+				remarksB = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksB", value);
+			}
+		}
+
+		public string RemarksA
+		{
+			get
+			{
+				return remarksA;
+			}
+			set	
+			{
+				remarksA = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksA", value);
 			}
 		}
 
@@ -93,6 +141,84 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				groupName = value;
 				DictionaryUtil.Add(QueryParameters, "GroupName", value);
+			}
+		}
+
+		public string ResetItems
+		{
+			get
+			{
+				return resetItems;
+			}
+			set	
+			{
+				resetItems = value;
+				DictionaryUtil.Add(QueryParameters, "ResetItems", value);
+			}
+		}
+
+		public string RemarksArrayA
+		{
+			get
+			{
+				return remarksArrayA;
+			}
+			set	
+			{
+				remarksArrayA = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayA", value);
+			}
+		}
+
+		public string RemarksArrayB
+		{
+			get
+			{
+				return remarksArrayB;
+			}
+			set	
+			{
+				remarksArrayB = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayB", value);
+			}
+		}
+
+		public string RemarksD
+		{
+			get
+			{
+				return remarksD;
+			}
+			set	
+			{
+				remarksD = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksD", value);
+			}
+		}
+
+		public string RemarksC
+		{
+			get
+			{
+				return remarksC;
+			}
+			set	
+			{
+				remarksC = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksC", value);
+			}
+		}
+
+		public string SetId
+		{
+			get
+			{
+				return setId;
+			}
+			set	
+			{
+				setId = value;
+				DictionaryUtil.Add(QueryParameters, "SetId", value);
 			}
 		}
 

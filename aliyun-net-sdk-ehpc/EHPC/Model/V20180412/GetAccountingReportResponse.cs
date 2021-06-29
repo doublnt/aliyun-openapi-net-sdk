@@ -29,7 +29,15 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private string metrics;
 
-		private string data;
+		private int? totalCoreTime;
+
+		private int? totalCount;
+
+		private int? pageSize;
+
+		private int? pageNumber;
+
+		private List<string> data;
 
 		public string RequestId
 		{
@@ -55,7 +63,55 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string Data
+		public int? TotalCoreTime
+		{
+			get
+			{
+				return totalCoreTime;
+			}
+			set	
+			{
+				totalCoreTime = value;
+			}
+		}
+
+		public int? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+			}
+		}
+
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+			}
+		}
+
+		public List<string> Data
 		{
 			get
 			{

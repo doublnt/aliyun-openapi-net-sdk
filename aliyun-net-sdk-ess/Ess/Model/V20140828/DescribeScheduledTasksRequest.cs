@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DescribeScheduledTasksRequest()
             : base("Ess", "2014-08-28", "DescribeScheduledTasks", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -41,8 +48,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 		private string scheduledAction1;
 
 		private string scheduledAction6;
-
-		private string action;
 
 		private string scheduledAction5;
 
@@ -66,6 +71,8 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string scheduledTaskId20;
 
+		private string scalingGroupId;
+
 		private string scheduledTaskName13;
 
 		private string scheduledTaskName12;
@@ -82,8 +89,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string scheduledTaskName15;
 
-		private string accessKeyId;
-
 		private string scheduledTaskName14;
 
 		private string scheduledTaskId2;
@@ -99,8 +104,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 		private string scheduledTaskId19;
 
 		private string scheduledTaskId6;
-
-		private string regionId;
 
 		private string scheduledTaskId5;
 
@@ -221,19 +224,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				scheduledAction6 = value;
 				DictionaryUtil.Add(QueryParameters, "ScheduledAction.6", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -380,6 +370,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
+		public string ScalingGroupId
+		{
+			get
+			{
+				return scalingGroupId;
+			}
+			set	
+			{
+				scalingGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
+			}
+		}
+
 		public string ScheduledTaskName13
 		{
 			get
@@ -484,19 +487,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
 		public string ScheduledTaskName14
 		{
 			get
@@ -598,19 +588,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				scheduledTaskId6 = value;
 				DictionaryUtil.Add(QueryParameters, "ScheduledTaskId.6", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
 			}
 		}
 

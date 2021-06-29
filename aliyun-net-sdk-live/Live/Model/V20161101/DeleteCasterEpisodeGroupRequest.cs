@@ -32,24 +32,17 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DeleteCasterEpisodeGroupRequest()
             : base("live", "2016-11-01", "DeleteCasterEpisodeGroup", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? ownerId;
 
 		private string programId;
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
+		private long? ownerId;
 
 		public string ProgramId
 		{
@@ -61,6 +54,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				programId = value;
 				DictionaryUtil.Add(QueryParameters, "ProgramId", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

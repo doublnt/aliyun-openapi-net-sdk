@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeAccountsRequest()
             : base("Rds", "2014-08-15", "DescribeAccounts", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string accountName;
+		private int? pageNumber;
 
-		private string resourceOwnerAccount;
+		private string accountName;
 
 		private int? pageSize;
 
 		private string dBInstanceId;
 
-		private int? pageNumber;
+		private string resourceOwnerAccount;
 
 		public long? ResourceOwnerId
 		{
@@ -59,6 +65,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
 		public string AccountName
 		{
 			get
@@ -69,19 +88,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				accountName = value;
 				DictionaryUtil.Add(QueryParameters, "AccountName", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -111,16 +117,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public int? PageNumber
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return pageNumber;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 

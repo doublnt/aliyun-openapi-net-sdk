@@ -32,11 +32,17 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public DeleteProductTagsRequest()
             : base("Iot", "2018-01-20", "DeleteProductTags", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;
 
-		private List<string> productTagKeys;
+		private List<string> productTagKeys = new List<string>(){ };
 
 		private string productKey;
 

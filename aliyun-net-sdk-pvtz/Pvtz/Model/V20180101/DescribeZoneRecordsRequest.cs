@@ -32,7 +32,14 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public DescribeZoneRecordsRequest()
             : base("pvtz", "2018-01-01", "DescribeZoneRecords", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private int? pageNumber;
 
 		private int? pageSize;
 
@@ -48,7 +55,18 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 
 		private string keyword;
 
-		private int? pageNumber;
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
 
 		public int? PageSize
 		{
@@ -138,19 +156,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				keyword = value;
 				DictionaryUtil.Add(QueryParameters, "Keyword", value);
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 

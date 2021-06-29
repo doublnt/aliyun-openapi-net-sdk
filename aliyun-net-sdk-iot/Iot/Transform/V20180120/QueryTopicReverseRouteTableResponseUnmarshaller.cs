@@ -26,19 +26,28 @@ namespace Aliyun.Acs.Iot.Transform.V20180120
 {
     public class QueryTopicReverseRouteTableResponseUnmarshaller
     {
-        public static QueryTopicReverseRouteTableResponse Unmarshall(UnmarshallerContext context)
+        public static QueryTopicReverseRouteTableResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			QueryTopicReverseRouteTableResponse queryTopicReverseRouteTableResponse = new QueryTopicReverseRouteTableResponse();
 
-			queryTopicReverseRouteTableResponse.HttpResponse = context.HttpResponse;
-			queryTopicReverseRouteTableResponse.RequestId = context.StringValue("QueryTopicReverseRouteTable.RequestId");
-			queryTopicReverseRouteTableResponse.Success = context.BooleanValue("QueryTopicReverseRouteTable.Success");
-			queryTopicReverseRouteTableResponse.Code = context.StringValue("QueryTopicReverseRouteTable.Code");
-			queryTopicReverseRouteTableResponse.ErrorMessage = context.StringValue("QueryTopicReverseRouteTable.ErrorMessage");
+			queryTopicReverseRouteTableResponse.HttpResponse = _ctx.HttpResponse;
+			queryTopicReverseRouteTableResponse.RequestId = _ctx.StringValue("QueryTopicReverseRouteTable.RequestId");
+			queryTopicReverseRouteTableResponse.Success = _ctx.BooleanValue("QueryTopicReverseRouteTable.Success");
+			queryTopicReverseRouteTableResponse.Code = _ctx.StringValue("QueryTopicReverseRouteTable.Code");
+			queryTopicReverseRouteTableResponse.ErrorMessage = _ctx.StringValue("QueryTopicReverseRouteTable.ErrorMessage");
 
-			List<string> queryTopicReverseRouteTableResponse_srcTopics = new List<string>();
-			for (int i = 0; i < context.Length("QueryTopicReverseRouteTable.SrcTopics.Length"); i++) {
-				queryTopicReverseRouteTableResponse_srcTopics.Add(context.StringValue("QueryTopicReverseRouteTable.SrcTopics["+ i +"]"));
+			List<Dictionary<string, string>> queryTopicReverseRouteTableResponse_srcTopics = new List<Dictionary<string, string>>();
+			for (int i = 0; i < _ctx.Length("QueryTopicReverseRouteTable.SrcTopics.Length"); i++) {
+				Dictionary<string, string> tmp = new Dictionary<string, string>() { };
+				foreach (var _item in _ctx.ResponseDictionary){
+					string prefix = "QueryTopicReverseRouteTable.SrcTopics["+ i +"].";
+					if (_item.Key.IndexOf(prefix) == 0){
+						tmp.Add(_item.Key.Substring(prefix.Length), _item.Value);
+					}
+				}
+				if (tmp.Count > 0){
+					queryTopicReverseRouteTableResponse_srcTopics.Add(tmp);
+				}
 			}
 			queryTopicReverseRouteTableResponse.SrcTopics = queryTopicReverseRouteTableResponse_srcTopics;
         

@@ -132,12 +132,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 			private string tagsModifyTime;
 
-			private string celebrityStatus;
-
-			private string celebrityModifyTime;
-
-			private string celebrityFailReason;
-
 			private string tagsStatus;
 
 			private string remarksC;
@@ -146,13 +140,39 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 			private string externalId;
 
+			private string addressModifyTime;
+
+			private string addressStatus;
+
+			private string addressFailReason;
+
+			private string remarksArrayA;
+
+			private string remarksArrayB;
+
+			private string imageQualityStatus;
+
+			private string imageQualityFailReason;
+
+			private string imageQualityModifyTime;
+
+			private string croppingSuggestionStatus;
+
+			private string croppingSuggestionFailReason;
+
+			private string croppingSuggestionModifyTime;
+
+			private List<ListImages_CroppingSuggestionItem> croppingSuggestion;
+
 			private List<ListImages_FacesItem> faces;
 
 			private List<ListImages_TagsItem> tags;
 
 			private List<ListImages_OCRItem> oCR;
 
-			private List<ListImages_CelebrityItem> celebrity;
+			private ListImages_ImageQuality imageQuality;
+
+			private ListImages_Address address;
 
 			public string FacesModifyTime
 			{
@@ -442,42 +462,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				}
 			}
 
-			public string CelebrityStatus
-			{
-				get
-				{
-					return celebrityStatus;
-				}
-				set	
-				{
-					celebrityStatus = value;
-				}
-			}
-
-			public string CelebrityModifyTime
-			{
-				get
-				{
-					return celebrityModifyTime;
-				}
-				set	
-				{
-					celebrityModifyTime = value;
-				}
-			}
-
-			public string CelebrityFailReason
-			{
-				get
-				{
-					return celebrityFailReason;
-				}
-				set	
-				{
-					celebrityFailReason = value;
-				}
-			}
-
 			public string TagsStatus
 			{
 				get
@@ -526,6 +510,150 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				}
 			}
 
+			public string AddressModifyTime
+			{
+				get
+				{
+					return addressModifyTime;
+				}
+				set	
+				{
+					addressModifyTime = value;
+				}
+			}
+
+			public string AddressStatus
+			{
+				get
+				{
+					return addressStatus;
+				}
+				set	
+				{
+					addressStatus = value;
+				}
+			}
+
+			public string AddressFailReason
+			{
+				get
+				{
+					return addressFailReason;
+				}
+				set	
+				{
+					addressFailReason = value;
+				}
+			}
+
+			public string RemarksArrayA
+			{
+				get
+				{
+					return remarksArrayA;
+				}
+				set	
+				{
+					remarksArrayA = value;
+				}
+			}
+
+			public string RemarksArrayB
+			{
+				get
+				{
+					return remarksArrayB;
+				}
+				set	
+				{
+					remarksArrayB = value;
+				}
+			}
+
+			public string ImageQualityStatus
+			{
+				get
+				{
+					return imageQualityStatus;
+				}
+				set	
+				{
+					imageQualityStatus = value;
+				}
+			}
+
+			public string ImageQualityFailReason
+			{
+				get
+				{
+					return imageQualityFailReason;
+				}
+				set	
+				{
+					imageQualityFailReason = value;
+				}
+			}
+
+			public string ImageQualityModifyTime
+			{
+				get
+				{
+					return imageQualityModifyTime;
+				}
+				set	
+				{
+					imageQualityModifyTime = value;
+				}
+			}
+
+			public string CroppingSuggestionStatus
+			{
+				get
+				{
+					return croppingSuggestionStatus;
+				}
+				set	
+				{
+					croppingSuggestionStatus = value;
+				}
+			}
+
+			public string CroppingSuggestionFailReason
+			{
+				get
+				{
+					return croppingSuggestionFailReason;
+				}
+				set	
+				{
+					croppingSuggestionFailReason = value;
+				}
+			}
+
+			public string CroppingSuggestionModifyTime
+			{
+				get
+				{
+					return croppingSuggestionModifyTime;
+				}
+				set	
+				{
+					croppingSuggestionModifyTime = value;
+				}
+			}
+
+			public List<ListImages_CroppingSuggestionItem> CroppingSuggestion
+			{
+				get
+				{
+					return croppingSuggestion;
+				}
+				set	
+				{
+					croppingSuggestion = value;
+				}
+			}
+
 			public List<ListImages_FacesItem> Faces
 			{
 				get
@@ -562,15 +690,133 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				}
 			}
 
-			public List<ListImages_CelebrityItem> Celebrity
+			public ListImages_ImageQuality ImageQuality
 			{
 				get
 				{
-					return celebrity;
+					return imageQuality;
 				}
 				set	
 				{
-					celebrity = value;
+					imageQuality = value;
+				}
+			}
+
+			public ListImages_Address Address
+			{
+				get
+				{
+					return address;
+				}
+				set	
+				{
+					address = value;
+				}
+			}
+
+			public class ListImages_CroppingSuggestionItem
+			{
+
+				private string aspectRatio;
+
+				private float? score;
+
+				private ListImages_CroppingBoundary croppingBoundary;
+
+				public string AspectRatio
+				{
+					get
+					{
+						return aspectRatio;
+					}
+					set	
+					{
+						aspectRatio = value;
+					}
+				}
+
+				public float? Score
+				{
+					get
+					{
+						return score;
+					}
+					set	
+					{
+						score = value;
+					}
+				}
+
+				public ListImages_CroppingBoundary CroppingBoundary
+				{
+					get
+					{
+						return croppingBoundary;
+					}
+					set	
+					{
+						croppingBoundary = value;
+					}
+				}
+
+				public class ListImages_CroppingBoundary
+				{
+
+					private int? width;
+
+					private int? height;
+
+					private int? left;
+
+					private int? top;
+
+					public int? Width
+					{
+						get
+						{
+							return width;
+						}
+						set	
+						{
+							width = value;
+						}
+					}
+
+					public int? Height
+					{
+						get
+						{
+							return height;
+						}
+						set	
+						{
+							height = value;
+						}
+					}
+
+					public int? Left
+					{
+						get
+						{
+							return left;
+						}
+						set	
+						{
+							left = value;
+						}
+					}
+
+					public int? Top
+					{
+						get
+						{
+							return top;
+						}
+						set	
+						{
+							top = value;
+						}
+					}
 				}
 			}
 
@@ -854,13 +1100,9 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 					private string glasses;
 
-					private float? raceConfidence;
-
 					private string beard;
 
 					private float? maskConfidence;
-
-					private string race;
 
 					private float? beardConfidence;
 
@@ -894,18 +1136,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 						}
 					}
 
-					public float? RaceConfidence
-					{
-						get
-						{
-							return raceConfidence;
-						}
-						set	
-						{
-							raceConfidence = value;
-						}
-					}
-
 					public string Beard
 					{
 						get
@@ -927,18 +1157,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 						set	
 						{
 							maskConfidence = value;
-						}
-					}
-
-					public string Race
-					{
-						get
-						{
-							return race;
-						}
-						set	
-						{
-							race = value;
 						}
 					}
 
@@ -1208,140 +1426,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 					private int? left;
 
-					private int? left1;
-
-					private int? width;
-
-					private int? height;
-
-					public int? Left
-					{
-						get
-						{
-							return left;
-						}
-						set	
-						{
-							left = value;
-						}
-					}
-
-					public int? Left1
-					{
-						get
-						{
-							return left1;
-						}
-						set	
-						{
-							left1 = value;
-						}
-					}
-
-					public int? Width
-					{
-						get
-						{
-							return width;
-						}
-						set	
-						{
-							width = value;
-						}
-					}
-
-					public int? Height
-					{
-						get
-						{
-							return height;
-						}
-						set	
-						{
-							height = value;
-						}
-					}
-				}
-			}
-
-			public class ListImages_CelebrityItem
-			{
-
-				private string celebrityName;
-
-				private string celebrityGender;
-
-				private float? celebrityConfidence;
-
-				private string celebrityLibraryName;
-
-				private ListImages_CelebrityBoundary celebrityBoundary;
-
-				public string CelebrityName
-				{
-					get
-					{
-						return celebrityName;
-					}
-					set	
-					{
-						celebrityName = value;
-					}
-				}
-
-				public string CelebrityGender
-				{
-					get
-					{
-						return celebrityGender;
-					}
-					set	
-					{
-						celebrityGender = value;
-					}
-				}
-
-				public float? CelebrityConfidence
-				{
-					get
-					{
-						return celebrityConfidence;
-					}
-					set	
-					{
-						celebrityConfidence = value;
-					}
-				}
-
-				public string CelebrityLibraryName
-				{
-					get
-					{
-						return celebrityLibraryName;
-					}
-					set	
-					{
-						celebrityLibraryName = value;
-					}
-				}
-
-				public ListImages_CelebrityBoundary CelebrityBoundary
-				{
-					get
-					{
-						return celebrityBoundary;
-					}
-					set	
-					{
-						celebrityBoundary = value;
-					}
-				}
-
-				public class ListImages_CelebrityBoundary
-				{
-
-					private int? left;
-
 					private int? top;
 
 					private int? width;
@@ -1394,6 +1478,238 @@ namespace Aliyun.Acs.imm.Model.V20170906
 						{
 							height = value;
 						}
+					}
+				}
+			}
+
+			public class ListImages_ImageQuality
+			{
+
+				private float? overallScore;
+
+				private float? clarityScore;
+
+				private float? clarity;
+
+				private float? exposureScore;
+
+				private float? exposure;
+
+				private float? contrastScore;
+
+				private float? contrast;
+
+				private float? colorScore;
+
+				private float? color;
+
+				private float? compositionScore;
+
+				public float? OverallScore
+				{
+					get
+					{
+						return overallScore;
+					}
+					set	
+					{
+						overallScore = value;
+					}
+				}
+
+				public float? ClarityScore
+				{
+					get
+					{
+						return clarityScore;
+					}
+					set	
+					{
+						clarityScore = value;
+					}
+				}
+
+				public float? Clarity
+				{
+					get
+					{
+						return clarity;
+					}
+					set	
+					{
+						clarity = value;
+					}
+				}
+
+				public float? ExposureScore
+				{
+					get
+					{
+						return exposureScore;
+					}
+					set	
+					{
+						exposureScore = value;
+					}
+				}
+
+				public float? Exposure
+				{
+					get
+					{
+						return exposure;
+					}
+					set	
+					{
+						exposure = value;
+					}
+				}
+
+				public float? ContrastScore
+				{
+					get
+					{
+						return contrastScore;
+					}
+					set	
+					{
+						contrastScore = value;
+					}
+				}
+
+				public float? Contrast
+				{
+					get
+					{
+						return contrast;
+					}
+					set	
+					{
+						contrast = value;
+					}
+				}
+
+				public float? ColorScore
+				{
+					get
+					{
+						return colorScore;
+					}
+					set	
+					{
+						colorScore = value;
+					}
+				}
+
+				public float? Color
+				{
+					get
+					{
+						return color;
+					}
+					set	
+					{
+						color = value;
+					}
+				}
+
+				public float? CompositionScore
+				{
+					get
+					{
+						return compositionScore;
+					}
+					set	
+					{
+						compositionScore = value;
+					}
+				}
+			}
+
+			public class ListImages_Address
+			{
+
+				private string addressLine;
+
+				private string country;
+
+				private string province;
+
+				private string city;
+
+				private string district;
+
+				private string township;
+
+				public string AddressLine
+				{
+					get
+					{
+						return addressLine;
+					}
+					set	
+					{
+						addressLine = value;
+					}
+				}
+
+				public string Country
+				{
+					get
+					{
+						return country;
+					}
+					set	
+					{
+						country = value;
+					}
+				}
+
+				public string Province
+				{
+					get
+					{
+						return province;
+					}
+					set	
+					{
+						province = value;
+					}
+				}
+
+				public string City
+				{
+					get
+					{
+						return city;
+					}
+					set	
+					{
+						city = value;
+					}
+				}
+
+				public string District
+				{
+					get
+					{
+						return district;
+					}
+					set	
+					{
+						district = value;
+					}
+				}
+
+				public string Township
+				{
+					get
+					{
+						return township;
+					}
+					set	
+					{
+						township = value;
 					}
 				}
 			}

@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CancelImportRequest()
             : base("Rds", "2014-08-15", "CancelImport", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private int? importId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
+
+		private int? importId;
+
+		private string dBInstanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -56,19 +62,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public int? ImportId
-		{
-			get
-			{
-				return importId;
-			}
-			set	
-			{
-				importId = value;
-				DictionaryUtil.Add(QueryParameters, "ImportId", value.ToString());
 			}
 		}
 
@@ -98,19 +91,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? ImportId
+		{
+			get
+			{
+				return importId;
+			}
+			set	
+			{
+				importId = value;
+				DictionaryUtil.Add(QueryParameters, "ImportId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

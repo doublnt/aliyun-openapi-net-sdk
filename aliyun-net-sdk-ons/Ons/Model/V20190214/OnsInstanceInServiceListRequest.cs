@@ -32,20 +32,63 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsInstanceInServiceListRequest()
             : base("Ons", "2019-02-14", "OnsInstanceInServiceList", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? preventCache;
+		private List<Tag> tags = new List<Tag>(){ };
 
-		public long? PreventCache
+		public List<Tag> Tags
 		{
 			get
 			{
-				return preventCache;
+				return tags;
 			}
-			set	
+
+			set
 			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 

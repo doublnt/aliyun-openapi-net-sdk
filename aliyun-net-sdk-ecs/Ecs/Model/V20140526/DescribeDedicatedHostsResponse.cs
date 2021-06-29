@@ -138,6 +138,10 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string resourceGroupId;
 
+			private string dedicatedHostClusterId;
+
+			private float? cpuOverCommitRatio;
+
 			private List<DescribeDedicatedHosts_Instance> instances;
 
 			private List<DescribeDedicatedHosts_OperationLock> operationLocks;
@@ -146,11 +150,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private List<string> supportedInstanceTypeFamilies;
 
+			private List<string> supportedCustomInstanceTypeFamilies;
+
 			private List<string> supportedInstanceTypesList;
 
 			private DescribeDedicatedHosts_Capacity capacity;
 
 			private DescribeDedicatedHosts_NetworkAttributes networkAttributes;
+
+			private DescribeDedicatedHosts_HostDetailInfo hostDetailInfo;
 
 			public string DedicatedHostId
 			{
@@ -392,6 +400,30 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public string DedicatedHostClusterId
+			{
+				get
+				{
+					return dedicatedHostClusterId;
+				}
+				set	
+				{
+					dedicatedHostClusterId = value;
+				}
+			}
+
+			public float? CpuOverCommitRatio
+			{
+				get
+				{
+					return cpuOverCommitRatio;
+				}
+				set	
+				{
+					cpuOverCommitRatio = value;
+				}
+			}
+
 			public List<DescribeDedicatedHosts_Instance> Instances
 			{
 				get
@@ -440,6 +472,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public List<string> SupportedCustomInstanceTypeFamilies
+			{
+				get
+				{
+					return supportedCustomInstanceTypeFamilies;
+				}
+				set	
+				{
+					supportedCustomInstanceTypeFamilies = value;
+				}
+			}
+
 			public List<string> SupportedInstanceTypesList
 			{
 				get
@@ -473,6 +517,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					networkAttributes = value;
+				}
+			}
+
+			public DescribeDedicatedHosts_HostDetailInfo HostDetailInfo
+			{
+				get
+				{
+					return hostDetailInfo;
+				}
+				set	
+				{
+					hostDetailInfo = value;
 				}
 			}
 
@@ -716,6 +772,24 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					set	
 					{
 						udpTimeout = value;
+					}
+				}
+			}
+
+			public class DescribeDedicatedHosts_HostDetailInfo
+			{
+
+				private string serialNumber;
+
+				public string SerialNumber
+				{
+					get
+					{
+						return serialNumber;
+					}
+					set	
+					{
+						serialNumber = value;
 					}
 				}
 			}

@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.scdn.Model.V20171115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.scdn.Model.V20171115;
 
 namespace Aliyun.Acs.scdn.Transform.V20171115
 {
     public class PreloadScdnObjectCachesResponseUnmarshaller
     {
-        public static PreloadScdnObjectCachesResponse Unmarshall(UnmarshallerContext context)
+        public static PreloadScdnObjectCachesResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			PreloadScdnObjectCachesResponse preloadScdnObjectCachesResponse = new PreloadScdnObjectCachesResponse();
 
-			preloadScdnObjectCachesResponse.HttpResponse = context.HttpResponse;
-			preloadScdnObjectCachesResponse.RequestId = context.StringValue("PreloadScdnObjectCaches.RequestId");
-			preloadScdnObjectCachesResponse.PreloadTaskId = context.StringValue("PreloadScdnObjectCaches.PreloadTaskId");
+			preloadScdnObjectCachesResponse.HttpResponse = _ctx.HttpResponse;
+			preloadScdnObjectCachesResponse.RequestId = _ctx.StringValue("PreloadScdnObjectCaches.RequestId");
+			preloadScdnObjectCachesResponse.PreloadTaskId = _ctx.StringValue("PreloadScdnObjectCaches.PreloadTaskId");
         
 			return preloadScdnObjectCachesResponse;
         }

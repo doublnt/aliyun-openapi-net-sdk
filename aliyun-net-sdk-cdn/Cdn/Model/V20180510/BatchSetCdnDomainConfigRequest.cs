@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,17 +33,21 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public BatchSetCdnDomainConfigRequest()
             : base("Cdn", "2018-05-10", "BatchSetCdnDomainConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string functions;
 
-		private string securityToken;
-
 		private string domainNames;
 
-		private string ownerAccount;
+		private string securityToken;
 
-		private string action;
+		private string ownerAccount;
 
 		private long? ownerId;
 
@@ -59,19 +64,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
 		public string DomainNames
 		{
 			get
@@ -85,6 +77,19 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
 		public string OwnerAccount
 		{
 			get
@@ -95,19 +100,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

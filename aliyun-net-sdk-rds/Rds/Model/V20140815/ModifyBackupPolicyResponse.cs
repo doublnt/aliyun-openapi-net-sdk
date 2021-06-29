@@ -39,6 +39,8 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string compressType;
 
+		private int? logBackupLocalRetentionNumber;
+
 		public string RequestId
 		{
 			get
@@ -120,6 +122,18 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				compressType = value;
+			}
+		}
+
+		public int? LogBackupLocalRetentionNumber
+		{
+			get
+			{
+				return logBackupLocalRetentionNumber;
+			}
+			set	
+			{
+				logBackupLocalRetentionNumber = value;
 			}
 		}
 	}

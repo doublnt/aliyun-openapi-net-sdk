@@ -32,9 +32,21 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeBackupPolicyRequest()
             : base("Rds", "2014-08-15", "DescribeBackupPolicy", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string dBInstanceId;
+
+		private string backupPolicyMode;
+
+		private string releasedKeepPolicy;
 
 		private string resourceOwnerAccount;
 
@@ -42,11 +54,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string compressType;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
-
-		private string backupPolicyMode;
 
 		public long? ResourceOwnerId
 		{
@@ -58,6 +66,45 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string BackupPolicyMode
+		{
+			get
+			{
+				return backupPolicyMode;
+			}
+			set	
+			{
+				backupPolicyMode = value;
+				DictionaryUtil.Add(QueryParameters, "BackupPolicyMode", value);
+			}
+		}
+
+		public string ReleasedKeepPolicy
+		{
+			get
+			{
+				return releasedKeepPolicy;
+			}
+			set	
+			{
+				releasedKeepPolicy = value;
+				DictionaryUtil.Add(QueryParameters, "ReleasedKeepPolicy", value);
 			}
 		}
 
@@ -100,19 +147,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -123,19 +157,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string BackupPolicyMode
-		{
-			get
-			{
-				return backupPolicyMode;
-			}
-			set	
-			{
-				backupPolicyMode = value;
-				DictionaryUtil.Add(QueryParameters, "BackupPolicyMode", value);
 			}
 		}
 

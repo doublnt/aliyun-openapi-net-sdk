@@ -33,15 +33,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyInstanceVpcAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyInstanceVpcAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string vSwitchId;
-
-		private string privateIpAddress;
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private List<string> securityGroupIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 
@@ -49,31 +51,13 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		public string VSwitchId
-		{
-			get
-			{
-				return vSwitchId;
-			}
-			set	
-			{
-				vSwitchId = value;
-				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
-			}
-		}
+		private string vSwitchId;
 
-		public string PrivateIpAddress
-		{
-			get
-			{
-				return privateIpAddress;
-			}
-			set	
-			{
-				privateIpAddress = value;
-				DictionaryUtil.Add(QueryParameters, "PrivateIpAddress", value);
-			}
-		}
+		private string privateIpAddress;
+
+		private string instanceId;
+
+		private string vpcId;
 
 		public long? ResourceOwnerId
 		{
@@ -88,16 +72,20 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InstanceId
+		public List<string> SecurityGroupIds
 		{
 			get
 			{
-				return instanceId;
+				return securityGroupIds;
 			}
-			set	
+
+			set
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				securityGroupIds = value;
+				for (int i = 0; i < securityGroupIds.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SecurityGroupId." + (i + 1) , securityGroupIds[i]);
+				}
 			}
 		}
 
@@ -137,6 +125,58 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string VSwitchId
+		{
+			get
+			{
+				return vSwitchId;
+			}
+			set	
+			{
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public string PrivateIpAddress
+		{
+			get
+			{
+				return privateIpAddress;
+			}
+			set	
+			{
+				privateIpAddress = value;
+				DictionaryUtil.Add(QueryParameters, "PrivateIpAddress", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string VpcId
+		{
+			get
+			{
+				return vpcId;
+			}
+			set	
+			{
+				vpcId = value;
+				DictionaryUtil.Add(QueryParameters, "VpcId", value);
 			}
 		}
 

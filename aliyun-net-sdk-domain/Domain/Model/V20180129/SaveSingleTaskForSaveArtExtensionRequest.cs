@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,9 +30,21 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveSingleTaskForSaveArtExtensionRequest : RpcAcsRequest<SaveSingleTaskForSaveArtExtensionResponse>
     {
         public SaveSingleTaskForSaveArtExtensionRequest()
-            : base("Domain", "2018-01-29", "SaveSingleTaskForSaveArtExtension")
+            : base("Domain", "2018-01-29", "SaveSingleTaskForSaveArtExtension", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string subject;
+
+		private string title;
+
+		private string dateOrPeriod;
 
 		private string reference;
 
@@ -41,23 +52,56 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string inscriptionsAndMarkings;
 
-		private string subject;
+		private string objectType;
+
+		private string lang;
 
 		private string domainName;
 
 		private string maker;
 
-		private string objectType;
-
-		private string title;
-
-		private string lang;
-
 		private string materialsAndTechniques;
 
-		private string dateOrPeriod;
-
 		private string dimensions;
+
+		public string Subject
+		{
+			get
+			{
+				return subject;
+			}
+			set	
+			{
+				subject = value;
+				DictionaryUtil.Add(QueryParameters, "Subject", value);
+			}
+		}
+
+		public string Title
+		{
+			get
+			{
+				return title;
+			}
+			set	
+			{
+				title = value;
+				DictionaryUtil.Add(QueryParameters, "Title", value);
+			}
+		}
+
+		public string DateOrPeriod
+		{
+			get
+			{
+				return dateOrPeriod;
+			}
+			set	
+			{
+				dateOrPeriod = value;
+				DictionaryUtil.Add(QueryParameters, "DateOrPeriod", value);
+			}
+		}
 
 		public string Reference
 		{
@@ -98,16 +142,29 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string Subject
+		public string ObjectType
 		{
 			get
 			{
-				return subject;
+				return objectType;
 			}
 			set	
 			{
-				subject = value;
-				DictionaryUtil.Add(QueryParameters, "Subject", value);
+				objectType = value;
+				DictionaryUtil.Add(QueryParameters, "ObjectType", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 
@@ -137,45 +194,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string ObjectType
-		{
-			get
-			{
-				return objectType;
-			}
-			set	
-			{
-				objectType = value;
-				DictionaryUtil.Add(QueryParameters, "ObjectType", value);
-			}
-		}
-
-		public string Title
-		{
-			get
-			{
-				return title;
-			}
-			set	
-			{
-				title = value;
-				DictionaryUtil.Add(QueryParameters, "Title", value);
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
 		public string MaterialsAndTechniques
 		{
 			get
@@ -186,19 +204,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				materialsAndTechniques = value;
 				DictionaryUtil.Add(QueryParameters, "MaterialsAndTechniques", value);
-			}
-		}
-
-		public string DateOrPeriod
-		{
-			get
-			{
-				return dateOrPeriod;
-			}
-			set	
-			{
-				dateOrPeriod = value;
-				DictionaryUtil.Add(QueryParameters, "DateOrPeriod", value);
 			}
 		}
 

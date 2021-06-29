@@ -32,28 +32,34 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public ListImagesRequest()
             : base("imm", "2017-09-06", "ListImages", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string marker;
+		private string project;
 
 		private int? limit;
 
-		private string project;
+		private string marker;
 
 		private string setId;
 
 		private string createTimeStart;
 
-		public string Marker
+		public string Project
 		{
 			get
 			{
-				return marker;
+				return project;
 			}
 			set	
 			{
-				marker = value;
-				DictionaryUtil.Add(QueryParameters, "Marker", value);
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
 		}
 
@@ -70,16 +76,16 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
+		public string Marker
 		{
 			get
 			{
-				return project;
+				return marker;
 			}
 			set	
 			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
+				marker = value;
+				DictionaryUtil.Add(QueryParameters, "Marker", value);
 			}
 		}
 

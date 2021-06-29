@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteBgpPeerResponseUnmarshaller
     {
-        public static DeleteBgpPeerResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteBgpPeerResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteBgpPeerResponse deleteBgpPeerResponse = new DeleteBgpPeerResponse();
 
-			deleteBgpPeerResponse.HttpResponse = context.HttpResponse;
-			deleteBgpPeerResponse.RequestId = context.StringValue("DeleteBgpPeer.RequestId");
+			deleteBgpPeerResponse.HttpResponse = _ctx.HttpResponse;
+			deleteBgpPeerResponse.RequestId = _ctx.StringValue("DeleteBgpPeer.RequestId");
         
 			return deleteBgpPeerResponse;
         }

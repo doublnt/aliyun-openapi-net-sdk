@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteIpv6EgressOnlyRuleResponseUnmarshaller
     {
-        public static DeleteIpv6EgressOnlyRuleResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteIpv6EgressOnlyRuleResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteIpv6EgressOnlyRuleResponse deleteIpv6EgressOnlyRuleResponse = new DeleteIpv6EgressOnlyRuleResponse();
 
-			deleteIpv6EgressOnlyRuleResponse.HttpResponse = context.HttpResponse;
-			deleteIpv6EgressOnlyRuleResponse.RequestId = context.StringValue("DeleteIpv6EgressOnlyRule.RequestId");
+			deleteIpv6EgressOnlyRuleResponse.HttpResponse = _ctx.HttpResponse;
+			deleteIpv6EgressOnlyRuleResponse.RequestId = _ctx.StringValue("DeleteIpv6EgressOnlyRule.RequestId");
         
 			return deleteIpv6EgressOnlyRuleResponse;
         }

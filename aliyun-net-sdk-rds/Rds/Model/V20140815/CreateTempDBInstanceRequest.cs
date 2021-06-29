@@ -32,9 +32,17 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CreateTempDBInstanceRequest()
             : base("Rds", "2014-08-15", "CreateTempDBInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string dBInstanceId;
 
 		private string restoreTime;
 
@@ -43,8 +51,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 		private int? backupId;
 
 		private string ownerAccount;
-
-		private string dBInstanceId;
 
 		private long? ownerId;
 
@@ -58,6 +64,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -110,19 +129,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

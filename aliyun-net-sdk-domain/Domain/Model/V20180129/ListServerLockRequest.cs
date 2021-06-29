@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,31 +30,37 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class ListServerLockRequest : RpcAcsRequest<ListServerLockResponse>
     {
         public ListServerLockRequest()
-            : base("Domain", "2018-01-29", "ListServerLock")
+            : base("Domain", "2018-01-29", "ListServerLock", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string lockProductId;
-
-		private long? endStartDate;
-
-		private int? serverLockStatus;
-
-		private long? startExpireDate;
-
-		private string domainName;
-
-		private int? pageSize;
-
-		private string userClientIp;
 
 		private long? endExpireDate;
 
 		private int? pageNum;
 
+		private long? beginStartDate;
+
+		private int? serverLockStatus;
+
+		private long? startExpireDate;
+
+		private int? pageSize;
+
 		private string lang;
 
-		private long? beginStartDate;
+		private string domainName;
+
+		private long? endStartDate;
+
+		private string userClientIp;
 
 		public string LockProductId
 		{
@@ -67,84 +72,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				lockProductId = value;
 				DictionaryUtil.Add(QueryParameters, "LockProductId", value);
-			}
-		}
-
-		public long? EndStartDate
-		{
-			get
-			{
-				return endStartDate;
-			}
-			set	
-			{
-				endStartDate = value;
-				DictionaryUtil.Add(QueryParameters, "EndStartDate", value.ToString());
-			}
-		}
-
-		public int? ServerLockStatus
-		{
-			get
-			{
-				return serverLockStatus;
-			}
-			set	
-			{
-				serverLockStatus = value;
-				DictionaryUtil.Add(QueryParameters, "ServerLockStatus", value.ToString());
-			}
-		}
-
-		public long? StartExpireDate
-		{
-			get
-			{
-				return startExpireDate;
-			}
-			set	
-			{
-				startExpireDate = value;
-				DictionaryUtil.Add(QueryParameters, "StartExpireDate", value.ToString());
-			}
-		}
-
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 
@@ -174,6 +101,58 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
+		public long? BeginStartDate
+		{
+			get
+			{
+				return beginStartDate;
+			}
+			set	
+			{
+				beginStartDate = value;
+				DictionaryUtil.Add(QueryParameters, "BeginStartDate", value.ToString());
+			}
+		}
+
+		public int? ServerLockStatus
+		{
+			get
+			{
+				return serverLockStatus;
+			}
+			set	
+			{
+				serverLockStatus = value;
+				DictionaryUtil.Add(QueryParameters, "ServerLockStatus", value.ToString());
+			}
+		}
+
+		public long? StartExpireDate
+		{
+			get
+			{
+				return startExpireDate;
+			}
+			set	
+			{
+				startExpireDate = value;
+				DictionaryUtil.Add(QueryParameters, "StartExpireDate", value.ToString());
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
 		public string Lang
 		{
 			get
@@ -187,16 +166,42 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public long? BeginStartDate
+		public string DomainName
 		{
 			get
 			{
-				return beginStartDate;
+				return domainName;
 			}
 			set	
 			{
-				beginStartDate = value;
-				DictionaryUtil.Add(QueryParameters, "BeginStartDate", value.ToString());
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public long? EndStartDate
+		{
+			get
+			{
+				return endStartDate;
+			}
+			set	
+			{
+				endStartDate = value;
+				DictionaryUtil.Add(QueryParameters, "EndStartDate", value.ToString());
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

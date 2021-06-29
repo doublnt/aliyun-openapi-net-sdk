@@ -26,16 +26,16 @@ namespace Aliyun.Acs.Ecs.Transform.V20140526
 {
     public class EipFillParamsResponseUnmarshaller
     {
-        public static EipFillParamsResponse Unmarshall(UnmarshallerContext context)
+        public static EipFillParamsResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			EipFillParamsResponse eipFillParamsResponse = new EipFillParamsResponse();
 
-			eipFillParamsResponse.HttpResponse = context.HttpResponse;
-			eipFillParamsResponse.RequestId = context.StringValue("EipFillParams.RequestId");
-			eipFillParamsResponse.Data = context.StringValue("EipFillParams.Data");
-			eipFillParamsResponse.Code = context.StringValue("EipFillParams.Code");
-			eipFillParamsResponse.Success = context.BooleanValue("EipFillParams.Success");
-			eipFillParamsResponse.Message = context.StringValue("EipFillParams.Message");
+			eipFillParamsResponse.HttpResponse = _ctx.HttpResponse;
+			eipFillParamsResponse.RequestId = _ctx.StringValue("EipFillParams.requestId");
+			eipFillParamsResponse.Data = _ctx.StringValue("EipFillParams.data");
+			eipFillParamsResponse.Code = _ctx.StringValue("EipFillParams.code");
+			eipFillParamsResponse.Success = _ctx.BooleanValue("EipFillParams.success");
+			eipFillParamsResponse.Message = _ctx.StringValue("EipFillParams.message");
         
 			return eipFillParamsResponse;
         }

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,40 +32,33 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeVSwitchesRequest()
             : base("Ecs", "2014-05-26", "DescribeVSwitches", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string vSwitchId;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private string vpcId;
-
-		private string ownerAccount;
+		private int? pageNumber;
 
 		private int? pageSize;
 
-		private string zoneId;
-
 		private bool? isDefault;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
 
 		private long? ownerId;
 
-		private int? pageNumber;
+		private string vSwitchId;
 
-		public string VSwitchId
-		{
-			get
-			{
-				return vSwitchId;
-			}
-			set	
-			{
-				vSwitchId = value;
-				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
-			}
-		}
+		private string vpcId;
+
+		private string zoneId;
 
 		public long? ResourceOwnerId
 		{
@@ -81,42 +73,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public int? PageNumber
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return pageNumber;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string VpcId
-		{
-			get
-			{
-				return vpcId;
-			}
-			set	
-			{
-				vpcId = value;
-				DictionaryUtil.Add(QueryParameters, "VpcId", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -133,19 +99,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ZoneId
-		{
-			get
-			{
-				return zoneId;
-			}
-			set	
-			{
-				zoneId = value;
-				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
-			}
-		}
-
 		public bool? IsDefault
 		{
 			get
@@ -156,6 +109,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				isDefault = value;
 				DictionaryUtil.Add(QueryParameters, "IsDefault", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -172,16 +151,42 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? PageNumber
+		public string VSwitchId
 		{
 			get
 			{
-				return pageNumber;
+				return vSwitchId;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public string VpcId
+		{
+			get
+			{
+				return vpcId;
+			}
+			set	
+			{
+				vpcId = value;
+				DictionaryUtil.Add(QueryParameters, "VpcId", value);
+			}
+		}
+
+		public string ZoneId
+		{
+			get
+			{
+				return zoneId;
+			}
+			set	
+			{
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,30 +31,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ModifyContainerAppAttributesRequest : RpcAcsRequest<ModifyContainerAppAttributesResponse>
     {
         public ModifyContainerAppAttributesRequest()
-            : base("EHPC", "2018-04-12", "ModifyContainerAppAttributes", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ModifyContainerAppAttributes")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string action;
 
 		private string description;
 
 		private string containerId;
-
-		private string accessKeyId;
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
 
 		public string Description
 		{
@@ -78,19 +67,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				containerId = value;
 				DictionaryUtil.Add(QueryParameters, "ContainerId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

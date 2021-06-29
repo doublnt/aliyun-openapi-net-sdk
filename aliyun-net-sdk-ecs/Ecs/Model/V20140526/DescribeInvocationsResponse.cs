@@ -25,15 +25,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 	public class DescribeInvocationsResponse : AcsResponse
 	{
 
-		private string requestId;
+		private long? pageSize;
 
-		private long? totalCount;
+		private string requestId;
 
 		private long? pageNumber;
 
-		private long? pageSize;
+		private long? totalCount;
 
 		private List<DescribeInvocations_Invocation> invocations;
+
+		public long? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+			}
+		}
 
 		public string RequestId
 		{
@@ -44,18 +56,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			set	
 			{
 				requestId = value;
-			}
-		}
-
-		public long? TotalCount
-		{
-			get
-			{
-				return totalCount;
-			}
-			set	
-			{
-				totalCount = value;
 			}
 		}
 
@@ -71,15 +71,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public long? PageSize
+		public long? TotalCount
 		{
 			get
 			{
-				return pageSize;
+				return totalCount;
 			}
 			set	
 			{
-				pageSize = value;
+				totalCount = value;
 			}
 		}
 
@@ -98,35 +98,79 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		public class DescribeInvocations_Invocation
 		{
 
-			private string invokeId;
+			private string creationTime;
+
+			private string frequency;
+
+			private string invocationStatus;
+
+			private string repeatMode;
 
 			private string commandId;
 
 			private string commandType;
 
-			private string commandName;
-
-			private string frequency;
-
-			private bool? timed;
-
 			private string invokeStatus;
 
 			private string parameters;
 
+			private bool? timed;
+
 			private string commandContent;
+
+			private string commandName;
+
+			private string invokeId;
+
+			private string username;
 
 			private List<DescribeInvocations_InvokeInstance> invokeInstances;
 
-			public string InvokeId
+			public string CreationTime
 			{
 				get
 				{
-					return invokeId;
+					return creationTime;
 				}
 				set	
 				{
-					invokeId = value;
+					creationTime = value;
+				}
+			}
+
+			public string Frequency
+			{
+				get
+				{
+					return frequency;
+				}
+				set	
+				{
+					frequency = value;
+				}
+			}
+
+			public string InvocationStatus
+			{
+				get
+				{
+					return invocationStatus;
+				}
+				set	
+				{
+					invocationStatus = value;
+				}
+			}
+
+			public string RepeatMode
+			{
+				get
+				{
+					return repeatMode;
+				}
+				set	
+				{
+					repeatMode = value;
 				}
 			}
 
@@ -154,42 +198,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
-			public string CommandName
-			{
-				get
-				{
-					return commandName;
-				}
-				set	
-				{
-					commandName = value;
-				}
-			}
-
-			public string Frequency
-			{
-				get
-				{
-					return frequency;
-				}
-				set	
-				{
-					frequency = value;
-				}
-			}
-
-			public bool? Timed
-			{
-				get
-				{
-					return timed;
-				}
-				set	
-				{
-					timed = value;
-				}
-			}
-
 			public string InvokeStatus
 			{
 				get
@@ -214,6 +222,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public bool? Timed
+			{
+				get
+				{
+					return timed;
+				}
+				set	
+				{
+					timed = value;
+				}
+			}
+
 			public string CommandContent
 			{
 				get
@@ -223,6 +243,42 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					commandContent = value;
+				}
+			}
+
+			public string CommandName
+			{
+				get
+				{
+					return commandName;
+				}
+				set	
+				{
+					commandName = value;
+				}
+			}
+
+			public string InvokeId
+			{
+				get
+				{
+					return invokeId;
+				}
+				set	
+				{
+					invokeId = value;
+				}
+			}
+
+			public string Username
+			{
+				get
+				{
+					return username;
+				}
+				set	
+				{
+					username = value;
 				}
 			}
 
@@ -241,15 +297,95 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			public class DescribeInvocations_InvokeInstance
 			{
 
+				private string creationTime;
+
+				private string updateTime;
+
+				private string finishTime;
+
+				private string invocationStatus;
+
+				private int? repeats;
+
 				private string instanceId;
 
-				private string instanceInvokeStatus;
+				private string output;
 
-				private string creationTime;
+				private int? dropped;
+
+				private string stopTime;
+
+				private long? exitCode;
 
 				private string startTime;
 
-				private string finishTime;
+				private string errorInfo;
+
+				private bool? timed;
+
+				private string errorCode;
+
+				private string instanceInvokeStatus;
+
+				public string CreationTime
+				{
+					get
+					{
+						return creationTime;
+					}
+					set	
+					{
+						creationTime = value;
+					}
+				}
+
+				public string UpdateTime
+				{
+					get
+					{
+						return updateTime;
+					}
+					set	
+					{
+						updateTime = value;
+					}
+				}
+
+				public string FinishTime
+				{
+					get
+					{
+						return finishTime;
+					}
+					set	
+					{
+						finishTime = value;
+					}
+				}
+
+				public string InvocationStatus
+				{
+					get
+					{
+						return invocationStatus;
+					}
+					set	
+					{
+						invocationStatus = value;
+					}
+				}
+
+				public int? Repeats
+				{
+					get
+					{
+						return repeats;
+					}
+					set	
+					{
+						repeats = value;
+					}
+				}
 
 				public string InstanceId
 				{
@@ -263,27 +399,51 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					}
 				}
 
-				public string InstanceInvokeStatus
+				public string Output
 				{
 					get
 					{
-						return instanceInvokeStatus;
+						return output;
 					}
 					set	
 					{
-						instanceInvokeStatus = value;
+						output = value;
 					}
 				}
 
-				public string CreationTime
+				public int? Dropped
 				{
 					get
 					{
-						return creationTime;
+						return dropped;
 					}
 					set	
 					{
-						creationTime = value;
+						dropped = value;
+					}
+				}
+
+				public string StopTime
+				{
+					get
+					{
+						return stopTime;
+					}
+					set	
+					{
+						stopTime = value;
+					}
+				}
+
+				public long? ExitCode
+				{
+					get
+					{
+						return exitCode;
+					}
+					set	
+					{
+						exitCode = value;
 					}
 				}
 
@@ -299,15 +459,51 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					}
 				}
 
-				public string FinishTime
+				public string ErrorInfo
 				{
 					get
 					{
-						return finishTime;
+						return errorInfo;
 					}
 					set	
 					{
-						finishTime = value;
+						errorInfo = value;
+					}
+				}
+
+				public bool? Timed
+				{
+					get
+					{
+						return timed;
+					}
+					set	
+					{
+						timed = value;
+					}
+				}
+
+				public string ErrorCode
+				{
+					get
+					{
+						return errorCode;
+					}
+					set	
+					{
+						errorCode = value;
+					}
+				}
+
+				public string InstanceInvokeStatus
+				{
+					get
+					{
+						return instanceInvokeStatus;
+					}
+					set	
+					{
+						instanceInvokeStatus = value;
 					}
 				}
 			}

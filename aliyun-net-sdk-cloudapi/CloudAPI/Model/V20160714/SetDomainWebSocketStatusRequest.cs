@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,32 +32,20 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public SetDomainWebSocketStatusRequest()
             : base("CloudAPI", "2016-07-14", "SetDomainWebSocketStatus", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string securityToken;
 
 		private string groupId;
 
 		private string domainName;
 
-		private string action;
+		private string securityToken;
 
 		private string actionValue;
-
-		private string accessKeyId;
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
 
 		public string GroupId
 		{
@@ -84,16 +73,16 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string Action
+		public string SecurityToken
 		{
 			get
 			{
-				return action;
+				return securityToken;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -110,20 +99,7 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override SetDomainWebSocketStatusResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override SetDomainWebSocketStatusResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return SetDomainWebSocketStatusResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

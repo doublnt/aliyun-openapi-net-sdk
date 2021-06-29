@@ -32,21 +32,26 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public DescribeZonesRequest()
             : base("pvtz", "2018-01-01", "DescribeZones", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string queryVpcId;
 
+		private int? pageNumber;
+
+		private string resourceGroupId;
+
 		private int? pageSize;
-
-		private string userClientIp;
-
-		private string searchMode;
 
 		private string lang;
 
 		private string keyword;
 
-		private int? pageNumber;
+		private string searchMode;
 
 		private string queryRegionId;
 
@@ -63,6 +68,32 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			}
 		}
 
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -73,32 +104,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
-		public string SearchMode
-		{
-			get
-			{
-				return searchMode;
-			}
-			set	
-			{
-				searchMode = value;
-				DictionaryUtil.Add(QueryParameters, "SearchMode", value);
 			}
 		}
 
@@ -128,16 +133,16 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			}
 		}
 
-		public int? PageNumber
+		public string SearchMode
 		{
 			get
 			{
-				return pageNumber;
+				return searchMode;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				searchMode = value;
+				DictionaryUtil.Add(QueryParameters, "SearchMode", value);
 			}
 		}
 

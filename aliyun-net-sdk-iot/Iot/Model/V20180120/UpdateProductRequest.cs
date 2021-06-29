@@ -32,15 +32,34 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public UpdateProductRequest()
             : base("Iot", "2018-01-20", "UpdateProduct", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string description;
 
 		private string iotInstanceId;
 
 		private string productName;
 
-		private string description;
-
 		private string productKey;
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
 
 		public string IotInstanceId
 		{
@@ -65,19 +84,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productName = value;
 				DictionaryUtil.Add(QueryParameters, "ProductName", value);
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 

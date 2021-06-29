@@ -1,3 +1,36 @@
+2020-09-02 Version: 2.0.6
+- Support sg for ml region.
+
+2020-07-01 Version: 2.0.2
+- Support Saf For ExecuteExtendService.
+
+2020-05-08 Version: 2.0.1
+- Support sg for region.
+
+2020-04-08 Version: 1.2.0
+- Supported Saf for 2017-03-31 version.
+
+2020-04-08 Version: 1.0.4
+- Supported Saf for 2017-03-31 version.
+
+2020-04-08 Version: 1.0.3
+- Supported Saf for 2017-03-31 version.
+
+2020-03-10 Version: 3.0.0
+- Supported Saf for cn.
+
+2020-03-06 Version: 1.1.0
+- Supported Saf for cn.
+
+2020-03-06 Version: 2.0.0
+- Supported Saf for oversea.
+
+2019-08-02 Version 1.0.7
+Generated 2018-09-19 for `saf`.
+
+2019-08-02 Version 1.0.6
+Generated 2018-09-19 for `saf`.
+
 2019-05-10 Version: 1.0.5
 1, Generated 2018-09-19 for saf-v1.0.5
 

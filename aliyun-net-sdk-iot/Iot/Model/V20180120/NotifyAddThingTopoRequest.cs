@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public NotifyAddThingTopoRequest()
             : base("Iot", "2018-01-20", "NotifyAddThingTopo", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string gwProductKey;
 
-		private string gwDeviceName;
+		private string deviceListStr;
 
 		private string iotInstanceId;
 
 		private string gwIotId;
 
-		private string deviceListStr;
+		private string gwDeviceName;
 
 		public string GwProductKey
 		{
@@ -57,16 +63,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string GwDeviceName
+		public string DeviceListStr
 		{
 			get
 			{
-				return gwDeviceName;
+				return deviceListStr;
 			}
 			set	
 			{
-				gwDeviceName = value;
-				DictionaryUtil.Add(QueryParameters, "GwDeviceName", value);
+				deviceListStr = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceListStr", value);
 			}
 		}
 
@@ -96,16 +102,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceListStr
+		public string GwDeviceName
 		{
 			get
 			{
-				return deviceListStr;
+				return gwDeviceName;
 			}
 			set	
 			{
-				deviceListStr = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceListStr", value);
+				gwDeviceName = value;
+				DictionaryUtil.Add(QueryParameters, "GwDeviceName", value);
 			}
 		}
 

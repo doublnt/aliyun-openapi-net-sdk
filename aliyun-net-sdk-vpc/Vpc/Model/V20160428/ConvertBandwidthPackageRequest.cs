@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,15 +32,17 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public ConvertBandwidthPackageRequest()
             : base("Vpc", "2016-04-28", "ConvertBandwidthPackage", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string clientToken;
-
-		private string regionId;
-
-		private string action;
 
 		private string bandwidthPackageId;
 
@@ -70,32 +73,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -138,7 +115,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override ConvertBandwidthPackageResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override ConvertBandwidthPackageResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ConvertBandwidthPackageResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -107,6 +108,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private string resourceGroupId;
 
+			private string status;
+
 			private List<DescribeRouteTables_RouteEntry> routeEntrys;
 
 			private List<string> vSwitchIds;
@@ -171,6 +174,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string Status
+			{
+				get
+				{
+					return status;
+				}
+				set	
+				{
+					status = value;
+				}
+			}
+
 			public List<DescribeRouteTables_RouteEntry> RouteEntrys
 			{
 				get
@@ -209,6 +224,12 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				private string instanceId;
 
 				private string nextHopType;
+
+				private string routeEntryName;
+
+				private string description;
+
+				private string routeEntryId;
 
 				private string nextHopRegionId;
 
@@ -291,6 +312,42 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 					set	
 					{
 						nextHopType = value;
+					}
+				}
+
+				public string RouteEntryName
+				{
+					get
+					{
+						return routeEntryName;
+					}
+					set	
+					{
+						routeEntryName = value;
+					}
+				}
+
+				public string Description
+				{
+					get
+					{
+						return description;
+					}
+					set	
+					{
+						description = value;
+					}
+				}
+
+				public string RouteEntryId
+				{
+					get
+					{
+						return routeEntryId;
+					}
+					set	
+					{
+						routeEntryId = value;
 					}
 				}
 

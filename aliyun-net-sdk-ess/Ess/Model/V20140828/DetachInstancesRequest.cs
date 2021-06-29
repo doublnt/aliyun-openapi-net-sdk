@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,23 +33,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DetachInstancesRequest()
             : base("Ess", "2014-08-28", "DetachInstances", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private List<string> instanceIds;
+		private string scalingGroupId;
+
+		private bool? decreaseDesiredCapacity;
 
 		private string resourceOwnerAccount;
 
-		private string scalingGroupId;
-
 		private string ownerAccount;
-
-		private string action;
 
 		private long? ownerId;
 
-		private string accessKeyId;
+		private List<string> instanceIds = new List<string>(){ };
+
+		private string detachOption;
 
 		public long? ResourceOwnerId
 		{
@@ -60,6 +67,71 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ScalingGroupId
+		{
+			get
+			{
+				return scalingGroupId;
+			}
+			set	
+			{
+				scalingGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
+			}
+		}
+
+		public bool? DecreaseDesiredCapacity
+		{
+			get
+			{
+				return decreaseDesiredCapacity;
+			}
+			set	
+			{
+				decreaseDesiredCapacity = value;
+				DictionaryUtil.Add(QueryParameters, "DecreaseDesiredCapacity", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -80,81 +152,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public string DetachOption
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return detachOption;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string ScalingGroupId
-		{
-			get
-			{
-				return scalingGroupId;
-			}
-			set	
-			{
-				scalingGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ScalingGroupId", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				detachOption = value;
+				DictionaryUtil.Add(QueryParameters, "DetachOption", value);
 			}
 		}
 

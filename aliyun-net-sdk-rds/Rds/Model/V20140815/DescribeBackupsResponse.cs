@@ -35,6 +35,8 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private long? totalBackupSize;
 
+		private long? totalEcsSnapshotSize;
+
 		private List<DescribeBackups_Backup> items;
 
 		public string RequestId
@@ -97,6 +99,18 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public long? TotalEcsSnapshotSize
+		{
+			get
+			{
+				return totalEcsSnapshotSize;
+			}
+			set	
+			{
+				totalEcsSnapshotSize = value;
+			}
+		}
+
 		public List<DescribeBackups_Backup> Items
 		{
 			get
@@ -151,6 +165,18 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			private string metaStatus;
 
 			private string slaveStatus;
+
+			private long? consistentTime;
+
+			private string backupInitiator;
+
+			private string copyOnlyBackup;
+
+			private string storageClass;
+
+			private int? isAvail;
+
+			private string encryption;
 
 			public string BackupId
 			{
@@ -389,6 +415,78 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 				set	
 				{
 					slaveStatus = value;
+				}
+			}
+
+			public long? ConsistentTime
+			{
+				get
+				{
+					return consistentTime;
+				}
+				set	
+				{
+					consistentTime = value;
+				}
+			}
+
+			public string BackupInitiator
+			{
+				get
+				{
+					return backupInitiator;
+				}
+				set	
+				{
+					backupInitiator = value;
+				}
+			}
+
+			public string CopyOnlyBackup
+			{
+				get
+				{
+					return copyOnlyBackup;
+				}
+				set	
+				{
+					copyOnlyBackup = value;
+				}
+			}
+
+			public string StorageClass
+			{
+				get
+				{
+					return storageClass;
+				}
+				set	
+				{
+					storageClass = value;
+				}
+			}
+
+			public int? IsAvail
+			{
+				get
+				{
+					return isAvail;
+				}
+				set	
+				{
+					isAvail = value;
+				}
+			}
+
+			public string Encryption
+			{
+				get
+				{
+					return encryption;
+				}
+				set	
+				{
+					encryption = value;
 				}
 			}
 		}

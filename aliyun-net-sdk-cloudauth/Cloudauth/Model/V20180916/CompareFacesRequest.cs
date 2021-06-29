@@ -32,6 +32,11 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public CompareFacesRequest()
             : base("Cloudauth", "2018-09-16", "CompareFaces", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
 			Method = MethodType.POST;
         }
@@ -40,13 +45,11 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 
 		private long? resourceOwnerId;
 
-		private string sourceIp;
-
 		private string targetImageType;
 
-		private string sourceImageValue;
-
 		private string targetImageValue;
+
+		private string sourceImageValue;
 
 		public string SourceImageType
 		{
@@ -74,19 +77,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
-
 		public string TargetImageType
 		{
 			get
@@ -100,19 +90,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string SourceImageValue
-		{
-			get
-			{
-				return sourceImageValue;
-			}
-			set	
-			{
-				sourceImageValue = value;
-				DictionaryUtil.Add(BodyParameters, "SourceImageValue", value);
-			}
-		}
-
 		public string TargetImageValue
 		{
 			get
@@ -123,6 +100,19 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				targetImageValue = value;
 				DictionaryUtil.Add(BodyParameters, "TargetImageValue", value);
+			}
+		}
+
+		public string SourceImageValue
+		{
+			get
+			{
+				return sourceImageValue;
+			}
+			set	
+			{
+				sourceImageValue = value;
+				DictionaryUtil.Add(BodyParameters, "SourceImageValue", value);
 			}
 		}
 

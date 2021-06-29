@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,21 +31,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListNodesByQueueRequest : RpcAcsRequest<ListNodesByQueueResponse>
     {
         public ListNodesByQueueRequest()
-            : base("EHPC", "2018-04-12", "ListNodesByQueue", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListNodesByQueue")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string queueName;
-
-		private int? pageSize;
-
-		private string action;
 
 		private string clusterId;
 
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private int? pageSize;
 
 		public string QueueName
 		{
@@ -56,32 +58,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				queueName = value;
 				DictionaryUtil.Add(QueryParameters, "QueueName", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -111,16 +87,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public int? PageSize
 		{
 			get
 			{
-				return accessKeyId;
+				return pageSize;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

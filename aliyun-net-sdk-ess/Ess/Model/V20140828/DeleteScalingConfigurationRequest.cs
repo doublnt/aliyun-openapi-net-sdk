@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,32 +33,21 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DeleteScalingConfigurationRequest()
             : base("Ess", "2014-08-28", "DeleteScalingConfiguration", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string scalingConfigurationId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string action;
-
 		private long? ownerId;
 
-		private string accessKeyId;
-
-		public string ScalingConfigurationId
-		{
-			get
-			{
-				return scalingConfigurationId;
-			}
-			set	
-			{
-				scalingConfigurationId = value;
-				DictionaryUtil.Add(QueryParameters, "ScalingConfigurationId", value);
-			}
-		}
+		private string scalingConfigurationId;
 
 		public string ResourceOwnerAccount
 		{
@@ -85,19 +75,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -111,16 +88,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
+		public string ScalingConfigurationId
 		{
 			get
 			{
-				return accessKeyId;
+				return scalingConfigurationId;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				scalingConfigurationId = value;
+				DictionaryUtil.Add(QueryParameters, "ScalingConfigurationId", value);
 			}
 		}
 

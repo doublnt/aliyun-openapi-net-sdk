@@ -29,6 +29,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string instanceId;
 
+		private string orderId;
+
 		private float? tradePrice;
 
 		public string RequestId
@@ -52,6 +54,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			set	
 			{
 				instanceId = value;
+			}
+		}
+
+		public string OrderId
+		{
+			get
+			{
+				return orderId;
+			}
+			set	
+			{
+				orderId = value;
 			}
 		}
 

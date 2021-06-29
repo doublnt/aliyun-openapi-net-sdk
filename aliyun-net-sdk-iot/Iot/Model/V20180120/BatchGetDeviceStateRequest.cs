@@ -32,15 +32,21 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public BatchGetDeviceStateRequest()
             : base("Iot", "2018-01-20", "BatchGetDeviceState", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> iotIds;
+		private List<string> iotIds = new List<string>(){ };
 
 		private string iotInstanceId;
 
-		private List<string> deviceNames;
-
 		private string productKey;
+
+		private List<string> deviceNames = new List<string>(){ };
 
 		public List<string> IotIds
 		{
@@ -72,6 +78,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
+		public string ProductKey
+		{
+			get
+			{
+				return productKey;
+			}
+			set	
+			{
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
 		public List<string> DeviceNames
 		{
 			get
@@ -86,19 +105,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 				{
 					DictionaryUtil.Add(QueryParameters,"DeviceName." + (i + 1) , deviceNames[i]);
 				}
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 

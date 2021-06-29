@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,33 +32,37 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public ModifyBgpGroupAttributeRequest()
             : base("Vpc", "2016-04-28", "ModifyBgpGroupAttribute", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string authKey;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
-
-		private string ownerAccount;
 
 		private string bgpGroupId;
 
 		private string description;
 
-		private long? ownerId;
-
 		private long? peerAsn;
 
 		private bool? isFakeAsn;
 
-		private string regionId;
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
 
 		private string name;
 
-		private string action;
+		private long? localAsn;
 
 		public string AuthKey
 		{
@@ -85,19 +90,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -108,19 +100,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -150,19 +129,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public long? PeerAsn
 		{
 			get
@@ -189,16 +155,42 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return regionId;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -215,20 +207,20 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
+		public long? LocalAsn
 		{
 			get
 			{
-				return action;
+				return localAsn;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				localAsn = value;
+				DictionaryUtil.Add(QueryParameters, "LocalAsn", value.ToString());
 			}
 		}
 
-        public override ModifyBgpGroupAttributeResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override ModifyBgpGroupAttributeResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ModifyBgpGroupAttributeResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

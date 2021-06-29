@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -44,9 +45,17 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 		private bool? effectImmediately;
 
+		private bool? enableDpd;
+
+		private bool? enableNatTraversal;
+
 		private ModifyVpnConnectionAttribute_IkeConfig ikeConfig;
 
 		private ModifyVpnConnectionAttribute_IpsecConfig ipsecConfig;
+
+		private ModifyVpnConnectionAttribute_VcoHealthCheck vcoHealthCheck;
+
+		private ModifyVpnConnectionAttribute_VpnBgpConfig vpnBgpConfig;
 
 		public string RequestId
 		{
@@ -168,6 +177,30 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
+		public bool? EnableDpd
+		{
+			get
+			{
+				return enableDpd;
+			}
+			set	
+			{
+				enableDpd = value;
+			}
+		}
+
+		public bool? EnableNatTraversal
+		{
+			get
+			{
+				return enableNatTraversal;
+			}
+			set	
+			{
+				enableNatTraversal = value;
+			}
+		}
+
 		public ModifyVpnConnectionAttribute_IkeConfig IkeConfig
 		{
 			get
@@ -189,6 +222,30 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			set	
 			{
 				ipsecConfig = value;
+			}
+		}
+
+		public ModifyVpnConnectionAttribute_VcoHealthCheck VcoHealthCheck
+		{
+			get
+			{
+				return vcoHealthCheck;
+			}
+			set	
+			{
+				vcoHealthCheck = value;
+			}
+		}
+
+		public ModifyVpnConnectionAttribute_VpnBgpConfig VpnBgpConfig
+		{
+			get
+			{
+				return vpnBgpConfig;
+			}
+			set	
+			{
+				vpnBgpConfig = value;
 			}
 		}
 
@@ -378,6 +435,182 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					ipsecLifetime = value;
+				}
+			}
+		}
+
+		public class ModifyVpnConnectionAttribute_VcoHealthCheck
+		{
+
+			private string enable;
+
+			private string sip;
+
+			private string dip;
+
+			private int? interval;
+
+			private int? retry;
+
+			public string Enable
+			{
+				get
+				{
+					return enable;
+				}
+				set	
+				{
+					enable = value;
+				}
+			}
+
+			public string Sip
+			{
+				get
+				{
+					return sip;
+				}
+				set	
+				{
+					sip = value;
+				}
+			}
+
+			public string Dip
+			{
+				get
+				{
+					return dip;
+				}
+				set	
+				{
+					dip = value;
+				}
+			}
+
+			public int? Interval
+			{
+				get
+				{
+					return interval;
+				}
+				set	
+				{
+					interval = value;
+				}
+			}
+
+			public int? Retry
+			{
+				get
+				{
+					return retry;
+				}
+				set	
+				{
+					retry = value;
+				}
+			}
+		}
+
+		public class ModifyVpnConnectionAttribute_VpnBgpConfig
+		{
+
+			private string enableBgp;
+
+			private string tunnelCidr;
+
+			private string localBgpIp;
+
+			private string peerBgpIp;
+
+			private int? localAsn;
+
+			private int? peerAsn;
+
+			private string status;
+
+			public string EnableBgp
+			{
+				get
+				{
+					return enableBgp;
+				}
+				set	
+				{
+					enableBgp = value;
+				}
+			}
+
+			public string TunnelCidr
+			{
+				get
+				{
+					return tunnelCidr;
+				}
+				set	
+				{
+					tunnelCidr = value;
+				}
+			}
+
+			public string LocalBgpIp
+			{
+				get
+				{
+					return localBgpIp;
+				}
+				set	
+				{
+					localBgpIp = value;
+				}
+			}
+
+			public string PeerBgpIp
+			{
+				get
+				{
+					return peerBgpIp;
+				}
+				set	
+				{
+					peerBgpIp = value;
+				}
+			}
+
+			public int? LocalAsn
+			{
+				get
+				{
+					return localAsn;
+				}
+				set	
+				{
+					localAsn = value;
+				}
+			}
+
+			public int? PeerAsn
+			{
+				get
+				{
+					return peerAsn;
+				}
+				set	
+				{
+					peerAsn = value;
+				}
+			}
+
+			public string Status
+			{
+				get
+				{
+					return status;
+				}
+				set	
+				{
+					status = value;
 				}
 			}
 		}

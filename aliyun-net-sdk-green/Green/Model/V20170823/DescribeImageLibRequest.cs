@@ -32,24 +32,17 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeImageLibRequest()
             : base("Green", "2017-08-23", "DescribeImageLib", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string sourceIp;
 
 		private string serviceModule;
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
+		private string sourceIp;
 
 		public string ServiceModule
 		{
@@ -61,6 +54,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				serviceModule = value;
 				DictionaryUtil.Add(QueryParameters, "ServiceModule", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
 			}
 		}
 

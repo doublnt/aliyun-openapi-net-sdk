@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,45 +33,21 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public DeleteCdnDomainRequest()
             : base("Cdn", "2018-05-10", "DeleteCdnDomain")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string resourceGroupId;
-
-		private string securityToken;
 
 		private string ownerAccount;
 
 		private string domainName;
 
-		private string action;
-
 		private long? ownerId;
 
-		public string ResourceGroupId
-		{
-			get
-			{
-				return resourceGroupId;
-			}
-			set	
-			{
-				resourceGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
+		private string securityToken;
 
 		public string OwnerAccount
 		{
@@ -98,19 +75,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,6 +85,19 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 

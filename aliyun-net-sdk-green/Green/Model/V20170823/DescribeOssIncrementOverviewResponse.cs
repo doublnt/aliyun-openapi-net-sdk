@@ -37,6 +37,14 @@ namespace Aliyun.Acs.Green.Model.V20170823
 
 		private int? terrorismUnhandleCount;
 
+		private int? adUnhandleCount;
+
+		private int? liveUnhandleCount;
+
+		private int? voiceAntispamUnhandleCount;
+
+		private int? audioCount;
+
 		public string RequestId
 		{
 			get
@@ -106,6 +114,54 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			set	
 			{
 				terrorismUnhandleCount = value;
+			}
+		}
+
+		public int? AdUnhandleCount
+		{
+			get
+			{
+				return adUnhandleCount;
+			}
+			set	
+			{
+				adUnhandleCount = value;
+			}
+		}
+
+		public int? LiveUnhandleCount
+		{
+			get
+			{
+				return liveUnhandleCount;
+			}
+			set	
+			{
+				liveUnhandleCount = value;
+			}
+		}
+
+		public int? VoiceAntispamUnhandleCount
+		{
+			get
+			{
+				return voiceAntispamUnhandleCount;
+			}
+			set	
+			{
+				voiceAntispamUnhandleCount = value;
+			}
+		}
+
+		public int? AudioCount
+		{
+			get
+			{
+				return audioCount;
+			}
+			set	
+			{
+				audioCount = value;
 			}
 		}
 	}

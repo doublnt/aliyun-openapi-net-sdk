@@ -32,24 +32,30 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public DetectImageCelebrityRequest()
             : base("imm", "2017-09-06", "DetectImageCelebrity", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string imageUri;
-
-		private string library;
 
 		private string project;
 
-		public string ImageUri
+		private string library;
+
+		private string imageUri;
+
+		public string Project
 		{
 			get
 			{
-				return imageUri;
+				return project;
 			}
 			set	
 			{
-				imageUri = value;
-				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
 		}
 
@@ -66,16 +72,16 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
+		public string ImageUri
 		{
 			get
 			{
-				return project;
+				return imageUri;
 			}
 			set	
 			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
+				imageUri = value;
+				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
 			}
 		}
 

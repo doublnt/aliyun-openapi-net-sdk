@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,41 +32,16 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public DeleteSignatureRequest()
             : base("CloudAPI", "2016-07-14", "DeleteSignature", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string securityToken;
-
-		private string action;
 
 		private string signatureId;
 
-		private string accessKeyId;
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
+		private string securityToken;
 
 		public string SignatureId
 		{
@@ -80,20 +56,20 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string SecurityToken
 		{
 			get
 			{
-				return accessKeyId;
+				return securityToken;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
-        public override DeleteSignatureResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DeleteSignatureResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DeleteSignatureResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

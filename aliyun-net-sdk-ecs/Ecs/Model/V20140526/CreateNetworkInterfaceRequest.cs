@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,7 +32,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateNetworkInterfaceRequest()
             : base("Ecs", "2014-05-26", "CreateNetworkInterface", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private int? queueNumber;
 
 		private long? resourceOwnerId;
 
@@ -43,11 +50,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string description;
 
+		private int? secondaryPrivateIpAddressCount;
+
 		private string businessType;
 
 		private string resourceGroupId;
 
-		private List<Tag> tags;
+		private string instanceType;
+
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string networkInterfaceName;
 
@@ -57,11 +68,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string ownerAccount;
 
+		private int? queuePairNumber;
+
 		private long? ownerId;
+
+		private List<string> securityGroupIdss = new List<string>(){ };
+
+		private string networkInterfaceTrafficMode;
 
 		private string vSwitchId;
 
+		private List<string> privateIpAddresss = new List<string>(){ };
+
 		private string primaryIpAddress;
+
+		public int? QueueNumber
+		{
+			get
+			{
+				return queueNumber;
+			}
+			set	
+			{
+				queueNumber = value;
+				DictionaryUtil.Add(QueryParameters, "QueueNumber", value.ToString());
+			}
+		}
 
 		public long? ResourceOwnerId
 		{
@@ -115,6 +147,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? SecondaryPrivateIpAddressCount
+		{
+			get
+			{
+				return secondaryPrivateIpAddressCount;
+			}
+			set	
+			{
+				secondaryPrivateIpAddressCount = value;
+				DictionaryUtil.Add(QueryParameters, "SecondaryPrivateIpAddressCount", value.ToString());
+			}
+		}
+
 		public string BusinessType
 		{
 			get
@@ -138,6 +183,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string InstanceType
+		{
+			get
+			{
+				return instanceType;
+			}
+			set	
+			{
+				instanceType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
 			}
 		}
 
@@ -211,6 +269,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? QueuePairNumber
+		{
+			get
+			{
+				return queuePairNumber;
+			}
+			set	
+			{
+				queuePairNumber = value;
+				DictionaryUtil.Add(QueryParameters, "QueuePairNumber", value.ToString());
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -224,6 +295,36 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public List<string> SecurityGroupIdss
+		{
+			get
+			{
+				return securityGroupIdss;
+			}
+
+			set
+			{
+				securityGroupIdss = value;
+				for (int i = 0; i < securityGroupIdss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SecurityGroupIds." + (i + 1) , securityGroupIdss[i]);
+				}
+			}
+		}
+
+		public string NetworkInterfaceTrafficMode
+		{
+			get
+			{
+				return networkInterfaceTrafficMode;
+			}
+			set	
+			{
+				networkInterfaceTrafficMode = value;
+				DictionaryUtil.Add(QueryParameters, "NetworkInterfaceTrafficMode", value);
+			}
+		}
+
 		public string VSwitchId
 		{
 			get
@@ -234,6 +335,23 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				vSwitchId = value;
 				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public List<string> PrivateIpAddresss
+		{
+			get
+			{
+				return privateIpAddresss;
+			}
+
+			set
+			{
+				privateIpAddresss = value;
+				for (int i = 0; i < privateIpAddresss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"PrivateIpAddress." + (i + 1) , privateIpAddresss[i]);
+				}
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,33 +31,48 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class CreateJobTemplateRequest : RpcAcsRequest<CreateJobTemplateResponse>
     {
         public CreateJobTemplateRequest()
-            : base("EHPC", "2018-04-12", "CreateJobTemplate", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "CreateJobTemplate")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string stderrRedirectPath;
+
+		private string clockTime;
+
+		private string commandLine;
 
 		private string arrayRequest;
 
 		private string packagePath;
 
-		private string variables;
-
-		private string name;
-
-		private string action;
-
-		private string runasUser;
+		private string mem;
 
 		private string stdoutRedirectPath;
 
+		private string variables;
+
+		private string runasUser;
+
 		private bool? reRunable;
+
+		private int? thread;
 
 		private int? priority;
 
-		private string commandLine;
+		private int? gpu;
 
-		private string accessKeyId;
+		private int? node;
+
+		private int? task;
+
+		private string name;
+
+		private string queue;
 
 		public string StderrRedirectPath
 		{
@@ -68,6 +84,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				stderrRedirectPath = value;
 				DictionaryUtil.Add(QueryParameters, "StderrRedirectPath", value);
+			}
+		}
+
+		public string ClockTime
+		{
+			get
+			{
+				return clockTime;
+			}
+			set	
+			{
+				clockTime = value;
+				DictionaryUtil.Add(QueryParameters, "ClockTime", value);
+			}
+		}
+
+		public string CommandLine
+		{
+			get
+			{
+				return commandLine;
+			}
+			set	
+			{
+				commandLine = value;
+				DictionaryUtil.Add(QueryParameters, "CommandLine", value);
 			}
 		}
 
@@ -97,55 +139,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string Variables
+		public string Mem
 		{
 			get
 			{
-				return variables;
+				return mem;
 			}
 			set	
 			{
-				variables = value;
-				DictionaryUtil.Add(QueryParameters, "Variables", value);
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-			set	
-			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string RunasUser
-		{
-			get
-			{
-				return runasUser;
-			}
-			set	
-			{
-				runasUser = value;
-				DictionaryUtil.Add(QueryParameters, "RunasUser", value);
+				mem = value;
+				DictionaryUtil.Add(QueryParameters, "Mem", value);
 			}
 		}
 
@@ -162,6 +165,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
+		public string Variables
+		{
+			get
+			{
+				return variables;
+			}
+			set	
+			{
+				variables = value;
+				DictionaryUtil.Add(QueryParameters, "Variables", value);
+			}
+		}
+
+		public string RunasUser
+		{
+			get
+			{
+				return runasUser;
+			}
+			set	
+			{
+				runasUser = value;
+				DictionaryUtil.Add(QueryParameters, "RunasUser", value);
+			}
+		}
+
 		public bool? ReRunable
 		{
 			get
@@ -172,6 +201,19 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				reRunable = value;
 				DictionaryUtil.Add(QueryParameters, "ReRunable", value.ToString());
+			}
+		}
+
+		public int? Thread
+		{
+			get
+			{
+				return thread;
+			}
+			set	
+			{
+				thread = value;
+				DictionaryUtil.Add(QueryParameters, "Thread", value.ToString());
 			}
 		}
 
@@ -188,29 +230,68 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string CommandLine
+		public int? Gpu
 		{
 			get
 			{
-				return commandLine;
+				return gpu;
 			}
 			set	
 			{
-				commandLine = value;
-				DictionaryUtil.Add(QueryParameters, "CommandLine", value);
+				gpu = value;
+				DictionaryUtil.Add(QueryParameters, "Gpu", value.ToString());
 			}
 		}
 
-		public string AccessKeyId
+		public int? Node
 		{
 			get
 			{
-				return accessKeyId;
+				return node;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				node = value;
+				DictionaryUtil.Add(QueryParameters, "Node", value.ToString());
+			}
+		}
+
+		public int? Task
+		{
+			get
+			{
+				return task;
+			}
+			set	
+			{
+				task = value;
+				DictionaryUtil.Add(QueryParameters, "Task", value.ToString());
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
+			}
+		}
+
+		public string Queue
+		{
+			get
+			{
+				return queue;
+			}
+			set	
+			{
+				queue = value;
+				DictionaryUtil.Add(QueryParameters, "Queue", value);
 			}
 		}
 

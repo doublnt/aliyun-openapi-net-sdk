@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,15 +30,34 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class TransferInCheckMailTokenRequest : RpcAcsRequest<TransferInCheckMailTokenResponse>
     {
         public TransferInCheckMailTokenRequest()
-            : base("Domain", "2018-01-29", "TransferInCheckMailToken")
+            : base("Domain", "2018-01-29", "TransferInCheckMailToken", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string token;
 
 		private string userClientIp;
 
 		private string lang;
 
-		private string token;
+		public string Token
+		{
+			get
+			{
+				return token;
+			}
+			set	
+			{
+				token = value;
+				DictionaryUtil.Add(QueryParameters, "Token", value);
+			}
+		}
 
 		public string UserClientIp
 		{
@@ -64,19 +82,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string Token
-		{
-			get
-			{
-				return token;
-			}
-			set	
-			{
-				token = value;
-				DictionaryUtil.Add(QueryParameters, "Token", value);
 			}
 		}
 

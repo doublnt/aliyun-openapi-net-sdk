@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateVSwitchResponseUnmarshaller
     {
-        public static CreateVSwitchResponse Unmarshall(UnmarshallerContext context)
+        public static CreateVSwitchResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateVSwitchResponse createVSwitchResponse = new CreateVSwitchResponse();
 
-			createVSwitchResponse.HttpResponse = context.HttpResponse;
-			createVSwitchResponse.RequestId = context.StringValue("CreateVSwitch.RequestId");
-			createVSwitchResponse.VSwitchId = context.StringValue("CreateVSwitch.VSwitchId");
+			createVSwitchResponse.HttpResponse = _ctx.HttpResponse;
+			createVSwitchResponse.RequestId = _ctx.StringValue("CreateVSwitch.RequestId");
+			createVSwitchResponse.VSwitchId = _ctx.StringValue("CreateVSwitch.VSwitchId");
         
 			return createVSwitchResponse;
         }

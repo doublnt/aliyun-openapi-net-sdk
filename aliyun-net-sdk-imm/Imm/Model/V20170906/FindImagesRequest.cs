@@ -32,21 +32,21 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public FindImagesRequest()
             : base("imm", "2017-09-06", "FindImages", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string gender;
+		private string remarksArrayBIn;
 
 		private string project;
 
 		private string externalId;
 
-		private string imageSizeRange;
-
-		private string remarksBPrefix;
-
-		private string locationBoundary;
-
-		private string imageTimeRange;
+		private string facesModifyTimeRange;
 
 		private string oCRContentsMatch;
 
@@ -56,11 +56,7 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 		private string sourceType;
 
-		private string ageRange;
-
 		private string order;
-
-		private string remarksAPrefix;
 
 		private string groupId;
 
@@ -68,30 +64,50 @@ namespace Aliyun.Acs.imm.Model.V20170906
 
 		private string tagNames;
 
-		private string sourceUriPrefix;
-
-		private string emotion;
-
 		private string marker;
 
 		private string remarksCPrefix;
+
+		private string modifyTimeRange;
+
+		private string addressLineContentsMatch;
+
+		private string gender;
+
+		private string remarksArrayAIn;
+
+		private string imageSizeRange;
+
+		private string remarksBPrefix;
+
+		private string locationBoundary;
+
+		private string imageTimeRange;
+
+		private string tagsModifyTimeRange;
+
+		private string ageRange;
+
+		private string remarksAPrefix;
+
+		private string sourceUriPrefix;
+
+		private string emotion;
 
 		private string createTimeRange;
 
 		private string setId;
 
-		private string modifyTimeRange;
-
-		public string Gender
+		public string RemarksArrayBIn
 		{
 			get
 			{
-				return gender;
+				return remarksArrayBIn;
 			}
 			set	
 			{
-				gender = value;
-				DictionaryUtil.Add(QueryParameters, "Gender", value);
+				remarksArrayBIn = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayBIn", value);
 			}
 		}
 
@@ -121,55 +137,16 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string ImageSizeRange
+		public string FacesModifyTimeRange
 		{
 			get
 			{
-				return imageSizeRange;
+				return facesModifyTimeRange;
 			}
 			set	
 			{
-				imageSizeRange = value;
-				DictionaryUtil.Add(QueryParameters, "ImageSizeRange", value);
-			}
-		}
-
-		public string RemarksBPrefix
-		{
-			get
-			{
-				return remarksBPrefix;
-			}
-			set	
-			{
-				remarksBPrefix = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksBPrefix", value);
-			}
-		}
-
-		public string LocationBoundary
-		{
-			get
-			{
-				return locationBoundary;
-			}
-			set	
-			{
-				locationBoundary = value;
-				DictionaryUtil.Add(QueryParameters, "LocationBoundary", value);
-			}
-		}
-
-		public string ImageTimeRange
-		{
-			get
-			{
-				return imageTimeRange;
-			}
-			set	
-			{
-				imageTimeRange = value;
-				DictionaryUtil.Add(QueryParameters, "ImageTimeRange", value);
+				facesModifyTimeRange = value;
+				DictionaryUtil.Add(QueryParameters, "FacesModifyTimeRange", value);
 			}
 		}
 
@@ -225,19 +202,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string AgeRange
-		{
-			get
-			{
-				return ageRange;
-			}
-			set	
-			{
-				ageRange = value;
-				DictionaryUtil.Add(QueryParameters, "AgeRange", value);
-			}
-		}
-
 		public string Order
 		{
 			get
@@ -248,19 +212,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				order = value;
 				DictionaryUtil.Add(QueryParameters, "Order", value);
-			}
-		}
-
-		public string RemarksAPrefix
-		{
-			get
-			{
-				return remarksAPrefix;
-			}
-			set	
-			{
-				remarksAPrefix = value;
-				DictionaryUtil.Add(QueryParameters, "RemarksAPrefix", value);
 			}
 		}
 
@@ -303,32 +254,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string SourceUriPrefix
-		{
-			get
-			{
-				return sourceUriPrefix;
-			}
-			set	
-			{
-				sourceUriPrefix = value;
-				DictionaryUtil.Add(QueryParameters, "SourceUriPrefix", value);
-			}
-		}
-
-		public string Emotion
-		{
-			get
-			{
-				return emotion;
-			}
-			set	
-			{
-				emotion = value;
-				DictionaryUtil.Add(QueryParameters, "Emotion", value);
-			}
-		}
-
 		public string Marker
 		{
 			get
@@ -355,6 +280,175 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
+		public string ModifyTimeRange
+		{
+			get
+			{
+				return modifyTimeRange;
+			}
+			set	
+			{
+				modifyTimeRange = value;
+				DictionaryUtil.Add(QueryParameters, "ModifyTimeRange", value);
+			}
+		}
+
+		public string AddressLineContentsMatch
+		{
+			get
+			{
+				return addressLineContentsMatch;
+			}
+			set	
+			{
+				addressLineContentsMatch = value;
+				DictionaryUtil.Add(QueryParameters, "AddressLineContentsMatch", value);
+			}
+		}
+
+		public string Gender
+		{
+			get
+			{
+				return gender;
+			}
+			set	
+			{
+				gender = value;
+				DictionaryUtil.Add(QueryParameters, "Gender", value);
+			}
+		}
+
+		public string RemarksArrayAIn
+		{
+			get
+			{
+				return remarksArrayAIn;
+			}
+			set	
+			{
+				remarksArrayAIn = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksArrayAIn", value);
+			}
+		}
+
+		public string ImageSizeRange
+		{
+			get
+			{
+				return imageSizeRange;
+			}
+			set	
+			{
+				imageSizeRange = value;
+				DictionaryUtil.Add(QueryParameters, "ImageSizeRange", value);
+			}
+		}
+
+		public string RemarksBPrefix
+		{
+			get
+			{
+				return remarksBPrefix;
+			}
+			set	
+			{
+				remarksBPrefix = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksBPrefix", value);
+			}
+		}
+
+		public string LocationBoundary
+		{
+			get
+			{
+				return locationBoundary;
+			}
+			set	
+			{
+				locationBoundary = value;
+				DictionaryUtil.Add(QueryParameters, "LocationBoundary", value);
+			}
+		}
+
+		public string ImageTimeRange
+		{
+			get
+			{
+				return imageTimeRange;
+			}
+			set	
+			{
+				imageTimeRange = value;
+				DictionaryUtil.Add(QueryParameters, "ImageTimeRange", value);
+			}
+		}
+
+		public string TagsModifyTimeRange
+		{
+			get
+			{
+				return tagsModifyTimeRange;
+			}
+			set	
+			{
+				tagsModifyTimeRange = value;
+				DictionaryUtil.Add(QueryParameters, "TagsModifyTimeRange", value);
+			}
+		}
+
+		public string AgeRange
+		{
+			get
+			{
+				return ageRange;
+			}
+			set	
+			{
+				ageRange = value;
+				DictionaryUtil.Add(QueryParameters, "AgeRange", value);
+			}
+		}
+
+		public string RemarksAPrefix
+		{
+			get
+			{
+				return remarksAPrefix;
+			}
+			set	
+			{
+				remarksAPrefix = value;
+				DictionaryUtil.Add(QueryParameters, "RemarksAPrefix", value);
+			}
+		}
+
+		public string SourceUriPrefix
+		{
+			get
+			{
+				return sourceUriPrefix;
+			}
+			set	
+			{
+				sourceUriPrefix = value;
+				DictionaryUtil.Add(QueryParameters, "SourceUriPrefix", value);
+			}
+		}
+
+		public string Emotion
+		{
+			get
+			{
+				return emotion;
+			}
+			set	
+			{
+				emotion = value;
+				DictionaryUtil.Add(QueryParameters, "Emotion", value);
+			}
+		}
+
 		public string CreateTimeRange
 		{
 			get
@@ -378,19 +472,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				setId = value;
 				DictionaryUtil.Add(QueryParameters, "SetId", value);
-			}
-		}
-
-		public string ModifyTimeRange
-		{
-			get
-			{
-				return modifyTimeRange;
-			}
-			set	
-			{
-				modifyTimeRange = value;
-				DictionaryUtil.Add(QueryParameters, "ModifyTimeRange", value);
 			}
 		}
 

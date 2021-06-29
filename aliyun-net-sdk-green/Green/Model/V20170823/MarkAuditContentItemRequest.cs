@@ -32,7 +32,15 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public MarkAuditContentItemRequest()
             : base("Green", "2017-08-23", "MarkAuditContentItem", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string bizTypes;
 
 		private string auditIllegalReasons;
 
@@ -43,6 +51,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 		private string ids;
 
 		private string lang;
+
+		public string BizTypes
+		{
+			get
+			{
+				return bizTypes;
+			}
+			set	
+			{
+				bizTypes = value;
+				DictionaryUtil.Add(QueryParameters, "BizTypes", value);
+			}
+		}
 
 		public string AuditIllegalReasons
 		{

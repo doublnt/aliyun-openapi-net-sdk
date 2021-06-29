@@ -30,15 +30,18 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class BatchRobotSmartCallRequest : RpcAcsRequest<BatchRobotSmartCallResponse>
     {
         public BatchRobotSmartCallRequest()
-            : base("Dyvmsapi", "2017-05-25", "BatchRobotSmartCall")
+            : base("Dyvmsapi", "2017-05-25", "BatchRobotSmartCall", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
 
 		private bool? earlyMediaAsr;
-
-		private string resourceOwnerAccount;
 
 		private string ttsParamHead;
 
@@ -46,19 +49,19 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private string ttsParam;
 
+		private string calledNumber;
+
+		private string calledShowNumber;
+
+		private bool? isSelfLine;
+
+		private string resourceOwnerAccount;
+
 		private long? ownerId;
 
 		private string dialogId;
 
-		private string accessKeyId;
-
-		private string calledNumber;
-
 		private long? scheduleTime;
-
-		private string calledShowNumber;
-
-		private string action;
 
 		private string corpName;
 
@@ -87,19 +90,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				earlyMediaAsr = value;
 				DictionaryUtil.Add(QueryParameters, "EarlyMediaAsr", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -142,6 +132,58 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
+		public string CalledNumber
+		{
+			get
+			{
+				return calledNumber;
+			}
+			set	
+			{
+				calledNumber = value;
+				DictionaryUtil.Add(QueryParameters, "CalledNumber", value);
+			}
+		}
+
+		public string CalledShowNumber
+		{
+			get
+			{
+				return calledShowNumber;
+			}
+			set	
+			{
+				calledShowNumber = value;
+				DictionaryUtil.Add(QueryParameters, "CalledShowNumber", value);
+			}
+		}
+
+		public bool? IsSelfLine
+		{
+			get
+			{
+				return isSelfLine;
+			}
+			set	
+			{
+				isSelfLine = value;
+				DictionaryUtil.Add(QueryParameters, "IsSelfLine", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -168,32 +210,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string CalledNumber
-		{
-			get
-			{
-				return calledNumber;
-			}
-			set	
-			{
-				calledNumber = value;
-				DictionaryUtil.Add(QueryParameters, "CalledNumber", value);
-			}
-		}
-
 		public long? ScheduleTime
 		{
 			get
@@ -204,32 +220,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				scheduleTime = value;
 				DictionaryUtil.Add(QueryParameters, "ScheduleTime", value.ToString());
-			}
-		}
-
-		public string CalledShowNumber
-		{
-			get
-			{
-				return calledShowNumber;
-			}
-			set	
-			{
-				calledShowNumber = value;
-				DictionaryUtil.Add(QueryParameters, "CalledShowNumber", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

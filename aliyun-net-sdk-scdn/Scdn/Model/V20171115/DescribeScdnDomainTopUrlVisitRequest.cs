@@ -16,47 +16,49 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.scdn;
 using Aliyun.Acs.scdn.Transform;
 using Aliyun.Acs.scdn.Transform.V20171115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.scdn.Model.V20171115
 {
     public class DescribeScdnDomainTopUrlVisitRequest : RpcAcsRequest<DescribeScdnDomainTopUrlVisitResponse>
     {
         public DescribeScdnDomainTopUrlVisitRequest()
-            : base("scdn", "2017-11-15", "DescribeScdnDomainTopUrlVisit", "scdn", "openAPI")
+            : base("scdn", "2017-11-15", "DescribeScdnDomainTopUrlVisit")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string securityToken;
-
-		private string domainName;
-
-		private string action;
-
-		private string sortBy;
 
 		private string startTime;
 
+		private string domainName;
+
 		private long? ownerId;
 
-		private string accessKeyId;
+		private string sortBy;
 
-		public string SecurityToken
+		public string StartTime
 		{
 			get
 			{
-				return securityToken;
+				return startTime;
 			}
 			set	
 			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 
@@ -73,16 +75,16 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string Action
+		public long? OwnerId
 		{
 			get
 			{
-				return action;
+				return ownerId;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -99,46 +101,7 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-        public override DescribeScdnDomainTopUrlVisitResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeScdnDomainTopUrlVisitResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeScdnDomainTopUrlVisitResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

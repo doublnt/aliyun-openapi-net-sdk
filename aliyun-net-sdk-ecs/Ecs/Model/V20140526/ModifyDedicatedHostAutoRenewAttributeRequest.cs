@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,38 +33,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyDedicatedHostAutoRenewAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyDedicatedHostAutoRenewAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private int? duration;
 
 		private string dedicatedHostIds;
 
 		private long? resourceOwnerId;
 
-		private string periodUnit;
+		private int? duration;
 
-		private bool? autoRenew;
+		private string renewalStatus;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string renewalStatus;
-
 		private long? ownerId;
 
-		public int? Duration
-		{
-			get
-			{
-				return duration;
-			}
-			set	
-			{
-				duration = value;
-				DictionaryUtil.Add(QueryParameters, "Duration", value.ToString());
-			}
-		}
+		private string periodUnit;
+
+		private bool? autoRenew;
 
 		public string DedicatedHostIds
 		{
@@ -91,29 +85,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string PeriodUnit
+		public int? Duration
 		{
 			get
 			{
-				return periodUnit;
+				return duration;
 			}
 			set	
 			{
-				periodUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PeriodUnit", value);
+				duration = value;
+				DictionaryUtil.Add(QueryParameters, "Duration", value.ToString());
 			}
 		}
 
-		public bool? AutoRenew
+		public string RenewalStatus
 		{
 			get
 			{
-				return autoRenew;
+				return renewalStatus;
 			}
 			set	
 			{
-				autoRenew = value;
-				DictionaryUtil.Add(QueryParameters, "AutoRenew", value.ToString());
+				renewalStatus = value;
+				DictionaryUtil.Add(QueryParameters, "RenewalStatus", value);
 			}
 		}
 
@@ -143,19 +137,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string RenewalStatus
-		{
-			get
-			{
-				return renewalStatus;
-			}
-			set	
-			{
-				renewalStatus = value;
-				DictionaryUtil.Add(QueryParameters, "RenewalStatus", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -166,6 +147,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string PeriodUnit
+		{
+			get
+			{
+				return periodUnit;
+			}
+			set	
+			{
+				periodUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PeriodUnit", value);
+			}
+		}
+
+		public bool? AutoRenew
+		{
+			get
+			{
+				return autoRenew;
+			}
+			set	
+			{
+				autoRenew = value;
+				DictionaryUtil.Add(QueryParameters, "AutoRenew", value.ToString());
 			}
 		}
 

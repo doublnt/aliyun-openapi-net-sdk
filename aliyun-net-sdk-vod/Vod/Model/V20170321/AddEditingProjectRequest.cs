@@ -32,25 +32,70 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public AddEditingProjectRequest()
             : base("vod", "2017-03-21", "AddEditingProject", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string resourceOwnerId;
+
+		private string description;
+
+		private string title;
 
 		private string coverURL;
 
 		private string division;
 
-		private string resourceOwnerId;
-
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string description;
+		private string ownerId;
 
 		private string timeline;
 
-		private string ownerId;
+		public string ResourceOwnerId
+		{
+			get
+			{
+				return resourceOwnerId;
+			}
+			set	
+			{
+				resourceOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value);
+			}
+		}
 
-		private string title;
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string Title
+		{
+			get
+			{
+				return title;
+			}
+			set	
+			{
+				title = value;
+				DictionaryUtil.Add(QueryParameters, "Title", value);
+			}
+		}
 
 		public string CoverURL
 		{
@@ -75,19 +120,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				division = value;
 				DictionaryUtil.Add(QueryParameters, "Division", value);
-			}
-		}
-
-		public string ResourceOwnerId
-		{
-			get
-			{
-				return resourceOwnerId;
-			}
-			set	
-			{
-				resourceOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value);
 			}
 		}
 
@@ -117,32 +149,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
-		public string Timeline
-		{
-			get
-			{
-				return timeline;
-			}
-			set	
-			{
-				timeline = value;
-				DictionaryUtil.Add(QueryParameters, "Timeline", value);
-			}
-		}
-
 		public string OwnerId
 		{
 			get
@@ -156,16 +162,16 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string Title
+		public string Timeline
 		{
 			get
 			{
-				return title;
+				return timeline;
 			}
 			set	
 			{
-				title = value;
-				DictionaryUtil.Add(QueryParameters, "Title", value);
+				timeline = value;
+				DictionaryUtil.Add(QueryParameters, "Timeline", value);
 			}
 		}
 

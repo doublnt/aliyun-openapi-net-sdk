@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryBillOverviewRequest()
             : base("BssOpenApi", "2017-12-14", "QueryBillOverview")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
@@ -39,6 +46,8 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 		private string subscriptionType;
 
 		private string billingCycle;
+
+		private long? billOwnerId;
 
 		private string productType;
 
@@ -78,6 +87,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				billingCycle = value;
 				DictionaryUtil.Add(QueryParameters, "BillingCycle", value);
+			}
+		}
+
+		public long? BillOwnerId
+		{
+			get
+			{
+				return billOwnerId;
+			}
+			set	
+			{
+				billOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "BillOwnerId", value.ToString());
 			}
 		}
 

@@ -32,11 +32,15 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryDeviceEventDataRequest()
             : base("Iot", "2018-01-20", "QueryDeviceEventData", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private int? asc;
-
-		private string identifier;
+		private long? startTime;
 
 		private string iotId;
 
@@ -44,39 +48,28 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 		private int? pageSize;
 
+		private string identifier;
+
 		private long? endTime;
-
-		private string eventType;
-
-		private string deviceName;
-
-		private long? startTime;
 
 		private string productKey;
 
-		public int? Asc
-		{
-			get
-			{
-				return asc;
-			}
-			set	
-			{
-				asc = value;
-				DictionaryUtil.Add(QueryParameters, "Asc", value.ToString());
-			}
-		}
+		private int? asc;
 
-		public string Identifier
+		private string deviceName;
+
+		private string eventType;
+
+		public long? StartTime
 		{
 			get
 			{
-				return identifier;
+				return startTime;
 			}
 			set	
 			{
-				identifier = value;
-				DictionaryUtil.Add(QueryParameters, "Identifier", value);
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value.ToString());
 			}
 		}
 
@@ -119,6 +112,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
+		public string Identifier
+		{
+			get
+			{
+				return identifier;
+			}
+			set	
+			{
+				identifier = value;
+				DictionaryUtil.Add(QueryParameters, "Identifier", value);
+			}
+		}
+
 		public long? EndTime
 		{
 			get
@@ -132,16 +138,29 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string EventType
+		public string ProductKey
 		{
 			get
 			{
-				return eventType;
+				return productKey;
 			}
 			set	
 			{
-				eventType = value;
-				DictionaryUtil.Add(QueryParameters, "EventType", value);
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public int? Asc
+		{
+			get
+			{
+				return asc;
+			}
+			set	
+			{
+				asc = value;
+				DictionaryUtil.Add(QueryParameters, "Asc", value.ToString());
 			}
 		}
 
@@ -158,29 +177,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public long? StartTime
+		public string EventType
 		{
 			get
 			{
-				return startTime;
+				return eventType;
 			}
 			set	
 			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value.ToString());
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+				eventType = value;
+				DictionaryUtil.Add(QueryParameters, "EventType", value);
 			}
 		}
 

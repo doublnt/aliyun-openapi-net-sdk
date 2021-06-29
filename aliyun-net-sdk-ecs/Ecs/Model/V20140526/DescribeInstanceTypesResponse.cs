@@ -82,6 +82,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private int? eniPrivateIpAddressQuantity;
 
+			private int? eniIpv6AddressQuantity;
+
 			private int? instanceBandwidthRx;
 
 			private int? instanceBandwidthTx;
@@ -91,6 +93,26 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			private long? instancePpsTx;
 
 			private string instanceFamilyLevel;
+
+			private int? totalEniQueueQuantity;
+
+			private bool? eniTrunkSupported;
+
+			private int? eniTotalQuantity;
+
+			private int? maximumQueueNumberPerEni;
+
+			private int? primaryEniQueueNumber;
+
+			private int? secondaryEniQueueNumber;
+
+			private int? diskQuantity;
+
+			private int? eriQuantity;
+
+			private int? queuePairNumber;
+
+			private string nvmeSupport;
 
 			public string InstanceTypeId
 			{
@@ -248,6 +270,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				}
 			}
 
+			public int? EniIpv6AddressQuantity
+			{
+				get
+				{
+					return eniIpv6AddressQuantity;
+				}
+				set	
+				{
+					eniIpv6AddressQuantity = value;
+				}
+			}
+
 			public int? InstanceBandwidthRx
 			{
 				get
@@ -305,6 +339,126 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					instanceFamilyLevel = value;
+				}
+			}
+
+			public int? TotalEniQueueQuantity
+			{
+				get
+				{
+					return totalEniQueueQuantity;
+				}
+				set	
+				{
+					totalEniQueueQuantity = value;
+				}
+			}
+
+			public bool? EniTrunkSupported
+			{
+				get
+				{
+					return eniTrunkSupported;
+				}
+				set	
+				{
+					eniTrunkSupported = value;
+				}
+			}
+
+			public int? EniTotalQuantity
+			{
+				get
+				{
+					return eniTotalQuantity;
+				}
+				set	
+				{
+					eniTotalQuantity = value;
+				}
+			}
+
+			public int? MaximumQueueNumberPerEni
+			{
+				get
+				{
+					return maximumQueueNumberPerEni;
+				}
+				set	
+				{
+					maximumQueueNumberPerEni = value;
+				}
+			}
+
+			public int? PrimaryEniQueueNumber
+			{
+				get
+				{
+					return primaryEniQueueNumber;
+				}
+				set	
+				{
+					primaryEniQueueNumber = value;
+				}
+			}
+
+			public int? SecondaryEniQueueNumber
+			{
+				get
+				{
+					return secondaryEniQueueNumber;
+				}
+				set	
+				{
+					secondaryEniQueueNumber = value;
+				}
+			}
+
+			public int? DiskQuantity
+			{
+				get
+				{
+					return diskQuantity;
+				}
+				set	
+				{
+					diskQuantity = value;
+				}
+			}
+
+			public int? EriQuantity
+			{
+				get
+				{
+					return eriQuantity;
+				}
+				set	
+				{
+					eriQuantity = value;
+				}
+			}
+
+			public int? QueuePairNumber
+			{
+				get
+				{
+					return queuePairNumber;
+				}
+				set	
+				{
+					queuePairNumber = value;
+				}
+			}
+
+			public string NvmeSupport
+			{
+				get
+				{
+					return nvmeSupport;
+				}
+				set	
+				{
+					nvmeSupport = value;
 				}
 			}
 		}

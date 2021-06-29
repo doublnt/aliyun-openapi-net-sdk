@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifySnatEntryResponseUnmarshaller
     {
-        public static ModifySnatEntryResponse Unmarshall(UnmarshallerContext context)
+        public static ModifySnatEntryResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifySnatEntryResponse modifySnatEntryResponse = new ModifySnatEntryResponse();
 
-			modifySnatEntryResponse.HttpResponse = context.HttpResponse;
-			modifySnatEntryResponse.RequestId = context.StringValue("ModifySnatEntry.RequestId");
+			modifySnatEntryResponse.HttpResponse = _ctx.HttpResponse;
+			modifySnatEntryResponse.RequestId = _ctx.StringValue("ModifySnatEntry.RequestId");
         
 			return modifySnatEntryResponse;
         }

@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeCharacterSetNameRequest()
             : base("Rds", "2014-08-15", "DescribeCharacterSetName", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string engine;
-
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string engine;
 
 		public long? ResourceOwnerId
 		{
@@ -70,19 +76,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string Engine
-		{
-			get
-			{
-				return engine;
-			}
-			set	
-			{
-				engine = value;
-				DictionaryUtil.Add(QueryParameters, "Engine", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Engine
+		{
+			get
+			{
+				return engine;
+			}
+			set	
+			{
+				engine = value;
+				DictionaryUtil.Add(QueryParameters, "Engine", value);
 			}
 		}
 

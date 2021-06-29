@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,32 +30,25 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveSingleTaskForModifyingDnsHostRequest : RpcAcsRequest<SaveSingleTaskForModifyingDnsHostResponse>
     {
         public SaveSingleTaskForModifyingDnsHostRequest()
-            : base("Domain", "2018-01-29", "SaveSingleTaskForModifyingDnsHost")
+            : base("Domain", "2018-01-29", "SaveSingleTaskForModifyingDnsHost", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string instanceId;
+		private List<string> ips = new List<string>(){ };
 
-		private List<string> ips;
+		private string instanceId;
 
 		private string dnsName;
 
 		private string userClientIp;
 
 		private string lang;
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
 
 		public List<string> Ips
 		{
@@ -72,6 +64,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 				{
 					DictionaryUtil.Add(QueryParameters,"Ip." + (i + 1) , ips[i]);
 				}
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

@@ -251,6 +251,14 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 				private string paymentTransactionID;
 
+				private string roundDownDiscount;
+
+				private string subOrderId;
+
+				private string pipCode;
+
+				private string commodityCode;
+
 				public string RecordID
 				{
 					get
@@ -560,6 +568,54 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					set	
 					{
 						paymentTransactionID = value;
+					}
+				}
+
+				public string RoundDownDiscount
+				{
+					get
+					{
+						return roundDownDiscount;
+					}
+					set	
+					{
+						roundDownDiscount = value;
+					}
+				}
+
+				public string SubOrderId
+				{
+					get
+					{
+						return subOrderId;
+					}
+					set	
+					{
+						subOrderId = value;
+					}
+				}
+
+				public string PipCode
+				{
+					get
+					{
+						return pipCode;
+					}
+					set	
+					{
+						pipCode = value;
+					}
+				}
+
+				public string CommodityCode
+				{
+					get
+					{
+						return commodityCode;
+					}
+					set	
+					{
+						commodityCode = value;
 					}
 				}
 			}

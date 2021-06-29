@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DeleteLaunchTemplateVersionRequest()
             : base("Ecs", "2014-05-26", "DeleteLaunchTemplateVersion", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string launchTemplateName;
 
 		private long? resourceOwnerId;
 
-		private List<long?> deleteVersions;
+		private List<long?> deleteVersions = new List<long?>(){ };
 
 		private string launchTemplateId;
 

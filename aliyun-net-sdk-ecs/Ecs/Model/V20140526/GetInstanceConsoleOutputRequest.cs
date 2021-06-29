@@ -32,9 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public GetInstanceConsoleOutputRequest()
             : base("Ecs", "2014-05-26", "GetInstanceConsoleOutput", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private bool? removeSymbols;
 
 		private string resourceOwnerAccount;
 
@@ -54,6 +62,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public bool? RemoveSymbols
+		{
+			get
+			{
+				return removeSymbols;
+			}
+			set	
+			{
+				removeSymbols = value;
+				DictionaryUtil.Add(QueryParameters, "RemoveSymbols", value.ToString());
 			}
 		}
 

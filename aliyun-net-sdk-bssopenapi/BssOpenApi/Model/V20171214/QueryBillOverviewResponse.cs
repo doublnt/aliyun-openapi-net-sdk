@@ -195,6 +195,20 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 				private string paymentCurrency;
 
+				private string roundDownDiscount;
+
+				private string pipCode;
+
+				private string commodityCode;
+
+				private string billAccountID;
+
+				private string billAccountName;
+
+				private string bizType;
+
+				private string ownerID;
+
 				public string Item
 				{
 					get
@@ -420,6 +434,90 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					set	
 					{
 						paymentCurrency = value;
+					}
+				}
+
+				public string RoundDownDiscount
+				{
+					get
+					{
+						return roundDownDiscount;
+					}
+					set	
+					{
+						roundDownDiscount = value;
+					}
+				}
+
+				public string PipCode
+				{
+					get
+					{
+						return pipCode;
+					}
+					set	
+					{
+						pipCode = value;
+					}
+				}
+
+				public string CommodityCode
+				{
+					get
+					{
+						return commodityCode;
+					}
+					set	
+					{
+						commodityCode = value;
+					}
+				}
+
+				public string BillAccountID
+				{
+					get
+					{
+						return billAccountID;
+					}
+					set	
+					{
+						billAccountID = value;
+					}
+				}
+
+				public string BillAccountName
+				{
+					get
+					{
+						return billAccountName;
+					}
+					set	
+					{
+						billAccountName = value;
+					}
+				}
+
+				public string BizType
+				{
+					get
+					{
+						return bizType;
+					}
+					set	
+					{
+						bizType = value;
+					}
+				}
+
+				public string OwnerID
+				{
+					get
+					{
+						return ownerID;
+					}
+					set	
+					{
+						ownerID = value;
 					}
 				}
 			}

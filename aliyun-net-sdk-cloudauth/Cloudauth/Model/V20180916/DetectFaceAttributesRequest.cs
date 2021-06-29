@@ -32,7 +32,11 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public DetectFaceAttributesRequest()
             : base("Cloudauth", "2018-09-16", "DetectFaceAttributes", "cloudauth", "openAPI")
         {
-			Protocol = ProtocolType.HTTPS;
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 
@@ -42,15 +46,15 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 
 		private long? resourceOwnerId;
 
-		private string sourceIp;
-
 		private string retAttributes;
+
+		private string clientTag;
+
+		private string sourceIp;
 
 		private string materialValue;
 
 		private bool? dontSaveDB;
-
-		private string clientTag;
 
 		public int? MaxNumPhotosPerCategory
 		{
@@ -91,19 +95,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
-
 		public string RetAttributes
 		{
 			get
@@ -114,6 +105,32 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				retAttributes = value;
 				DictionaryUtil.Add(BodyParameters, "RetAttributes", value);
+			}
+		}
+
+		public string ClientTag
+		{
+			get
+			{
+				return clientTag;
+			}
+			set	
+			{
+				clientTag = value;
+				DictionaryUtil.Add(BodyParameters, "ClientTag", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
 			}
 		}
 
@@ -140,19 +157,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				dontSaveDB = value;
 				DictionaryUtil.Add(BodyParameters, "DontSaveDB", value.ToString());
-			}
-		}
-
-		public string ClientTag
-		{
-			get
-			{
-				return clientTag;
-			}
-			set	
-			{
-				clientTag = value;
-				DictionaryUtil.Add(BodyParameters, "ClientTag", value);
 			}
 		}
 

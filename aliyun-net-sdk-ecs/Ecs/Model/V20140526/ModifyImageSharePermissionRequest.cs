@@ -33,21 +33,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyImageSharePermissionRequest()
             : base("Ecs", "2014-05-26", "ModifyImageSharePermission", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string imageId;
 
-		private List<string> addAccounts;
+		private string launchPermission;
 
 		private string resourceOwnerAccount;
-
-		private List<string> removeAccounts;
 
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private List<string> addAccounts = new List<string>(){ };
+
+		private List<string> removeAccounts = new List<string>(){ };
 
 		public long? ResourceOwnerId
 		{
@@ -75,20 +83,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public List<string> AddAccounts
+		public string LaunchPermission
 		{
 			get
 			{
-				return addAccounts;
+				return launchPermission;
 			}
-
-			set
+			set	
 			{
-				addAccounts = value;
-				for (int i = 0; i < addAccounts.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"AddAccount." + (i + 1) , addAccounts[i]);
-				}
+				launchPermission = value;
+				DictionaryUtil.Add(QueryParameters, "LaunchPermission", value);
 			}
 		}
 
@@ -102,23 +106,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public List<string> RemoveAccounts
-		{
-			get
-			{
-				return removeAccounts;
-			}
-
-			set
-			{
-				removeAccounts = value;
-				for (int i = 0; i < removeAccounts.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"RemoveAccount." + (i + 1) , removeAccounts[i]);
-				}
 			}
 		}
 
@@ -145,6 +132,40 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public List<string> AddAccounts
+		{
+			get
+			{
+				return addAccounts;
+			}
+
+			set
+			{
+				addAccounts = value;
+				for (int i = 0; i < addAccounts.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"AddAccount." + (i + 1) , addAccounts[i]);
+				}
+			}
+		}
+
+		public List<string> RemoveAccounts
+		{
+			get
+			{
+				return removeAccounts;
+			}
+
+			set
+			{
+				removeAccounts = value;
+				for (int i = 0; i < removeAccounts.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"RemoveAccount." + (i + 1) , removeAccounts[i]);
+				}
 			}
 		}
 

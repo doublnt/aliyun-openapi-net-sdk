@@ -32,9 +32,21 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyDBInstanceNetworkTypeRequest()
             : base("Rds", "2014-08-15", "ModifyDBInstanceNetworkType", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string classicExpiredDays;
+
+		private string dBInstanceId;
+
+		private string readWriteSplittingPrivateIpAddress;
 
 		private string resourceOwnerAccount;
 
@@ -48,13 +60,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string retainClassic;
 
-		private string classicExpiredDays;
-
 		private string vPCId;
-
-		private string dBInstanceId;
-
-		private string readWriteSplittingPrivateIpAddress;
 
 		private string instanceNetworkType;
 
@@ -70,6 +76,45 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClassicExpiredDays
+		{
+			get
+			{
+				return classicExpiredDays;
+			}
+			set	
+			{
+				classicExpiredDays = value;
+				DictionaryUtil.Add(QueryParameters, "ClassicExpiredDays", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string ReadWriteSplittingPrivateIpAddress
+		{
+			get
+			{
+				return readWriteSplittingPrivateIpAddress;
+			}
+			set	
+			{
+				readWriteSplittingPrivateIpAddress = value;
+				DictionaryUtil.Add(QueryParameters, "ReadWriteSplittingPrivateIpAddress", value);
 			}
 		}
 
@@ -151,19 +196,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ClassicExpiredDays
-		{
-			get
-			{
-				return classicExpiredDays;
-			}
-			set	
-			{
-				classicExpiredDays = value;
-				DictionaryUtil.Add(QueryParameters, "ClassicExpiredDays", value);
-			}
-		}
-
 		public string VPCId
 		{
 			get
@@ -174,32 +206,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				vPCId = value;
 				DictionaryUtil.Add(QueryParameters, "VPCId", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string ReadWriteSplittingPrivateIpAddress
-		{
-			get
-			{
-				return readWriteSplittingPrivateIpAddress;
-			}
-			set	
-			{
-				readWriteSplittingPrivateIpAddress = value;
-				DictionaryUtil.Add(QueryParameters, "ReadWriteSplittingPrivateIpAddress", value);
 			}
 		}
 

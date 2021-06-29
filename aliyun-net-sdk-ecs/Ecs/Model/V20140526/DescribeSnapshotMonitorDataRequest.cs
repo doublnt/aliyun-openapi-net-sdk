@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,9 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeSnapshotMonitorDataRequest()
             : base("Ecs", "2014-05-26", "DescribeSnapshotMonitorData", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string startTime;
 
 		private int? period;
 
@@ -45,9 +52,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string endTime;
 
-		private string startTime;
-
 		private long? ownerId;
+
+		private string category;
 
 		public long? ResourceOwnerId
 		{
@@ -59,6 +66,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
 			}
 		}
 
@@ -114,19 +134,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -137,6 +144,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Category
+		{
+			get
+			{
+				return category;
+			}
+			set	
+			{
+				category = value;
+				DictionaryUtil.Add(QueryParameters, "Category", value);
 			}
 		}
 

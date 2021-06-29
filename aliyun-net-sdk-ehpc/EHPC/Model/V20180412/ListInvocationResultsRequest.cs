@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,17 +31,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListInvocationResultsRequest : RpcAcsRequest<ListInvocationResultsResponse>
     {
         public ListInvocationResultsRequest()
-            : base("EHPC", "2018-04-12", "ListInvocationResults", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListInvocationResults")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
-		private List<Instance> instances;
-
-		private string invokeRecordStatus;
-
-		private int? pageSize;
-
-		private string action;
+		private List<Instance> instances = new List<Instance>(){ };
 
 		private string clusterId;
 
@@ -48,7 +48,9 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private int? pageNumber;
 
-		private string accessKeyId;
+		private string invokeRecordStatus;
+
+		private int? pageSize;
 
 		public List<Instance> Instances
 		{
@@ -64,45 +66,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				{
 					DictionaryUtil.Add(QueryParameters,"Instance." + (i + 1) + ".Id", instances[i].Id);
 				}
-			}
-		}
-
-		public string InvokeRecordStatus
-		{
-			get
-			{
-				return invokeRecordStatus;
-			}
-			set	
-			{
-				invokeRecordStatus = value;
-				DictionaryUtil.Add(QueryParameters, "InvokeRecordStatus", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -145,16 +108,29 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string InvokeRecordStatus
 		{
 			get
 			{
-				return accessKeyId;
+				return invokeRecordStatus;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				invokeRecordStatus = value;
+				DictionaryUtil.Add(QueryParameters, "InvokeRecordStatus", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

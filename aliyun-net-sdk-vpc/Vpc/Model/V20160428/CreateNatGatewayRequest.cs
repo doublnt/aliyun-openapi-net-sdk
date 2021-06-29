@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,37 +32,43 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public CreateNatGatewayRequest()
             : base("Vpc", "2016-04-28", "CreateNatGateway", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private bool? autoPay;
-
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string ownerAccount;
-
 		private string description;
-
-		private long? ownerId;
 
 		private string spec;
 
 		private string duration;
 
-		private string regionId;
+		private string natType;
+
+		private string instanceChargeType;
+
+		private bool? autoPay;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
+
+		private string vSwitchId;
+
+		private string internetChargeType;
 
 		private string vpcId;
 
 		private string name;
-
-		private string action;
-
-		private List<BandwidthPackage> bandwidthPackages;
-
-		private string instanceChargeType;
 
 		private string pricingCycle;
 
@@ -78,32 +85,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public bool? AutoPay
-		{
-			get
-			{
-				return autoPay;
-			}
-			set	
-			{
-				autoPay = value;
-				DictionaryUtil.Add(QueryParameters, "AutoPay", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -117,19 +98,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
 		public string Description
 		{
 			get
@@ -140,19 +108,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				description = value;
 				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -182,16 +137,107 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
+		public string NatType
 		{
 			get
 			{
-				return regionId;
+				return natType;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
+				natType = value;
+				DictionaryUtil.Add(QueryParameters, "NatType", value);
+			}
+		}
+
+		public string InstanceChargeType
+		{
+			get
+			{
+				return instanceChargeType;
+			}
+			set	
+			{
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
+			}
+		}
+
+		public bool? AutoPay
+		{
+			get
+			{
+				return autoPay;
+			}
+			set	
+			{
+				autoPay = value;
+				DictionaryUtil.Add(QueryParameters, "AutoPay", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string VSwitchId
+		{
+			get
+			{
+				return vSwitchId;
+			}
+			set	
+			{
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public string InternetChargeType
+		{
+			get
+			{
+				return internetChargeType;
+			}
+			set	
+			{
+				internetChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
 			}
 		}
 
@@ -221,53 +267,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public List<BandwidthPackage> BandwidthPackages
-		{
-			get
-			{
-				return bandwidthPackages;
-			}
-
-			set
-			{
-				bandwidthPackages = value;
-				for (int i = 0; i < bandwidthPackages.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"BandwidthPackage." + (i + 1) + ".Bandwidth", bandwidthPackages[i].Bandwidth);
-					DictionaryUtil.Add(QueryParameters,"BandwidthPackage." + (i + 1) + ".Zone", bandwidthPackages[i].Zone);
-					DictionaryUtil.Add(QueryParameters,"BandwidthPackage." + (i + 1) + ".InternetChargeType", bandwidthPackages[i].InternetChargeType);
-					DictionaryUtil.Add(QueryParameters,"BandwidthPackage." + (i + 1) + ".ISP", bandwidthPackages[i].ISP);
-					DictionaryUtil.Add(QueryParameters,"BandwidthPackage." + (i + 1) + ".IpCount", bandwidthPackages[i].IpCount);
-				}
-			}
-		}
-
-		public string InstanceChargeType
-		{
-			get
-			{
-				return instanceChargeType;
-			}
-			set	
-			{
-				instanceChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
-			}
-		}
-
 		public string PricingCycle
 		{
 			get
@@ -281,81 +280,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public class BandwidthPackage
-		{
-
-			private int? bandwidth;
-
-			private string zone;
-
-			private string internetChargeType;
-
-			private string iSP;
-
-			private int? ipCount;
-
-			public int? Bandwidth
-			{
-				get
-				{
-					return bandwidth;
-				}
-				set	
-				{
-					bandwidth = value;
-				}
-			}
-
-			public string Zone
-			{
-				get
-				{
-					return zone;
-				}
-				set	
-				{
-					zone = value;
-				}
-			}
-
-			public string InternetChargeType
-			{
-				get
-				{
-					return internetChargeType;
-				}
-				set	
-				{
-					internetChargeType = value;
-				}
-			}
-
-			public string ISP
-			{
-				get
-				{
-					return iSP;
-				}
-				set	
-				{
-					iSP = value;
-				}
-			}
-
-			public int? IpCount
-			{
-				get
-				{
-					return ipCount;
-				}
-				set	
-				{
-					ipCount = value;
-				}
-			}
-		}
-
-        public override CreateNatGatewayResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override CreateNatGatewayResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return CreateNatGatewayResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

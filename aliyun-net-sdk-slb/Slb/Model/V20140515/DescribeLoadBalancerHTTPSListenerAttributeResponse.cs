@@ -31,6 +31,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 		private int? backendServerPort;
 
+		private string backendProtocol;
+
 		private int? bandwidth;
 
 		private string status;
@@ -50,6 +52,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private string cookie;
 
 		private string healthCheck;
+
+		private string healthCheckType;
 
 		private string healthCheckDomain;
 
@@ -72,6 +76,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private string cACertificateId;
 
 		private string healthCheckMethod;
+
+		private string healthCheckHttpVersion;
 
 		private int? maxConnection;
 
@@ -103,9 +109,33 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 		private string description;
 
+		private string xForwardedFor_SLBPORT;
+
+		private string xForwardedFor_ClientSrcPort;
+
+		private string xForwardedFor_ClientCertSubjectDN;
+
+		private string xForwardedFor_ClientCertIssuerDN;
+
+		private string xForwardedFor_ClientCertFingerprint;
+
+		private string xForwardedFor_ClientCertClientVerify;
+
+		private string xForwardedFor_ClientCertSubjectDNAlias;
+
+		private string xForwardedFor_ClientCertIssuerDNAlias;
+
+		private string xForwardedFor_ClientCertFingerprintAlias;
+
+		private string xForwardedFor_ClientCertClientVerifyAlias;
+
 		private List<DescribeLoadBalancerHTTPSListenerAttribute_Rule> rules;
 
 		private List<DescribeLoadBalancerHTTPSListenerAttribute_DomainExtension> domainExtensions;
+
+		private List<DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate2> serverCertificates;
+
+		private List<string> aclIds;
 
 		public string RequestId
 		{
@@ -140,6 +170,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				backendServerPort = value;
+			}
+		}
+
+		public string BackendProtocol
+		{
+			get
+			{
+				return backendProtocol;
+			}
+			set	
+			{
+				backendProtocol = value;
 			}
 		}
 
@@ -260,6 +302,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				healthCheck = value;
+			}
+		}
+
+		public string HealthCheckType
+		{
+			get
+			{
+				return healthCheckType;
+			}
+			set	
+			{
+				healthCheckType = value;
 			}
 		}
 
@@ -392,6 +446,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				healthCheckMethod = value;
+			}
+		}
+
+		public string HealthCheckHttpVersion
+		{
+			get
+			{
+				return healthCheckHttpVersion;
+			}
+			set	
+			{
+				healthCheckHttpVersion = value;
 			}
 		}
 
@@ -575,6 +641,126 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			}
 		}
 
+		public string XForwardedFor_SLBPORT
+		{
+			get
+			{
+				return xForwardedFor_SLBPORT;
+			}
+			set	
+			{
+				xForwardedFor_SLBPORT = value;
+			}
+		}
+
+		public string XForwardedFor_ClientSrcPort
+		{
+			get
+			{
+				return xForwardedFor_ClientSrcPort;
+			}
+			set	
+			{
+				xForwardedFor_ClientSrcPort = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertSubjectDN
+		{
+			get
+			{
+				return xForwardedFor_ClientCertSubjectDN;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertSubjectDN = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertIssuerDN
+		{
+			get
+			{
+				return xForwardedFor_ClientCertIssuerDN;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertIssuerDN = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertFingerprint
+		{
+			get
+			{
+				return xForwardedFor_ClientCertFingerprint;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertFingerprint = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertClientVerify
+		{
+			get
+			{
+				return xForwardedFor_ClientCertClientVerify;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertClientVerify = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertSubjectDNAlias
+		{
+			get
+			{
+				return xForwardedFor_ClientCertSubjectDNAlias;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertSubjectDNAlias = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertIssuerDNAlias
+		{
+			get
+			{
+				return xForwardedFor_ClientCertIssuerDNAlias;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertIssuerDNAlias = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertFingerprintAlias
+		{
+			get
+			{
+				return xForwardedFor_ClientCertFingerprintAlias;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertFingerprintAlias = value;
+			}
+		}
+
+		public string XForwardedFor_ClientCertClientVerifyAlias
+		{
+			get
+			{
+				return xForwardedFor_ClientCertClientVerifyAlias;
+			}
+			set	
+			{
+				xForwardedFor_ClientCertClientVerifyAlias = value;
+			}
+		}
+
 		public List<DescribeLoadBalancerHTTPSListenerAttribute_Rule> Rules
 		{
 			get
@@ -596,6 +782,30 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				domainExtensions = value;
+			}
+		}
+
+		public List<DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate2> ServerCertificates
+		{
+			get
+			{
+				return serverCertificates;
+			}
+			set	
+			{
+				serverCertificates = value;
+			}
+		}
+
+		public List<string> AclIds
+		{
+			get
+			{
+				return aclIds;
+			}
+			set	
+			{
+				aclIds = value;
 			}
 		}
 
@@ -682,6 +892,10 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 			private string serverCertificateId;
 
+			private List<DescribeLoadBalancerHTTPSListenerAttribute_Certificate> certificates;
+
+			private List<DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate> serverCertificates1;
+
 			public string DomainExtensionId
 			{
 				get
@@ -715,6 +929,182 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 				set	
 				{
 					serverCertificateId = value;
+				}
+			}
+
+			public List<DescribeLoadBalancerHTTPSListenerAttribute_Certificate> Certificates
+			{
+				get
+				{
+					return certificates;
+				}
+				set	
+				{
+					certificates = value;
+				}
+			}
+
+			public List<DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate> ServerCertificates1
+			{
+				get
+				{
+					return serverCertificates1;
+				}
+				set	
+				{
+					serverCertificates1 = value;
+				}
+			}
+
+			public class DescribeLoadBalancerHTTPSListenerAttribute_Certificate
+			{
+
+				private string certificateId;
+
+				private string encryptionAlgorithm;
+
+				public string CertificateId
+				{
+					get
+					{
+						return certificateId;
+					}
+					set	
+					{
+						certificateId = value;
+					}
+				}
+
+				public string EncryptionAlgorithm
+				{
+					get
+					{
+						return encryptionAlgorithm;
+					}
+					set	
+					{
+						encryptionAlgorithm = value;
+					}
+				}
+			}
+
+			public class DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate
+			{
+
+				private string certificateId;
+
+				private string encryptionAlgorithm;
+
+				private string standardType;
+
+				private string bindingType;
+
+				public string CertificateId
+				{
+					get
+					{
+						return certificateId;
+					}
+					set	
+					{
+						certificateId = value;
+					}
+				}
+
+				public string EncryptionAlgorithm
+				{
+					get
+					{
+						return encryptionAlgorithm;
+					}
+					set	
+					{
+						encryptionAlgorithm = value;
+					}
+				}
+
+				public string StandardType
+				{
+					get
+					{
+						return standardType;
+					}
+					set	
+					{
+						standardType = value;
+					}
+				}
+
+				public string BindingType
+				{
+					get
+					{
+						return bindingType;
+					}
+					set	
+					{
+						bindingType = value;
+					}
+				}
+			}
+		}
+
+		public class DescribeLoadBalancerHTTPSListenerAttribute_ServerCertificate2
+		{
+
+			private string certificateId;
+
+			private string encryptionAlgorithm;
+
+			private string standardType;
+
+			private string bindingType;
+
+			public string CertificateId
+			{
+				get
+				{
+					return certificateId;
+				}
+				set	
+				{
+					certificateId = value;
+				}
+			}
+
+			public string EncryptionAlgorithm
+			{
+				get
+				{
+					return encryptionAlgorithm;
+				}
+				set	
+				{
+					encryptionAlgorithm = value;
+				}
+			}
+
+			public string StandardType
+			{
+				get
+				{
+					return standardType;
+				}
+				set	
+				{
+					standardType = value;
+				}
+			}
+
+			public string BindingType
+			{
+				get
+				{
+					return bindingType;
+				}
+				set	
+				{
+					bindingType = value;
 				}
 			}
 		}

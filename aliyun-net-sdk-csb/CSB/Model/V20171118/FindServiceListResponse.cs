@@ -185,6 +185,10 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 
 				private string casTargets;
 
+				private string routeConfJson;
+
+				private int? qps;
+
 				public string Alias
 				{
 					get
@@ -434,6 +438,30 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 					set	
 					{
 						casTargets = value;
+					}
+				}
+
+				public string RouteConfJson
+				{
+					get
+					{
+						return routeConfJson;
+					}
+					set	
+					{
+						routeConfJson = value;
+					}
+				}
+
+				public int? Qps
+				{
+					get
+					{
+						return qps;
+					}
+					set	
+					{
+						qps = value;
 					}
 				}
 			}

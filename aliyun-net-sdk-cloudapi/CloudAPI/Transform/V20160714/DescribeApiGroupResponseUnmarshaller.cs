@@ -16,10 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.CloudAPI.Model.V20160714;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.CloudAPI.Model.V20160714;
 
 namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 {
@@ -43,6 +44,13 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 			describeApiGroupResponse.IllegalStatus = context.StringValue("DescribeApiGroup.IllegalStatus");
 			describeApiGroupResponse.TrafficLimit = context.IntegerValue("DescribeApiGroup.TrafficLimit");
 			describeApiGroupResponse.VpcDomain = context.StringValue("DescribeApiGroup.VpcDomain");
+			describeApiGroupResponse.InstanceType = context.StringValue("DescribeApiGroup.InstanceType");
+			describeApiGroupResponse.InstanceId = context.StringValue("DescribeApiGroup.InstanceId");
+			describeApiGroupResponse.HttpsPolicy = context.StringValue("DescribeApiGroup.HttpsPolicy");
+			describeApiGroupResponse.UserLogConfig = context.StringValue("DescribeApiGroup.UserLogConfig");
+			describeApiGroupResponse.CustomTraceConfig = context.StringValue("DescribeApiGroup.CustomTraceConfig");
+			describeApiGroupResponse.RpcPattern = context.StringValue("DescribeApiGroup.RpcPattern");
+			describeApiGroupResponse.CompatibleFlags = context.StringValue("DescribeApiGroup.CompatibleFlags");
 
 			List<DescribeApiGroupResponse.DescribeApiGroup_DomainItem> describeApiGroupResponse_customDomains = new List<DescribeApiGroupResponse.DescribeApiGroup_DomainItem>();
 			for (int i = 0; i < context.Length("DescribeApiGroup.CustomDomains.Length"); i++) {
@@ -52,6 +60,7 @@ namespace Aliyun.Acs.CloudAPI.Transform.V20160714
 				domainItem.CertificateName = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].CertificateName");
 				domainItem.DomainCNAMEStatus = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].DomainCNAMEStatus");
 				domainItem.DomainBindingStatus = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].DomainBindingStatus");
+				domainItem.BindStageName = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].BindStageName");
 				domainItem.DomainLegalStatus = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].DomainLegalStatus");
 				domainItem.DomainWebSocketStatus = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].DomainWebSocketStatus");
 				domainItem.DomainRemark = context.StringValue("DescribeApiGroup.CustomDomains["+ i +"].DomainRemark");

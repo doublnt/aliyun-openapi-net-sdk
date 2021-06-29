@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeDemandsRequest()
             : base("Ecs", "2014-05-26", "DescribeDemands", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -42,7 +48,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string instanceType;
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string instanceChargeType;
 
@@ -56,9 +62,13 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> demandStatuss;
+		private List<string> demandStatuss = new List<string>(){ };
+
+		private string demandId;
 
 		private string zoneId;
+
+		private string demandType;
 
 		public long? ResourceOwnerId
 		{
@@ -225,6 +235,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string DemandId
+		{
+			get
+			{
+				return demandId;
+			}
+			set	
+			{
+				demandId = value;
+				DictionaryUtil.Add(QueryParameters, "DemandId", value);
+			}
+		}
+
 		public string ZoneId
 		{
 			get
@@ -235,6 +258,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				zoneId = value;
 				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
+			}
+		}
+
+		public string DemandType
+		{
+			get
+			{
+				return demandType;
+			}
+			set	
+			{
+				demandType = value;
+				DictionaryUtil.Add(QueryParameters, "DemandType", value);
 			}
 		}
 

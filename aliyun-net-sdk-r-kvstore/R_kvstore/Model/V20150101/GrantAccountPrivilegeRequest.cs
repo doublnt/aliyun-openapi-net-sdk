@@ -32,11 +32,17 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public GrantAccountPrivilegeRequest()
             : base("R-kvstore", "2015-01-01", "GrantAccountPrivilege", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string accountPrivilege;
 
 		private string accountName;
 
@@ -48,7 +54,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private long? ownerId;
 
-		private string accountPrivilege;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -63,16 +69,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
+		public string AccountPrivilege
 		{
 			get
 			{
-				return instanceId;
+				return accountPrivilege;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				accountPrivilege = value;
+				DictionaryUtil.Add(QueryParameters, "AccountPrivilege", value);
 			}
 		}
 
@@ -141,16 +147,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string AccountPrivilege
+		public string InstanceId
 		{
 			get
 			{
-				return accountPrivilege;
+				return instanceId;
 			}
 			set	
 			{
-				accountPrivilege = value;
-				DictionaryUtil.Add(QueryParameters, "AccountPrivilege", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

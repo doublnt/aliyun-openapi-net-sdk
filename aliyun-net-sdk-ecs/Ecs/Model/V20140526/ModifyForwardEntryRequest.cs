@@ -33,9 +33,23 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyForwardEntryRequest()
             : base("Ecs", "2014-05-26", "ModifyForwardEntry", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string forwardTableId;
+
+		private string internalIp;
+
+		private string forwardEntryId;
+
+		private string externalIp;
 
 		private string resourceOwnerAccount;
 
@@ -43,17 +57,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string ownerAccount;
 
-		private string forwardTableId;
-
 		private long? ownerId;
 
-		private string internalIp;
-
-		private string forwardEntryId;
-
 		private string internalPort;
-
-		private string externalIp;
 
 		private string externalPort;
 
@@ -67,6 +73,58 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ForwardTableId
+		{
+			get
+			{
+				return forwardTableId;
+			}
+			set	
+			{
+				forwardTableId = value;
+				DictionaryUtil.Add(QueryParameters, "ForwardTableId", value);
+			}
+		}
+
+		public string InternalIp
+		{
+			get
+			{
+				return internalIp;
+			}
+			set	
+			{
+				internalIp = value;
+				DictionaryUtil.Add(QueryParameters, "InternalIp", value);
+			}
+		}
+
+		public string ForwardEntryId
+		{
+			get
+			{
+				return forwardEntryId;
+			}
+			set	
+			{
+				forwardEntryId = value;
+				DictionaryUtil.Add(QueryParameters, "ForwardEntryId", value);
+			}
+		}
+
+		public string ExternalIp
+		{
+			get
+			{
+				return externalIp;
+			}
+			set	
+			{
+				externalIp = value;
+				DictionaryUtil.Add(QueryParameters, "ExternalIp", value);
 			}
 		}
 
@@ -109,19 +167,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ForwardTableId
-		{
-			get
-			{
-				return forwardTableId;
-			}
-			set	
-			{
-				forwardTableId = value;
-				DictionaryUtil.Add(QueryParameters, "ForwardTableId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -135,32 +180,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string InternalIp
-		{
-			get
-			{
-				return internalIp;
-			}
-			set	
-			{
-				internalIp = value;
-				DictionaryUtil.Add(QueryParameters, "InternalIp", value);
-			}
-		}
-
-		public string ForwardEntryId
-		{
-			get
-			{
-				return forwardEntryId;
-			}
-			set	
-			{
-				forwardEntryId = value;
-				DictionaryUtil.Add(QueryParameters, "ForwardEntryId", value);
-			}
-		}
-
 		public string InternalPort
 		{
 			get
@@ -171,19 +190,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				internalPort = value;
 				DictionaryUtil.Add(QueryParameters, "InternalPort", value);
-			}
-		}
-
-		public string ExternalIp
-		{
-			get
-			{
-				return externalIp;
-			}
-			set	
-			{
-				externalIp = value;
-				DictionaryUtil.Add(QueryParameters, "ExternalIp", value);
 			}
 		}
 

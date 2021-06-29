@@ -32,15 +32,34 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public CreatCustomOcrTemplateRequest()
             : base("Green", "2017-08-23", "CreatCustomOcrTemplate", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string recognizeArea;
 
 		private string imgUrl;
 
 		private string referArea;
 
-		private string recognizeArea;
-
 		private string name;
+
+		public string RecognizeArea
+		{
+			get
+			{
+				return recognizeArea;
+			}
+			set	
+			{
+				recognizeArea = value;
+				DictionaryUtil.Add(QueryParameters, "RecognizeArea", value);
+			}
+		}
 
 		public string ImgUrl
 		{
@@ -65,19 +84,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				referArea = value;
 				DictionaryUtil.Add(QueryParameters, "ReferArea", value);
-			}
-		}
-
-		public string RecognizeArea
-		{
-			get
-			{
-				return recognizeArea;
-			}
-			set	
-			{
-				recognizeArea = value;
-				DictionaryUtil.Add(QueryParameters, "RecognizeArea", value);
 			}
 		}
 

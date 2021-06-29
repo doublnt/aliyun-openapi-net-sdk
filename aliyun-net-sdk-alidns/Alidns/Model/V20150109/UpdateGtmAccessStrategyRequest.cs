@@ -30,34 +30,27 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class UpdateGtmAccessStrategyRequest : RpcAcsRequest<UpdateGtmAccessStrategyResponse>
     {
         public UpdateGtmAccessStrategyRequest()
-            : base("Alidns", "2015-01-09", "UpdateGtmAccessStrategy", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "UpdateGtmAccessStrategy", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string strategyName;
 
 		private string defaultAddrPoolId;
 
-		private string accessLines;
-
 		private string failoverAddrPoolId;
+
+		private string strategyName;
+
+		private string accessLines;
 
 		private string strategyId;
 
 		private string lang;
-
-		public string StrategyName
-		{
-			get
-			{
-				return strategyName;
-			}
-			set	
-			{
-				strategyName = value;
-				DictionaryUtil.Add(QueryParameters, "StrategyName", value);
-			}
-		}
 
 		public string DefaultAddrPoolId
 		{
@@ -72,19 +65,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			}
 		}
 
-		public string AccessLines
-		{
-			get
-			{
-				return accessLines;
-			}
-			set	
-			{
-				accessLines = value;
-				DictionaryUtil.Add(QueryParameters, "AccessLines", value);
-			}
-		}
-
 		public string FailoverAddrPoolId
 		{
 			get
@@ -95,6 +75,32 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				failoverAddrPoolId = value;
 				DictionaryUtil.Add(QueryParameters, "FailoverAddrPoolId", value);
+			}
+		}
+
+		public string StrategyName
+		{
+			get
+			{
+				return strategyName;
+			}
+			set	
+			{
+				strategyName = value;
+				DictionaryUtil.Add(QueryParameters, "StrategyName", value);
+			}
+		}
+
+		public string AccessLines
+		{
+			get
+			{
+				return accessLines;
+			}
+			set	
+			{
+				accessLines = value;
+				DictionaryUtil.Add(QueryParameters, "AccessLines", value);
 			}
 		}
 

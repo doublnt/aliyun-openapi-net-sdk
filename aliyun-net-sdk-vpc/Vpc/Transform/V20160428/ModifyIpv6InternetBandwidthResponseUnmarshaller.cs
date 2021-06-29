@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyIpv6InternetBandwidthResponseUnmarshaller
     {
-        public static ModifyIpv6InternetBandwidthResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyIpv6InternetBandwidthResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyIpv6InternetBandwidthResponse modifyIpv6InternetBandwidthResponse = new ModifyIpv6InternetBandwidthResponse();
 
-			modifyIpv6InternetBandwidthResponse.HttpResponse = context.HttpResponse;
-			modifyIpv6InternetBandwidthResponse.RequestId = context.StringValue("ModifyIpv6InternetBandwidth.RequestId");
+			modifyIpv6InternetBandwidthResponse.HttpResponse = _ctx.HttpResponse;
+			modifyIpv6InternetBandwidthResponse.RequestId = _ctx.StringValue("ModifyIpv6InternetBandwidth.RequestId");
         
 			return modifyIpv6InternetBandwidthResponse;
         }

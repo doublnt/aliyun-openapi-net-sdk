@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,11 +32,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateInstanceRequest()
             : base("Ecs", "2014-05-26", "CreateInstance", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string hpcClusterId;
+
+		private int? httpPutResponseHopLimit;
 
 		private string securityEnhancementStrategy;
 
@@ -49,11 +56,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string resourceGroupId;
 
+		private string privatePoolOptionsMatchCriteria;
+
 		private string hostName;
 
 		private string password;
 
-		private List<Tag> tags;
+		private int? deploymentSetGroupNo;
+
+		private int? storageSetPartitionNumber;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string privatePoolOptionsId;
 
 		private int? autoRenewPeriod;
 
@@ -101,6 +116,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? internetMaxBandwidthOut;
 
+		private bool? hibernationOptionsConfigured;
+
 		private string description;
 
 		private string systemDiskCategory;
@@ -111,9 +128,11 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private bool? passwordInherit;
 
+		private string httpEndpoint;
+
 		private string instanceType;
 
-		private List<Arn> arns;
+		private List<Arn> arns = new List<Arn>(){ };
 
 		private string instanceChargeType;
 
@@ -137,9 +156,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string creditSpecification;
 
-		private List<DataDisk> dataDisks;
+		private int? spotDuration;
+
+		private List<DataDisk> dataDisks = new List<DataDisk>(){ };
+
+		private string storageSetId;
 
 		private int? systemDiskSize;
+
+		private string imageFamily;
+
+		private string httpTokens;
 
 		private string systemDiskDescription;
 
@@ -166,6 +193,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				hpcClusterId = value;
 				DictionaryUtil.Add(QueryParameters, "HpcClusterId", value);
+			}
+		}
+
+		public int? HttpPutResponseHopLimit
+		{
+			get
+			{
+				return httpPutResponseHopLimit;
+			}
+			set	
+			{
+				httpPutResponseHopLimit = value;
+				DictionaryUtil.Add(QueryParameters, "HttpPutResponseHopLimit", value.ToString());
 			}
 		}
 
@@ -234,6 +274,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string PrivatePoolOptionsMatchCriteria
+		{
+			get
+			{
+				return privatePoolOptionsMatchCriteria;
+			}
+			set	
+			{
+				privatePoolOptionsMatchCriteria = value;
+				DictionaryUtil.Add(QueryParameters, "PrivatePoolOptions.MatchCriteria", value);
+			}
+		}
+
 		public string HostName
 		{
 			get
@@ -260,6 +313,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? DeploymentSetGroupNo
+		{
+			get
+			{
+				return deploymentSetGroupNo;
+			}
+			set	
+			{
+				deploymentSetGroupNo = value;
+				DictionaryUtil.Add(QueryParameters, "DeploymentSetGroupNo", value.ToString());
+			}
+		}
+
+		public int? StorageSetPartitionNumber
+		{
+			get
+			{
+				return storageSetPartitionNumber;
+			}
+			set	
+			{
+				storageSetPartitionNumber = value;
+				DictionaryUtil.Add(QueryParameters, "StorageSetPartitionNumber", value.ToString());
+			}
+		}
+
 		public List<Tag> Tags
 		{
 			get
@@ -272,9 +351,22 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				tags = value;
 				for (int i = 0; i < tags.Count; i++)
 				{
-					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".value", tags[i].Value);
 					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
 				}
+			}
+		}
+
+		public string PrivatePoolOptionsId
+		{
+			get
+			{
+				return privatePoolOptionsId;
+			}
+			set	
+			{
+				privatePoolOptionsId = value;
+				DictionaryUtil.Add(QueryParameters, "PrivatePoolOptions.Id", value);
 			}
 		}
 
@@ -577,6 +669,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public bool? HibernationOptionsConfigured
+		{
+			get
+			{
+				return hibernationOptionsConfigured;
+			}
+			set	
+			{
+				hibernationOptionsConfigured = value;
+				DictionaryUtil.Add(QueryParameters, "HibernationOptions.Configured", value.ToString());
+			}
+		}
+
 		public string Description
 		{
 			get
@@ -639,6 +744,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				passwordInherit = value;
 				DictionaryUtil.Add(QueryParameters, "PasswordInherit", value.ToString());
+			}
+		}
+
+		public string HttpEndpoint
+		{
+			get
+			{
+				return httpEndpoint;
+			}
+			set	
+			{
+				httpEndpoint = value;
+				DictionaryUtil.Add(QueryParameters, "HttpEndpoint", value);
 			}
 		}
 
@@ -817,6 +935,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? SpotDuration
+		{
+			get
+			{
+				return spotDuration;
+			}
+			set	
+			{
+				spotDuration = value;
+				DictionaryUtil.Add(QueryParameters, "SpotDuration", value.ToString());
+			}
+		}
+
 		public List<DataDisk> DataDisks
 		{
 			get
@@ -834,12 +965,26 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Size", dataDisks[i].Size);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Encrypted", dataDisks[i].Encrypted);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".PerformanceLevel", dataDisks[i].PerformanceLevel);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".EncryptAlgorithm", dataDisks[i].EncryptAlgorithm);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Description", dataDisks[i].Description);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Category", dataDisks[i].Category);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".KMSKeyId", dataDisks[i].KMSKeyId);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Device", dataDisks[i].Device);
 					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".DeleteWithInstance", dataDisks[i].DeleteWithInstance);
 				}
+			}
+		}
+
+		public string StorageSetId
+		{
+			get
+			{
+				return storageSetId;
+			}
+			set	
+			{
+				storageSetId = value;
+				DictionaryUtil.Add(QueryParameters, "StorageSetId", value);
 			}
 		}
 
@@ -853,6 +998,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				systemDiskSize = value;
 				DictionaryUtil.Add(QueryParameters, "SystemDisk.Size", value.ToString());
+			}
+		}
+
+		public string ImageFamily
+		{
+			get
+			{
+				return imageFamily;
+			}
+			set	
+			{
+				imageFamily = value;
+				DictionaryUtil.Add(QueryParameters, "ImageFamily", value);
+			}
+		}
+
+		public string HttpTokens
+		{
+			get
+			{
+				return httpTokens;
+			}
+			set	
+			{
+				httpTokens = value;
+				DictionaryUtil.Add(QueryParameters, "HttpTokens", value);
 			}
 		}
 
@@ -960,6 +1131,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string performanceLevel;
 
+			private string encryptAlgorithm;
+
 			private string description;
 
 			private string category;
@@ -1027,6 +1200,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					performanceLevel = value;
+				}
+			}
+
+			public string EncryptAlgorithm
+			{
+				get
+				{
+					return encryptAlgorithm;
+				}
+				set	
+				{
+					encryptAlgorithm = value;
 				}
 			}
 

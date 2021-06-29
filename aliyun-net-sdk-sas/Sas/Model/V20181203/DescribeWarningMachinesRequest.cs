@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public DescribeWarningMachinesRequest()
             : base("Sas", "2018-12-03", "DescribeWarningMachines", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string sourceIp;
@@ -40,13 +46,13 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 
 		private string machineName;
 
-		private long? strategyId;
+		private string lang;
 
 		private int? currentPage;
 
-		private string lang;
-
 		private long? riskId;
+
+		private long? strategyId;
 
 		private string uuids;
 
@@ -89,16 +95,16 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
-		public long? StrategyId
+		public string Lang
 		{
 			get
 			{
-				return strategyId;
+				return lang;
 			}
 			set	
 			{
-				strategyId = value;
-				DictionaryUtil.Add(QueryParameters, "StrategyId", value.ToString());
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 
@@ -115,19 +121,6 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			}
 		}
 
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
 		public long? RiskId
 		{
 			get
@@ -138,6 +131,19 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				riskId = value;
 				DictionaryUtil.Add(QueryParameters, "RiskId", value.ToString());
+			}
+		}
+
+		public long? StrategyId
+		{
+			get
+			{
+				return strategyId;
+			}
+			set	
+			{
+				strategyId = value;
+				DictionaryUtil.Add(QueryParameters, "StrategyId", value.ToString());
 			}
 		}
 

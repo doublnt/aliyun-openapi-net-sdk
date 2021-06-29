@@ -33,6 +33,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public RevokeSecurityGroupEgressRequest()
             : base("Ecs", "2014-05-26", "RevokeSecurityGroupEgress", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string nicType;
@@ -42,6 +48,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string sourcePortRange;
 
 		private string clientToken;
+
+		private string destPrefixListId;
 
 		private string securityGroupId;
 
@@ -124,6 +132,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string DestPrefixListId
+		{
+			get
+			{
+				return destPrefixListId;
+			}
+			set	
+			{
+				destPrefixListId = value;
+				DictionaryUtil.Add(QueryParameters, "DestPrefixListId", value);
 			}
 		}
 

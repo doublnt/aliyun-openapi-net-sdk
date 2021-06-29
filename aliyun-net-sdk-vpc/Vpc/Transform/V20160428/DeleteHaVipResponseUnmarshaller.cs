@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteHaVipResponseUnmarshaller
     {
-        public static DeleteHaVipResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteHaVipResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteHaVipResponse deleteHaVipResponse = new DeleteHaVipResponse();
 
-			deleteHaVipResponse.HttpResponse = context.HttpResponse;
-			deleteHaVipResponse.RequestId = context.StringValue("DeleteHaVip.RequestId");
+			deleteHaVipResponse.HttpResponse = _ctx.HttpResponse;
+			deleteHaVipResponse.RequestId = _ctx.StringValue("DeleteHaVip.RequestId");
         
 			return deleteHaVipResponse;
         }

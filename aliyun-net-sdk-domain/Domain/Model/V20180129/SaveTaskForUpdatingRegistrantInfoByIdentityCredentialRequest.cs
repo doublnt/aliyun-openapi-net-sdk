@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,8 +30,13 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveTaskForUpdatingRegistrantInfoByIdentityCredentialRequest : RpcAcsRequest<SaveTaskForUpdatingRegistrantInfoByIdentityCredentialResponse>
     {
         public SaveTaskForUpdatingRegistrantInfoByIdentityCredentialRequest()
-            : base("Domain", "2018-01-29", "SaveTaskForUpdatingRegistrantInfoByIdentityCredential")
+            : base("Domain", "2018-01-29", "SaveTaskForUpdatingRegistrantInfoByIdentityCredential", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
 			Method = MethodType.POST;
         }
 
@@ -40,29 +44,13 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string identityCredentialType;
 
-		private string address;
-
-		private string telArea;
-
 		private string city;
 
-		private string zhAddress;
-
-		private string registrantType;
-
-		private List<string> domainNames;
-
 		private string identityCredential;
-
-		private string telephone;
 
 		private bool? transferOutProhibited;
 
 		private string zhCity;
-
-		private string zhProvince;
-
-		private string registrantOrganization;
 
 		private string telExt;
 
@@ -72,17 +60,33 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string postalCode;
 
-		private string userClientIp;
-
 		private string lang;
-
-		private string identityCredentialNo;
 
 		private string email;
 
-		private string registrantName;
-
 		private string zhRegistrantOrganization;
+
+		private string address;
+
+		private string telArea;
+
+		private string zhAddress;
+
+		private string registrantType;
+
+		private List<string> domainNames = new List<string>(){ };
+
+		private string telephone;
+
+		private string zhProvince;
+
+		private string registrantOrganization;
+
+		private string userClientIp;
+
+		private string identityCredentialNo;
+
+		private string registrantName;
 
 		public string Country
 		{
@@ -110,32 +114,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string Address
-		{
-			get
-			{
-				return address;
-			}
-			set	
-			{
-				address = value;
-				DictionaryUtil.Add(QueryParameters, "Address", value);
-			}
-		}
-
-		public string TelArea
-		{
-			get
-			{
-				return telArea;
-			}
-			set	
-			{
-				telArea = value;
-				DictionaryUtil.Add(QueryParameters, "TelArea", value);
-			}
-		}
-
 		public string City
 		{
 			get
@@ -149,49 +127,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string ZhAddress
-		{
-			get
-			{
-				return zhAddress;
-			}
-			set	
-			{
-				zhAddress = value;
-				DictionaryUtil.Add(QueryParameters, "ZhAddress", value);
-			}
-		}
-
-		public string RegistrantType
-		{
-			get
-			{
-				return registrantType;
-			}
-			set	
-			{
-				registrantType = value;
-				DictionaryUtil.Add(QueryParameters, "RegistrantType", value);
-			}
-		}
-
-		public List<string> DomainNames
-		{
-			get
-			{
-				return domainNames;
-			}
-
-			set
-			{
-				domainNames = value;
-				for (int i = 0; i < domainNames.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"DomainName." + (i + 1) , domainNames[i]);
-				}
-			}
-		}
-
 		public string IdentityCredential
 		{
 			get
@@ -202,19 +137,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				identityCredential = value;
 				DictionaryUtil.Add(BodyParameters, "IdentityCredential", value);
-			}
-		}
-
-		public string Telephone
-		{
-			get
-			{
-				return telephone;
-			}
-			set	
-			{
-				telephone = value;
-				DictionaryUtil.Add(QueryParameters, "Telephone", value);
 			}
 		}
 
@@ -241,32 +163,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				zhCity = value;
 				DictionaryUtil.Add(QueryParameters, "ZhCity", value);
-			}
-		}
-
-		public string ZhProvince
-		{
-			get
-			{
-				return zhProvince;
-			}
-			set	
-			{
-				zhProvince = value;
-				DictionaryUtil.Add(QueryParameters, "ZhProvince", value);
-			}
-		}
-
-		public string RegistrantOrganization
-		{
-			get
-			{
-				return registrantOrganization;
-			}
-			set	
-			{
-				registrantOrganization = value;
-				DictionaryUtil.Add(QueryParameters, "RegistrantOrganization", value);
 			}
 		}
 
@@ -322,19 +218,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
-
 		public string Lang
 		{
 			get
@@ -345,19 +228,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string IdentityCredentialNo
-		{
-			get
-			{
-				return identityCredentialNo;
-			}
-			set	
-			{
-				identityCredentialNo = value;
-				DictionaryUtil.Add(QueryParameters, "IdentityCredentialNo", value);
 			}
 		}
 
@@ -374,19 +244,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string RegistrantName
-		{
-			get
-			{
-				return registrantName;
-			}
-			set	
-			{
-				registrantName = value;
-				DictionaryUtil.Add(QueryParameters, "RegistrantName", value);
-			}
-		}
-
 		public string ZhRegistrantOrganization
 		{
 			get
@@ -397,6 +254,153 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				zhRegistrantOrganization = value;
 				DictionaryUtil.Add(QueryParameters, "ZhRegistrantOrganization", value);
+			}
+		}
+
+		public string Address
+		{
+			get
+			{
+				return address;
+			}
+			set	
+			{
+				address = value;
+				DictionaryUtil.Add(QueryParameters, "Address", value);
+			}
+		}
+
+		public string TelArea
+		{
+			get
+			{
+				return telArea;
+			}
+			set	
+			{
+				telArea = value;
+				DictionaryUtil.Add(QueryParameters, "TelArea", value);
+			}
+		}
+
+		public string ZhAddress
+		{
+			get
+			{
+				return zhAddress;
+			}
+			set	
+			{
+				zhAddress = value;
+				DictionaryUtil.Add(QueryParameters, "ZhAddress", value);
+			}
+		}
+
+		public string RegistrantType
+		{
+			get
+			{
+				return registrantType;
+			}
+			set	
+			{
+				registrantType = value;
+				DictionaryUtil.Add(QueryParameters, "RegistrantType", value);
+			}
+		}
+
+		public List<string> DomainNames
+		{
+			get
+			{
+				return domainNames;
+			}
+
+			set
+			{
+				domainNames = value;
+				for (int i = 0; i < domainNames.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"DomainName." + (i + 1) , domainNames[i]);
+				}
+			}
+		}
+
+		public string Telephone
+		{
+			get
+			{
+				return telephone;
+			}
+			set	
+			{
+				telephone = value;
+				DictionaryUtil.Add(QueryParameters, "Telephone", value);
+			}
+		}
+
+		public string ZhProvince
+		{
+			get
+			{
+				return zhProvince;
+			}
+			set	
+			{
+				zhProvince = value;
+				DictionaryUtil.Add(QueryParameters, "ZhProvince", value);
+			}
+		}
+
+		public string RegistrantOrganization
+		{
+			get
+			{
+				return registrantOrganization;
+			}
+			set	
+			{
+				registrantOrganization = value;
+				DictionaryUtil.Add(QueryParameters, "RegistrantOrganization", value);
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
+			}
+		}
+
+		public string IdentityCredentialNo
+		{
+			get
+			{
+				return identityCredentialNo;
+			}
+			set	
+			{
+				identityCredentialNo = value;
+				DictionaryUtil.Add(QueryParameters, "IdentityCredentialNo", value);
+			}
+		}
+
+		public string RegistrantName
+		{
+			get
+			{
+				return registrantName;
+			}
+			set	
+			{
+				registrantName = value;
+				DictionaryUtil.Add(QueryParameters, "RegistrantName", value);
 			}
 		}
 

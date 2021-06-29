@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public DescribeNodeCidrListRequest()
             : base("Dbs", "2019-03-06", "DescribeNodeCidrList", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string clientToken;
 
-		private string region;
-
 		private string ownerId;
+
+		private string region;
 
 		public string ClientToken
 		{
@@ -53,19 +59,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public string Region
-		{
-			get
-			{
-				return region;
-			}
-			set	
-			{
-				region = value;
-				DictionaryUtil.Add(QueryParameters, "Region", value);
-			}
-		}
-
 		public string OwnerId
 		{
 			get
@@ -76,6 +69,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public string Region
+		{
+			get
+			{
+				return region;
+			}
+			set	
+			{
+				region = value;
+				DictionaryUtil.Add(QueryParameters, "Region", value);
 			}
 		}
 

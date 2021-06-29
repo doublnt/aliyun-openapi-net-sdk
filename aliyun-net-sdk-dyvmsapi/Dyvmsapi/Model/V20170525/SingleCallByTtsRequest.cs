@@ -30,11 +30,24 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class SingleCallByTtsRequest : RpcAcsRequest<SingleCallByTtsResponse>
     {
         public SingleCallByTtsRequest()
-            : base("Dyvmsapi", "2017-05-25", "SingleCallByTts")
+            : base("Dyvmsapi", "2017-05-25", "SingleCallByTts", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
+
+		private string ttsParam;
+
+		private int? speed;
+
+		private string calledNumber;
+
+		private string calledShowNumber;
 
 		private string resourceOwnerAccount;
 
@@ -42,21 +55,9 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private int? playTimes;
 
-		private string ttsParam;
-
 		private long? ownerId;
 
-		private int? speed;
-
-		private string accessKeyId;
-
 		private int? volume;
-
-		private string calledNumber;
-
-		private string calledShowNumber;
-
-		private string action;
 
 		private string outId;
 
@@ -70,6 +71,58 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string TtsParam
+		{
+			get
+			{
+				return ttsParam;
+			}
+			set	
+			{
+				ttsParam = value;
+				DictionaryUtil.Add(QueryParameters, "TtsParam", value);
+			}
+		}
+
+		public int? Speed
+		{
+			get
+			{
+				return speed;
+			}
+			set	
+			{
+				speed = value;
+				DictionaryUtil.Add(QueryParameters, "Speed", value.ToString());
+			}
+		}
+
+		public string CalledNumber
+		{
+			get
+			{
+				return calledNumber;
+			}
+			set	
+			{
+				calledNumber = value;
+				DictionaryUtil.Add(QueryParameters, "CalledNumber", value);
+			}
+		}
+
+		public string CalledShowNumber
+		{
+			get
+			{
+				return calledShowNumber;
+			}
+			set	
+			{
+				calledShowNumber = value;
+				DictionaryUtil.Add(QueryParameters, "CalledShowNumber", value);
 			}
 		}
 
@@ -112,19 +165,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string TtsParam
-		{
-			get
-			{
-				return ttsParam;
-			}
-			set	
-			{
-				ttsParam = value;
-				DictionaryUtil.Add(QueryParameters, "TtsParam", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -138,32 +178,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public int? Speed
-		{
-			get
-			{
-				return speed;
-			}
-			set	
-			{
-				speed = value;
-				DictionaryUtil.Add(QueryParameters, "Speed", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
 		public int? Volume
 		{
 			get
@@ -174,45 +188,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				volume = value;
 				DictionaryUtil.Add(QueryParameters, "Volume", value.ToString());
-			}
-		}
-
-		public string CalledNumber
-		{
-			get
-			{
-				return calledNumber;
-			}
-			set	
-			{
-				calledNumber = value;
-				DictionaryUtil.Add(QueryParameters, "CalledNumber", value);
-			}
-		}
-
-		public string CalledShowNumber
-		{
-			get
-			{
-				return calledShowNumber;
-			}
-			set	
-			{
-				calledShowNumber = value;
-				DictionaryUtil.Add(QueryParameters, "CalledShowNumber", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

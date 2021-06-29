@@ -32,21 +32,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeCacheAnalysisReportRequest()
             : base("R-kvstore", "2015-01-01", "DescribeCacheAnalysisReport", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string date;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
-
-		private long? ownerId;
-
 		private string analysisType;
-
-		private string instanceId;
 
 		private string securityToken;
 
@@ -55,6 +53,14 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		private int? pageNumbers;
 
 		private string nodeId;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
+
+		private string instanceId;
 
 		public string Date
 		{
@@ -82,45 +88,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public string AnalysisType
 		{
 			get
@@ -131,19 +98,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				analysisType = value;
 				DictionaryUtil.Add(QueryParameters, "AnalysisType", value);
-			}
-		}
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 
@@ -197,6 +151,63 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				nodeId = value;
 				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override DescribeCacheAnalysisReportResponse GetResponse(UnmarshallerContext unmarshallerContext)

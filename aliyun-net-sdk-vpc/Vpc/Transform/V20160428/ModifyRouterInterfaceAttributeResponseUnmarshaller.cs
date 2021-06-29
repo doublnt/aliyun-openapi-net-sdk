@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyRouterInterfaceAttributeResponseUnmarshaller
     {
-        public static ModifyRouterInterfaceAttributeResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyRouterInterfaceAttributeResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyRouterInterfaceAttributeResponse modifyRouterInterfaceAttributeResponse = new ModifyRouterInterfaceAttributeResponse();
 
-			modifyRouterInterfaceAttributeResponse.HttpResponse = context.HttpResponse;
-			modifyRouterInterfaceAttributeResponse.RequestId = context.StringValue("ModifyRouterInterfaceAttribute.RequestId");
+			modifyRouterInterfaceAttributeResponse.HttpResponse = _ctx.HttpResponse;
+			modifyRouterInterfaceAttributeResponse.RequestId = _ctx.StringValue("ModifyRouterInterfaceAttribute.RequestId");
         
 			return modifyRouterInterfaceAttributeResponse;
         }

@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,9 +30,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class QueryTaskDetailListRequest : RpcAcsRequest<QueryTaskDetailListResponse>
     {
         public QueryTaskDetailListRequest()
-            : base("Domain", "2018-01-29", "QueryTaskDetailList")
+            : base("Domain", "2018-01-29", "QueryTaskDetailList", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string domainName;
+
+		private int? pageNum;
 
 		private int? taskStatus;
 
@@ -41,15 +50,37 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string taskNo;
 
-		private string domainName;
-
 		private string userClientIp;
 
 		private int? pageSize;
 
 		private string lang;
 
-		private int? pageNum;
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public int? PageNum
+		{
+			get
+			{
+				return pageNum;
+			}
+			set	
+			{
+				pageNum = value;
+				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
+			}
+		}
 
 		public int? TaskStatus
 		{
@@ -90,19 +121,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
 		public string UserClientIp
 		{
 			get
@@ -139,19 +157,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				lang = value;
 				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public int? PageNum
-		{
-			get
-			{
-				return pageNum;
-			}
-			set	
-			{
-				pageNum = value;
-				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
 			}
 		}
 

@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -29,6 +30,10 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 		private List<ImportSwagger_ApiImportSwaggerSuccess> success;
 
 		private List<ImportSwagger_ApiImportSwaggerFailed> failed;
+
+		private List<ImportSwagger_ApiImportModelFailed> modelFailed;
+
+		private List<ImportSwagger_ApiImportModelSuccess> modelSuccess;
 
 		public string RequestId
 		{
@@ -63,6 +68,30 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			set	
 			{
 				failed = value;
+			}
+		}
+
+		public List<ImportSwagger_ApiImportModelFailed> ModelFailed
+		{
+			get
+			{
+				return modelFailed;
+			}
+			set	
+			{
+				modelFailed = value;
+			}
+		}
+
+		public List<ImportSwagger_ApiImportModelSuccess> ModelSuccess
+		{
+			get
+			{
+				return modelSuccess;
+			}
+			set	
+			{
+				modelSuccess = value;
 			}
 		}
 
@@ -168,6 +197,112 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 				set	
 				{
 					errorMsg = value;
+				}
+			}
+		}
+
+		public class ImportSwagger_ApiImportModelFailed
+		{
+
+			private string groupId;
+
+			private string modelName;
+
+			private string errorMsg;
+
+			public string GroupId
+			{
+				get
+				{
+					return groupId;
+				}
+				set	
+				{
+					groupId = value;
+				}
+			}
+
+			public string ModelName
+			{
+				get
+				{
+					return modelName;
+				}
+				set	
+				{
+					modelName = value;
+				}
+			}
+
+			public string ErrorMsg
+			{
+				get
+				{
+					return errorMsg;
+				}
+				set	
+				{
+					errorMsg = value;
+				}
+			}
+		}
+
+		public class ImportSwagger_ApiImportModelSuccess
+		{
+
+			private string modelUid;
+
+			private string modelOperation;
+
+			private string groupId;
+
+			private string modelName;
+
+			public string ModelUid
+			{
+				get
+				{
+					return modelUid;
+				}
+				set	
+				{
+					modelUid = value;
+				}
+			}
+
+			public string ModelOperation
+			{
+				get
+				{
+					return modelOperation;
+				}
+				set	
+				{
+					modelOperation = value;
+				}
+			}
+
+			public string GroupId
+			{
+				get
+				{
+					return groupId;
+				}
+				set	
+				{
+					groupId = value;
+				}
+			}
+
+			public string ModelName
+			{
+				get
+				{
+					return modelName;
+				}
+				set	
+				{
+					modelName = value;
 				}
 			}
 		}

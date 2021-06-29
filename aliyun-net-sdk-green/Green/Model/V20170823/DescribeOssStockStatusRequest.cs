@@ -32,11 +32,32 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public DescribeOssStockStatusRequest()
             : base("Green", "2017-08-23", "DescribeOssStockStatus", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? stockTaskId;
 
 		private string sourceIp;
 
 		private string lang;
+
+		public long? StockTaskId
+		{
+			get
+			{
+				return stockTaskId;
+			}
+			set	
+			{
+				stockTaskId = value;
+				DictionaryUtil.Add(QueryParameters, "StockTaskId", value.ToString());
+			}
+		}
 
 		public string SourceIp
 		{

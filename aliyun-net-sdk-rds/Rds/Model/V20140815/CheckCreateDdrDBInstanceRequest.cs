@@ -32,29 +32,41 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CheckCreateDdrDBInstanceRequest()
             : base("Rds", "2014-08-15", "CheckCreateDdrDBInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
-
-		private string restoreTime;
 
 		private int? dBInstanceStorage;
 
 		private string sourceDBInstanceName;
 
+		private string binlogRole;
+
+		private string engineVersion;
+
+		private string engine;
+
+		private string restoreTime;
+
 		private string resourceOwnerAccount;
 
 		private string backupSetId;
 
-		private string engineVersion;
-
 		private long? ownerId;
+
+		private string binlogPosition;
 
 		private string dBInstanceClass;
 
 		private string restoreType;
 
-		private string engine;
+		private string binlogName;
 
 		private string sourceRegion;
 
@@ -68,19 +80,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string RestoreTime
-		{
-			get
-			{
-				return restoreTime;
-			}
-			set	
-			{
-				restoreTime = value;
-				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
 			}
 		}
 
@@ -110,6 +109,58 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string BinlogRole
+		{
+			get
+			{
+				return binlogRole;
+			}
+			set	
+			{
+				binlogRole = value;
+				DictionaryUtil.Add(QueryParameters, "BinlogRole", value);
+			}
+		}
+
+		public string EngineVersion
+		{
+			get
+			{
+				return engineVersion;
+			}
+			set	
+			{
+				engineVersion = value;
+				DictionaryUtil.Add(QueryParameters, "EngineVersion", value);
+			}
+		}
+
+		public string Engine
+		{
+			get
+			{
+				return engine;
+			}
+			set	
+			{
+				engine = value;
+				DictionaryUtil.Add(QueryParameters, "Engine", value);
+			}
+		}
+
+		public string RestoreTime
+		{
+			get
+			{
+				return restoreTime;
+			}
+			set	
+			{
+				restoreTime = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -136,19 +187,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string EngineVersion
-		{
-			get
-			{
-				return engineVersion;
-			}
-			set	
-			{
-				engineVersion = value;
-				DictionaryUtil.Add(QueryParameters, "EngineVersion", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -159,6 +197,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string BinlogPosition
+		{
+			get
+			{
+				return binlogPosition;
+			}
+			set	
+			{
+				binlogPosition = value;
+				DictionaryUtil.Add(QueryParameters, "BinlogPosition", value);
 			}
 		}
 
@@ -188,16 +239,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string Engine
+		public string BinlogName
 		{
 			get
 			{
-				return engine;
+				return binlogName;
 			}
 			set	
 			{
-				engine = value;
-				DictionaryUtil.Add(QueryParameters, "Engine", value);
+				binlogName = value;
+				DictionaryUtil.Add(QueryParameters, "BinlogName", value);
 			}
 		}
 

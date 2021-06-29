@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -120,6 +121,12 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private bool? isDefault;
 
 			private string resourceGroupId;
+
+			private string networkAclId;
+
+			private long? ownerId;
+
+			private string shareType;
 
 			private List<DescribeVSwitches_Tag> tags;
 
@@ -266,6 +273,42 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					resourceGroupId = value;
+				}
+			}
+
+			public string NetworkAclId
+			{
+				get
+				{
+					return networkAclId;
+				}
+				set	
+				{
+					networkAclId = value;
+				}
+			}
+
+			public long? OwnerId
+			{
+				get
+				{
+					return ownerId;
+				}
+				set	
+				{
+					ownerId = value;
+				}
+			}
+
+			public string ShareType
+			{
+				get
+				{
+					return shareType;
+				}
+				set	
+				{
+					shareType = value;
 				}
 			}
 

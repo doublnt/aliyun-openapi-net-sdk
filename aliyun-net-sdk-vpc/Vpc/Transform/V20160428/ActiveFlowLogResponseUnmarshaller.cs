@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ActiveFlowLogResponseUnmarshaller
     {
-        public static ActiveFlowLogResponse Unmarshall(UnmarshallerContext context)
+        public static ActiveFlowLogResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ActiveFlowLogResponse activeFlowLogResponse = new ActiveFlowLogResponse();
 
-			activeFlowLogResponse.HttpResponse = context.HttpResponse;
-			activeFlowLogResponse.RequestId = context.StringValue("ActiveFlowLog.RequestId");
-			activeFlowLogResponse.Success = context.StringValue("ActiveFlowLog.Success");
+			activeFlowLogResponse.HttpResponse = _ctx.HttpResponse;
+			activeFlowLogResponse.RequestId = _ctx.StringValue("ActiveFlowLog.RequestId");
+			activeFlowLogResponse.Success = _ctx.StringValue("ActiveFlowLog.Success");
         
 			return activeFlowLogResponse;
         }

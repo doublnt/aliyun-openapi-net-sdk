@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,17 +33,17 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public DescribeRefreshTasksRequest()
             : base("Cdn", "2018-05-10", "DescribeRefreshTasks")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string objectPath;
 
-		private string domainName;
-
-		private string endTime;
-
 		private string startTime;
-
-		private long? ownerId;
 
 		private int? pageNumber;
 
@@ -52,11 +53,15 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 
 		private int? pageSize;
 
-		private string action;
-
 		private string objectType;
 
 		private string taskId;
+
+		private string domainName;
+
+		private string endTime;
+
+		private long? ownerId;
 
 		private string status;
 
@@ -73,32 +78,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string EndTime
-		{
-			get
-			{
-				return endTime;
-			}
-			set	
-			{
-				endTime = value;
-				DictionaryUtil.Add(QueryParameters, "EndTime", value);
-			}
-		}
-
 		public string StartTime
 		{
 			get
@@ -109,19 +88,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -177,19 +143,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string ObjectType
 		{
 			get
@@ -213,6 +166,45 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				taskId = value;
 				DictionaryUtil.Add(QueryParameters, "TaskId", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public string EndTime
+		{
+			get
+			{
+				return endTime;
+			}
+			set	
+			{
+				endTime = value;
+				DictionaryUtil.Add(QueryParameters, "EndTime", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

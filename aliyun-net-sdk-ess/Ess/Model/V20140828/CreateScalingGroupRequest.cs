@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,7 +33,21 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public CreateScalingGroupRequest()
             : base("Ess", "2014-08-28", "CreateScalingGroup", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private List<string> vSwitchIdss = new List<string>(){ };
+
+		private bool? spotInstanceRemedy;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private int? defaultCooldown;
 
 		private string multiAZPolicy;
 
@@ -40,7 +55,33 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string launchTemplateId;
 
+		private int? desiredCapacity;
+
+		private bool? compensateWithOnDemand;
+
+		private int? minSize;
+
+		private long? ownerId;
+
+		private string vSwitchId;
+
+		private string instanceId;
+
+		private int? maxSize;
+
+		private List<LifecycleHook> lifecycleHooks = new List<LifecycleHook>(){ };
+
 		private string loadBalancerIds;
+
+		private string clientToken;
+
+		private int? onDemandBaseCapacity;
+
+		private int? onDemandPercentageAboveBaseCapacity;
+
+		private string removalPolicy1;
+
+		private string removalPolicy2;
 
 		private string healthCheckType;
 
@@ -48,39 +89,78 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string scalingGroupName;
 
-		private string clientToken;
-
-		private List<string> vSwitchIds;
-
 		private string ownerAccount;
 
-		private int? minSize;
+		private int? spotInstancePools;
 
-		private long? ownerId;
+		private bool? groupDeletionProtection;
 
 		private string launchTemplateVersion;
 
 		private string scalingPolicy;
 
-		private string accessKeyId;
+		private List<VServerGroup> vServerGroups = new List<VServerGroup>(){ };
 
-		private string vSwitchId;
+		public List<string> VSwitchIdss
+		{
+			get
+			{
+				return vSwitchIdss;
+			}
 
-		private string regionId;
+			set
+			{
+				vSwitchIdss = value;
+				for (int i = 0; i < vSwitchIdss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"VSwitchIds." + (i + 1) , vSwitchIdss[i]);
+				}
+			}
+		}
 
-		private string action;
+		public bool? SpotInstanceRemedy
+		{
+			get
+			{
+				return spotInstanceRemedy;
+			}
+			set	
+			{
+				spotInstanceRemedy = value;
+				DictionaryUtil.Add(QueryParameters, "SpotInstanceRemedy", value.ToString());
+			}
+		}
 
-		private int? maxSize;
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
 
-		private List<LifecycleHook> lifecycleHooks;
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
 
-		private int? defaultCooldown;
-
-		private string removalPolicy1;
-
-		private List<VServerGroup> vServerGroups;
-
-		private string removalPolicy2;
+		public int? DefaultCooldown
+		{
+			get
+			{
+				return defaultCooldown;
+			}
+			set	
+			{
+				defaultCooldown = value;
+				DictionaryUtil.Add(QueryParameters, "DefaultCooldown", value.ToString());
+			}
+		}
 
 		public string MultiAZPolicy
 		{
@@ -121,6 +201,119 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
+		public int? DesiredCapacity
+		{
+			get
+			{
+				return desiredCapacity;
+			}
+			set	
+			{
+				desiredCapacity = value;
+				DictionaryUtil.Add(QueryParameters, "DesiredCapacity", value.ToString());
+			}
+		}
+
+		public bool? CompensateWithOnDemand
+		{
+			get
+			{
+				return compensateWithOnDemand;
+			}
+			set	
+			{
+				compensateWithOnDemand = value;
+				DictionaryUtil.Add(QueryParameters, "CompensateWithOnDemand", value.ToString());
+			}
+		}
+
+		public int? MinSize
+		{
+			get
+			{
+				return minSize;
+			}
+			set	
+			{
+				minSize = value;
+				DictionaryUtil.Add(QueryParameters, "MinSize", value.ToString());
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string VSwitchId
+		{
+			get
+			{
+				return vSwitchId;
+			}
+			set	
+			{
+				vSwitchId = value;
+				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public int? MaxSize
+		{
+			get
+			{
+				return maxSize;
+			}
+			set	
+			{
+				maxSize = value;
+				DictionaryUtil.Add(QueryParameters, "MaxSize", value.ToString());
+			}
+		}
+
+		public List<LifecycleHook> LifecycleHooks
+		{
+			get
+			{
+				return lifecycleHooks;
+			}
+
+			set
+			{
+				lifecycleHooks = value;
+				for (int i = 0; i < lifecycleHooks.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".DefaultResult", lifecycleHooks[i].DefaultResult);
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleHookName", lifecycleHooks[i].LifecycleHookName);
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".HeartbeatTimeout", lifecycleHooks[i].HeartbeatTimeout);
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationArn", lifecycleHooks[i].NotificationArn);
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationMetadata", lifecycleHooks[i].NotificationMetadata);
+					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleTransition", lifecycleHooks[i].LifecycleTransition);
+				}
+			}
+		}
+
 		public string LoadBalancerIds
 		{
 			get
@@ -131,6 +324,71 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				loadBalancerIds = value;
 				DictionaryUtil.Add(QueryParameters, "LoadBalancerIds", value);
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public int? OnDemandBaseCapacity
+		{
+			get
+			{
+				return onDemandBaseCapacity;
+			}
+			set	
+			{
+				onDemandBaseCapacity = value;
+				DictionaryUtil.Add(QueryParameters, "OnDemandBaseCapacity", value.ToString());
+			}
+		}
+
+		public int? OnDemandPercentageAboveBaseCapacity
+		{
+			get
+			{
+				return onDemandPercentageAboveBaseCapacity;
+			}
+			set	
+			{
+				onDemandPercentageAboveBaseCapacity = value;
+				DictionaryUtil.Add(QueryParameters, "OnDemandPercentageAboveBaseCapacity", value.ToString());
+			}
+		}
+
+		public string RemovalPolicy1
+		{
+			get
+			{
+				return removalPolicy1;
+			}
+			set	
+			{
+				removalPolicy1 = value;
+				DictionaryUtil.Add(QueryParameters, "RemovalPolicy.1", value);
+			}
+		}
+
+		public string RemovalPolicy2
+		{
+			get
+			{
+				return removalPolicy2;
+			}
+			set	
+			{
+				removalPolicy2 = value;
+				DictionaryUtil.Add(QueryParameters, "RemovalPolicy.2", value);
 			}
 		}
 
@@ -173,36 +431,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public List<string> VSwitchIds
-		{
-			get
-			{
-				return vSwitchIds;
-			}
-
-			set
-			{
-				vSwitchIds = value;
-				for (int i = 0; i < vSwitchIds.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"VSwitchIds." + (i + 1) , vSwitchIds[i]);
-				}
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -216,29 +444,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public int? MinSize
+		public int? SpotInstancePools
 		{
 			get
 			{
-				return minSize;
+				return spotInstancePools;
 			}
 			set	
 			{
-				minSize = value;
-				DictionaryUtil.Add(QueryParameters, "MinSize", value.ToString());
+				spotInstancePools = value;
+				DictionaryUtil.Add(QueryParameters, "SpotInstancePools", value.ToString());
 			}
 		}
 
-		public long? OwnerId
+		public bool? GroupDeletionProtection
 		{
 			get
 			{
-				return ownerId;
+				return groupDeletionProtection;
 			}
 			set	
 			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+				groupDeletionProtection = value;
+				DictionaryUtil.Add(QueryParameters, "GroupDeletionProtection", value.ToString());
 			}
 		}
 
@@ -268,119 +496,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string VSwitchId
-		{
-			get
-			{
-				return vSwitchId;
-			}
-			set	
-			{
-				vSwitchId = value;
-				DictionaryUtil.Add(QueryParameters, "VSwitchId", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public int? MaxSize
-		{
-			get
-			{
-				return maxSize;
-			}
-			set	
-			{
-				maxSize = value;
-				DictionaryUtil.Add(QueryParameters, "MaxSize", value.ToString());
-			}
-		}
-
-		public List<LifecycleHook> LifecycleHooks
-		{
-			get
-			{
-				return lifecycleHooks;
-			}
-
-			set
-			{
-				lifecycleHooks = value;
-				for (int i = 0; i < lifecycleHooks.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".DefaultResult", lifecycleHooks[i].DefaultResult);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleHookName", lifecycleHooks[i].LifecycleHookName);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".HeartbeatTimeout", lifecycleHooks[i].HeartbeatTimeout);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationArn", lifecycleHooks[i].NotificationArn);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".NotificationMetadata", lifecycleHooks[i].NotificationMetadata);
-					DictionaryUtil.Add(QueryParameters,"LifecycleHook." + (i + 1) + ".LifecycleTransition", lifecycleHooks[i].LifecycleTransition);
-				}
-			}
-		}
-
-		public int? DefaultCooldown
-		{
-			get
-			{
-				return defaultCooldown;
-			}
-			set	
-			{
-				defaultCooldown = value;
-				DictionaryUtil.Add(QueryParameters, "DefaultCooldown", value.ToString());
-			}
-		}
-
-		public string RemovalPolicy1
-		{
-			get
-			{
-				return removalPolicy1;
-			}
-			set	
-			{
-				removalPolicy1 = value;
-				DictionaryUtil.Add(QueryParameters, "RemovalPolicy.1", value);
-			}
-		}
-
 		public List<VServerGroup> VServerGroups
 		{
 			get
@@ -402,16 +517,35 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string RemovalPolicy2
+		public class Tag
 		{
-			get
+
+			private string value_;
+
+			private string key;
+
+			public string Value
 			{
-				return removalPolicy2;
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
 			}
-			set	
+
+			public string Key
 			{
-				removalPolicy2 = value;
-				DictionaryUtil.Add(QueryParameters, "RemovalPolicy.2", value);
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 
@@ -508,7 +642,7 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 			private string loadBalancerId;
 
-			private List<VServerGroupAttribute> vServerGroupAttributes;
+			private List<VServerGroupAttribute> vServerGroupAttributes = new List<VServerGroupAttribute>(){ };
 
 			public string LoadBalancerId
 			{

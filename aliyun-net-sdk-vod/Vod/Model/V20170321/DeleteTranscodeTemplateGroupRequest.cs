@@ -32,19 +32,25 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public DeleteTranscodeTemplateGroupRequest()
             : base("vod", "2017-03-21", "DeleteTranscodeTemplateGroup", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string transcodeTemplateIds;
+
+		private string forceDelGroup;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
 		private string transcodeTemplateGroupId;
-
-		private string forceDelGroup;
 
 		public long? ResourceOwnerId
 		{
@@ -59,19 +65,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string TranscodeTemplateIds
 		{
 			get
@@ -82,6 +75,32 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				transcodeTemplateIds = value;
 				DictionaryUtil.Add(QueryParameters, "TranscodeTemplateIds", value);
+			}
+		}
+
+		public string ForceDelGroup
+		{
+			get
+			{
+				return forceDelGroup;
+			}
+			set	
+			{
+				forceDelGroup = value;
+				DictionaryUtil.Add(QueryParameters, "ForceDelGroup", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -108,19 +127,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				transcodeTemplateGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "TranscodeTemplateGroupId", value);
-			}
-		}
-
-		public string ForceDelGroup
-		{
-			get
-			{
-				return forceDelGroup;
-			}
-			set	
-			{
-				forceDelGroup = value;
-				DictionaryUtil.Add(QueryParameters, "ForceDelGroup", value);
 			}
 		}
 

@@ -164,7 +164,11 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 			private string connInfo;
 
-			private long? content;
+			private string content;
+
+			private string instanceId;
+
+			private string nodeId;
 
 			public string Level
 			{
@@ -226,7 +230,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				}
 			}
 
-			public long? Content
+			public string Content
 			{
 				get
 				{
@@ -235,6 +239,30 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					content = value;
+				}
+			}
+
+			public string InstanceId
+			{
+				get
+				{
+					return instanceId;
+				}
+				set	
+				{
+					instanceId = value;
+				}
+			}
+
+			public string NodeId
+			{
+				get
+				{
+					return nodeId;
+				}
+				set	
+				{
+					nodeId = value;
 				}
 			}
 		}

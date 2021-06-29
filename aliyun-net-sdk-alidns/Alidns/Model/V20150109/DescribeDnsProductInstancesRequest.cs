@@ -30,9 +30,19 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class DescribeDnsProductInstancesRequest : RpcAcsRequest<DescribeDnsProductInstancesResponse>
     {
         public DescribeDnsProductInstancesRequest()
-            : base("Alidns", "2015-01-09", "DescribeDnsProductInstances", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "DescribeDnsProductInstances", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? pageNumber;
+
+		private string domainType;
 
 		private string userClientIp;
 
@@ -42,7 +52,31 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 
 		private string versionCode;
 
-		private long? pageNumber;
+		public long? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string DomainType
+		{
+			get
+			{
+				return domainType;
+			}
+			set	
+			{
+				domainType = value;
+				DictionaryUtil.Add(QueryParameters, "DomainType", value);
+			}
+		}
 
 		public string UserClientIp
 		{
@@ -93,19 +127,6 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				versionCode = value;
 				DictionaryUtil.Add(QueryParameters, "VersionCode", value);
-			}
-		}
-
-		public long? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 

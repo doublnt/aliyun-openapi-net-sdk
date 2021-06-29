@@ -32,15 +32,13 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsMessagePageQueryByTopicRequest()
             : base("Ons", "2019-02-14", "OnsMessagePageQueryByTopic", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? preventCache;
-
-		private string instanceId;
-
-		private int? pageSize;
-
-		private string topic;
 
 		private long? endTime;
 
@@ -48,18 +46,50 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 
 		private int? currentPage;
 
+		private string instanceId;
+
+		private int? pageSize;
+
+		private string topic;
+
 		private string taskId;
 
-		public long? PreventCache
+		public long? EndTime
 		{
 			get
 			{
-				return preventCache;
+				return endTime;
 			}
 			set	
 			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
+				endTime = value;
+				DictionaryUtil.Add(QueryParameters, "EndTime", value.ToString());
+			}
+		}
+
+		public long? BeginTime
+		{
+			get
+			{
+				return beginTime;
+			}
+			set	
+			{
+				beginTime = value;
+				DictionaryUtil.Add(QueryParameters, "BeginTime", value.ToString());
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 
@@ -99,45 +129,6 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			{
 				topic = value;
 				DictionaryUtil.Add(QueryParameters, "Topic", value);
-			}
-		}
-
-		public long? EndTime
-		{
-			get
-			{
-				return endTime;
-			}
-			set	
-			{
-				endTime = value;
-				DictionaryUtil.Add(QueryParameters, "EndTime", value.ToString());
-			}
-		}
-
-		public long? BeginTime
-		{
-			get
-			{
-				return beginTime;
-			}
-			set	
-			{
-				beginTime = value;
-				DictionaryUtil.Add(QueryParameters, "BeginTime", value.ToString());
-			}
-		}
-
-		public int? CurrentPage
-		{
-			get
-			{
-				return currentPage;
-			}
-			set	
-			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 

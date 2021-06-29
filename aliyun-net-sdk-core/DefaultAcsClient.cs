@@ -33,8 +33,8 @@ using Aliyun.Acs.Core.Profile;
 using Aliyun.Acs.Core.Reader;
 using Aliyun.Acs.Core.Regions;
 using Aliyun.Acs.Core.Retry;
-using Aliyun.Acs.Core.Retry.BackoffStrategy;
 using Aliyun.Acs.Core.Retry.Condition;
+using Aliyun.Acs.Core.Timeout.Util;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 
@@ -45,12 +45,12 @@ namespace Aliyun.Acs.Core
         private static readonly HttpWebProxy WebProxy = new HttpWebProxy();
         private readonly IClientProfile clientProfile;
         private readonly AlibabaCloudCredentialsProvider credentialsProvider;
+        private readonly RetryPolicy retryPolicy;
         private readonly UserAgent userAgentConfig = new UserAgent();
 
         private bool autoRetry = true;
 
         private int maxRetryNumber = 3;
-        private readonly RetryPolicy retryPolicy;
 
         public DefaultAcsClient()
         {
@@ -127,7 +127,7 @@ namespace Aliyun.Acs.Core
         }
 
         public T GetAcsResponse<T>(AcsRequest<T> request, string regionId, Credential credential)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             var httpResponse = DoAction(request, regionId, credential);
             return ParseAcsResponse(request, httpResponse);
@@ -158,7 +158,7 @@ namespace Aliyun.Acs.Core
         }
 
         public HttpResponse DoAction<T>(AcsRequest<T> request, bool autoRetry, int maxRetryNumber)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             return DoAction(request, autoRetry, maxRetryNumber, clientProfile);
         }
@@ -169,7 +169,7 @@ namespace Aliyun.Acs.Core
         }
 
         public HttpResponse DoAction<T>(AcsRequest<T> request, string regionId, Credential credential)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             var signer = Signer.GetSigner(new LegacyCredentials(credential));
             FormatType? format = null;
@@ -178,7 +178,14 @@ namespace Aliyun.Acs.Core
                 request.RegionId = regionId;
             }
 
-            request.SetProductDomain();
+            if (request.ProductDomain == null)
+            {
+                request.ProductDomain = EndpointUserConfig.GetProductDomain(request.Product, request.RegionId);
+                if (request.ProductDomain == null)
+                {
+                    request.SetProductDomain();
+                }
+            }
 
             List<Endpoint> endpoints = null;
             if (null != clientProfile)
@@ -186,19 +193,15 @@ namespace Aliyun.Acs.Core
                 format = clientProfile.GetFormat();
                 if (request.ProductDomain == null)
                 {
-                    endpoints = clientProfile.GetEndpoints(request.Product, request.RegionId,
-                        request.LocationProduct,
+                    endpoints = clientProfile.GetEndpoints(request.Product, request.RegionId, request.LocationProduct,
                         request.LocationEndpointType);
                 }
             }
 
-            return DoAction(request, AutoRetry, MaxRetryNumber, request.RegionId, credential, signer,
-                format,
-                endpoints);
+            return DoAction(request, AutoRetry, MaxRetryNumber, request.RegionId, credential, signer, format, endpoints);
         }
 
-        public HttpResponse DoAction<T>(AcsRequest<T> request, bool autoRetry,
-            int maxRetryNumber, IClientProfile profile) where T : AcsResponse
+        public HttpResponse DoAction<T>(AcsRequest<T> request, bool autoRetry, int maxRetryNumber, IClientProfile profile) where T : AcsResponse
         {
             if (null == profile)
             {
@@ -213,7 +216,14 @@ namespace Aliyun.Acs.Core
                 request.RegionId = region;
             }
 
-            request.SetProductDomain();
+            if (request.ProductDomain == null)
+            {
+                request.ProductDomain = EndpointUserConfig.GetProductDomain(request.Product, request.RegionId);
+                if (request.ProductDomain == null)
+                {
+                    request.SetProductDomain();
+                }
+            }
 
             var credentials = credentialsProvider.GetCredentials();
             if (credentials == null)
@@ -265,7 +275,7 @@ namespace Aliyun.Acs.Core
                     }
 
                     if (400 == httpResponse.Status && (error.ErrorCode.Equals("SignatureDoesNotMatch") ||
-                                                       error.ErrorCode.Equals("IncompleteSignature")))
+                            error.ErrorCode.Equals("IncompleteSignature")))
                     {
                         var errorMessage = error.ErrorMessage;
                         var re = new Regex(@"string to sign is:", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -305,7 +315,7 @@ namespace Aliyun.Acs.Core
         public virtual HttpResponse DoAction<T>(AcsRequest<T> request, bool autoRetry, int maxRetryNumber,
             string regionId,
             AlibabaCloudCredentials credentials, Signer signer, FormatType? format, List<Endpoint> endpoints)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             var httpStatusCode = "";
             var retryAttemptTimes = 0;
@@ -322,17 +332,22 @@ namespace Aliyun.Acs.Core
                     format = requestFormatType;
 
                     var domain = request.ProductDomain ??
-                                 Endpoint.FindProductDomain(regionId, request.Product, endpoints);
+                        Endpoint.FindProductDomain(regionId, request.Product, endpoints);
 
                     if (null == domain)
                     {
                         throw new ClientException("SDK.InvalidRegionId", "Can not find endpoint to access.");
                     }
 
-                    request.Headers["User-Agent"] =
-                        UserAgent.Resolve(request.GetSysUserAgentConfig(), userAgentConfig);
+                    var userAgent = UserAgent.Resolve(request.GetSysUserAgentConfig(), userAgentConfig);
+                    DictionaryUtil.Add(request.Headers, "User-Agent", userAgent);
+                    DictionaryUtil.Add(request.Headers, "x-acs-version", request.Version);
+                    if (!string.IsNullOrWhiteSpace(request.ActionName))
+                    {
+                        DictionaryUtil.Add(request.Headers, "x-acs-action", request.ActionName);
+                    }
                     var httpRequest = request.SignRequest(signer, credentials, format, domain);
-                    ResolveTimeout(httpRequest);
+                    ResolveTimeout(httpRequest, request.Product, request.Version, request.ActionName);
                     SetHttpsInsecure(IgnoreCertificate);
                     ResolveProxy(httpRequest, request);
                     var response = GetResponse(httpRequest);
@@ -390,22 +405,22 @@ namespace Aliyun.Acs.Core
         }
 
         private T ReadResponse<T>(AcsRequest<T> request, HttpResponse httpResponse, FormatType? format)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             var reader = ReaderFactory.CreateInstance(format);
             var context = new UnmarshallerContext();
             var body = Encoding.UTF8.GetString(httpResponse.Content);
 
-            context.ResponseDictionary = request.CheckShowJsonItemName()
-                ? reader.Read(body, request.ActionName)
-                : reader.ReadForHideArrayItem(body, request.ActionName);
+            context.ResponseDictionary = request.CheckShowJsonItemName() ?
+                reader.Read(body, request.ActionName) :
+                reader.ReadForHideArrayItem(body, request.ActionName);
 
             context.HttpResponse = httpResponse;
             return request.GetResponse(context);
         }
 
         private AcsError ReadError<T>(AcsRequest<T> request, HttpResponse httpResponse, FormatType? format)
-            where T : AcsResponse
+        where T : AcsResponse
         {
             var responseEndpoint = "Error";
             var reader = ReaderFactory.CreateInstance(format);
@@ -442,14 +457,46 @@ namespace Aliyun.Acs.Core
             ReadTimeout = readTimeout;
         }
 
-        private void ResolveTimeout(HttpRequest request)
+        private void ResolveTimeout(HttpRequest request, string product, string version, string actionName)
         {
-            var finalReadTimeout = request.ReadTimeout > 0 ? request.ReadTimeout :
-                ReadTimeout > 0 ? ReadTimeout : 0;
+            var apiReadTimeout = TimeoutConfig.GetSpecificApiReadTimeoutValue(product, version, actionName);
+
+            int finalReadTimeout;
+
+            if (request.ReadTimeout > 0)
+            {
+                finalReadTimeout = request.ReadTimeout;
+            }
+            else if (ReadTimeout > 0)
+            {
+                finalReadTimeout = ReadTimeout;
+            }
+            else if (apiReadTimeout > 0)
+            {
+                finalReadTimeout = apiReadTimeout;
+            }
+            else
+            {
+                finalReadTimeout = 0;
+            }
+
             request.SetReadTimeoutInMilliSeconds(finalReadTimeout);
 
-            var finalConnectTimeout = request.ConnectTimeout > 0 ? request.ConnectTimeout :
-                ConnectTimeout > 0 ? ConnectTimeout : 0;
+            int finalConnectTimeout;
+
+            if (request.ConnectTimeout > 0)
+            {
+                finalConnectTimeout = request.ConnectTimeout;
+            }
+            else if (ConnectTimeout > 0)
+            {
+                finalConnectTimeout = ConnectTimeout;
+            }
+            else
+            {
+                finalConnectTimeout = 0;
+            }
+
             request.SetConnectTimeoutInMilliSeconds(finalConnectTimeout);
         }
 
@@ -492,7 +539,7 @@ namespace Aliyun.Acs.Core
         public string GetHttpProxy()
         {
             return WebProxy.HttpProxy ?? Environment.GetEnvironmentVariable("HTTP_PROXY") ??
-                   Environment.GetEnvironmentVariable("http_proxy");
+                Environment.GetEnvironmentVariable("http_proxy");
         }
 
         /// <summary>
@@ -502,7 +549,7 @@ namespace Aliyun.Acs.Core
         public string GetHttpsProxy()
         {
             return WebProxy.HttpsProxy ?? Environment.GetEnvironmentVariable("HTTPS_PROXY") ??
-                   Environment.GetEnvironmentVariable("https_proxy");
+                Environment.GetEnvironmentVariable("https_proxy");
         }
 
         /// <summary>
@@ -512,7 +559,7 @@ namespace Aliyun.Acs.Core
         public string GetNoProxy()
         {
             return WebProxy.NoProxy ?? Environment.GetEnvironmentVariable("NO_PROXY") ??
-                   Environment.GetEnvironmentVariable("no_proxy");
+                Environment.GetEnvironmentVariable("no_proxy");
         }
 
         private void ResolveProxy<T>(HttpRequest httpRequest, AcsRequest<T> request) where T : AcsResponse

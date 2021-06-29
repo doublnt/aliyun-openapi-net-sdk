@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,11 +33,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public TagResourcesRequest()
             : base("Ecs", "2014-05-26", "TagResources", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
 
-		private List<string> resourceIds;
+		private List<string> resourceIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 

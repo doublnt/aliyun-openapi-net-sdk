@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class AddBgpNetworkResponseUnmarshaller
     {
-        public static AddBgpNetworkResponse Unmarshall(UnmarshallerContext context)
+        public static AddBgpNetworkResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			AddBgpNetworkResponse addBgpNetworkResponse = new AddBgpNetworkResponse();
 
-			addBgpNetworkResponse.HttpResponse = context.HttpResponse;
-			addBgpNetworkResponse.RequestId = context.StringValue("AddBgpNetwork.RequestId");
+			addBgpNetworkResponse.HttpResponse = _ctx.HttpResponse;
+			addBgpNetworkResponse.RequestId = _ctx.StringValue("AddBgpNetwork.RequestId");
         
 			return addBgpNetworkResponse;
         }

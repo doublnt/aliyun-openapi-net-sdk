@@ -1,3 +1,46 @@
+2020-06-22 Version: 2.15.10
+- Add support cn-shenzhen region.
+
+2020-06-04 Version: 2.15.9
+- Add SubmitMediaDNADeleteJob and ListMediaDNADeleteJob.
+- Modify GetMediaAuditResult interface, support ad logo and live result.
+- Modify GetMediaAuditResultTimeline interface, support ad logo and live result.
+
+2020-06-04 Version: 2.15.9
+- Add SubmitMediaDNADeleteJob and ListMediaDNADeleteJob.
+- Modify GetMediaAuditResult interface, support ad logo and live result.
+- Modify GetMediaAuditResultTimeline interface, support ad logo and live result.
+
+2019-12-05 Version 2.15.9
+- Improved package Newtonsoft_Json version.
+
+2019-10-23 Version 2.15.8
+- Add a new api named SubmitDynamicImageJob capture a certain part of the video as a dynamic image.
+- Add a new api named SubmitWorkflowJob to initiate the VoD workflow processing for audio and video.
+- Add a new field AuditStatus in the structure ImageInfo to GetImageInfo api response, which is used to identify the audit status of the image.
+- Modify the data type of return field StorageLocation to String.
+- Add a new field named MediaType to SubmitAIMediaAuditJob api request.
+
+2019-10-23 Version 2.15.8
+- Add a new api named SubmitDynamicImageJob capture a certain part of the video as a dynamic image.
+- Add a new api named SubmitWorkflowJob to initiate the VoD workflow processing for audio and video.
+- Add a new field AuditStatus in the structure ImageInfo to GetImageInfo api response, which is used to identify the audit status of the image.
+- Modify the data type of return field StorageLocation to String.
+- Add a new field named MediaType to SubmitAIMediaAuditJob api request.
+
+2019-10-23 Version 2.15.7
+- Add a new api named SubmitDynamicImageJob capture a certain part of the video as a dynamic image.
+- Add a new api named SubmitWorkflowJob to initiate the VoD workflow processing for audio and video.
+- Add a new field AuditStatus in the structure ImageInfo to GetImageInfo api response, which is used to identify the audit status of the image.
+- Modify the data type of return field StorageLocation to String.
+- Add a new field named MediaType to SubmitAIMediaAuditJob api request.
+
+2019-09-09 Version 2.15.7
+- Change Newtonsoft Json Required version.
+
+2019-07-18 Version 2.15.6
+- Add a new field named Input to SubmitAIJob api request to set the input file of AI job.
+- Change the field MediaId of SubmitAIJob api to non-mandatory.
 2019-06-24 Version 2.15.5
 - Add some new apis to manage VoD domain, such as AddVodDomain, UpdateVodDomain, DeleteVodDomain, BatchStartVodDomain, BatchStopVodDomain, DescribeVodUserDomains, DescribeVodDomainDetail.
 - Add some new apis to manage VoD domain config, such as BatchSetVodDomainConfigs, DescribeVodDomainConfigs, DeleteVodSpecificConfig, SetVodDomainCertificate, DescribeVodCertificateList, DescribeVodDomainCertificateInfo.

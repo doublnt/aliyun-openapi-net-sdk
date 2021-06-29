@@ -32,15 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DeleteDBInstanceRequest()
             : base("Rds", "2014-08-15", "DeleteDBInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string dBInstanceId;
+
+		private string releasedKeepPolicy;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
-
-		private string dBInstanceId;
 
 		private long? ownerId;
 
@@ -54,6 +62,32 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string ReleasedKeepPolicy
+		{
+			get
+			{
+				return releasedKeepPolicy;
+			}
+			set	
+			{
+				releasedKeepPolicy = value;
+				DictionaryUtil.Add(QueryParameters, "ReleasedKeepPolicy", value);
 			}
 		}
 
@@ -80,19 +114,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

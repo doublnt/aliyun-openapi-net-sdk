@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,17 +32,25 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public AttachInstanceRamRoleRequest()
             : base("Ecs", "2014-05-26", "AttachInstanceRamRole", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private string policy;
 
-		private string instanceIds;
+		private string resourceOwnerAccount;
 
 		private string ramRoleName;
 
 		private long? ownerId;
+
+		private string instanceIds;
 
 		public long? ResourceOwnerId
 		{
@@ -58,6 +65,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string Policy
+		{
+			get
+			{
+				return policy;
+			}
+			set	
+			{
+				policy = value;
+				DictionaryUtil.Add(QueryParameters, "Policy", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -68,19 +88,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string InstanceIds
-		{
-			get
-			{
-				return instanceIds;
-			}
-			set	
-			{
-				instanceIds = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceIds", value);
 			}
 		}
 
@@ -107,6 +114,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string InstanceIds
+		{
+			get
+			{
+				return instanceIds;
+			}
+			set	
+			{
+				instanceIds = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceIds", value);
 			}
 		}
 

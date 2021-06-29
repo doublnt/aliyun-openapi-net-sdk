@@ -32,6 +32,12 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public GetSetRequest()
             : base("imm", "2017-09-06", "GetSet", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string project;
@@ -62,6 +68,11 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				setId = value;
 				DictionaryUtil.Add(QueryParameters, "SetId", value);
 			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override GetSetResponse GetResponse(UnmarshallerContext unmarshallerContext)

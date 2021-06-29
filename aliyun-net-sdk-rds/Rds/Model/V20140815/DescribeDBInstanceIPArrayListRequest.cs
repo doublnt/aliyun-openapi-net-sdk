@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeDBInstanceIPArrayListRequest()
             : base("Rds", "2014-08-15", "DescribeDBInstanceIPArrayList", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string whitelistNetworkType;
-
 		private string ownerAccount;
+
+		private string whitelistNetworkType;
 
 		private string dBInstanceId;
 
@@ -55,19 +61,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string WhitelistNetworkType
-		{
-			get
-			{
-				return whitelistNetworkType;
-			}
-			set	
-			{
-				whitelistNetworkType = value;
-				DictionaryUtil.Add(QueryParameters, "WhitelistNetworkType", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -78,6 +71,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string WhitelistNetworkType
+		{
+			get
+			{
+				return whitelistNetworkType;
+			}
+			set	
+			{
+				whitelistNetworkType = value;
+				DictionaryUtil.Add(QueryParameters, "WhitelistNetworkType", value);
 			}
 		}
 

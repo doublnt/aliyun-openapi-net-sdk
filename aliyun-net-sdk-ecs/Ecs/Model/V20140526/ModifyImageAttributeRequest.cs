@@ -33,21 +33,35 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyImageAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyImageAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string imageId;
 
-		private string resourceOwnerAccount;
+		private string description;
+
+		private string bootMode;
 
 		private string imageName;
 
+		private string licenseType;
+
+		private string resourceOwnerAccount;
+
 		private string ownerAccount;
 
-		private string description;
-
 		private long? ownerId;
+
+		private string imageFamily;
+
+		private string status;
 
 		public long? ResourceOwnerId
 		{
@@ -75,16 +89,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public string Description
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return description;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string BootMode
+		{
+			get
+			{
+				return bootMode;
+			}
+			set	
+			{
+				bootMode = value;
+				DictionaryUtil.Add(QueryParameters, "BootMode", value);
 			}
 		}
 
@@ -101,6 +128,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string LicenseType
+		{
+			get
+			{
+				return licenseType;
+			}
+			set	
+			{
+				licenseType = value;
+				DictionaryUtil.Add(QueryParameters, "LicenseType", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
 		public string OwnerAccount
 		{
 			get
@@ -114,19 +167,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -137,6 +177,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ImageFamily
+		{
+			get
+			{
+				return imageFamily;
+			}
+			set	
+			{
+				imageFamily = value;
+				DictionaryUtil.Add(QueryParameters, "ImageFamily", value);
+			}
+		}
+
+		public string Status
+		{
+			get
+			{
+				return status;
+			}
+			set	
+			{
+				status = value;
+				DictionaryUtil.Add(QueryParameters, "Status", value);
 			}
 		}
 

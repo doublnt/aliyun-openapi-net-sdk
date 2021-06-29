@@ -32,32 +32,25 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public CreateAuthKeyRequest()
             : base("Cloudauth", "2018-09-16", "CreateAuthKey", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string bizType;
 
 		private string userDeviceId;
 
-		private string sourceIp;
-
 		private bool? test;
+
+		private string bizType;
+
+		private string sourceIp;
 
 		private int? authYears;
 
 		private string lang;
-
-		public string BizType
-		{
-			get
-			{
-				return bizType;
-			}
-			set	
-			{
-				bizType = value;
-				DictionaryUtil.Add(QueryParameters, "BizType", value);
-			}
-		}
 
 		public string UserDeviceId
 		{
@@ -72,19 +65,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
-
 		public bool? Test
 		{
 			get
@@ -95,6 +75,32 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				test = value;
 				DictionaryUtil.Add(QueryParameters, "Test", value.ToString());
+			}
+		}
+
+		public string BizType
+		{
+			get
+			{
+				return bizType;
+			}
+			set	
+			{
+				bizType = value;
+				DictionaryUtil.Add(QueryParameters, "BizType", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
 			}
 		}
 

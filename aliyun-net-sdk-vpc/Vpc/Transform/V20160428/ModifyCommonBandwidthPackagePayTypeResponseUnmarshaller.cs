@@ -16,24 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyCommonBandwidthPackagePayTypeResponseUnmarshaller
     {
-        public static ModifyCommonBandwidthPackagePayTypeResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyCommonBandwidthPackagePayTypeResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyCommonBandwidthPackagePayTypeResponse modifyCommonBandwidthPackagePayTypeResponse = new ModifyCommonBandwidthPackagePayTypeResponse();
 
-			modifyCommonBandwidthPackagePayTypeResponse.HttpResponse = context.HttpResponse;
-			modifyCommonBandwidthPackagePayTypeResponse.RequestId = context.StringValue("ModifyCommonBandwidthPackagePayType.RequestId");
-			modifyCommonBandwidthPackagePayTypeResponse.OrderId = context.LongValue("ModifyCommonBandwidthPackagePayType.OrderId");
-			modifyCommonBandwidthPackagePayTypeResponse.Code = context.StringValue("ModifyCommonBandwidthPackagePayType.Code");
-			modifyCommonBandwidthPackagePayTypeResponse.Message = context.StringValue("ModifyCommonBandwidthPackagePayType.Message");
+			modifyCommonBandwidthPackagePayTypeResponse.HttpResponse = _ctx.HttpResponse;
+			modifyCommonBandwidthPackagePayTypeResponse.RequestId = _ctx.StringValue("ModifyCommonBandwidthPackagePayType.RequestId");
+			modifyCommonBandwidthPackagePayTypeResponse.OrderId = _ctx.LongValue("ModifyCommonBandwidthPackagePayType.OrderId");
+			modifyCommonBandwidthPackagePayTypeResponse.Code = _ctx.StringValue("ModifyCommonBandwidthPackagePayType.Code");
+			modifyCommonBandwidthPackagePayTypeResponse.Message = _ctx.StringValue("ModifyCommonBandwidthPackagePayType.Message");
         
 			return modifyCommonBandwidthPackagePayTypeResponse;
         }

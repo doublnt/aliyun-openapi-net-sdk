@@ -16,43 +16,35 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.ROS.Transform;
 using Aliyun.Acs.ROS.Transform.V20150901;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.ROS.Model.V20150901
 {
     public class DeleteStackRequest : RoaAcsRequest<DeleteStackResponse>
     {
         public DeleteStackRequest()
-            : base("ROS", "2015-09-01", "DeleteStack")
+            : base("ROS", "2015-09-01", "DeleteStack", "ros", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.ROS.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.ROS.Endpoint.endpointRegionalType, null);
+            }
 			UriPattern = "/stacks/[StackName]/[StackId]";
 			Method = MethodType.DELETE;
         }
 
-		private string regionId;
-
 		private string stackId;
 
 		private string stackName;
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
 
 		public string StackId
 		{
@@ -80,7 +72,7 @@ namespace Aliyun.Acs.ROS.Model.V20150901
 			}
 		}
 
-        public override DeleteStackResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DeleteStackResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DeleteStackResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

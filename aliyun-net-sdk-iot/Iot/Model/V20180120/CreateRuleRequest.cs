@@ -32,25 +32,35 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public CreateRuleRequest()
             : base("Iot", "2018-01-20", "CreateRule", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string select;
 
 		private string ruleDesc;
 
+		private string shortTopic;
+
+		private string resourceGroupId;
+
 		private string dataType;
 
 		private string iotInstanceId;
 
-		private string name;
-
 		private string _where;
-
-		private string productKey;
 
 		private int? topicType;
 
-		private string shortTopic;
+		private string productKey;
+
+		private string name;
+
+		private string topic;
 
 		public string Select
 		{
@@ -75,6 +85,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				ruleDesc = value;
 				DictionaryUtil.Add(QueryParameters, "RuleDesc", value);
+			}
+		}
+
+		public string ShortTopic
+		{
+			get
+			{
+				return shortTopic;
+			}
+			set	
+			{
+				shortTopic = value;
+				DictionaryUtil.Add(QueryParameters, "ShortTopic", value);
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 
@@ -104,19 +140,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string Name
-		{
-			get
-			{
-				return name;
-			}
-			set	
-			{
-				name = value;
-				DictionaryUtil.Add(QueryParameters, "Name", value);
-			}
-		}
-
 		public string _Where
 		{
 			get
@@ -127,19 +150,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				_where = value;
 				DictionaryUtil.Add(QueryParameters, "Where", value);
-			}
-		}
-
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 
@@ -156,16 +166,42 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string ShortTopic
+		public string ProductKey
 		{
 			get
 			{
-				return shortTopic;
+				return productKey;
 			}
 			set	
 			{
-				shortTopic = value;
-				DictionaryUtil.Add(QueryParameters, "ShortTopic", value);
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public string Name
+		{
+			get
+			{
+				return name;
+			}
+			set	
+			{
+				name = value;
+				DictionaryUtil.Add(QueryParameters, "Name", value);
+			}
+		}
+
+		public string Topic
+		{
+			get
+			{
+				return topic;
+			}
+			set	
+			{
+				topic = value;
+				DictionaryUtil.Add(QueryParameters, "Topic", value);
 			}
 		}
 

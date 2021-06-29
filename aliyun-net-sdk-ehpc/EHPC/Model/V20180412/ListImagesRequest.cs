@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,37 +31,42 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class ListImagesRequest : RpcAcsRequest<ListImagesResponse>
     {
         public ListImagesRequest()
-            : base("EHPC", "2018-04-12", "ListImages", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "ListImages")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
-		private string action;
+		private string baseOsTag;
 
-		private string accessKeyId;
+		private string instanceType;
 
-		public string Action
+		public string BaseOsTag
 		{
 			get
 			{
-				return action;
+				return baseOsTag;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				baseOsTag = value;
+				DictionaryUtil.Add(QueryParameters, "BaseOsTag", value);
 			}
 		}
 
-		public string AccessKeyId
+		public string InstanceType
 		{
 			get
 			{
-				return accessKeyId;
+				return instanceType;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				instanceType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
 			}
 		}
 

@@ -30,27 +30,22 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class IvrCallRequest : RpcAcsRequest<IvrCallResponse>
     {
         public IvrCallRequest()
-            : base("Dyvmsapi", "2017-05-25", "IvrCall")
+            : base("Dyvmsapi", "2017-05-25", "IvrCall", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string byeCode;
 
-		private List<MenuKeyMap> menuKeyMaps;
-
 		private long? resourceOwnerId;
-
-		private string resourceOwnerAccount;
 
 		private string startTtsParams;
 
-		private long? playTimes;
-
-		private long? ownerId;
-
 		private int? timeout;
-
-		private string accessKeyId;
 
 		private string startCode;
 
@@ -58,7 +53,13 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private string calledShowNumber;
 
-		private string action;
+		private List<MenuKeyMap> menuKeyMaps = new List<MenuKeyMap>(){ };
+
+		private string resourceOwnerAccount;
+
+		private long? playTimes;
+
+		private long? ownerId;
 
 		private string outId;
 
@@ -77,25 +78,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public List<MenuKeyMap> MenuKeyMaps
-		{
-			get
-			{
-				return menuKeyMaps;
-			}
-
-			set
-			{
-				menuKeyMaps = value;
-				for (int i = 0; i < menuKeyMaps.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".Code", menuKeyMaps[i].Code);
-					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".TtsParams", menuKeyMaps[i].TtsParams);
-					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".Key", menuKeyMaps[i].Key);
-				}
-			}
-		}
-
 		public long? ResourceOwnerId
 		{
 			get
@@ -106,19 +88,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -135,32 +104,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public long? PlayTimes
-		{
-			get
-			{
-				return playTimes;
-			}
-			set	
-			{
-				playTimes = value;
-				DictionaryUtil.Add(QueryParameters, "PlayTimes", value.ToString());
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
 		public int? Timeout
 		{
 			get
@@ -171,19 +114,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				timeout = value;
 				DictionaryUtil.Add(QueryParameters, "Timeout", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 
@@ -226,16 +156,61 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Action
+		public List<MenuKeyMap> MenuKeyMaps
 		{
 			get
 			{
-				return action;
+				return menuKeyMaps;
+			}
+
+			set
+			{
+				menuKeyMaps = value;
+				for (int i = 0; i < menuKeyMaps.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".Code", menuKeyMaps[i].Code);
+					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".TtsParams", menuKeyMaps[i].TtsParams);
+					DictionaryUtil.Add(QueryParameters,"MenuKeyMap." + (i + 1) + ".Key", menuKeyMaps[i].Key);
+				}
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public long? PlayTimes
+		{
+			get
+			{
+				return playTimes;
+			}
+			set	
+			{
+				playTimes = value;
+				DictionaryUtil.Add(QueryParameters, "PlayTimes", value.ToString());
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 

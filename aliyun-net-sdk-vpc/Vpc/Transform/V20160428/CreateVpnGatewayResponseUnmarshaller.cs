@@ -16,24 +16,25 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateVpnGatewayResponseUnmarshaller
     {
-        public static CreateVpnGatewayResponse Unmarshall(UnmarshallerContext context)
+        public static CreateVpnGatewayResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateVpnGatewayResponse createVpnGatewayResponse = new CreateVpnGatewayResponse();
 
-			createVpnGatewayResponse.HttpResponse = context.HttpResponse;
-			createVpnGatewayResponse.RequestId = context.StringValue("CreateVpnGateway.RequestId");
-			createVpnGatewayResponse.VpnGatewayId = context.StringValue("CreateVpnGateway.VpnGatewayId");
-			createVpnGatewayResponse.Name = context.StringValue("CreateVpnGateway.Name");
-			createVpnGatewayResponse.OrderId = context.LongValue("CreateVpnGateway.OrderId");
+			createVpnGatewayResponse.HttpResponse = _ctx.HttpResponse;
+			createVpnGatewayResponse.RequestId = _ctx.StringValue("CreateVpnGateway.RequestId");
+			createVpnGatewayResponse.VpnGatewayId = _ctx.StringValue("CreateVpnGateway.VpnGatewayId");
+			createVpnGatewayResponse.Name = _ctx.StringValue("CreateVpnGateway.Name");
+			createVpnGatewayResponse.OrderId = _ctx.LongValue("CreateVpnGateway.OrderId");
         
 			return createVpnGatewayResponse;
         }

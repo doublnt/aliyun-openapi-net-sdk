@@ -26,12 +26,12 @@ namespace Aliyun.Acs.R_kvstore.Transform.V20150101
 {
     public class ModifyAuditLogConfigResponseUnmarshaller
     {
-        public static ModifyAuditLogConfigResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyAuditLogConfigResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyAuditLogConfigResponse modifyAuditLogConfigResponse = new ModifyAuditLogConfigResponse();
 
-			modifyAuditLogConfigResponse.HttpResponse = context.HttpResponse;
-			modifyAuditLogConfigResponse.RequestId = context.StringValue("ModifyAuditLogConfig.RequestId");
+			modifyAuditLogConfigResponse.HttpResponse = _ctx.HttpResponse;
+			modifyAuditLogConfigResponse.RequestId = _ctx.StringValue("ModifyAuditLogConfig.RequestId");
         
 			return modifyAuditLogConfigResponse;
         }

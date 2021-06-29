@@ -32,29 +32,35 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeBackupTasksRequest()
             : base("Rds", "2014-08-15", "DescribeBackupTasks", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string backupJobId;
+		private int? backupJobId;
 
 		private long? resourceOwnerId;
 
 		private string flag;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
-
-		private string ownerAccount;
 
 		private string dBInstanceId;
 
-		private string backupMode;
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
 
 		private long? ownerId;
 
 		private string backupJobStatus;
 
-		public string BackupJobId
+		private string backupMode;
+
+		public int? BackupJobId
 		{
 			get
 			{
@@ -63,7 +69,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			set	
 			{
 				backupJobId = value;
-				DictionaryUtil.Add(QueryParameters, "BackupJobId", value);
+				DictionaryUtil.Add(QueryParameters, "BackupJobId", value.ToString());
 			}
 		}
 
@@ -93,19 +99,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -116,19 +109,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				clientToken = value;
 				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -145,16 +125,29 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string BackupMode
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return backupMode;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				backupMode = value;
-				DictionaryUtil.Add(QueryParameters, "BackupMode", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -181,6 +174,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				backupJobStatus = value;
 				DictionaryUtil.Add(QueryParameters, "BackupJobStatus", value);
+			}
+		}
+
+		public string BackupMode
+		{
+			get
+			{
+				return backupMode;
+			}
+			set	
+			{
+				backupMode = value;
+				DictionaryUtil.Add(QueryParameters, "BackupMode", value);
 			}
 		}
 

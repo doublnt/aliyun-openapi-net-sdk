@@ -32,30 +32,38 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public FindSimilarFacesRequest()
             : base("imm", "2017-09-06", "FindSimilarFaces", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string imageUri;
-
-		private float? minSimilarity;
-
-		private int? limit;
 
 		private string project;
 
-		private string setId;
+		private float? minSimilarity;
+
+		private string responseFormat;
+
+		private int? limit;
 
 		private string faceId;
 
-		public string ImageUri
+		private string imageUri;
+
+		private string setId;
+
+		public string Project
 		{
 			get
 			{
-				return imageUri;
+				return project;
 			}
 			set	
 			{
-				imageUri = value;
-				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
+				project = value;
+				DictionaryUtil.Add(QueryParameters, "Project", value);
 			}
 		}
 
@@ -72,6 +80,19 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
+		public string ResponseFormat
+		{
+			get
+			{
+				return responseFormat;
+			}
+			set	
+			{
+				responseFormat = value;
+				DictionaryUtil.Add(QueryParameters, "ResponseFormat", value);
+			}
+		}
+
 		public int? Limit
 		{
 			get
@@ -85,16 +106,29 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			}
 		}
 
-		public string Project
+		public string FaceId
 		{
 			get
 			{
-				return project;
+				return faceId;
 			}
 			set	
 			{
-				project = value;
-				DictionaryUtil.Add(QueryParameters, "Project", value);
+				faceId = value;
+				DictionaryUtil.Add(QueryParameters, "FaceId", value);
+			}
+		}
+
+		public string ImageUri
+		{
+			get
+			{
+				return imageUri;
+			}
+			set	
+			{
+				imageUri = value;
+				DictionaryUtil.Add(QueryParameters, "ImageUri", value);
 			}
 		}
 
@@ -108,19 +142,6 @@ namespace Aliyun.Acs.imm.Model.V20170906
 			{
 				setId = value;
 				DictionaryUtil.Add(QueryParameters, "SetId", value);
-			}
-		}
-
-		public string FaceId
-		{
-			get
-			{
-				return faceId;
-			}
-			set	
-			{
-				faceId = value;
-				DictionaryUtil.Add(QueryParameters, "FaceId", value);
 			}
 		}
 

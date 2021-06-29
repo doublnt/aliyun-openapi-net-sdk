@@ -32,19 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeDedicatedHostsRequest()
             : base("Ecs", "2014-05-26", "DescribeDedicatedHosts", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string dedicatedHostIds;
 
 		private long? resourceOwnerId;
-
-		private string dedicatedHostName;
-
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
-
-		private long? ownerId;
 
 		private int? pageNumber;
 
@@ -54,11 +52,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? pageSize;
 
-		private string zoneId;
-
 		private string dedicatedHostType;
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string dedicatedHostName;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private long? ownerId;
+
+		private string zoneId;
 
 		private string status;
 
@@ -85,58 +91,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string DedicatedHostName
-		{
-			get
-			{
-				return dedicatedHostName;
-			}
-			set	
-			{
-				dedicatedHostName = value;
-				DictionaryUtil.Add(QueryParameters, "DedicatedHostName", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -192,19 +146,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ZoneId
-		{
-			get
-			{
-				return zoneId;
-			}
-			set	
-			{
-				zoneId = value;
-				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
-			}
-		}
-
 		public string DedicatedHostType
 		{
 			get
@@ -233,6 +174,71 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
 					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
 				}
+			}
+		}
+
+		public string DedicatedHostName
+		{
+			get
+			{
+				return dedicatedHostName;
+			}
+			set	
+			{
+				dedicatedHostName = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostName", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ZoneId
+		{
+			get
+			{
+				return zoneId;
+			}
+			set	
+			{
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
 			}
 		}
 

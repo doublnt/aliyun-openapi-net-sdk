@@ -16,22 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateIPv6TranslatorEntryResponseUnmarshaller
     {
-        public static CreateIPv6TranslatorEntryResponse Unmarshall(UnmarshallerContext context)
+        public static CreateIPv6TranslatorEntryResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateIPv6TranslatorEntryResponse createIPv6TranslatorEntryResponse = new CreateIPv6TranslatorEntryResponse();
 
-			createIPv6TranslatorEntryResponse.HttpResponse = context.HttpResponse;
-			createIPv6TranslatorEntryResponse.RequestId = context.StringValue("CreateIPv6TranslatorEntry.RequestId");
-			createIPv6TranslatorEntryResponse.Ipv6TranslatorEntryId = context.StringValue("CreateIPv6TranslatorEntry.Ipv6TranslatorEntryId");
+			createIPv6TranslatorEntryResponse.HttpResponse = _ctx.HttpResponse;
+			createIPv6TranslatorEntryResponse.RequestId = _ctx.StringValue("CreateIPv6TranslatorEntry.RequestId");
+			createIPv6TranslatorEntryResponse.Ipv6TranslatorEntryId = _ctx.StringValue("CreateIPv6TranslatorEntry.Ipv6TranslatorEntryId");
         
 			return createIPv6TranslatorEntryResponse;
         }

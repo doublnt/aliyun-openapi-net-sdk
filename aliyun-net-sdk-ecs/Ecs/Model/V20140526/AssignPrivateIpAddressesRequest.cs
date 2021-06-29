@@ -32,9 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public AssignPrivateIpAddressesRequest()
             : base("Ecs", "2014-05-26", "AssignPrivateIpAddresses", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
 
 		private int? secondaryPrivateIpAddressCount;
 
@@ -44,7 +52,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> privateIpAddresss;
+		private List<string> privateIpAddresss = new List<string>(){ };
 
 		private string networkInterfaceId;
 
@@ -58,6 +66,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
 			}
 		}
 

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20141111;
 
@@ -32,13 +33,17 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
         public SetPathCacheExpiredConfigRequest()
             : base("Cdn", "2014-11-11", "SetPathCacheExpiredConfig")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string securityToken;
 
 		private string domainName;
-
-		private string action;
 
 		private string weight;
 
@@ -71,19 +76,6 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				domainName = value;
 				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

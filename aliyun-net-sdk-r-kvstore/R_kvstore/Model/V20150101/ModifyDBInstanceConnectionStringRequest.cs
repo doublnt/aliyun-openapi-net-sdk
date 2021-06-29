@@ -32,9 +32,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyDBInstanceConnectionStringRequest()
             : base("R-kvstore", "2015-01-01", "ModifyDBInstanceConnectionString", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string securityToken;
+
+		private string dBInstanceId;
 
 		private string resourceOwnerAccount;
 
@@ -48,11 +58,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string currentConnectionString;
 
-		private string securityToken;
-
 		private string port;
-
-		private string dBInstanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -64,6 +70,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -145,19 +177,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
 		public string Port
 		{
 			get
@@ -168,19 +187,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				port = value;
 				DictionaryUtil.Add(QueryParameters, "Port", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

@@ -32,6 +32,12 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public ListAIJobRequest()
             : base("vod", "2017-03-21", "ListAIJob", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string resourceOwnerId;
@@ -40,9 +46,9 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private string ownerAccount;
 
-		private string jobIds;
-
 		private string ownerId;
+
+		private string jobIds;
 
 		public string ResourceOwnerId
 		{
@@ -83,19 +89,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string JobIds
-		{
-			get
-			{
-				return jobIds;
-			}
-			set	
-			{
-				jobIds = value;
-				DictionaryUtil.Add(QueryParameters, "JobIds", value);
-			}
-		}
-
 		public string OwnerId
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value);
+			}
+		}
+
+		public string JobIds
+		{
+			get
+			{
+				return jobIds;
+			}
+			set	
+			{
+				jobIds = value;
+				DictionaryUtil.Add(QueryParameters, "JobIds", value);
 			}
 		}
 

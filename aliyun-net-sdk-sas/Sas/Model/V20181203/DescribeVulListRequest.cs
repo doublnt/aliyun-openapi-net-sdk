@@ -32,116 +32,48 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public DescribeVulListRequest()
             : base("Sas", "2018-12-03", "DescribeVulList", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string aliasName;
-
-		private string sourceIp;
-
-		private int? pageSize;
-
-		private string remark;
-
-		private string dealed;
-
-		private int? currentPage;
-
-		private string lang;
+		private string attachTypes;
 
 		private string type;
+
+		private string vpcInstanceIds;
+
+		private string groupId;
+
+		private string aliasName;
 
 		private string necessity;
 
 		private string uuids;
 
-		public string AliasName
-		{
-			get
-			{
-				return aliasName;
-			}
-			set	
-			{
-				aliasName = value;
-				DictionaryUtil.Add(QueryParameters, "AliasName", value);
-			}
-		}
+		private string remark;
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
+		private int? pageSize;
 
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
+		private string lang;
 
-		public string Remark
-		{
-			get
-			{
-				return remark;
-			}
-			set	
-			{
-				remark = value;
-				DictionaryUtil.Add(QueryParameters, "Remark", value);
-			}
-		}
+		private string dealed;
 
-		public string Dealed
-		{
-			get
-			{
-				return dealed;
-			}
-			set	
-			{
-				dealed = value;
-				DictionaryUtil.Add(QueryParameters, "Dealed", value);
-			}
-		}
+		private int? currentPage;
 
-		public int? CurrentPage
+		public string AttachTypes
 		{
 			get
 			{
-				return currentPage;
+				return attachTypes;
 			}
 			set	
 			{
-				currentPage = value;
-				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
+				attachTypes = value;
+				DictionaryUtil.Add(QueryParameters, "AttachTypes", value);
 			}
 		}
 
@@ -155,6 +87,45 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				type = value;
 				DictionaryUtil.Add(QueryParameters, "Type", value);
+			}
+		}
+
+		public string VpcInstanceIds
+		{
+			get
+			{
+				return vpcInstanceIds;
+			}
+			set	
+			{
+				vpcInstanceIds = value;
+				DictionaryUtil.Add(QueryParameters, "VpcInstanceIds", value);
+			}
+		}
+
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+			}
+		}
+
+		public string AliasName
+		{
+			get
+			{
+				return aliasName;
+			}
+			set	
+			{
+				aliasName = value;
+				DictionaryUtil.Add(QueryParameters, "AliasName", value);
 			}
 		}
 
@@ -181,6 +152,71 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				uuids = value;
 				DictionaryUtil.Add(QueryParameters, "Uuids", value);
+			}
+		}
+
+		public string Remark
+		{
+			get
+			{
+				return remark;
+			}
+			set	
+			{
+				remark = value;
+				DictionaryUtil.Add(QueryParameters, "Remark", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public string Dealed
+		{
+			get
+			{
+				return dealed;
+			}
+			set	
+			{
+				dealed = value;
+				DictionaryUtil.Add(QueryParameters, "Dealed", value);
+			}
+		}
+
+		public int? CurrentPage
+		{
+			get
+			{
+				return currentPage;
+			}
+			set	
+			{
+				currentPage = value;
+				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
 			}
 		}
 

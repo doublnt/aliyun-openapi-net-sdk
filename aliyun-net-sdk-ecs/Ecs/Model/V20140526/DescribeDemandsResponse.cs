@@ -118,6 +118,14 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string instanceTypeFamily;
 
+			private string demandId;
+
+			private string demandName;
+
+			private string comment;
+
+			private string demandDescription;
+
 			private string instanceType;
 
 			private string instanceChargeType;
@@ -175,6 +183,54 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					instanceTypeFamily = value;
+				}
+			}
+
+			public string DemandId
+			{
+				get
+				{
+					return demandId;
+				}
+				set	
+				{
+					demandId = value;
+				}
+			}
+
+			public string DemandName
+			{
+				get
+				{
+					return demandName;
+				}
+				set	
+				{
+					demandName = value;
+				}
+			}
+
+			public string Comment
+			{
+				get
+				{
+					return comment;
+				}
+				set	
+				{
+					comment = value;
+				}
+			}
+
+			public string DemandDescription
+			{
+				get
+				{
+					return demandDescription;
+				}
+				set	
+				{
+					demandDescription = value;
 				}
 			}
 

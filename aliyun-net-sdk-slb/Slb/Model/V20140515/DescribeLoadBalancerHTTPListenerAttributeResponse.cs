@@ -51,6 +51,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 		private string healthCheck;
 
+		private string healthCheckType;
+
 		private string healthCheckDomain;
 
 		private string healthCheckURI;
@@ -68,6 +70,8 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 		private string healthCheckHttpCode;
 
 		private string healthCheckMethod;
+
+		private string healthCheckHttpVersion;
 
 		private int? maxConnection;
 
@@ -99,7 +103,15 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 		private string description;
 
+		private string xForwardedFor_SLBPORT;
+
+		private string xForwardedFor_ClientSrcPort;
+
+		private int? forwardCode;
+
 		private List<DescribeLoadBalancerHTTPListenerAttribute_Rule> rules;
+
+		private List<string> aclIds;
 
 		public string RequestId
 		{
@@ -257,6 +269,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			}
 		}
 
+		public string HealthCheckType
+		{
+			get
+			{
+				return healthCheckType;
+			}
+			set	
+			{
+				healthCheckType = value;
+			}
+		}
+
 		public string HealthCheckDomain
 		{
 			get
@@ -362,6 +386,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				healthCheckMethod = value;
+			}
+		}
+
+		public string HealthCheckHttpVersion
+		{
+			get
+			{
+				return healthCheckHttpVersion;
+			}
+			set	
+			{
+				healthCheckHttpVersion = value;
 			}
 		}
 
@@ -545,6 +581,42 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			}
 		}
 
+		public string XForwardedFor_SLBPORT
+		{
+			get
+			{
+				return xForwardedFor_SLBPORT;
+			}
+			set	
+			{
+				xForwardedFor_SLBPORT = value;
+			}
+		}
+
+		public string XForwardedFor_ClientSrcPort
+		{
+			get
+			{
+				return xForwardedFor_ClientSrcPort;
+			}
+			set	
+			{
+				xForwardedFor_ClientSrcPort = value;
+			}
+		}
+
+		public int? ForwardCode
+		{
+			get
+			{
+				return forwardCode;
+			}
+			set	
+			{
+				forwardCode = value;
+			}
+		}
+
 		public List<DescribeLoadBalancerHTTPListenerAttribute_Rule> Rules
 		{
 			get
@@ -554,6 +626,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 			set	
 			{
 				rules = value;
+			}
+		}
+
+		public List<string> AclIds
+		{
+			get
+			{
+				return aclIds;
+			}
+			set	
+			{
+				aclIds = value;
 			}
 		}
 

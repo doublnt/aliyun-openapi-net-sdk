@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeSpotPriceHistoryRequest()
             : base("Ecs", "2014-05-26", "DescribeSpotPriceHistory", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -55,6 +61,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string oSType;
 
 		private long? ownerId;
+
+		private int? spotDuration;
 
 		private string zoneId;
 
@@ -198,6 +206,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? SpotDuration
+		{
+			get
+			{
+				return spotDuration;
+			}
+			set	
+			{
+				spotDuration = value;
+				DictionaryUtil.Add(QueryParameters, "SpotDuration", value.ToString());
 			}
 		}
 

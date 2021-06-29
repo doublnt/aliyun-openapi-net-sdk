@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -120,6 +121,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private int? realBandwidth;
 
 			private string allocationTime;
+
+			private string ipv6Isp;
 
 			private DescribeIpv6Addresses_Ipv6InternetBandwidth ipv6InternetBandwidth;
 
@@ -264,6 +267,18 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					allocationTime = value;
+				}
+			}
+
+			public string Ipv6Isp
+			{
+				get
+				{
+					return ipv6Isp;
+				}
+				set	
+				{
+					ipv6Isp = value;
 				}
 			}
 

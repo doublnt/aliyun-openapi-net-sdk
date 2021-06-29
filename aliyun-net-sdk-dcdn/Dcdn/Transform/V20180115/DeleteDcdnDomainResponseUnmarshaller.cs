@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.dcdn.Model.V20180115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.dcdn.Model.V20180115;
 
 namespace Aliyun.Acs.dcdn.Transform.V20180115
 {
     public class DeleteDcdnDomainResponseUnmarshaller
     {
-        public static DeleteDcdnDomainResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteDcdnDomainResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteDcdnDomainResponse deleteDcdnDomainResponse = new DeleteDcdnDomainResponse();
 
-			deleteDcdnDomainResponse.HttpResponse = context.HttpResponse;
-			deleteDcdnDomainResponse.RequestId = context.StringValue("DeleteDcdnDomain.RequestId");
+			deleteDcdnDomainResponse.HttpResponse = _ctx.HttpResponse;
+			deleteDcdnDomainResponse.RequestId = _ctx.StringValue("DeleteDcdnDomain.RequestId");
         
 			return deleteDcdnDomainResponse;
         }

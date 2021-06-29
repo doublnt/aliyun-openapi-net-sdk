@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,25 +31,50 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class RunCloudMetricProfilingRequest : RpcAcsRequest<RunCloudMetricProfilingResponse>
     {
         public RunCloudMetricProfilingRequest()
-            : base("EHPC", "2018-04-12", "RunCloudMetricProfiling", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "RunCloudMetricProfiling")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private int? freq;
+
+		private string clusterId;
 
 		private int? duration;
 
 		private string hostName;
 
-		private string regionId;
-
 		private int? processId;
 
-		private int? freq;
+		public int? Freq
+		{
+			get
+			{
+				return freq;
+			}
+			set	
+			{
+				freq = value;
+				DictionaryUtil.Add(QueryParameters, "Freq", value.ToString());
+			}
+		}
 
-		private string action;
-
-		private string clusterId;
-
-		private string accessKeyId;
+		public string ClusterId
+		{
+			get
+			{
+				return clusterId;
+			}
+			set	
+			{
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
+			}
+		}
 
 		public int? Duration
 		{
@@ -76,19 +102,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
 		public int? ProcessId
 		{
 			get
@@ -99,58 +112,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				processId = value;
 				DictionaryUtil.Add(QueryParameters, "ProcessId", value.ToString());
-			}
-		}
-
-		public int? Freq
-		{
-			get
-			{
-				return freq;
-			}
-			set	
-			{
-				freq = value;
-				DictionaryUtil.Add(QueryParameters, "Freq", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ClusterId
-		{
-			get
-			{
-				return clusterId;
-			}
-			set	
-			{
-				clusterId = value;
-				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

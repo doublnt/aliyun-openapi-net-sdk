@@ -32,23 +32,81 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UpdateWebsiteInstanceRequest()
             : base("Green", "2017-08-23", "UpdateWebsiteInstance", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string indexPage;
+
+		private string sourceIp;
+
+		private string lang;
+
+		private int? websiteScanInterval;
 
 		private string siteProtocol;
 
 		private string instanceId;
 
-		private string sourceIp;
-
-		private int? websiteScanInterval;
-
 		private string domain;
 
-		private string indexPage;
-
-		private string lang;
-
 		private int? indexPageScanInterval;
+
+		public string IndexPage
+		{
+			get
+			{
+				return indexPage;
+			}
+			set	
+			{
+				indexPage = value;
+				DictionaryUtil.Add(QueryParameters, "IndexPage", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public int? WebsiteScanInterval
+		{
+			get
+			{
+				return websiteScanInterval;
+			}
+			set	
+			{
+				websiteScanInterval = value;
+				DictionaryUtil.Add(QueryParameters, "WebsiteScanInterval", value.ToString());
+			}
+		}
 
 		public string SiteProtocol
 		{
@@ -76,32 +134,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
-
-		public int? WebsiteScanInterval
-		{
-			get
-			{
-				return websiteScanInterval;
-			}
-			set	
-			{
-				websiteScanInterval = value;
-				DictionaryUtil.Add(QueryParameters, "WebsiteScanInterval", value.ToString());
-			}
-		}
-
 		public string Domain
 		{
 			get
@@ -112,32 +144,6 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				domain = value;
 				DictionaryUtil.Add(QueryParameters, "Domain", value);
-			}
-		}
-
-		public string IndexPage
-		{
-			get
-			{
-				return indexPage;
-			}
-			set	
-			{
-				indexPage = value;
-				DictionaryUtil.Add(QueryParameters, "IndexPage", value);
-			}
-		}
-
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

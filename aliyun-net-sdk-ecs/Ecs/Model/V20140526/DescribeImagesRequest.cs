@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeImagesRequest()
             : base("Ecs", "2014-05-26", "DescribeImages", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string actionType;
@@ -61,7 +66,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string instanceType;
 
-		private List<Tag> tags;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string architecture;
 
@@ -77,7 +82,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<Filter> filters;
+		private List<Filter> filters = new List<Filter>(){ };
+
+		private string imageFamily;
 
 		private string status;
 
@@ -374,6 +381,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 					DictionaryUtil.Add(QueryParameters,"Filter." + (i + 1) + ".Value", filters[i].Value);
 					DictionaryUtil.Add(QueryParameters,"Filter." + (i + 1) + ".Key", filters[i].Key);
 				}
+			}
+		}
+
+		public string ImageFamily
+		{
+			get
+			{
+				return imageFamily;
+			}
+			set	
+			{
+				imageFamily = value;
+				DictionaryUtil.Add(QueryParameters, "ImageFamily", value);
 			}
 		}
 

@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class AssociateGlobalAccelerationInstanceResponseUnmarshaller
     {
-        public static AssociateGlobalAccelerationInstanceResponse Unmarshall(UnmarshallerContext context)
+        public static AssociateGlobalAccelerationInstanceResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			AssociateGlobalAccelerationInstanceResponse associateGlobalAccelerationInstanceResponse = new AssociateGlobalAccelerationInstanceResponse();
 
-			associateGlobalAccelerationInstanceResponse.HttpResponse = context.HttpResponse;
-			associateGlobalAccelerationInstanceResponse.RequestId = context.StringValue("AssociateGlobalAccelerationInstance.RequestId");
+			associateGlobalAccelerationInstanceResponse.HttpResponse = _ctx.HttpResponse;
+			associateGlobalAccelerationInstanceResponse.RequestId = _ctx.StringValue("AssociateGlobalAccelerationInstance.RequestId");
         
 			return associateGlobalAccelerationInstanceResponse;
         }

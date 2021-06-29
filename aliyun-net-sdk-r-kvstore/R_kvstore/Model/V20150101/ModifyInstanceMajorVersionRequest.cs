@@ -32,15 +32,21 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyInstanceMajorVersionRequest()
             : base("R-kvstore", "2015-01-01", "ModifyInstanceMajorVersion", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
+		private string securityToken;
+
+		private string effectiveTime;
 
 		private string majorVersion;
-
-		private string securityToken;
 
 		private string resourceOwnerAccount;
 
@@ -48,7 +54,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private long? ownerId;
 
-		private string effectTime;
+		private string instanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -63,16 +69,29 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
+		public string SecurityToken
 		{
 			get
 			{
-				return instanceId;
+				return securityToken;
 			}
 			set	
 			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string EffectiveTime
+		{
+			get
+			{
+				return effectiveTime;
+			}
+			set	
+			{
+				effectiveTime = value;
+				DictionaryUtil.Add(QueryParameters, "EffectiveTime", value);
 			}
 		}
 
@@ -86,19 +105,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				majorVersion = value;
 				DictionaryUtil.Add(QueryParameters, "MajorVersion", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -141,16 +147,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string EffectTime
+		public string InstanceId
 		{
 			get
 			{
-				return effectTime;
+				return instanceId;
 			}
 			set	
 			{
-				effectTime = value;
-				DictionaryUtil.Add(QueryParameters, "EffectTime", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
 			}
 		}
 

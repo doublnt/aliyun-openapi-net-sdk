@@ -104,6 +104,14 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string type;
 
+			private int? version;
+
+			private bool? latest;
+
+			private string provider;
+
+			private string category;
+
 			private string description;
 
 			private string commandContent;
@@ -111,6 +119,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			private string workingDir;
 
 			private long? timeout;
+
+			private int? invokeTimes;
 
 			private string creationTime;
 
@@ -151,6 +161,54 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					type = value;
+				}
+			}
+
+			public int? Version
+			{
+				get
+				{
+					return version;
+				}
+				set	
+				{
+					version = value;
+				}
+			}
+
+			public bool? Latest
+			{
+				get
+				{
+					return latest;
+				}
+				set	
+				{
+					latest = value;
+				}
+			}
+
+			public string Provider
+			{
+				get
+				{
+					return provider;
+				}
+				set	
+				{
+					provider = value;
+				}
+			}
+
+			public string Category
+			{
+				get
+				{
+					return category;
+				}
+				set	
+				{
+					category = value;
 				}
 			}
 
@@ -199,6 +257,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					timeout = value;
+				}
+			}
+
+			public int? InvokeTimes
+			{
+				get
+				{
+					return invokeTimes;
+				}
+				set	
+				{
+					invokeTimes = value;
 				}
 			}
 

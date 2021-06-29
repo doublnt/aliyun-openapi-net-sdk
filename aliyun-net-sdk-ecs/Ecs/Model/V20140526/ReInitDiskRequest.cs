@@ -33,23 +33,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ReInitDiskRequest()
             : base("Ecs", "2014-05-26", "ReInitDisk", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string password;
-
-		private string resourceOwnerAccount;
-
 		private bool? autoStartInstance;
-
-		private string ownerAccount;
-
-		private string diskId;
 
 		private string securityEnhancementStrategy;
 
 		private string keyPairName;
+
+		private string password;
+
+		private string diskId;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
 
 		private long? ownerId;
 
@@ -66,32 +72,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string Password
-		{
-			get
-			{
-				return password;
-			}
-			set	
-			{
-				password = value;
-				DictionaryUtil.Add(QueryParameters, "Password", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public bool? AutoStartInstance
 		{
 			get
@@ -102,32 +82,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				autoStartInstance = value;
 				DictionaryUtil.Add(QueryParameters, "AutoStartInstance", value.ToString());
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string DiskId
-		{
-			get
-			{
-				return diskId;
-			}
-			set	
-			{
-				diskId = value;
-				DictionaryUtil.Add(QueryParameters, "DiskId", value);
 			}
 		}
 
@@ -154,6 +108,58 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				keyPairName = value;
 				DictionaryUtil.Add(QueryParameters, "KeyPairName", value);
+			}
+		}
+
+		public string Password
+		{
+			get
+			{
+				return password;
+			}
+			set	
+			{
+				password = value;
+				DictionaryUtil.Add(QueryParameters, "Password", value);
+			}
+		}
+
+		public string DiskId
+		{
+			get
+			{
+				return diskId;
+			}
+			set	
+			{
+				diskId = value;
+				DictionaryUtil.Add(QueryParameters, "DiskId", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 

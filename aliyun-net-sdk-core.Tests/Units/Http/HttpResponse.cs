@@ -30,7 +30,7 @@ namespace Aliyun.Acs.Core.Tests.Units.Http
 {
     public class HttpResponseTest
     {
-        private readonly string requestUrl = "https://www.alibabacloud.com/";
+        private readonly string requestUrl = "https://www.aliyun.com/";
 
         [Fact]
         public void GetResponse()
@@ -44,7 +44,7 @@ namespace Aliyun.Acs.Core.Tests.Units.Http
             Assert.Equal(MethodType.GET, response.Method);
 
             // When timeout!=0
-            response = HttpResponse.GetResponse(request, 100000);
+            response = HttpResponse.GetResponse(request, 30000);
 
             // Done With No Exception
         }
@@ -73,15 +73,19 @@ namespace Aliyun.Acs.Core.Tests.Units.Http
             request.SetHttpsInsecure(true);
 
             var httpWebRequest = HttpResponse.GetWebRequest(request);
+
+            Assert.NotNull(httpWebRequest);
         }
 
         [Fact]
         public void GetWebRequestWithProxy()
         {
             var request = HttpRequestTest.SetContent();
-            request.WebProxy = new WebProxy();
+            request.WebProxy = null;
 
             var httpWebRequest = HttpResponse.GetWebRequest(request);
+
+            Assert.NotNull(httpWebRequest);
         }
 
         [Fact]
@@ -143,13 +147,12 @@ namespace Aliyun.Acs.Core.Tests.Units.Http
         public HttpResponse SetContent()
         {
             var tmpHeaders = new Dictionary<string, string>
-            {
-                {"Content-MD5", ""},
-                {"Content-Length", ""},
-                {"Content-Type", "application/json; charset=UTF-8"},
-                {"Accept", "accept"},
-                {"Date", "Thu, 24 Jan 2019 05:16:46 GMT"}
-            };
+                { { "Content-MD5", "" },
+                    { "Content-Length", "" },
+                    { "Content-Type", "application/json; charset=UTF-8" },
+                    { "Accept", "accept" },
+                    { "Date", "Thu, 24 Jan 2019 05:16:46 GMT" }
+                };
             var content = Encoding.ASCII.GetBytes("someString");
             var instance = new HttpResponse(requestUrl);
             instance.SetContent(content, "UTF-8", FormatType.JSON);

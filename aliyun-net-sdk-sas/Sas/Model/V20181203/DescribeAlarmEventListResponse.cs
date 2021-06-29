@@ -84,6 +84,8 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 
 			private long? endTime;
 
+			private long? operateTime;
+
 			private string alarmEventType;
 
 			private int? suspiciousEventCount;
@@ -103,6 +105,44 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			private string dataSource;
 
 			private bool? canCancelFault;
+
+			private bool? dealed;
+
+			private long? gmtModified;
+
+			private bool? hasTraceInfo;
+
+			private string securityEventIds;
+
+			private string operateErrorCode;
+
+			private string alarmEventNameOriginal;
+
+			private string instanceId;
+
+			private bool? containHwMode;
+
+			private string stages;
+
+			private string containerImageId;
+
+			private string containerImageName;
+
+			private string containerId;
+
+			private string k8sNamespace;
+
+			private string k8sClusterId;
+
+			private string k8sClusterName;
+
+			private string k8sNodeId;
+
+			private string k8sPodName;
+
+			private string k8sNodeName;
+
+			private string appName;
 
 			public string AlarmUniqueInfo
 			{
@@ -185,6 +225,18 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 				set	
 				{
 					endTime = value;
+				}
+			}
+
+			public long? OperateTime
+			{
+				get
+				{
+					return operateTime;
+				}
+				set	
+				{
+					operateTime = value;
 				}
 			}
 
@@ -305,6 +357,234 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 				set	
 				{
 					canCancelFault = value;
+				}
+			}
+
+			public bool? Dealed
+			{
+				get
+				{
+					return dealed;
+				}
+				set	
+				{
+					dealed = value;
+				}
+			}
+
+			public long? GmtModified
+			{
+				get
+				{
+					return gmtModified;
+				}
+				set	
+				{
+					gmtModified = value;
+				}
+			}
+
+			public bool? HasTraceInfo
+			{
+				get
+				{
+					return hasTraceInfo;
+				}
+				set	
+				{
+					hasTraceInfo = value;
+				}
+			}
+
+			public string SecurityEventIds
+			{
+				get
+				{
+					return securityEventIds;
+				}
+				set	
+				{
+					securityEventIds = value;
+				}
+			}
+
+			public string OperateErrorCode
+			{
+				get
+				{
+					return operateErrorCode;
+				}
+				set	
+				{
+					operateErrorCode = value;
+				}
+			}
+
+			public string AlarmEventNameOriginal
+			{
+				get
+				{
+					return alarmEventNameOriginal;
+				}
+				set	
+				{
+					alarmEventNameOriginal = value;
+				}
+			}
+
+			public string InstanceId
+			{
+				get
+				{
+					return instanceId;
+				}
+				set	
+				{
+					instanceId = value;
+				}
+			}
+
+			public bool? ContainHwMode
+			{
+				get
+				{
+					return containHwMode;
+				}
+				set	
+				{
+					containHwMode = value;
+				}
+			}
+
+			public string Stages
+			{
+				get
+				{
+					return stages;
+				}
+				set	
+				{
+					stages = value;
+				}
+			}
+
+			public string ContainerImageId
+			{
+				get
+				{
+					return containerImageId;
+				}
+				set	
+				{
+					containerImageId = value;
+				}
+			}
+
+			public string ContainerImageName
+			{
+				get
+				{
+					return containerImageName;
+				}
+				set	
+				{
+					containerImageName = value;
+				}
+			}
+
+			public string ContainerId
+			{
+				get
+				{
+					return containerId;
+				}
+				set	
+				{
+					containerId = value;
+				}
+			}
+
+			public string K8sNamespace
+			{
+				get
+				{
+					return k8sNamespace;
+				}
+				set	
+				{
+					k8sNamespace = value;
+				}
+			}
+
+			public string K8sClusterId
+			{
+				get
+				{
+					return k8sClusterId;
+				}
+				set	
+				{
+					k8sClusterId = value;
+				}
+			}
+
+			public string K8sClusterName
+			{
+				get
+				{
+					return k8sClusterName;
+				}
+				set	
+				{
+					k8sClusterName = value;
+				}
+			}
+
+			public string K8sNodeId
+			{
+				get
+				{
+					return k8sNodeId;
+				}
+				set	
+				{
+					k8sNodeId = value;
+				}
+			}
+
+			public string K8sPodName
+			{
+				get
+				{
+					return k8sPodName;
+				}
+				set	
+				{
+					k8sPodName = value;
+				}
+			}
+
+			public string K8sNodeName
+			{
+				get
+				{
+					return k8sNodeName;
+				}
+				set	
+				{
+					k8sNodeName = value;
+				}
+			}
+
+			public string AppName
+			{
+				get
+				{
+					return appName;
+				}
+				set	
+				{
+					appName = value;
 				}
 			}
 		}

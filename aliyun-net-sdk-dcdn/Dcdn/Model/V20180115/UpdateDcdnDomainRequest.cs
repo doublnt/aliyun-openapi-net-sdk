@@ -16,13 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.dcdn;
 using Aliyun.Acs.dcdn.Transform;
 using Aliyun.Acs.dcdn.Transform.V20180115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.dcdn.Model.V20180115
 {
@@ -31,32 +33,36 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
         public UpdateDcdnDomainRequest()
             : base("dcdn", "2018-01-15", "UpdateDcdnDomain")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.dcdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.dcdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string topLevelDomain;
-
-		private string resourceGroupId;
 
 		private string sources;
 
+		private string resourceGroupId;
+
 		private string securityToken;
+
+		private string topLevelDomain;
 
 		private string domainName;
 
-		private string action;
-
 		private long? ownerId;
 
-		public string TopLevelDomain
+		public string Sources
 		{
 			get
 			{
-				return topLevelDomain;
+				return sources;
 			}
 			set	
 			{
-				topLevelDomain = value;
-				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+				sources = value;
+				DictionaryUtil.Add(QueryParameters, "Sources", value);
 			}
 		}
 
@@ -73,19 +79,6 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
-		public string Sources
-		{
-			get
-			{
-				return sources;
-			}
-			set	
-			{
-				sources = value;
-				DictionaryUtil.Add(QueryParameters, "Sources", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -96,6 +89,19 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string TopLevelDomain
+		{
+			get
+			{
+				return topLevelDomain;
+			}
+			set	
+			{
+				topLevelDomain = value;
+				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
 			}
 		}
 
@@ -112,19 +118,6 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -138,7 +131,7 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
-        public override UpdateDcdnDomainResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override UpdateDcdnDomainResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return UpdateDcdnDomainResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

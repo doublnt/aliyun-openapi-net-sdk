@@ -16,23 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateGlobalAccelerationInstanceResponseUnmarshaller
     {
-        public static CreateGlobalAccelerationInstanceResponse Unmarshall(UnmarshallerContext context)
+        public static CreateGlobalAccelerationInstanceResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateGlobalAccelerationInstanceResponse createGlobalAccelerationInstanceResponse = new CreateGlobalAccelerationInstanceResponse();
 
-			createGlobalAccelerationInstanceResponse.HttpResponse = context.HttpResponse;
-			createGlobalAccelerationInstanceResponse.RequestId = context.StringValue("CreateGlobalAccelerationInstance.RequestId");
-			createGlobalAccelerationInstanceResponse.GlobalAccelerationInstanceId = context.StringValue("CreateGlobalAccelerationInstance.GlobalAccelerationInstanceId");
-			createGlobalAccelerationInstanceResponse.IpAddress = context.StringValue("CreateGlobalAccelerationInstance.IpAddress");
+			createGlobalAccelerationInstanceResponse.HttpResponse = _ctx.HttpResponse;
+			createGlobalAccelerationInstanceResponse.RequestId = _ctx.StringValue("CreateGlobalAccelerationInstance.RequestId");
+			createGlobalAccelerationInstanceResponse.GlobalAccelerationInstanceId = _ctx.StringValue("CreateGlobalAccelerationInstance.GlobalAccelerationInstanceId");
+			createGlobalAccelerationInstanceResponse.IpAddress = _ctx.StringValue("CreateGlobalAccelerationInstance.IpAddress");
         
 			return createGlobalAccelerationInstanceResponse;
         }

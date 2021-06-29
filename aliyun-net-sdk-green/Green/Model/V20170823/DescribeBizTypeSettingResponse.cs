@@ -31,6 +31,12 @@ namespace Aliyun.Acs.Green.Model.V20170823
 
 		private DescribeBizTypeSetting_Porn porn;
 
+		private DescribeBizTypeSetting_Antispam antispam;
+
+		private DescribeBizTypeSetting_Ad ad;
+
+		private DescribeBizTypeSetting_Live live;
+
 		public string RequestId
 		{
 			get
@@ -67,6 +73,42 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			}
 		}
 
+		public DescribeBizTypeSetting_Antispam Antispam
+		{
+			get
+			{
+				return antispam;
+			}
+			set	
+			{
+				antispam = value;
+			}
+		}
+
+		public DescribeBizTypeSetting_Ad Ad
+		{
+			get
+			{
+				return ad;
+			}
+			set	
+			{
+				ad = value;
+			}
+		}
+
+		public DescribeBizTypeSetting_Live Live
+		{
+			get
+			{
+				return live;
+			}
+			set	
+			{
+				live = value;
+			}
+		}
+
 		public class DescribeBizTypeSetting_Terrorism
 		{
 
@@ -99,6 +141,60 @@ namespace Aliyun.Acs.Green.Model.V20170823
 				set	
 				{
 					categories1 = value;
+				}
+			}
+		}
+
+		public class DescribeBizTypeSetting_Antispam
+		{
+
+			private List<string> categories2;
+
+			public List<string> Categories2
+			{
+				get
+				{
+					return categories2;
+				}
+				set	
+				{
+					categories2 = value;
+				}
+			}
+		}
+
+		public class DescribeBizTypeSetting_Ad
+		{
+
+			private List<string> categories3;
+
+			public List<string> Categories3
+			{
+				get
+				{
+					return categories3;
+				}
+				set	
+				{
+					categories3 = value;
+				}
+			}
+		}
+
+		public class DescribeBizTypeSetting_Live
+		{
+
+			private List<string> categories4;
+
+			public List<string> Categories4
+			{
+				get
+				{
+					return categories4;
+				}
+				set	
+				{
+					categories4 = value;
 				}
 			}
 		}

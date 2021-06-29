@@ -17,6 +17,7 @@
  * under the License.
  */
 
+using System;
 using System.Collections.Generic;
 
 using Aliyun.Acs.Core.Auth;
@@ -88,6 +89,9 @@ namespace Aliyun.Acs.Core.Tests.Units
             mockAcsRequest.ProductNetwork = "vpc";
             Assert.Equal("test-vpc.aliyuncs.com", mockAcsRequest.GetProductEndpoint());
 
+            mockAcsRequest.ProductSuffix = "suffix";
+            Assert.Equal("testsuffix-vpc.aliyuncs.com", mockAcsRequest.GetProductEndpoint());
+
             var productEndpointMap = new Dictionary<string, string>();
             mockAcsRequest.ProductEndpointType = "test-type";
             mockAcsRequest.ProductEndpointMap = productEndpointMap;
@@ -104,7 +108,7 @@ namespace Aliyun.Acs.Core.Tests.Units
             mockAcsRequest.SetProductDomain();
             mockAcsRequest.SetProductDomain(endpoint);
 
-            Assert.Equal(endpoint, mockAcsRequest.ProductDomain.DomianName);
+            Assert.Equal(endpoint, mockAcsRequest.ProductDomain.DomainName);
 
             mockAcsRequest.ProductDomain = null;
         }
@@ -117,7 +121,7 @@ namespace Aliyun.Acs.Core.Tests.Units
             var mockAcsRequest = new MockAcsRequest();
             mockAcsRequest.SetEndpoint(endpoint);
 
-            Assert.Equal(endpoint, mockAcsRequest.ProductDomain.DomianName);
+            Assert.Equal(endpoint, mockAcsRequest.ProductDomain.DomainName);
 
             mockAcsRequest.ProductDomain = null;
         }
@@ -176,6 +180,46 @@ namespace Aliyun.Acs.Core.Tests.Units
             var resultStr = UserAgent.GetDefaultMessage() + " test/1.2.4" + " mock/1.1.2";
 
             Assert.Equal(resultStr, userAgent);
+        }
+
+        [Fact]
+        public void validateParam()
+        {
+            var acsRequest = new MockAcsRequest();
+            Assert.Throws<ArgumentException>(() =>
+            {
+                acsRequest.RegionId = "a.b";
+            });
+
+            acsRequest.RegionId = "";
+            Assert.Empty(acsRequest.RegionId);
+
+            acsRequest.RegionId = null;
+            Assert.Null(acsRequest.RegionId);
+            Assert.Throws<ArgumentException>(() =>
+            {
+                acsRequest.ProductNetwork = "a.b";
+            });
+
+            acsRequest.ProductNetwork = "private";
+            Assert.Equal("private", acsRequest.ProductNetwork);
+
+            acsRequest.ProductNetwork = "";
+            Assert.Empty(acsRequest.ProductNetwork);
+
+            acsRequest.ProductNetwork = null;
+            Assert.Null(acsRequest.ProductNetwork);
+
+            Assert.Throws<ArgumentException>(() =>
+            {
+                acsRequest.ProductSuffix = "a.b";
+            });
+
+            acsRequest.ProductSuffix = "";
+            Assert.Empty(acsRequest.ProductSuffix);
+
+            acsRequest.ProductSuffix = null;
+            Assert.Null(acsRequest.ProductSuffix);
         }
     }
 

@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeDBInstancePerformanceRequest()
             : base("Rds", "2014-08-15", "DescribeDBInstancePerformance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string endTime;
+		private string startTime;
 
 		private string dBInstanceId;
 
-		private string startTime;
-
 		private string key;
+
+		private string endTime;
 
 		public long? ResourceOwnerId
 		{
@@ -54,32 +60,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string EndTime
-		{
-			get
-			{
-				return endTime;
-			}
-			set	
-			{
-				endTime = value;
-				DictionaryUtil.Add(QueryParameters, "EndTime", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -96,6 +76,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
 		public string Key
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				key = value;
 				DictionaryUtil.Add(QueryParameters, "Key", value);
+			}
+		}
+
+		public string EndTime
+		{
+			get
+			{
+				return endTime;
+			}
+			set	
+			{
+				endTime = value;
+				DictionaryUtil.Add(QueryParameters, "EndTime", value);
 			}
 		}
 

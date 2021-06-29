@@ -32,9 +32,16 @@ namespace Aliyun.Acs.fnf.Model.V20190315
         public DescribeExecutionRequest()
             : base("fnf", "2019-03-15", "DescribeExecution", "fnf", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.fnf.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string executionName;
+
+		private int? waitTimeSeconds;
 
 		private string requestId;
 
@@ -50,6 +57,19 @@ namespace Aliyun.Acs.fnf.Model.V20190315
 			{
 				executionName = value;
 				DictionaryUtil.Add(QueryParameters, "ExecutionName", value);
+			}
+		}
+
+		public int? WaitTimeSeconds
+		{
+			get
+			{
+				return waitTimeSeconds;
+			}
+			set	
+			{
+				waitTimeSeconds = value;
+				DictionaryUtil.Add(QueryParameters, "WaitTimeSeconds", value.ToString());
 			}
 		}
 

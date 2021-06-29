@@ -32,6 +32,12 @@ namespace Aliyun.Acs.imm.Model.V20170906
         public DeleteOfficeConversionTaskRequest()
             : base("imm", "2017-09-06", "DeleteOfficeConversionTask", "imm", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.imm.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string project;
@@ -62,6 +68,11 @@ namespace Aliyun.Acs.imm.Model.V20170906
 				taskId = value;
 				DictionaryUtil.Add(QueryParameters, "TaskId", value);
 			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override DeleteOfficeConversionTaskResponse GetResponse(UnmarshallerContext unmarshallerContext)

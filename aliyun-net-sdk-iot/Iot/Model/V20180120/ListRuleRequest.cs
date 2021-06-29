@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public ListRuleRequest()
             : base("Iot", "2018-01-20", "ListRule", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string searchName;
+		private string resourceGroupId;
 
 		private string iotInstanceId;
 
@@ -42,16 +48,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 		private int? currentPage;
 
-		public string SearchName
+		public string ResourceGroupId
 		{
 			get
 			{
-				return searchName;
+				return resourceGroupId;
 			}
 			set	
 			{
-				searchName = value;
-				DictionaryUtil.Add(QueryParameters, "SearchName", value);
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 

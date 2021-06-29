@@ -32,28 +32,19 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public ModifyEmgVulSubmitRequest()
             : base("Sas", "2018-12-03", "ModifyEmgVulSubmit", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string sourceIp;
 
 		private string name;
 
 		private string userAgreement;
 
 		private string lang;
-
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
 
 		public string Name
 		{

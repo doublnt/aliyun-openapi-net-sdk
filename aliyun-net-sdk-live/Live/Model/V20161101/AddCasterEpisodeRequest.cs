@@ -32,25 +32,57 @@ namespace Aliyun.Acs.live.Model.V20161101
         public AddCasterEpisodeRequest()
             : base("live", "2016-11-01", "AddCasterEpisode", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string episodeName;
+
+		private string startTime;
 
 		private string resourceId;
 
-		private List<string> componentIds;
-
-		private string switchType;
+		private List<string> componentIds = new List<string>(){ };
 
 		private string casterId;
 
 		private string episodeType;
 
-		private string episodeName;
-
 		private string endTime;
 
-		private string startTime;
-
 		private long? ownerId;
+
+		private string switchType;
+
+		public string EpisodeName
+		{
+			get
+			{
+				return episodeName;
+			}
+			set	
+			{
+				episodeName = value;
+				DictionaryUtil.Add(QueryParameters, "EpisodeName", value);
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
 
 		public string ResourceId
 		{
@@ -82,19 +114,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string SwitchType
-		{
-			get
-			{
-				return switchType;
-			}
-			set	
-			{
-				switchType = value;
-				DictionaryUtil.Add(QueryParameters, "SwitchType", value);
-			}
-		}
-
 		public string CasterId
 		{
 			get
@@ -121,19 +140,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string EpisodeName
-		{
-			get
-			{
-				return episodeName;
-			}
-			set	
-			{
-				episodeName = value;
-				DictionaryUtil.Add(QueryParameters, "EpisodeName", value);
-			}
-		}
-
 		public string EndTime
 		{
 			get
@@ -147,19 +153,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -170,6 +163,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SwitchType
+		{
+			get
+			{
+				return switchType;
+			}
+			set	
+			{
+				switchType = value;
+				DictionaryUtil.Add(QueryParameters, "SwitchType", value);
 			}
 		}
 

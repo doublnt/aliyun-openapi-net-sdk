@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,32 +33,36 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DetachDBInstancesRequest()
             : base("Ess", "2014-08-28", "DetachDBInstances", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string resourceOwnerAccount;
+		private string clientToken;
 
 		private string scalingGroupId;
 
-		private string action;
+		private string resourceOwnerAccount;
 
-		private List<string> dBInstances;
-
-		private bool? forceDetach;
+		private List<string> dBInstances = new List<string>(){ };
 
 		private long? ownerId;
 
-		private string accessKeyId;
+		private bool? forceDetach;
 
-		public string ResourceOwnerAccount
+		public string ClientToken
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return clientToken;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
 			}
 		}
 
@@ -74,16 +79,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
+		public string ResourceOwnerAccount
 		{
 			get
 			{
-				return action;
+				return resourceOwnerAccount;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -104,19 +109,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public bool? ForceDetach
-		{
-			get
-			{
-				return forceDetach;
-			}
-			set	
-			{
-				forceDetach = value;
-				DictionaryUtil.Add(QueryParameters, "ForceDetach", value.ToString());
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -130,16 +122,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
+		public bool? ForceDetach
 		{
 			get
 			{
-				return accessKeyId;
+				return forceDetach;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				forceDetach = value;
+				DictionaryUtil.Add(QueryParameters, "ForceDetach", value.ToString());
 			}
 		}
 

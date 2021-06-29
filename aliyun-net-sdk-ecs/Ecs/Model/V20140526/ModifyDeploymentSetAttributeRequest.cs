@@ -33,34 +33,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyDeploymentSetAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyDeploymentSetAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string deploymentSetId;
-
 		private long? resourceOwnerId;
+
+		private string description;
+
+		private string deploymentSetId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string description;
-
 		private string deploymentSetName;
 
 		private long? ownerId;
-
-		public string DeploymentSetId
-		{
-			get
-			{
-				return deploymentSetId;
-			}
-			set	
-			{
-				deploymentSetId = value;
-				DictionaryUtil.Add(QueryParameters, "DeploymentSetId", value);
-			}
-		}
 
 		public long? ResourceOwnerId
 		{
@@ -72,6 +65,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string DeploymentSetId
+		{
+			get
+			{
+				return deploymentSetId;
+			}
+			set	
+			{
+				deploymentSetId = value;
+				DictionaryUtil.Add(QueryParameters, "DeploymentSetId", value);
 			}
 		}
 
@@ -98,19 +117,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 

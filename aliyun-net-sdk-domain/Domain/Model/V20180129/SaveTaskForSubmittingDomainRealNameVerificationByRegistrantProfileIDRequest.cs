@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,45 +30,25 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveTaskForSubmittingDomainRealNameVerificationByRegistrantProfileIDRequest : RpcAcsRequest<SaveTaskForSubmittingDomainRealNameVerificationByRegistrantProfileIDResponse>
     {
         public SaveTaskForSubmittingDomainRealNameVerificationByRegistrantProfileIDRequest()
-            : base("Domain", "2018-01-29", "SaveTaskForSubmittingDomainRealNameVerificationByRegistrantProfileID")
+            : base("Domain", "2018-01-29", "SaveTaskForSubmittingDomainRealNameVerificationByRegistrantProfileID", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string instanceId;
-
-		private string userClientIp;
 
 		private string domainName;
 
 		private long? registrantProfileId;
 
+		private string instanceId;
+
+		private string userClientIp;
+
 		private string lang;
-
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
 
 		public string DomainName
 		{
@@ -94,6 +73,32 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				registrantProfileId = value;
 				DictionaryUtil.Add(QueryParameters, "RegistrantProfileId", value.ToString());
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

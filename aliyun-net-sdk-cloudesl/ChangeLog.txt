@@ -1,3 +1,25 @@
+2020-08-04 Version: 2.0.2
+- Add describeClientPackage function.
+
+2020-08-04 Version: 2.0.1
+- Add describeClientPackage function.
+
+2020-04-07 Version: 2.0.0
+- Support shelf type for planogram position.
+
+2020-04-03 Version: 2.0.1
+- Support shelf type for planogram position.
+
+2020-04-01 Version: 2.0.0
+- Support planogram for ESL.
+
+2020-03-06 Version: 1.1.4
+- Support light up led lamp for ESL.
+
+2019-11-29 Version 1.1.2
+- Support limit the number of stores and items when adding.
+- POP version updated to 20190801.
+
 2019-01-30 Version: 1.0.0
 1, Add a new pop interface to support deleting item by skuId which is defined by users to distinguish items
 

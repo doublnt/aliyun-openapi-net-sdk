@@ -32,13 +32,19 @@ namespace Aliyun.Acs.live.Model.V20161101
         public AddLiveDetectNotifyConfigRequest()
             : base("live", "2016-11-01", "AddLiveDetectNotifyConfig", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string securityToken;
 
-		private string domainName;
-
 		private string notifyUrl;
+
+		private string domainName;
 
 		private long? ownerId;
 
@@ -55,19 +61,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
 		public string NotifyUrl
 		{
 			get
@@ -78,6 +71,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				notifyUrl = value;
 				DictionaryUtil.Add(QueryParameters, "NotifyUrl", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
 			}
 		}
 

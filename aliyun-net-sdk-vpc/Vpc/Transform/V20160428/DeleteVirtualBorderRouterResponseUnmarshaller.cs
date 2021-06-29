@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteVirtualBorderRouterResponseUnmarshaller
     {
-        public static DeleteVirtualBorderRouterResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteVirtualBorderRouterResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteVirtualBorderRouterResponse deleteVirtualBorderRouterResponse = new DeleteVirtualBorderRouterResponse();
 
-			deleteVirtualBorderRouterResponse.HttpResponse = context.HttpResponse;
-			deleteVirtualBorderRouterResponse.RequestId = context.StringValue("DeleteVirtualBorderRouter.RequestId");
+			deleteVirtualBorderRouterResponse.HttpResponse = _ctx.HttpResponse;
+			deleteVirtualBorderRouterResponse.RequestId = _ctx.StringValue("DeleteVirtualBorderRouter.RequestId");
         
 			return deleteVirtualBorderRouterResponse;
         }

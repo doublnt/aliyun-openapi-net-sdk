@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeInstancesFullStatusRequest()
             : base("Ecs", "2014-05-26", "DescribeInstancesFullStatus", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> eventIds;
+		private List<string> eventIds = new List<string>(){ };
 
 		private long? resourceOwnerId;
 
@@ -44,7 +50,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string eventPublishTimeEnd;
 
-		private List<string> instanceEventTypes;
+		private List<string> instanceEventTypes = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 
@@ -56,7 +62,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string eventPublishTimeStart;
 
-		private List<string> instanceIds;
+		private List<string> instanceIds = new List<string>(){ };
 
 		private string notBeforeEnd;
 

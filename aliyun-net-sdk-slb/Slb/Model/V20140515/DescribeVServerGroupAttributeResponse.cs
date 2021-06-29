@@ -110,7 +110,13 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 
 			private string vpcId;
 
+			private string vbrId;
+
+			private string serverRegionId;
+
 			private string description;
+
+			private bool? proxyProtocolV2Enabled;
 
 			public string ServerId
 			{
@@ -184,6 +190,30 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 				}
 			}
 
+			public string VbrId
+			{
+				get
+				{
+					return vbrId;
+				}
+				set	
+				{
+					vbrId = value;
+				}
+			}
+
+			public string ServerRegionId
+			{
+				get
+				{
+					return serverRegionId;
+				}
+				set	
+				{
+					serverRegionId = value;
+				}
+			}
+
 			public string Description
 			{
 				get
@@ -193,6 +223,18 @@ namespace Aliyun.Acs.Slb.Model.V20140515
 				set	
 				{
 					description = value;
+				}
+			}
+
+			public bool? ProxyProtocolV2Enabled
+			{
+				get
+				{
+					return proxyProtocolV2Enabled;
+				}
+				set	
+				{
+					proxyProtocolV2Enabled = value;
 				}
 			}
 		}

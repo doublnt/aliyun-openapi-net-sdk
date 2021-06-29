@@ -1,3 +1,86 @@
+2020-07-24 Version: 1.17.0
+- Support GetImageCroppingSuggestions API.
+- Add Remarks to face group related APIs.
+- Add Model parameter to blind watermark related APIs.
+
+2020-06-29 Version: 1.16.7
+- Supported Rotate.
+
+2020-06-29 Version: 1.16.6
+- Supported Rotate.
+
+2020-05-12 Version: 1.16.5
+- Supported DRM.
+
+2020-04-29 Version: 1.16.4
+- Supported VideoProduce.
+
+2020-04-29 Version: 1.16.3
+- Supported VideoProduce.
+
+2020-04-29 Version: 1.16.2
+- Supported VideoProduce.
+
+2020-04-29 Version: 1.16.2
+- Supported VideoProduce.
+
+2020-04-27 Version: 1.16.1
+- Support watermark.
+
+2020-04-10 Version: 1.16.0
+- Support GetOfficeEditURL.
+- Support RefreshOfficeEditToken.
+
+2020-03-09 Version: 1.15.8
+- Add EmotionConfidence to GetImage.
+
+2020-02-10 Version 1.15.7
+- Supported address for GetMediaMeta.
+
+2020-02-05 Version 1.15.6
+- Supported GetOfficePreviewURL.
+- Supported RefreshOfficePreviewToken.
+
+2020-01-08 Version 1.15.5
+- Add TagLevel to ListSetTags.
+
+2019-12-31 Version 1.15.4
+- Supported image for process.
+
+2019-11-28 Version 1.15.3
+- Supported dash for compress.
+
+2019-11-13 Version 1.15.2
+- Supported Stream analyse.
+
+2019-10-22 Version 1.15.1
+- Supported ExternalId IMM.
+
+2019-10-08 Version 1.15.0
+- Supported Grab Frame IMM.
+
+2019-09-19 Version 1.6.8
+- Supported Video Abstract for IMM.
+
+2019-09-19 Version 1.6.7
+- Supported Video Abstract for IMM.
+
+2019-09-18 Version 1.6.6
+- Supported Video Abstract for IMM.
+
+2019-08-30 Version 1.6.5
+- Supported Meida complex for IMM.
+
+2019-08-06 Version 1.6.4
+- Supported GetMediaMeta for IMM.
+2019-08-06 Version 1.6.4
+- Supported GetMediaMeta for IMM.
+2019-08-06 Version 1.6.4
+- Supported GetMediaMeta for IMM.
+2019-08-06 Version 1.6.4
+- Supported GetMediaMeta for IMM.
+2019-08-06 Version 1.6.3
+- Supported GetMediaMeta for IMM.
 2019-06-12 Version 1.14.2
 1.Fix bug
 2019-05-27 Version: 1.6.3

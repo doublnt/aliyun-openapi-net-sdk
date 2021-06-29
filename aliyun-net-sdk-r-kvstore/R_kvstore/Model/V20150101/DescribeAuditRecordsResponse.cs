@@ -140,7 +140,7 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		public class DescribeAuditRecords_SQL
 		{
 
-			private int? hostAddress;
+			private string hostAddress;
 
 			private string databaseName;
 
@@ -156,7 +156,9 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 			private string accountName;
 
-			public int? HostAddress
+			private string nodeId;
+
+			public string HostAddress
 			{
 				get
 				{
@@ -249,6 +251,18 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					accountName = value;
+				}
+			}
+
+			public string NodeId
+			{
+				get
+				{
+					return nodeId;
+				}
+				set	
+				{
+					nodeId = value;
 				}
 			}
 		}

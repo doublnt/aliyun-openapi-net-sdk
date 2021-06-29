@@ -16,25 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.scdn.Model.V20171115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.scdn.Model.V20171115;
 
 namespace Aliyun.Acs.scdn.Transform.V20171115
 {
     public class DescribeScdnCertificateDetailResponseUnmarshaller
     {
-        public static DescribeScdnCertificateDetailResponse Unmarshall(UnmarshallerContext context)
+        public static DescribeScdnCertificateDetailResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DescribeScdnCertificateDetailResponse describeScdnCertificateDetailResponse = new DescribeScdnCertificateDetailResponse();
 
-			describeScdnCertificateDetailResponse.HttpResponse = context.HttpResponse;
-			describeScdnCertificateDetailResponse.RequestId = context.StringValue("DescribeScdnCertificateDetail.RequestId");
-			describeScdnCertificateDetailResponse.Cert = context.StringValue("DescribeScdnCertificateDetail.Cert");
-			describeScdnCertificateDetailResponse.Key = context.StringValue("DescribeScdnCertificateDetail.Key");
-			describeScdnCertificateDetailResponse.CertId = context.LongValue("DescribeScdnCertificateDetail.CertId");
-			describeScdnCertificateDetailResponse.CertName = context.StringValue("DescribeScdnCertificateDetail.CertName");
+			describeScdnCertificateDetailResponse.HttpResponse = _ctx.HttpResponse;
+			describeScdnCertificateDetailResponse.RequestId = _ctx.StringValue("DescribeScdnCertificateDetail.RequestId");
+			describeScdnCertificateDetailResponse.Cert = _ctx.StringValue("DescribeScdnCertificateDetail.Cert");
+			describeScdnCertificateDetailResponse.Key = _ctx.StringValue("DescribeScdnCertificateDetail.Key");
+			describeScdnCertificateDetailResponse.CertId = _ctx.LongValue("DescribeScdnCertificateDetail.CertId");
+			describeScdnCertificateDetailResponse.CertName = _ctx.StringValue("DescribeScdnCertificateDetail.CertName");
         
 			return describeScdnCertificateDetailResponse;
         }

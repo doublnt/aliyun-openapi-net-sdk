@@ -32,23 +32,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public DescribeSQLLogRecordsRequest()
             : base("Rds", "2014-08-15", "DescribeSQLLogRecords", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? sQLId;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string ownerAccount;
-
-		private string endTime;
-
 		private string startTime;
-
-		private long? ownerId;
 
 		private string queryKeywords;
 
@@ -56,26 +52,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string database;
 
-		private string form;
-
 		private int? pageSize;
 
 		private string dBInstanceId;
 
-		private string user;
+		private long? sQLId;
 
-		public long? SQLId
-		{
-			get
-			{
-				return sQLId;
-			}
-			set	
-			{
-				sQLId = value;
-				DictionaryUtil.Add(QueryParameters, "SQLId", value.ToString());
-			}
-		}
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private string endTime;
+
+		private long? ownerId;
+
+		private string form;
+
+		private string user;
 
 		public long? ResourceOwnerId
 		{
@@ -87,19 +80,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -116,32 +96,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string EndTime
-		{
-			get
-			{
-				return endTime;
-			}
-			set	
-			{
-				endTime = value;
-				DictionaryUtil.Add(QueryParameters, "EndTime", value);
-			}
-		}
-
 		public string StartTime
 		{
 			get
@@ -152,19 +106,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -207,19 +148,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string Form
-		{
-			get
-			{
-				return form;
-			}
-			set	
-			{
-				form = value;
-				DictionaryUtil.Add(QueryParameters, "Form", value);
-			}
-		}
-
 		public int? PageSize
 		{
 			get
@@ -243,6 +171,84 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				dBInstanceId = value;
 				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public long? SQLId
+		{
+			get
+			{
+				return sQLId;
+			}
+			set	
+			{
+				sQLId = value;
+				DictionaryUtil.Add(QueryParameters, "SQLId", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string EndTime
+		{
+			get
+			{
+				return endTime;
+			}
+			set	
+			{
+				endTime = value;
+				DictionaryUtil.Add(QueryParameters, "EndTime", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string Form
+		{
+			get
+			{
+				return form;
+			}
+			set	
+			{
+				form = value;
+				DictionaryUtil.Add(QueryParameters, "Form", value);
 			}
 		}
 

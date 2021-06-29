@@ -16,25 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class CreateIPv6TranslatorResponseUnmarshaller
     {
-        public static CreateIPv6TranslatorResponse Unmarshall(UnmarshallerContext context)
+        public static CreateIPv6TranslatorResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			CreateIPv6TranslatorResponse createIPv6TranslatorResponse = new CreateIPv6TranslatorResponse();
 
-			createIPv6TranslatorResponse.HttpResponse = context.HttpResponse;
-			createIPv6TranslatorResponse.RequestId = context.StringValue("CreateIPv6Translator.RequestId");
-			createIPv6TranslatorResponse.Ipv6TranslatorId = context.StringValue("CreateIPv6Translator.Ipv6TranslatorId");
-			createIPv6TranslatorResponse.Name = context.StringValue("CreateIPv6Translator.Name");
-			createIPv6TranslatorResponse.Spec = context.StringValue("CreateIPv6Translator.Spec");
-			createIPv6TranslatorResponse.OrderId = context.LongValue("CreateIPv6Translator.OrderId");
+			createIPv6TranslatorResponse.HttpResponse = _ctx.HttpResponse;
+			createIPv6TranslatorResponse.RequestId = _ctx.StringValue("CreateIPv6Translator.RequestId");
+			createIPv6TranslatorResponse.Ipv6TranslatorId = _ctx.StringValue("CreateIPv6Translator.Ipv6TranslatorId");
+			createIPv6TranslatorResponse.Name = _ctx.StringValue("CreateIPv6Translator.Name");
+			createIPv6TranslatorResponse.Spec = _ctx.StringValue("CreateIPv6Translator.Spec");
+			createIPv6TranslatorResponse.OrderId = _ctx.LongValue("CreateIPv6Translator.OrderId");
         
 			return createIPv6TranslatorResponse;
         }

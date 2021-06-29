@@ -32,11 +32,15 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
         public ConfigureBackupPlanRequest()
             : base("Dbs", "2019-03-06", "ConfigureBackupPlan", "cbs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dbs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string sourceEndpointRegion;
-
-		private int? duplicationArchivePeriod;
 
 		private long? backupGatewayId;
 
@@ -46,29 +50,47 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 
 		private string clientToken;
 
-		private string sourceEndpointPassword;
-
 		private string backupPlanId;
 
+		private string sourceEndpointDatabaseName;
+
+		private int? duplicationInfrequentAccessPeriod;
+
+		private string backupStartTime;
+
+		private string sourceEndpointIP;
+
+		private string crossRoleName;
+
+		private bool? enableBackupLog;
+
+		private string backupStorageType;
+
+		private int? duplicationArchivePeriod;
+
+		private int? backupLogIntervalSeconds;
+
+		private string crossAliyunId;
+
+		private bool? autoStartBackup;
+
+		private string sourceEndpointPassword;
+
 		private string backupObjects;
+
+		private long? backupRateLimit;
 
 		private string ownerId;
 
 		private int? sourceEndpointPort;
 
-		private string sourceEndpointDatabaseName;
-
 		private int? backupRetentionPeriod;
-
-		private int? duplicationInfrequentAccessPeriod;
 
 		private string backupPeriod;
 
-		private string backupStartTime;
+		private long? backupSpeedLimit;
 
 		private string sourceEndpointInstanceType;
-
-		private string sourceEndpointIP;
 
 		private string backupPlanName;
 
@@ -76,7 +98,7 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 
 		private string oSSBucketName;
 
-		private bool? enableBackupLog;
+		private string backupStrategyType;
 
 		public string SourceEndpointRegion
 		{
@@ -88,19 +110,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				sourceEndpointRegion = value;
 				DictionaryUtil.Add(QueryParameters, "SourceEndpointRegion", value);
-			}
-		}
-
-		public int? DuplicationArchivePeriod
-		{
-			get
-			{
-				return duplicationArchivePeriod;
-			}
-			set	
-			{
-				duplicationArchivePeriod = value;
-				DictionaryUtil.Add(QueryParameters, "DuplicationArchivePeriod", value.ToString());
 			}
 		}
 
@@ -156,19 +165,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public string SourceEndpointPassword
-		{
-			get
-			{
-				return sourceEndpointPassword;
-			}
-			set	
-			{
-				sourceEndpointPassword = value;
-				DictionaryUtil.Add(QueryParameters, "SourceEndpointPassword", value);
-			}
-		}
-
 		public string BackupPlanId
 		{
 			get
@@ -182,6 +178,162 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
+		public string SourceEndpointDatabaseName
+		{
+			get
+			{
+				return sourceEndpointDatabaseName;
+			}
+			set	
+			{
+				sourceEndpointDatabaseName = value;
+				DictionaryUtil.Add(QueryParameters, "SourceEndpointDatabaseName", value);
+			}
+		}
+
+		public int? DuplicationInfrequentAccessPeriod
+		{
+			get
+			{
+				return duplicationInfrequentAccessPeriod;
+			}
+			set	
+			{
+				duplicationInfrequentAccessPeriod = value;
+				DictionaryUtil.Add(QueryParameters, "DuplicationInfrequentAccessPeriod", value.ToString());
+			}
+		}
+
+		public string BackupStartTime
+		{
+			get
+			{
+				return backupStartTime;
+			}
+			set	
+			{
+				backupStartTime = value;
+				DictionaryUtil.Add(QueryParameters, "BackupStartTime", value);
+			}
+		}
+
+		public string SourceEndpointIP
+		{
+			get
+			{
+				return sourceEndpointIP;
+			}
+			set	
+			{
+				sourceEndpointIP = value;
+				DictionaryUtil.Add(QueryParameters, "SourceEndpointIP", value);
+			}
+		}
+
+		public string CrossRoleName
+		{
+			get
+			{
+				return crossRoleName;
+			}
+			set	
+			{
+				crossRoleName = value;
+				DictionaryUtil.Add(QueryParameters, "CrossRoleName", value);
+			}
+		}
+
+		public bool? EnableBackupLog
+		{
+			get
+			{
+				return enableBackupLog;
+			}
+			set	
+			{
+				enableBackupLog = value;
+				DictionaryUtil.Add(QueryParameters, "EnableBackupLog", value.ToString());
+			}
+		}
+
+		public string BackupStorageType
+		{
+			get
+			{
+				return backupStorageType;
+			}
+			set	
+			{
+				backupStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "BackupStorageType", value);
+			}
+		}
+
+		public int? DuplicationArchivePeriod
+		{
+			get
+			{
+				return duplicationArchivePeriod;
+			}
+			set	
+			{
+				duplicationArchivePeriod = value;
+				DictionaryUtil.Add(QueryParameters, "DuplicationArchivePeriod", value.ToString());
+			}
+		}
+
+		public int? BackupLogIntervalSeconds
+		{
+			get
+			{
+				return backupLogIntervalSeconds;
+			}
+			set	
+			{
+				backupLogIntervalSeconds = value;
+				DictionaryUtil.Add(QueryParameters, "BackupLogIntervalSeconds", value.ToString());
+			}
+		}
+
+		public string CrossAliyunId
+		{
+			get
+			{
+				return crossAliyunId;
+			}
+			set	
+			{
+				crossAliyunId = value;
+				DictionaryUtil.Add(QueryParameters, "CrossAliyunId", value);
+			}
+		}
+
+		public bool? AutoStartBackup
+		{
+			get
+			{
+				return autoStartBackup;
+			}
+			set	
+			{
+				autoStartBackup = value;
+				DictionaryUtil.Add(QueryParameters, "AutoStartBackup", value.ToString());
+			}
+		}
+
+		public string SourceEndpointPassword
+		{
+			get
+			{
+				return sourceEndpointPassword;
+			}
+			set	
+			{
+				sourceEndpointPassword = value;
+				DictionaryUtil.Add(QueryParameters, "SourceEndpointPassword", value);
+			}
+		}
+
 		public string BackupObjects
 		{
 			get
@@ -192,6 +344,19 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				backupObjects = value;
 				DictionaryUtil.Add(QueryParameters, "BackupObjects", value);
+			}
+		}
+
+		public long? BackupRateLimit
+		{
+			get
+			{
+				return backupRateLimit;
+			}
+			set	
+			{
+				backupRateLimit = value;
+				DictionaryUtil.Add(QueryParameters, "BackupRateLimit", value.ToString());
 			}
 		}
 
@@ -221,19 +386,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public string SourceEndpointDatabaseName
-		{
-			get
-			{
-				return sourceEndpointDatabaseName;
-			}
-			set	
-			{
-				sourceEndpointDatabaseName = value;
-				DictionaryUtil.Add(QueryParameters, "SourceEndpointDatabaseName", value);
-			}
-		}
-
 		public int? BackupRetentionPeriod
 		{
 			get
@@ -244,19 +396,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				backupRetentionPeriod = value;
 				DictionaryUtil.Add(QueryParameters, "BackupRetentionPeriod", value.ToString());
-			}
-		}
-
-		public int? DuplicationInfrequentAccessPeriod
-		{
-			get
-			{
-				return duplicationInfrequentAccessPeriod;
-			}
-			set	
-			{
-				duplicationInfrequentAccessPeriod = value;
-				DictionaryUtil.Add(QueryParameters, "DuplicationInfrequentAccessPeriod", value.ToString());
 			}
 		}
 
@@ -273,16 +412,16 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public string BackupStartTime
+		public long? BackupSpeedLimit
 		{
 			get
 			{
-				return backupStartTime;
+				return backupSpeedLimit;
 			}
 			set	
 			{
-				backupStartTime = value;
-				DictionaryUtil.Add(QueryParameters, "BackupStartTime", value);
+				backupSpeedLimit = value;
+				DictionaryUtil.Add(QueryParameters, "BackupSpeedLimit", value.ToString());
 			}
 		}
 
@@ -296,19 +435,6 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			{
 				sourceEndpointInstanceType = value;
 				DictionaryUtil.Add(QueryParameters, "SourceEndpointInstanceType", value);
-			}
-		}
-
-		public string SourceEndpointIP
-		{
-			get
-			{
-				return sourceEndpointIP;
-			}
-			set	
-			{
-				sourceEndpointIP = value;
-				DictionaryUtil.Add(QueryParameters, "SourceEndpointIP", value);
 			}
 		}
 
@@ -351,16 +477,16 @@ namespace Aliyun.Acs.Dbs.Model.V20190306
 			}
 		}
 
-		public bool? EnableBackupLog
+		public string BackupStrategyType
 		{
 			get
 			{
-				return enableBackupLog;
+				return backupStrategyType;
 			}
 			set	
 			{
-				enableBackupLog = value;
-				DictionaryUtil.Add(QueryParameters, "EnableBackupLog", value.ToString());
+				backupStrategyType = value;
+				DictionaryUtil.Add(QueryParameters, "BackupStrategyType", value);
 			}
 		}
 

@@ -32,9 +32,13 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryPageByApplyIdRequest()
             : base("Iot", "2018-01-20", "QueryPageByApplyId", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? applyId;
 
 		private string iotInstanceId;
 
@@ -42,18 +46,7 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 
 		private int? currentPage;
 
-		public long? ApplyId
-		{
-			get
-			{
-				return applyId;
-			}
-			set	
-			{
-				applyId = value;
-				DictionaryUtil.Add(QueryParameters, "ApplyId", value.ToString());
-			}
-		}
+		private long? applyId;
 
 		public string IotInstanceId
 		{
@@ -91,6 +84,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				currentPage = value;
 				DictionaryUtil.Add(QueryParameters, "CurrentPage", value.ToString());
+			}
+		}
+
+		public long? ApplyId
+		{
+			get
+			{
+				return applyId;
+			}
+			set	
+			{
+				applyId = value;
+				DictionaryUtil.Add(QueryParameters, "ApplyId", value.ToString());
 			}
 		}
 

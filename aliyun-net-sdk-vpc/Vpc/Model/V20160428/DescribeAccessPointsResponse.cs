@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -113,6 +114,8 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 			private string description;
 
+			private List<DescribeAccessPoints_AccessPointFeatureModel> accessPointFeatureModels;
+
 			public string AccessPointId
 			{
 				get
@@ -206,6 +209,50 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					description = value;
+				}
+			}
+
+			public List<DescribeAccessPoints_AccessPointFeatureModel> AccessPointFeatureModels
+			{
+				get
+				{
+					return accessPointFeatureModels;
+				}
+				set	
+				{
+					accessPointFeatureModels = value;
+				}
+			}
+
+			public class DescribeAccessPoints_AccessPointFeatureModel
+			{
+
+				private string featureKey;
+
+				private string featureValue;
+
+				public string FeatureKey
+				{
+					get
+					{
+						return featureKey;
+					}
+					set	
+					{
+						featureKey = value;
+					}
+				}
+
+				public string FeatureValue
+				{
+					get
+					{
+						return featureValue;
+					}
+					set	
+					{
+						featureValue = value;
+					}
 				}
 			}
 		}

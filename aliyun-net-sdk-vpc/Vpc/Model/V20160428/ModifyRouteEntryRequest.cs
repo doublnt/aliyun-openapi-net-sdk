@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,21 +32,40 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public ModifyRouteEntryRequest()
             : base("Vpc", "2016-04-28", "ModifyRouteEntry", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private long? resourceOwnerId;
 
 		private string routeEntryName;
 
-		private string regionId;
-
-		private string routeEntryId;
+		private string description;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string action;
-
 		private long? ownerId;
+
+		private string routeEntryId;
+
+		public long? ResourceOwnerId
+		{
+			get
+			{
+				return resourceOwnerId;
+			}
+			set	
+			{
+				resourceOwnerId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
 
 		public string RouteEntryName
 		{
@@ -60,29 +80,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
+		public string Description
 		{
 			get
 			{
-				return regionId;
+				return description;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string RouteEntryId
-		{
-			get
-			{
-				return routeEntryId;
-			}
-			set	
-			{
-				routeEntryId = value;
-				DictionaryUtil.Add(QueryParameters, "RouteEntryId", value);
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 
@@ -112,19 +119,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -138,7 +132,20 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override ModifyRouteEntryResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string RouteEntryId
+		{
+			get
+			{
+				return routeEntryId;
+			}
+			set	
+			{
+				routeEntryId = value;
+				DictionaryUtil.Add(QueryParameters, "RouteEntryId", value);
+			}
+		}
+
+        public override ModifyRouteEntryResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ModifyRouteEntryResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

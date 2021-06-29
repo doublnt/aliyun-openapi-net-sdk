@@ -32,29 +32,21 @@ namespace Aliyun.Acs.Sts.Model.V20150401
         public AssumeRoleRequest()
             : base("Sts", "2015-04-01", "AssumeRole", "sts", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
 			Protocol = ProtocolType.HTTPS;
         }
 
-		private string roleArn;
-
 		private string roleSessionName;
-
-		private long? durationSeconds;
 
 		private string policy;
 
-		public string RoleArn
-		{
-			get
-			{
-				return roleArn;
-			}
-			set	
-			{
-				roleArn = value;
-				DictionaryUtil.Add(QueryParameters, "RoleArn", value);
-			}
-		}
+		private string roleArn;
+
+		private long? durationSeconds;
 
 		public string RoleSessionName
 		{
@@ -69,19 +61,6 @@ namespace Aliyun.Acs.Sts.Model.V20150401
 			}
 		}
 
-		public long? DurationSeconds
-		{
-			get
-			{
-				return durationSeconds;
-			}
-			set	
-			{
-				durationSeconds = value;
-				DictionaryUtil.Add(QueryParameters, "DurationSeconds", value.ToString());
-			}
-		}
-
 		public string Policy
 		{
 			get
@@ -92,6 +71,32 @@ namespace Aliyun.Acs.Sts.Model.V20150401
 			{
 				policy = value;
 				DictionaryUtil.Add(QueryParameters, "Policy", value);
+			}
+		}
+
+		public string RoleArn
+		{
+			get
+			{
+				return roleArn;
+			}
+			set	
+			{
+				roleArn = value;
+				DictionaryUtil.Add(QueryParameters, "RoleArn", value);
+			}
+		}
+
+		public long? DurationSeconds
+		{
+			get
+			{
+				return durationSeconds;
+			}
+			set	
+			{
+				durationSeconds = value;
+				DictionaryUtil.Add(QueryParameters, "DurationSeconds", value.ToString());
 			}
 		}
 

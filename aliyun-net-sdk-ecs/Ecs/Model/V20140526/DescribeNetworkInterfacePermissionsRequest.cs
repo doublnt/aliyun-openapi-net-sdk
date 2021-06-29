@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeNetworkInterfacePermissionsRequest()
             : base("Ecs", "2014-05-26", "DescribeNetworkInterfacePermissions", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -40,7 +46,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? pageSize;
 
-		private List<string> networkInterfacePermissionIds;
+		private List<string> networkInterfacePermissionIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 

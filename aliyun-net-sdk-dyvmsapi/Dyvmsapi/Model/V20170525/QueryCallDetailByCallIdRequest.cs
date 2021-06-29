@@ -30,8 +30,13 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class QueryCallDetailByCallIdRequest : RpcAcsRequest<QueryCallDetailByCallIdResponse>
     {
         public QueryCallDetailByCallIdRequest()
-            : base("Dyvmsapi", "2017-05-25", "QueryCallDetailByCallId")
+            : base("Dyvmsapi", "2017-05-25", "QueryCallDetailByCallId", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string callId;
@@ -42,13 +47,9 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private string resourceOwnerAccount;
 
-		private string action;
-
 		private long? prodId;
 
 		private long? ownerId;
-
-		private string accessKeyId;
 
 		public string CallId
 		{
@@ -102,19 +103,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? ProdId
 		{
 			get
@@ -138,19 +126,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

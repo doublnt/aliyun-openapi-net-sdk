@@ -190,6 +190,20 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 			private string masterZone;
 
+			private string autoUpgradeMinorVersion;
+
+			private int? proxyType;
+
+			private string consoleVersion;
+
+			private bool? multipleTempUpgrade;
+
+			private string originConfiguration;
+
+			private string dedicatedHostGroupId;
+
+			private string superPermissionMode;
+
 			private List<DescribeDBInstanceAttribute_SlaveZone> slaveZones;
 
 			private List<DescribeDBInstanceAttribute_ReadOnlyDBInstanceId> readOnlyDBInstanceIds;
@@ -1000,6 +1014,90 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 				}
 			}
 
+			public string AutoUpgradeMinorVersion
+			{
+				get
+				{
+					return autoUpgradeMinorVersion;
+				}
+				set	
+				{
+					autoUpgradeMinorVersion = value;
+				}
+			}
+
+			public int? ProxyType
+			{
+				get
+				{
+					return proxyType;
+				}
+				set	
+				{
+					proxyType = value;
+				}
+			}
+
+			public string ConsoleVersion
+			{
+				get
+				{
+					return consoleVersion;
+				}
+				set	
+				{
+					consoleVersion = value;
+				}
+			}
+
+			public bool? MultipleTempUpgrade
+			{
+				get
+				{
+					return multipleTempUpgrade;
+				}
+				set	
+				{
+					multipleTempUpgrade = value;
+				}
+			}
+
+			public string OriginConfiguration
+			{
+				get
+				{
+					return originConfiguration;
+				}
+				set	
+				{
+					originConfiguration = value;
+				}
+			}
+
+			public string DedicatedHostGroupId
+			{
+				get
+				{
+					return dedicatedHostGroupId;
+				}
+				set	
+				{
+					dedicatedHostGroupId = value;
+				}
+			}
+
+			public string SuperPermissionMode
+			{
+				get
+				{
+					return superPermissionMode;
+				}
+				set	
+				{
+					superPermissionMode = value;
+				}
+			}
+
 			public List<DescribeDBInstanceAttribute_SlaveZone> SlaveZones
 			{
 				get
@@ -1081,7 +1179,7 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 				private string activeReplicaDBInstanceID;
 
-				private List<string> dBInstanceId;
+				private List<string> dBInstanceIds;
 
 				public string ReplicaGroupID
 				{
@@ -1119,15 +1217,15 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 					}
 				}
 
-				public List<string> DBInstanceId
+				public List<string> DBInstanceIds
 				{
 					get
 					{
-						return dBInstanceId;
+						return dBInstanceIds;
 					}
 					set	
 					{
-						dBInstanceId = value;
+						dBInstanceIds = value;
 					}
 				}
 			}

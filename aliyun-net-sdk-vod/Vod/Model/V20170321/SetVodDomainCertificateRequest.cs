@@ -32,23 +32,42 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SetVodDomainCertificateRequest()
             : base("vod", "2017-03-21", "SetVodDomainCertificate", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string sSLProtocol;
 
 		private string securityToken;
 
-		private string sSLPub;
+		private string sSLPri;
 
 		private string certName;
-
-		private string sSLProtocol;
 
 		private string domainName;
 
 		private long? ownerId;
 
+		private string sSLPub;
+
 		private string region;
 
-		private string sSLPri;
+		public string SSLProtocol
+		{
+			get
+			{
+				return sSLProtocol;
+			}
+			set	
+			{
+				sSLProtocol = value;
+				DictionaryUtil.Add(QueryParameters, "SSLProtocol", value);
+			}
+		}
 
 		public string SecurityToken
 		{
@@ -63,16 +82,16 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string SSLPub
+		public string SSLPri
 		{
 			get
 			{
-				return sSLPub;
+				return sSLPri;
 			}
 			set	
 			{
-				sSLPub = value;
-				DictionaryUtil.Add(QueryParameters, "SSLPub", value);
+				sSLPri = value;
+				DictionaryUtil.Add(QueryParameters, "SSLPri", value);
 			}
 		}
 
@@ -86,19 +105,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				certName = value;
 				DictionaryUtil.Add(QueryParameters, "CertName", value);
-			}
-		}
-
-		public string SSLProtocol
-		{
-			get
-			{
-				return sSLProtocol;
-			}
-			set	
-			{
-				sSLProtocol = value;
-				DictionaryUtil.Add(QueryParameters, "SSLProtocol", value);
 			}
 		}
 
@@ -128,6 +134,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
+		public string SSLPub
+		{
+			get
+			{
+				return sSLPub;
+			}
+			set	
+			{
+				sSLPub = value;
+				DictionaryUtil.Add(QueryParameters, "SSLPub", value);
+			}
+		}
+
 		public string Region
 		{
 			get
@@ -138,19 +157,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				region = value;
 				DictionaryUtil.Add(QueryParameters, "Region", value);
-			}
-		}
-
-		public string SSLPri
-		{
-			get
-			{
-				return sSLPri;
-			}
-			set	
-			{
-				sSLPri = value;
-				DictionaryUtil.Add(QueryParameters, "SSLPri", value);
 			}
 		}
 

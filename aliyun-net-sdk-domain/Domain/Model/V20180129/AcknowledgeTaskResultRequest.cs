@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,11 +30,17 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class AcknowledgeTaskResultRequest : RpcAcsRequest<AcknowledgeTaskResultResponse>
     {
         public AcknowledgeTaskResultRequest()
-            : base("Domain", "2018-01-29", "AcknowledgeTaskResult")
+            : base("Domain", "2018-01-29", "AcknowledgeTaskResult", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> taskDetailNos;
+		private List<string> taskDetailNos = new List<string>(){ };
 
 		private string userClientIp;
 

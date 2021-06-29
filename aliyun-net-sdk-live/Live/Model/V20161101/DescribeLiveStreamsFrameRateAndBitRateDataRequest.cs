@@ -32,21 +32,40 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DescribeLiveStreamsFrameRateAndBitRateDataRequest()
             : base("live", "2016-11-01", "DescribeLiveStreamsFrameRateAndBitRateData", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string startTime;
 
 		private string appName;
 
 		private string securityToken;
 
+		private string streamName;
+
 		private string domainName;
 
 		private string endTime;
 
-		private string startTime;
-
 		private long? ownerId;
 
-		private string streamName;
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
 
 		public string AppName
 		{
@@ -71,6 +90,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string StreamName
+		{
+			get
+			{
+				return streamName;
+			}
+			set	
+			{
+				streamName = value;
+				DictionaryUtil.Add(QueryParameters, "StreamName", value);
 			}
 		}
 
@@ -100,19 +132,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -123,19 +142,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string StreamName
-		{
-			get
-			{
-				return streamName;
-			}
-			set	
-			{
-				streamName = value;
-				DictionaryUtil.Add(QueryParameters, "StreamName", value);
 			}
 		}
 

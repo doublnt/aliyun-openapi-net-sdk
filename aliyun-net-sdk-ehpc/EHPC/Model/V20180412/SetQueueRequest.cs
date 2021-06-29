@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,19 +31,20 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class SetQueueRequest : RpcAcsRequest<SetQueueResponse>
     {
         public SetQueueRequest()
-            : base("EHPC", "2018-04-12", "SetQueue", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "SetQueue")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string queueName;
 
-		private List<Node> nodes;
-
-		private string action;
-
 		private string clusterId;
 
-		private string accessKeyId;
+		private List<Node> nodes = new List<Node>(){ };
 
 		public string QueueName
 		{
@@ -54,6 +56,19 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				queueName = value;
 				DictionaryUtil.Add(QueryParameters, "QueueName", value);
+			}
+		}
+
+		public string ClusterId
+		{
+			get
+			{
+				return clusterId;
+			}
+			set	
+			{
+				clusterId = value;
+				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
 			}
 		}
 
@@ -71,45 +86,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				{
 					DictionaryUtil.Add(QueryParameters,"Node." + (i + 1) + ".Name", nodes[i].Name);
 				}
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ClusterId
-		{
-			get
-			{
-				return clusterId;
-			}
-			set	
-			{
-				clusterId = value;
-				DictionaryUtil.Add(QueryParameters, "ClusterId", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

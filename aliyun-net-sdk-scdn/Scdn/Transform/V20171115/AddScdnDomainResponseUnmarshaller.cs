@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.scdn.Model.V20171115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.scdn.Model.V20171115;
 
 namespace Aliyun.Acs.scdn.Transform.V20171115
 {
     public class AddScdnDomainResponseUnmarshaller
     {
-        public static AddScdnDomainResponse Unmarshall(UnmarshallerContext context)
+        public static AddScdnDomainResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			AddScdnDomainResponse addScdnDomainResponse = new AddScdnDomainResponse();
 
-			addScdnDomainResponse.HttpResponse = context.HttpResponse;
-			addScdnDomainResponse.RequestId = context.StringValue("AddScdnDomain.RequestId");
+			addScdnDomainResponse.HttpResponse = _ctx.HttpResponse;
+			addScdnDomainResponse.RequestId = _ctx.StringValue("AddScdnDomain.RequestId");
         
 			return addScdnDomainResponse;
         }

@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,31 +32,35 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public CreateVSwitchRequest()
             : base("Vpc", "2016-04-28", "CreateVSwitch", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string ownerAccount;
-
 		private string description;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
 
 		private long? ownerId;
 
 		private int? ipv6CidrBlock;
 
-		private string regionId;
+		private string vpcIpv6CidrBlock;
 
 		private string vpcId;
 
 		private string vSwitchName;
 
 		private string cidrBlock;
-
-		private string action;
 
 		private string zoneId;
 
@@ -72,19 +77,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -98,19 +90,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
 		public string Description
 		{
 			get
@@ -121,6 +100,32 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				description = value;
 				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -150,16 +155,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
+		public string VpcIpv6CidrBlock
 		{
 			get
 			{
-				return regionId;
+				return vpcIpv6CidrBlock;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
+				vpcIpv6CidrBlock = value;
+				DictionaryUtil.Add(QueryParameters, "VpcIpv6CidrBlock", value);
 			}
 		}
 
@@ -202,19 +207,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string ZoneId
 		{
 			get
@@ -228,7 +220,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override CreateVSwitchResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override CreateVSwitchResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return CreateVSwitchResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

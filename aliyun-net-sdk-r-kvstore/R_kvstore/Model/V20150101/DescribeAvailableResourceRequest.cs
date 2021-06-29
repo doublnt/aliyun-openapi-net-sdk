@@ -32,21 +32,39 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeAvailableResourceRequest()
             : base("R-kvstore", "2015-01-01", "DescribeAvailableResource", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string productType;
+
+		private string resourceGroupId;
+
 		private string securityToken;
+
+		private string engine;
+
+		private string instanceChargeType;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string zoneId;
-
 		private long? ownerId;
 
-		private string instanceChargeType;
+		private string instanceId;
+
+		private string acceptLanguage;
+
+		private string zoneId;
+
+		private string orderType;
 
 		public long? ResourceOwnerId
 		{
@@ -61,6 +79,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
+		public string ProductType
+		{
+			get
+			{
+				return productType;
+			}
+			set	
+			{
+				productType = value;
+				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
 		public string SecurityToken
 		{
 			get
@@ -71,6 +115,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string Engine
+		{
+			get
+			{
+				return engine;
+			}
+			set	
+			{
+				engine = value;
+				DictionaryUtil.Add(QueryParameters, "Engine", value);
+			}
+		}
+
+		public string InstanceChargeType
+		{
+			get
+			{
+				return instanceChargeType;
+			}
+			set	
+			{
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
 			}
 		}
 
@@ -100,19 +170,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string ZoneId
-		{
-			get
-			{
-				return zoneId;
-			}
-			set	
-			{
-				zoneId = value;
-				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -126,16 +183,55 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceChargeType
+		public string InstanceId
 		{
 			get
 			{
-				return instanceChargeType;
+				return instanceId;
 			}
 			set	
 			{
-				instanceChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string AcceptLanguage
+		{
+			get
+			{
+				return acceptLanguage;
+			}
+			set	
+			{
+				acceptLanguage = value;
+				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
+			}
+		}
+
+		public string ZoneId
+		{
+			get
+			{
+				return zoneId;
+			}
+			set	
+			{
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
+			}
+		}
+
+		public string OrderType
+		{
+			get
+			{
+				return orderType;
+			}
+			set	
+			{
+				orderType = value;
+				DictionaryUtil.Add(QueryParameters, "OrderType", value);
 			}
 		}
 

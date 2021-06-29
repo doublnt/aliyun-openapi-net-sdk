@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,17 +30,23 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class QueryTaskDetailHistoryRequest : RpcAcsRequest<QueryTaskDetailHistoryResponse>
     {
         public QueryTaskDetailHistoryRequest()
-            : base("Domain", "2018-01-29", "QueryTaskDetailHistory")
+            : base("Domain", "2018-01-29", "QueryTaskDetailHistory", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string domainName;
 
 		private int? taskStatus;
 
 		private string userClientIp;
 
 		private string taskNo;
-
-		private string domainName;
 
 		private int? pageSize;
 
@@ -50,6 +55,19 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 		private string lang;
 
 		private string domainNameCursor;
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
 
 		public int? TaskStatus
 		{
@@ -87,19 +105,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				taskNo = value;
 				DictionaryUtil.Add(QueryParameters, "TaskNo", value);
-			}
-		}
-
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
 			}
 		}
 

@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -124,6 +125,12 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private int? maxConnections;
 
 			private string internetIp;
+
+			private bool? enableMultiFactorAuth;
+
+			private string iDaaSInstanceId;
+
+			private string iDaaSRegionId;
 
 			public string RegionId
 			{
@@ -290,6 +297,42 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				set	
 				{
 					internetIp = value;
+				}
+			}
+
+			public bool? EnableMultiFactorAuth
+			{
+				get
+				{
+					return enableMultiFactorAuth;
+				}
+				set	
+				{
+					enableMultiFactorAuth = value;
+				}
+			}
+
+			public string IDaaSInstanceId
+			{
+				get
+				{
+					return iDaaSInstanceId;
+				}
+				set	
+				{
+					iDaaSInstanceId = value;
+				}
+			}
+
+			public string IDaaSRegionId
+			{
+				get
+				{
+					return iDaaSRegionId;
+				}
+				set	
+				{
+					iDaaSRegionId = value;
 				}
 			}
 		}

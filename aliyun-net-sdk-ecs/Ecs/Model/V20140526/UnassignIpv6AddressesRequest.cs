@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public UnassignIpv6AddressesRequest()
             : base("Ecs", "2014-05-26", "UnassignIpv6Addresses", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -44,7 +51,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string networkInterfaceId;
 
-		private List<string> ipv6Addresss;
+		private List<string> ipv6Addresss = new List<string>(){ };
 
 		public long? ResourceOwnerId
 		{

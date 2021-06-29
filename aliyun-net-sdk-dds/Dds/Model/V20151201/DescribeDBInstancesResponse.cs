@@ -25,15 +25,27 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 	public class DescribeDBInstancesResponse : AcsResponse
 	{
 
-		private string requestId;
+		private int? totalCount;
 
-		private int? pageNumber;
+		private string requestId;
 
 		private int? pageSize;
 
-		private int? totalCount;
+		private int? pageNumber;
 
 		private List<DescribeDBInstances_DBInstance> dBInstances;
+
+		public int? TotalCount
+		{
+			get
+			{
+				return totalCount;
+			}
+			set	
+			{
+				totalCount = value;
+			}
+		}
 
 		public string RequestId
 		{
@@ -44,18 +56,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			set	
 			{
 				requestId = value;
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
 			}
 		}
 
@@ -71,15 +71,15 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public int? TotalCount
+		public int? PageNumber
 		{
 			get
 			{
-				return totalCount;
+				return pageNumber;
 			}
 			set	
 			{
-				totalCount = value;
+				pageNumber = value;
 			}
 		}
 
@@ -98,33 +98,19 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 		public class DescribeDBInstances_DBInstance
 		{
 
-			private string resourceGroupId;
-
-			private string dBInstanceId;
-
-			private string dBInstanceDescription;
-
-			private string regionId;
-
-			private string zoneId;
-
-			private string engine;
-
-			private string engineVersion;
-
-			private string dBInstanceClass;
-
-			private int? dBInstanceStorage;
-
-			private string dBInstanceStatus;
-
-			private string lockMode;
+			private string creationTime;
 
 			private string chargeType;
 
+			private string vpcAuthMode;
+
 			private string networkType;
 
-			private string creationTime;
+			private string lockMode;
+
+			private string engineVersion;
+
+			private string dBInstanceDescription;
 
 			private string expireTime;
 
@@ -132,145 +118,43 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 			private string lastDowngradeTime;
 
+			private string destroyTime;
+
+			private string dBInstanceStatus;
+
+			private string regionId;
+
+			private int? dBInstanceStorage;
+
+			private string resourceGroupId;
+
+			private string zoneId;
+
+			private string dBInstanceId;
+
+			private string dBInstanceClass;
+
+			private string engine;
+
 			private string replicationFactor;
 
-			private string destroyTime;
+			private string kindCode;
+
+			private List<DescribeDBInstances_Tag> tags;
 
 			private List<DescribeDBInstances_MongosAttribute> mongosList;
 
 			private List<DescribeDBInstances_ShardAttribute> shardList;
 
-			private List<DescribeDBInstances_Tag> tags;
-
-			public string ResourceGroupId
+			public string CreationTime
 			{
 				get
 				{
-					return resourceGroupId;
+					return creationTime;
 				}
 				set	
 				{
-					resourceGroupId = value;
-				}
-			}
-
-			public string DBInstanceId
-			{
-				get
-				{
-					return dBInstanceId;
-				}
-				set	
-				{
-					dBInstanceId = value;
-				}
-			}
-
-			public string DBInstanceDescription
-			{
-				get
-				{
-					return dBInstanceDescription;
-				}
-				set	
-				{
-					dBInstanceDescription = value;
-				}
-			}
-
-			public string RegionId
-			{
-				get
-				{
-					return regionId;
-				}
-				set	
-				{
-					regionId = value;
-				}
-			}
-
-			public string ZoneId
-			{
-				get
-				{
-					return zoneId;
-				}
-				set	
-				{
-					zoneId = value;
-				}
-			}
-
-			public string Engine
-			{
-				get
-				{
-					return engine;
-				}
-				set	
-				{
-					engine = value;
-				}
-			}
-
-			public string EngineVersion
-			{
-				get
-				{
-					return engineVersion;
-				}
-				set	
-				{
-					engineVersion = value;
-				}
-			}
-
-			public string DBInstanceClass
-			{
-				get
-				{
-					return dBInstanceClass;
-				}
-				set	
-				{
-					dBInstanceClass = value;
-				}
-			}
-
-			public int? DBInstanceStorage
-			{
-				get
-				{
-					return dBInstanceStorage;
-				}
-				set	
-				{
-					dBInstanceStorage = value;
-				}
-			}
-
-			public string DBInstanceStatus
-			{
-				get
-				{
-					return dBInstanceStatus;
-				}
-				set	
-				{
-					dBInstanceStatus = value;
-				}
-			}
-
-			public string LockMode
-			{
-				get
-				{
-					return lockMode;
-				}
-				set	
-				{
-					lockMode = value;
+					creationTime = value;
 				}
 			}
 
@@ -286,6 +170,18 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				}
 			}
 
+			public string VpcAuthMode
+			{
+				get
+				{
+					return vpcAuthMode;
+				}
+				set	
+				{
+					vpcAuthMode = value;
+				}
+			}
+
 			public string NetworkType
 			{
 				get
@@ -298,15 +194,39 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				}
 			}
 
-			public string CreationTime
+			public string LockMode
 			{
 				get
 				{
-					return creationTime;
+					return lockMode;
 				}
 				set	
 				{
-					creationTime = value;
+					lockMode = value;
+				}
+			}
+
+			public string EngineVersion
+			{
+				get
+				{
+					return engineVersion;
+				}
+				set	
+				{
+					engineVersion = value;
+				}
+			}
+
+			public string DBInstanceDescription
+			{
+				get
+				{
+					return dBInstanceDescription;
+				}
+				set	
+				{
+					dBInstanceDescription = value;
 				}
 			}
 
@@ -346,6 +266,114 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				}
 			}
 
+			public string DestroyTime
+			{
+				get
+				{
+					return destroyTime;
+				}
+				set	
+				{
+					destroyTime = value;
+				}
+			}
+
+			public string DBInstanceStatus
+			{
+				get
+				{
+					return dBInstanceStatus;
+				}
+				set	
+				{
+					dBInstanceStatus = value;
+				}
+			}
+
+			public string RegionId
+			{
+				get
+				{
+					return regionId;
+				}
+				set	
+				{
+					regionId = value;
+				}
+			}
+
+			public int? DBInstanceStorage
+			{
+				get
+				{
+					return dBInstanceStorage;
+				}
+				set	
+				{
+					dBInstanceStorage = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
+				}
+			}
+
+			public string ZoneId
+			{
+				get
+				{
+					return zoneId;
+				}
+				set	
+				{
+					zoneId = value;
+				}
+			}
+
+			public string DBInstanceId
+			{
+				get
+				{
+					return dBInstanceId;
+				}
+				set	
+				{
+					dBInstanceId = value;
+				}
+			}
+
+			public string DBInstanceClass
+			{
+				get
+				{
+					return dBInstanceClass;
+				}
+				set	
+				{
+					dBInstanceClass = value;
+				}
+			}
+
+			public string Engine
+			{
+				get
+				{
+					return engine;
+				}
+				set	
+				{
+					engine = value;
+				}
+			}
+
 			public string ReplicationFactor
 			{
 				get
@@ -358,15 +386,27 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				}
 			}
 
-			public string DestroyTime
+			public string KindCode
 			{
 				get
 				{
-					return destroyTime;
+					return kindCode;
 				}
 				set	
 				{
-					destroyTime = value;
+					kindCode = value;
+				}
+			}
+
+			public List<DescribeDBInstances_Tag> Tags
+			{
+				get
+				{
+					return tags;
+				}
+				set	
+				{
+					tags = value;
 				}
 			}
 
@@ -391,152 +431,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 				set	
 				{
 					shardList = value;
-				}
-			}
-
-			public List<DescribeDBInstances_Tag> Tags
-			{
-				get
-				{
-					return tags;
-				}
-				set	
-				{
-					tags = value;
-				}
-			}
-
-			public class DescribeDBInstances_MongosAttribute
-			{
-
-				private string nodeId;
-
-				private string nodeDescription;
-
-				private string nodeClass;
-
-				private string connectSting;
-
-				private int? port;
-
-				public string NodeId
-				{
-					get
-					{
-						return nodeId;
-					}
-					set	
-					{
-						nodeId = value;
-					}
-				}
-
-				public string NodeDescription
-				{
-					get
-					{
-						return nodeDescription;
-					}
-					set	
-					{
-						nodeDescription = value;
-					}
-				}
-
-				public string NodeClass
-				{
-					get
-					{
-						return nodeClass;
-					}
-					set	
-					{
-						nodeClass = value;
-					}
-				}
-
-				public string ConnectSting
-				{
-					get
-					{
-						return connectSting;
-					}
-					set	
-					{
-						connectSting = value;
-					}
-				}
-
-				public int? Port
-				{
-					get
-					{
-						return port;
-					}
-					set	
-					{
-						port = value;
-					}
-				}
-			}
-
-			public class DescribeDBInstances_ShardAttribute
-			{
-
-				private string nodeId;
-
-				private string nodeDescription;
-
-				private string nodeClass;
-
-				private int? nodeStorage;
-
-				public string NodeId
-				{
-					get
-					{
-						return nodeId;
-					}
-					set	
-					{
-						nodeId = value;
-					}
-				}
-
-				public string NodeDescription
-				{
-					get
-					{
-						return nodeDescription;
-					}
-					set	
-					{
-						nodeDescription = value;
-					}
-				}
-
-				public string NodeClass
-				{
-					get
-					{
-						return nodeClass;
-					}
-					set	
-					{
-						nodeClass = value;
-					}
-				}
-
-				public int? NodeStorage
-				{
-					get
-					{
-						return nodeStorage;
-					}
-					set	
-					{
-						nodeStorage = value;
-					}
 				}
 			}
 
@@ -568,6 +462,126 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 					set	
 					{
 						_value = value;
+					}
+				}
+			}
+
+			public class DescribeDBInstances_MongosAttribute
+			{
+
+				private string nodeClass;
+
+				private string nodeDescription;
+
+				private string nodeId;
+
+				public string NodeClass
+				{
+					get
+					{
+						return nodeClass;
+					}
+					set	
+					{
+						nodeClass = value;
+					}
+				}
+
+				public string NodeDescription
+				{
+					get
+					{
+						return nodeDescription;
+					}
+					set	
+					{
+						nodeDescription = value;
+					}
+				}
+
+				public string NodeId
+				{
+					get
+					{
+						return nodeId;
+					}
+					set	
+					{
+						nodeId = value;
+					}
+				}
+			}
+
+			public class DescribeDBInstances_ShardAttribute
+			{
+
+				private string nodeClass;
+
+				private string nodeDescription;
+
+				private int? nodeStorage;
+
+				private string nodeId;
+
+				private int? readonlyReplicas;
+
+				public string NodeClass
+				{
+					get
+					{
+						return nodeClass;
+					}
+					set	
+					{
+						nodeClass = value;
+					}
+				}
+
+				public string NodeDescription
+				{
+					get
+					{
+						return nodeDescription;
+					}
+					set	
+					{
+						nodeDescription = value;
+					}
+				}
+
+				public int? NodeStorage
+				{
+					get
+					{
+						return nodeStorage;
+					}
+					set	
+					{
+						nodeStorage = value;
+					}
+				}
+
+				public string NodeId
+				{
+					get
+					{
+						return nodeId;
+					}
+					set	
+					{
+						nodeId = value;
+					}
+				}
+
+				public int? ReadonlyReplicas
+				{
+					get
+					{
+						return readonlyReplicas;
+					}
+					set	
+					{
+						readonlyReplicas = value;
 					}
 				}
 			}

@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CancelSimulatedSystemEventsRequest()
             : base("Ecs", "2014-05-26", "CancelSimulatedSystemEvents", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> eventIds;
+		private List<string> eventIds = new List<string>(){ };
 
 		private long? resourceOwnerId;
 

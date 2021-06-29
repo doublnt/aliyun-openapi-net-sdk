@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeInstanceHistoryEventsRequest()
             : base("Ecs", "2014-05-26", "DescribeInstanceHistoryEvents", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<string> eventIds;
+		private List<string> eventIds = new List<string>(){ };
 
 		private long? resourceOwnerId;
 
@@ -42,13 +48,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? pageNumber;
 
+		private string impactLevel;
+
 		private int? pageSize;
 
-		private List<string> instanceEventCycleStatuss;
+		private List<string> instanceEventCycleStatuss = new List<string>(){ };
 
 		private string eventPublishTimeEnd;
 
-		private List<string> instanceEventTypes;
+		private List<string> resourceIds = new List<string>(){ };
+
+		private List<string> instanceEventTypes = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 
@@ -57,6 +67,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		private string notBeforeStart;
 
 		private long? ownerId;
+
+		private string resourceType;
 
 		private string eventPublishTimeStart;
 
@@ -122,6 +134,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string ImpactLevel
+		{
+			get
+			{
+				return impactLevel;
+			}
+			set	
+			{
+				impactLevel = value;
+				DictionaryUtil.Add(QueryParameters, "ImpactLevel", value);
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -162,6 +187,23 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				eventPublishTimeEnd = value;
 				DictionaryUtil.Add(QueryParameters, "EventPublishTime.End", value);
+			}
+		}
+
+		public List<string> ResourceIds
+		{
+			get
+			{
+				return resourceIds;
+			}
+
+			set
+			{
+				resourceIds = value;
+				for (int i = 0; i < resourceIds.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"ResourceId." + (i + 1) , resourceIds[i]);
+				}
 			}
 		}
 
@@ -231,6 +273,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string ResourceType
+		{
+			get
+			{
+				return resourceType;
+			}
+			set	
+			{
+				resourceType = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
 			}
 		}
 

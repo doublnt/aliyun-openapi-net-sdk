@@ -16,20 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.ROS.Model.V20150901;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.ROS.Model.V20150901;
 
 namespace Aliyun.Acs.ROS.Transform.V20150901
 {
     public class SetStackPolicyResponseUnmarshaller
     {
-        public static SetStackPolicyResponse Unmarshall(UnmarshallerContext context)
+        public static SetStackPolicyResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			SetStackPolicyResponse setStackPolicyResponse = new SetStackPolicyResponse();
 
-			setStackPolicyResponse.HttpResponse = context.HttpResponse;
+			setStackPolicyResponse.HttpResponse = _ctx.HttpResponse;
         
 			return setStackPolicyResponse;
         }

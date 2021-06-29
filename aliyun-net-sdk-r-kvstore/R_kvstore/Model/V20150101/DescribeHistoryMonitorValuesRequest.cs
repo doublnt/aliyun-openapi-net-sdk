@@ -32,9 +32,23 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeHistoryMonitorValuesRequest()
             : base("R-kvstore", "2015-01-01", "DescribeHistoryMonitorValues", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string startTime;
+
+		private string securityToken;
+
+		private string intervalForHistory;
+
+		private string nodeId;
 
 		private string resourceOwnerAccount;
 
@@ -42,17 +56,9 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string endTime;
 
-		private string startTime;
-
 		private long? ownerId;
 
 		private string instanceId;
-
-		private string securityToken;
-
-		private string intervalForHistory;
-
-		private string nodeId;
 
 		private string monitorKeys;
 
@@ -66,6 +72,58 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string IntervalForHistory
+		{
+			get
+			{
+				return intervalForHistory;
+			}
+			set	
+			{
+				intervalForHistory = value;
+				DictionaryUtil.Add(QueryParameters, "IntervalForHistory", value);
+			}
+		}
+
+		public string NodeId
+		{
+			get
+			{
+				return nodeId;
+			}
+			set	
+			{
+				nodeId = value;
+				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 
@@ -108,19 +166,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -144,45 +189,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				instanceId = value;
 				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public string IntervalForHistory
-		{
-			get
-			{
-				return intervalForHistory;
-			}
-			set	
-			{
-				intervalForHistory = value;
-				DictionaryUtil.Add(QueryParameters, "IntervalForHistory", value);
-			}
-		}
-
-		public string NodeId
-		{
-			get
-			{
-				return nodeId;
-			}
-			set	
-			{
-				nodeId = value;
-				DictionaryUtil.Add(QueryParameters, "NodeId", value);
 			}
 		}
 

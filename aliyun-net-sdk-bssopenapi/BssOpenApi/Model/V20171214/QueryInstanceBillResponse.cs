@@ -215,19 +215,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 				private string productDetail;
 
-				private long? ownerID;
+				private string ownerID;
 
 				private string billingItem;
 
-				private float? listPrice;
+				private string listPrice;
 
 				private string listPriceUnit;
 
-				private float? usage;
+				private string usage;
 
 				private string usageUnit;
 
-				private float? deductedByResourcePackage;
+				private string deductedByResourcePackage;
 
 				private float? pretaxGrossAmount;
 
@@ -264,6 +264,18 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 				private string region;
 
 				private string zone;
+
+				private string item;
+
+				private string servicePeriod;
+
+				private string billingDate;
+
+				private string servicePeriodUnit;
+
+				private string pipCode;
+
+				private string commodityCode;
 
 				public string InstanceID
 				{
@@ -361,7 +373,7 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					}
 				}
 
-				public long? OwnerID
+				public string OwnerID
 				{
 					get
 					{
@@ -385,7 +397,7 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					}
 				}
 
-				public float? ListPrice
+				public string ListPrice
 				{
 					get
 					{
@@ -409,7 +421,7 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					}
 				}
 
-				public float? Usage
+				public string Usage
 				{
 					get
 					{
@@ -433,7 +445,7 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					}
 				}
 
-				public float? DeductedByResourcePackage
+				public string DeductedByResourcePackage
 				{
 					get
 					{
@@ -658,6 +670,78 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 					set	
 					{
 						zone = value;
+					}
+				}
+
+				public string Item
+				{
+					get
+					{
+						return item;
+					}
+					set	
+					{
+						item = value;
+					}
+				}
+
+				public string ServicePeriod
+				{
+					get
+					{
+						return servicePeriod;
+					}
+					set	
+					{
+						servicePeriod = value;
+					}
+				}
+
+				public string BillingDate
+				{
+					get
+					{
+						return billingDate;
+					}
+					set	
+					{
+						billingDate = value;
+					}
+				}
+
+				public string ServicePeriodUnit
+				{
+					get
+					{
+						return servicePeriodUnit;
+					}
+					set	
+					{
+						servicePeriodUnit = value;
+					}
+				}
+
+				public string PipCode
+				{
+					get
+					{
+						return pipCode;
+					}
+					set	
+					{
+						pipCode = value;
+					}
+				}
+
+				public string CommodityCode
+				{
+					get
+					{
+						return commodityCode;
+					}
+					set	
+					{
+						commodityCode = value;
 					}
 				}
 			}

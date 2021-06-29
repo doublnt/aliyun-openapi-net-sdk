@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,6 +32,12 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public DescribeRegionsRequest()
             : base("Vpc", "2016-04-28", "DescribeRegions", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -39,13 +46,9 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 
 		private string ownerAccount;
 
-		private string acceptLanguage;
-
-		private string action;
-
 		private long? ownerId;
 
-		private string productType;
+		private string acceptLanguage;
 
 		public long? ResourceOwnerId
 		{
@@ -86,32 +89,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string AcceptLanguage
-		{
-			get
-			{
-				return acceptLanguage;
-			}
-			set	
-			{
-				acceptLanguage = value;
-				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -125,20 +102,20 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ProductType
+		public string AcceptLanguage
 		{
 			get
 			{
-				return productType;
+				return acceptLanguage;
 			}
 			set	
 			{
-				productType = value;
-				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+				acceptLanguage = value;
+				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
 			}
 		}
 
-        public override DescribeRegionsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeRegionsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeRegionsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

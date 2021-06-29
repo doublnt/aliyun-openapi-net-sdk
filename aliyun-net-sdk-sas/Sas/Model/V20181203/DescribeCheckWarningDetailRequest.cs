@@ -32,6 +32,12 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public DescribeCheckWarningDetailRequest()
             : base("Sas", "2018-12-03", "DescribeCheckWarningDetail", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string sourceIp;

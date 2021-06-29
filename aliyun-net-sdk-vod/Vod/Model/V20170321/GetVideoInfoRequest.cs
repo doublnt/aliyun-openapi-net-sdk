@@ -32,6 +32,12 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public GetVideoInfoRequest()
             : base("vod", "2017-03-21", "GetVideoInfo", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -40,9 +46,9 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private string videoId;
 
-		private string additionType;
-
 		private long? ownerId;
+
+		private string additionType;
 
 		public long? ResourceOwnerId
 		{
@@ -83,19 +89,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string AdditionType
-		{
-			get
-			{
-				return additionType;
-			}
-			set	
-			{
-				additionType = value;
-				DictionaryUtil.Add(QueryParameters, "AdditionType", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string AdditionType
+		{
+			get
+			{
+				return additionType;
+			}
+			set	
+			{
+				additionType = value;
+				DictionaryUtil.Add(QueryParameters, "AdditionType", value);
 			}
 		}
 

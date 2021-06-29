@@ -32,9 +32,15 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsMessageSendRequest()
             : base("Ons", "2019-02-14", "OnsMessageSend", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? preventCache;
+		private string message;
 
 		private string instanceId;
 
@@ -42,20 +48,18 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 
 		private string tag;
 
-		private string message;
-
 		private string key;
 
-		public long? PreventCache
+		public string Message
 		{
 			get
 			{
-				return preventCache;
+				return message;
 			}
 			set	
 			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
+				message = value;
+				DictionaryUtil.Add(QueryParameters, "Message", value);
 			}
 		}
 
@@ -95,19 +99,6 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			{
 				tag = value;
 				DictionaryUtil.Add(QueryParameters, "Tag", value);
-			}
-		}
-
-		public string Message
-		{
-			get
-			{
-				return message;
-			}
-			set	
-			{
-				message = value;
-				DictionaryUtil.Add(QueryParameters, "Message", value);
 			}
 		}
 

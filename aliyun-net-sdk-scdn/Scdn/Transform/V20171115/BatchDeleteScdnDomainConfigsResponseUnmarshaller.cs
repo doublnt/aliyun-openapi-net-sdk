@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.scdn.Model.V20171115;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.scdn.Model.V20171115;
 
 namespace Aliyun.Acs.scdn.Transform.V20171115
 {
     public class BatchDeleteScdnDomainConfigsResponseUnmarshaller
     {
-        public static BatchDeleteScdnDomainConfigsResponse Unmarshall(UnmarshallerContext context)
+        public static BatchDeleteScdnDomainConfigsResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			BatchDeleteScdnDomainConfigsResponse batchDeleteScdnDomainConfigsResponse = new BatchDeleteScdnDomainConfigsResponse();
 
-			batchDeleteScdnDomainConfigsResponse.HttpResponse = context.HttpResponse;
-			batchDeleteScdnDomainConfigsResponse.RequestId = context.StringValue("BatchDeleteScdnDomainConfigs.RequestId");
+			batchDeleteScdnDomainConfigsResponse.HttpResponse = _ctx.HttpResponse;
+			batchDeleteScdnDomainConfigsResponse.RequestId = _ctx.StringValue("BatchDeleteScdnDomainConfigs.RequestId");
         
 			return batchDeleteScdnDomainConfigsResponse;
         }

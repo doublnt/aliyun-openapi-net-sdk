@@ -32,17 +32,21 @@ namespace Aliyun.Acs.Sas.Model.V20181203
         public ModifyOperateVulRequest()
             : base("Sas", "2018-12-03", "ModifyOperateVul", "sas", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Sas.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string reason;
 
-		private string sourceIp;
-
-		private string operateType;
-
 		private string type;
 
 		private string info;
+
+		private string operateType;
 
 		public string Reason
 		{
@@ -54,32 +58,6 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				reason = value;
 				DictionaryUtil.Add(QueryParameters, "Reason", value);
-			}
-		}
-
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
-
-		public string OperateType
-		{
-			get
-			{
-				return operateType;
-			}
-			set	
-			{
-				operateType = value;
-				DictionaryUtil.Add(QueryParameters, "OperateType", value);
 			}
 		}
 
@@ -106,6 +84,19 @@ namespace Aliyun.Acs.Sas.Model.V20181203
 			{
 				info = value;
 				DictionaryUtil.Add(QueryParameters, "Info", value);
+			}
+		}
+
+		public string OperateType
+		{
+			get
+			{
+				return operateType;
+			}
+			set	
+			{
+				operateType = value;
+				DictionaryUtil.Add(QueryParameters, "OperateType", value);
 			}
 		}
 

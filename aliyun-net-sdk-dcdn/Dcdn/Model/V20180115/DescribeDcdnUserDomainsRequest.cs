@@ -16,13 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.dcdn;
 using Aliyun.Acs.dcdn.Transform;
 using Aliyun.Acs.dcdn.Transform.V20180115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.dcdn.Model.V20180115
 {
@@ -31,9 +33,15 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
         public DescribeDcdnUserDomainsRequest()
             : base("dcdn", "2018-01-15", "DescribeDcdnUserDomains")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.dcdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.dcdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string funcFilter;
+		private int? pageNumber;
 
 		private bool? checkDomainShow;
 
@@ -41,32 +49,32 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 
 		private string securityToken;
 
+		private string changeEndTime;
+
 		private int? pageSize;
+
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string domainName;
 
-		private string action;
-
 		private long? ownerId;
-
-		private string funcId;
-
-		private int? pageNumber;
 
 		private string domainStatus;
 
 		private string domainSearchType;
 
-		public string FuncFilter
+		private string changeStartTime;
+
+		public int? PageNumber
 		{
 			get
 			{
-				return funcFilter;
+				return pageNumber;
 			}
 			set	
 			{
-				funcFilter = value;
-				DictionaryUtil.Add(QueryParameters, "FuncFilter", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -109,6 +117,19 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
+		public string ChangeEndTime
+		{
+			get
+			{
+				return changeEndTime;
+			}
+			set	
+			{
+				changeEndTime = value;
+				DictionaryUtil.Add(QueryParameters, "ChangeEndTime", value);
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -119,6 +140,24 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
 			}
 		}
 
@@ -135,19 +174,6 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -158,32 +184,6 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string FuncId
-		{
-			get
-			{
-				return funcId;
-			}
-			set	
-			{
-				funcId = value;
-				DictionaryUtil.Add(QueryParameters, "FuncId", value);
-			}
-		}
-
-		public int? PageNumber
-		{
-			get
-			{
-				return pageNumber;
-			}
-			set	
-			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -213,7 +213,52 @@ namespace Aliyun.Acs.dcdn.Model.V20180115
 			}
 		}
 
-        public override DescribeDcdnUserDomainsResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string ChangeStartTime
+		{
+			get
+			{
+				return changeStartTime;
+			}
+			set	
+			{
+				changeStartTime = value;
+				DictionaryUtil.Add(QueryParameters, "ChangeStartTime", value);
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
+			}
+		}
+
+        public override DescribeDcdnUserDomainsResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeDcdnUserDomainsResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

@@ -32,6 +32,12 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public DescribeZonesRequest()
             : base("R-kvstore", "2015-01-01", "DescribeZones", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
@@ -42,9 +48,9 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string ownerAccount;
 
-		private string acceptLanguage;
-
 		private long? ownerId;
+
+		private string acceptLanguage;
 
 		public long? ResourceOwnerId
 		{
@@ -98,19 +104,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string AcceptLanguage
-		{
-			get
-			{
-				return acceptLanguage;
-			}
-			set	
-			{
-				acceptLanguage = value;
-				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,6 +114,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string AcceptLanguage
+		{
+			get
+			{
+				return acceptLanguage;
+			}
+			set	
+			{
+				acceptLanguage = value;
+				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
 			}
 		}
 

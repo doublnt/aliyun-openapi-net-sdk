@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,6 +33,12 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ReportInstancesStatusRequest()
             : base("Ecs", "2014-05-26", "ReportInstancesStatus", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string reason;
@@ -42,7 +49,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string startTime;
 
-		private List<string> diskIds;
+		private string issueCategory;
+
+		private List<string> diskIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 
@@ -52,9 +61,9 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private long? ownerId;
 
-		private List<string> instanceIds;
+		private List<string> instanceIds = new List<string>(){ };
 
-		private List<string> devices;
+		private List<string> devices = new List<string>(){ };
 
 		public string Reason
 		{
@@ -105,6 +114,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public string IssueCategory
+		{
+			get
+			{
+				return issueCategory;
+			}
+			set	
+			{
+				issueCategory = value;
+				DictionaryUtil.Add(QueryParameters, "IssueCategory", value);
 			}
 		}
 

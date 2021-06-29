@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,27 +32,29 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public ModifyNatGatewaySpecRequest()
             : base("Vpc", "2016-04-28", "ModifyNatGatewaySpec", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private string spec;
+
+		private string natGatewayId;
 
 		private bool? autoPay;
 
 		private string resourceOwnerAccount;
 
-		private string regionId;
-
-		private string clientToken;
-
 		private string ownerAccount;
 
-		private string action;
-
-		private string natGatewayId;
-
 		private long? ownerId;
-
-		private string spec;
 
 		public long? ResourceOwnerId
 		{
@@ -63,6 +66,45 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string Spec
+		{
+			get
+			{
+				return spec;
+			}
+			set	
+			{
+				spec = value;
+				DictionaryUtil.Add(QueryParameters, "Spec", value);
+			}
+		}
+
+		public string NatGatewayId
+		{
+			get
+			{
+				return natGatewayId;
+			}
+			set	
+			{
+				natGatewayId = value;
+				DictionaryUtil.Add(QueryParameters, "NatGatewayId", value);
 			}
 		}
 
@@ -92,32 +134,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -128,32 +144,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string NatGatewayId
-		{
-			get
-			{
-				return natGatewayId;
-			}
-			set	
-			{
-				natGatewayId = value;
-				DictionaryUtil.Add(QueryParameters, "NatGatewayId", value);
 			}
 		}
 
@@ -170,20 +160,7 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Spec
-		{
-			get
-			{
-				return spec;
-			}
-			set	
-			{
-				spec = value;
-				DictionaryUtil.Add(QueryParameters, "Spec", value);
-			}
-		}
-
-        public override ModifyNatGatewaySpecResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override ModifyNatGatewaySpecResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return ModifyNatGatewaySpecResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

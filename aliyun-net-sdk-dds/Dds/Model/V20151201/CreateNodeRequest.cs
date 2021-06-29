@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,13 +31,29 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class CreateNodeRequest : RpcAcsRequest<CreateNodeResponse>
     {
         public CreateNodeRequest()
-            : base("Dds", "2015-12-01", "CreateNode", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "CreateNode")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string nodeType;
+
+		private string clientToken;
+
+		private int? readonlyReplicas;
+
+		private string nodeClass;
+
+		private string securityToken;
+
+		private string dBInstanceId;
 
 		private bool? autoPay;
 
@@ -44,23 +61,11 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 
 		private string resourceOwnerAccount;
 
-		private string clientToken;
-
 		private int? nodeStorage;
 
 		private string ownerAccount;
 
 		private long? ownerId;
-
-		private string nodeClass;
-
-		private string accessKeyId;
-
-		private string securityToken;
-
-		private string action;
-
-		private string dBInstanceId;
 
 		public long? ResourceOwnerId
 		{
@@ -85,6 +90,71 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				nodeType = value;
 				DictionaryUtil.Add(QueryParameters, "NodeType", value);
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public int? ReadonlyReplicas
+		{
+			get
+			{
+				return readonlyReplicas;
+			}
+			set	
+			{
+				readonlyReplicas = value;
+				DictionaryUtil.Add(QueryParameters, "ReadonlyReplicas", value.ToString());
+			}
+		}
+
+		public string NodeClass
+		{
+			get
+			{
+				return nodeClass;
+			}
+			set	
+			{
+				nodeClass = value;
+				DictionaryUtil.Add(QueryParameters, "NodeClass", value);
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -127,19 +197,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
 		public int? NodeStorage
 		{
 			get
@@ -176,71 +233,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string NodeClass
-		{
-			get
-			{
-				return nodeClass;
-			}
-			set	
-			{
-				nodeClass = value;
-				DictionaryUtil.Add(QueryParameters, "NodeClass", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 

@@ -32,28 +32,21 @@ namespace Aliyun.Acs.Green.Model.V20170823
         public UpdateAuditSettingRequest()
             : base("Green", "2017-08-23", "UpdateAuditSetting", "green", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Green.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string sourceIp;
 
 		private string seed;
 
 		private string auditRange;
 
-		private string callback;
+		private string sourceIp;
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
+		private string callback;
 
 		public string Seed
 		{
@@ -78,6 +71,19 @@ namespace Aliyun.Acs.Green.Model.V20170823
 			{
 				auditRange = value;
 				DictionaryUtil.Add(QueryParameters, "AuditRange", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
 			}
 		}
 

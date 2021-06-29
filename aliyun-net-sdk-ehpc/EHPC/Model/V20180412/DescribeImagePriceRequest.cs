@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,8 +31,13 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class DescribeImagePriceRequest : RpcAcsRequest<DescribeImagePriceResponse>
     {
         public DescribeImagePriceRequest()
-            : base("EHPC", "2018-04-12", "DescribeImagePrice", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "DescribeImagePrice")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private int? period;
@@ -40,13 +46,9 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private string imageId;
 
-		private string priceUnit;
-
 		private string skuCode;
 
-		private string action;
-
-		private string accessKeyId;
+		private string priceUnit;
 
 		private string orderType;
 
@@ -89,19 +91,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string PriceUnit
-		{
-			get
-			{
-				return priceUnit;
-			}
-			set	
-			{
-				priceUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
-			}
-		}
-
 		public string SkuCode
 		{
 			get
@@ -115,29 +104,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string Action
+		public string PriceUnit
 		{
 			get
 			{
-				return action;
+				return priceUnit;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				priceUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
 			}
 		}
 

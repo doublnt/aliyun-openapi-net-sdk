@@ -32,25 +32,41 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyDBInstanceSpecRequest()
             : base("Rds", "2014-08-15", "ModifyDBInstanceSpec", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private int? dBInstanceStorage;
 
+		private string engineVersion;
+
+		private string effectiveTime;
+
+		private string dBInstanceId;
+
+		private string dBInstanceStorageType;
+
+		private string sourceBiz;
+
+		private string dedicatedHostGroupId;
+
+		private string direction;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
-
-		private string engineVersion;
 
 		private long? ownerId;
 
 		private string dBInstanceClass;
 
-		private string effectiveTime;
-
-		private string dBInstanceId;
+		private string zoneId;
 
 		private string payType;
 
@@ -80,6 +96,97 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string EngineVersion
+		{
+			get
+			{
+				return engineVersion;
+			}
+			set	
+			{
+				engineVersion = value;
+				DictionaryUtil.Add(QueryParameters, "EngineVersion", value);
+			}
+		}
+
+		public string EffectiveTime
+		{
+			get
+			{
+				return effectiveTime;
+			}
+			set	
+			{
+				effectiveTime = value;
+				DictionaryUtil.Add(QueryParameters, "EffectiveTime", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string DBInstanceStorageType
+		{
+			get
+			{
+				return dBInstanceStorageType;
+			}
+			set	
+			{
+				dBInstanceStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceStorageType", value);
+			}
+		}
+
+		public string SourceBiz
+		{
+			get
+			{
+				return sourceBiz;
+			}
+			set	
+			{
+				sourceBiz = value;
+				DictionaryUtil.Add(QueryParameters, "SourceBiz", value);
+			}
+		}
+
+		public string DedicatedHostGroupId
+		{
+			get
+			{
+				return dedicatedHostGroupId;
+			}
+			set	
+			{
+				dedicatedHostGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostGroupId", value);
+			}
+		}
+
+		public string Direction
+		{
+			get
+			{
+				return direction;
+			}
+			set	
+			{
+				direction = value;
+				DictionaryUtil.Add(QueryParameters, "Direction", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -103,19 +210,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string EngineVersion
-		{
-			get
-			{
-				return engineVersion;
-			}
-			set	
-			{
-				engineVersion = value;
-				DictionaryUtil.Add(QueryParameters, "EngineVersion", value);
 			}
 		}
 
@@ -145,29 +239,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string EffectiveTime
+		public string ZoneId
 		{
 			get
 			{
-				return effectiveTime;
+				return zoneId;
 			}
 			set	
 			{
-				effectiveTime = value;
-				DictionaryUtil.Add(QueryParameters, "EffectiveTime", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
 			}
 		}
 

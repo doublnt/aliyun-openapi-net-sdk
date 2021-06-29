@@ -16,26 +16,32 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.dms_enterprise.Transform;
 using Aliyun.Acs.dms_enterprise.Transform.V20181101;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 {
     public class GetOpLogRequest : RpcAcsRequest<GetOpLogResponse>
     {
         public GetOpLogRequest()
-            : base("dms_enterprise", "2018-11-01", "GetOpLog", "dmsenterprise", "openAPI")
+            : base("dms-enterprise", "2018-11-01", "GetOpLog", "dms-enterprise", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string module;
-
-		private int? pageSize;
 
 		private string endTime;
 
@@ -45,6 +51,9 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 
 		private int? pageNumber;
 
+		private int? pageSize;
+
+		[JsonProperty(PropertyName = "Module")]
 		public string Module
 		{
 			get
@@ -58,19 +67,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
+		[JsonProperty(PropertyName = "EndTime")]
 		public string EndTime
 		{
 			get
@@ -84,6 +81,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "StartTime")]
 		public string StartTime
 		{
 			get
@@ -97,6 +95,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "Tid")]
 		public long? Tid
 		{
 			get
@@ -110,6 +109,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "PageNumber")]
 		public int? PageNumber
 		{
 			get
@@ -123,7 +123,21 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-        public override GetOpLogResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		[JsonProperty(PropertyName = "PageSize")]
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+        public override GetOpLogResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return GetOpLogResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

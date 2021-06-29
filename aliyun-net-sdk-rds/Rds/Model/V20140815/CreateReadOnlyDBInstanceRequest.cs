@@ -32,21 +32,51 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public CreateReadOnlyDBInstanceRequest()
             : base("Rds", "2014-08-15", "CreateReadOnlyDBInstance", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private int? dBInstanceStorage;
 
-		private string resourceOwnerAccount;
-
 		private string clientToken;
 
-		private string ownerAccount;
+		private string instructionSetArch;
 
 		private string engineVersion;
 
+		private string resourceGroupId;
+
+		private string tddlRegionConfig;
+
+		private string targetDedicatedHostIdForMaster;
+
+		private string dBInstanceId;
+
+		private string dBInstanceDescription;
+
+		private string gdnInstanceName;
+
+		private string dBInstanceStorageType;
+
+		private string dedicatedHostGroupId;
+
+		private string tddlBizType;
+
+		private string period;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
 		private long? ownerId;
+
+		private string usedTime;
 
 		private string dBInstanceClass;
 
@@ -54,17 +84,11 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 
 		private string privateIpAddress;
 
-		private string resourceGroupId;
+		private string autoRenew;
 
 		private string vPCId;
 
 		private string zoneId;
-
-		private string dBInstanceId;
-
-		private string dBInstanceDescription;
-
-		private string dBInstanceStorageType;
 
 		private string category;
 
@@ -98,19 +122,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
 		public string ClientToken
 		{
 			get
@@ -124,16 +135,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string OwnerAccount
+		public string InstructionSetArch
 		{
 			get
 			{
-				return ownerAccount;
+				return instructionSetArch;
 			}
 			set	
 			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				instructionSetArch = value;
+				DictionaryUtil.Add(QueryParameters, "InstructionSetArch", value);
 			}
 		}
 
@@ -150,6 +161,162 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string TddlRegionConfig
+		{
+			get
+			{
+				return tddlRegionConfig;
+			}
+			set	
+			{
+				tddlRegionConfig = value;
+				DictionaryUtil.Add(QueryParameters, "TddlRegionConfig", value);
+			}
+		}
+
+		public string TargetDedicatedHostIdForMaster
+		{
+			get
+			{
+				return targetDedicatedHostIdForMaster;
+			}
+			set	
+			{
+				targetDedicatedHostIdForMaster = value;
+				DictionaryUtil.Add(QueryParameters, "TargetDedicatedHostIdForMaster", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
+		public string DBInstanceDescription
+		{
+			get
+			{
+				return dBInstanceDescription;
+			}
+			set	
+			{
+				dBInstanceDescription = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceDescription", value);
+			}
+		}
+
+		public string GdnInstanceName
+		{
+			get
+			{
+				return gdnInstanceName;
+			}
+			set	
+			{
+				gdnInstanceName = value;
+				DictionaryUtil.Add(QueryParameters, "GdnInstanceName", value);
+			}
+		}
+
+		public string DBInstanceStorageType
+		{
+			get
+			{
+				return dBInstanceStorageType;
+			}
+			set	
+			{
+				dBInstanceStorageType = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceStorageType", value);
+			}
+		}
+
+		public string DedicatedHostGroupId
+		{
+			get
+			{
+				return dedicatedHostGroupId;
+			}
+			set	
+			{
+				dedicatedHostGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostGroupId", value);
+			}
+		}
+
+		public string TddlBizType
+		{
+			get
+			{
+				return tddlBizType;
+			}
+			set	
+			{
+				tddlBizType = value;
+				DictionaryUtil.Add(QueryParameters, "TddlBizType", value);
+			}
+		}
+
+		public string Period
+		{
+			get
+			{
+				return period;
+			}
+			set	
+			{
+				period = value;
+				DictionaryUtil.Add(QueryParameters, "Period", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public long? OwnerId
 		{
 			get
@@ -160,6 +327,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string UsedTime
+		{
+			get
+			{
+				return usedTime;
+			}
+			set	
+			{
+				usedTime = value;
+				DictionaryUtil.Add(QueryParameters, "UsedTime", value);
 			}
 		}
 
@@ -202,16 +382,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string ResourceGroupId
+		public string AutoRenew
 		{
 			get
 			{
-				return resourceGroupId;
+				return autoRenew;
 			}
 			set	
 			{
-				resourceGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+				autoRenew = value;
+				DictionaryUtil.Add(QueryParameters, "AutoRenew", value);
 			}
 		}
 
@@ -238,45 +418,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				zoneId = value;
 				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
-		public string DBInstanceDescription
-		{
-			get
-			{
-				return dBInstanceDescription;
-			}
-			set	
-			{
-				dBInstanceDescription = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceDescription", value);
-			}
-		}
-
-		public string DBInstanceStorageType
-		{
-			get
-			{
-				return dBInstanceStorageType;
-			}
-			set	
-			{
-				dBInstanceStorageType = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceStorageType", value);
 			}
 		}
 

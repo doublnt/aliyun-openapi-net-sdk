@@ -32,24 +32,32 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsGroupListRequest()
             : base("Ons", "2019-02-14", "OnsGroupList", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? preventCache;
-
-		private string instanceId;
 
 		private string groupId;
 
-		public long? PreventCache
+		private string instanceId;
+
+		private string groupType;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		public string GroupId
 		{
 			get
 			{
-				return preventCache;
+				return groupId;
 			}
 			set	
 			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
 			}
 		}
 
@@ -66,16 +74,66 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			}
 		}
 
-		public string GroupId
+		public string GroupType
 		{
 			get
 			{
-				return groupId;
+				return groupType;
 			}
 			set	
 			{
-				groupId = value;
-				DictionaryUtil.Add(QueryParameters, "GroupId", value);
+				groupType = value;
+				DictionaryUtil.Add(QueryParameters, "GroupType", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 

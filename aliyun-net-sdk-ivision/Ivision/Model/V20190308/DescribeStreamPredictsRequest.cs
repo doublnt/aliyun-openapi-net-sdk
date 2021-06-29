@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.ivision;
 using Aliyun.Acs.ivision.Transform;
 using Aliyun.Acs.ivision.Transform.V20190308;
 
@@ -30,8 +31,14 @@ namespace Aliyun.Acs.ivision.Model.V20190308
     public class DescribeStreamPredictsRequest : RpcAcsRequest<DescribeStreamPredictsResponse>
     {
         public DescribeStreamPredictsRequest()
-            : base("ivision", "2019-03-08", "DescribeStreamPredicts", "ivision", "openAPI")
+            : base("ivision", "2019-03-08", "DescribeStreamPredicts")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.ivision.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.ivision.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string nextPageToken;
@@ -40,9 +47,7 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 
 		private long? pageSize;
 
-		private string action;
-
-		private string showLog;
+		private string modelId;
 
 		private long? currentPage;
 
@@ -87,29 +92,16 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 			}
 		}
 
-		public string Action
+		public string ModelId
 		{
 			get
 			{
-				return action;
+				return modelId;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string ShowLog
-		{
-			get
-			{
-				return showLog;
-			}
-			set	
-			{
-				showLog = value;
-				DictionaryUtil.Add(QueryParameters, "ShowLog", value);
+				modelId = value;
+				DictionaryUtil.Add(QueryParameters, "ModelId", value);
 			}
 		}
 
@@ -137,6 +129,11 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override DescribeStreamPredictsResponse GetResponse(UnmarshallerContext unmarshallerContext)

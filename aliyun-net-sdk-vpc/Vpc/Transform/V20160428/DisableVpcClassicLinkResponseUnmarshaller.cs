@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DisableVpcClassicLinkResponseUnmarshaller
     {
-        public static DisableVpcClassicLinkResponse Unmarshall(UnmarshallerContext context)
+        public static DisableVpcClassicLinkResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DisableVpcClassicLinkResponse disableVpcClassicLinkResponse = new DisableVpcClassicLinkResponse();
 
-			disableVpcClassicLinkResponse.HttpResponse = context.HttpResponse;
-			disableVpcClassicLinkResponse.RequestId = context.StringValue("DisableVpcClassicLink.RequestId");
+			disableVpcClassicLinkResponse.HttpResponse = _ctx.HttpResponse;
+			disableVpcClassicLinkResponse.RequestId = _ctx.StringValue("DisableVpcClassicLink.RequestId");
         
 			return disableVpcClassicLinkResponse;
         }

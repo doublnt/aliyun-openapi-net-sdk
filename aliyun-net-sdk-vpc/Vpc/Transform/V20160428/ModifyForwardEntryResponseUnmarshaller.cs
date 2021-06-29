@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class ModifyForwardEntryResponseUnmarshaller
     {
-        public static ModifyForwardEntryResponse Unmarshall(UnmarshallerContext context)
+        public static ModifyForwardEntryResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			ModifyForwardEntryResponse modifyForwardEntryResponse = new ModifyForwardEntryResponse();
 
-			modifyForwardEntryResponse.HttpResponse = context.HttpResponse;
-			modifyForwardEntryResponse.RequestId = context.StringValue("ModifyForwardEntry.RequestId");
+			modifyForwardEntryResponse.HttpResponse = _ctx.HttpResponse;
+			modifyForwardEntryResponse.RequestId = _ctx.StringValue("ModifyForwardEntry.RequestId");
         
 			return modifyForwardEntryResponse;
         }

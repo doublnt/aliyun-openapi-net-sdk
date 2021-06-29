@@ -16,21 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.Vpc.Model.V20160428;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.Vpc.Model.V20160428;
 
 namespace Aliyun.Acs.Vpc.Transform.V20160428
 {
     public class DeleteVpnGatewayResponseUnmarshaller
     {
-        public static DeleteVpnGatewayResponse Unmarshall(UnmarshallerContext context)
+        public static DeleteVpnGatewayResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DeleteVpnGatewayResponse deleteVpnGatewayResponse = new DeleteVpnGatewayResponse();
 
-			deleteVpnGatewayResponse.HttpResponse = context.HttpResponse;
-			deleteVpnGatewayResponse.RequestId = context.StringValue("DeleteVpnGateway.RequestId");
+			deleteVpnGatewayResponse.HttpResponse = _ctx.HttpResponse;
+			deleteVpnGatewayResponse.RequestId = _ctx.StringValue("DeleteVpnGateway.RequestId");
         
 			return deleteVpnGatewayResponse;
         }

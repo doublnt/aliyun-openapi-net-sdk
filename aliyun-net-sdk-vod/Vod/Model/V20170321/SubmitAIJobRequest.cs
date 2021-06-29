@@ -32,11 +32,17 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SubmitAIJobRequest()
             : base("vod", "2017-03-21", "SubmitAIJob", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string userData;
-
 		private string resourceOwnerId;
+
+		private string userData;
 
 		private string types;
 
@@ -48,20 +54,9 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private string mediaId;
 
-		private string config;
+		private string input;
 
-		public string UserData
-		{
-			get
-			{
-				return userData;
-			}
-			set	
-			{
-				userData = value;
-				DictionaryUtil.Add(QueryParameters, "UserData", value);
-			}
-		}
+		private string config;
 
 		public string ResourceOwnerId
 		{
@@ -73,6 +68,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value);
+			}
+		}
+
+		public string UserData
+		{
+			get
+			{
+				return userData;
+			}
+			set	
+			{
+				userData = value;
+				DictionaryUtil.Add(QueryParameters, "UserData", value);
 			}
 		}
 
@@ -138,6 +146,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				mediaId = value;
 				DictionaryUtil.Add(QueryParameters, "MediaId", value);
+			}
+		}
+
+		public string Input
+		{
+			get
+			{
+				return input;
+			}
+			set	
+			{
+				input = value;
+				DictionaryUtil.Add(QueryParameters, "Input", value);
 			}
 		}
 

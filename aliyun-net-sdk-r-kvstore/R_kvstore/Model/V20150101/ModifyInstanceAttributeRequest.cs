@@ -32,15 +32,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public ModifyInstanceAttributeRequest()
             : base("R-kvstore", "2015-01-01", "ModifyInstanceAttribute", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string instanceId;
-
-		private string instanceName;
-
 		private string securityToken;
+
+		private bool? instanceReleaseProtection;
 
 		private string resourceOwnerAccount;
 
@@ -49,6 +53,10 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 		private long? ownerId;
 
 		private string newPassword;
+
+		private string instanceId;
+
+		private string instanceName;
 
 		public long? ResourceOwnerId
 		{
@@ -63,32 +71,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceId
-		{
-			get
-			{
-				return instanceId;
-			}
-			set	
-			{
-				instanceId = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
-			}
-		}
-
-		public string InstanceName
-		{
-			get
-			{
-				return instanceName;
-			}
-			set	
-			{
-				instanceName = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceName", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -99,6 +81,19 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				securityToken = value;
 				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public bool? InstanceReleaseProtection
+		{
+			get
+			{
+				return instanceReleaseProtection;
+			}
+			set	
+			{
+				instanceReleaseProtection = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceReleaseProtection", value.ToString());
 			}
 		}
 
@@ -151,6 +146,32 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				newPassword = value;
 				DictionaryUtil.Add(QueryParameters, "NewPassword", value);
+			}
+		}
+
+		public string InstanceId
+		{
+			get
+			{
+				return instanceId;
+			}
+			set	
+			{
+				instanceId = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceId", value);
+			}
+		}
+
+		public string InstanceName
+		{
+			get
+			{
+				return instanceName;
+			}
+			set	
+			{
+				instanceName = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceName", value);
 			}
 		}
 

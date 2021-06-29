@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,40 +33,44 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public AddCdnDomainRequest()
             : base("Cdn", "2018-05-10", "AddCdnDomain")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string topLevelDomain;
+		private string sources;
 
 		private string resourceGroupId;
-
-		private string sources;
 
 		private string securityToken;
 
 		private string cdnType;
 
-		private string ownerAccount;
-
 		private string scope;
 
-		private string domainName;
+		private string topLevelDomain;
 
-		private string action;
+		private string ownerAccount;
+
+		private string domainName;
 
 		private long? ownerId;
 
 		private string checkUrl;
 
-		public string TopLevelDomain
+		public string Sources
 		{
 			get
 			{
-				return topLevelDomain;
+				return sources;
 			}
 			set	
 			{
-				topLevelDomain = value;
-				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+				sources = value;
+				DictionaryUtil.Add(QueryParameters, "Sources", value);
 			}
 		}
 
@@ -79,19 +84,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				resourceGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
-			}
-		}
-
-		public string Sources
-		{
-			get
-			{
-				return sources;
-			}
-			set	
-			{
-				sources = value;
-				DictionaryUtil.Add(QueryParameters, "Sources", value);
 			}
 		}
 
@@ -121,19 +113,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
 		public string Scope
 		{
 			get
@@ -147,6 +126,32 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			}
 		}
 
+		public string TopLevelDomain
+		{
+			get
+			{
+				return topLevelDomain;
+			}
+			set	
+			{
+				topLevelDomain = value;
+				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
 		public string DomainName
 		{
 			get
@@ -157,19 +162,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				domainName = value;
 				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 

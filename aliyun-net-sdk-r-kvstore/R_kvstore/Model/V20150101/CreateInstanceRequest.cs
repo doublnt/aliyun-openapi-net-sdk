@@ -32,11 +32,17 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
         public CreateInstanceRequest()
             : base("R-kvstore", "2015-01-01", "CreateInstance", "redisa", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.R_kvstore.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string nodeType;
+		private string secondaryZoneId;
 
 		private string couponNo;
 
@@ -44,17 +50,13 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string engineVersion;
 
-		private string autoUseCoupon;
-
-		private string instanceClass;
-
-		private long? capacity;
+		private string resourceGroupId;
 
 		private string password;
 
 		private string securityToken;
 
-		private string instanceType;
+		private List<Tag> tags = new List<Tag>(){ };
 
 		private string businessInfo;
 
@@ -62,17 +64,11 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string period;
 
-		private string resourceOwnerAccount;
-
-		private string srcDBInstanceId;
-
-		private string ownerAccount;
+		private bool? dryRun;
 
 		private string backupId;
 
 		private long? ownerId;
-
-		private string token;
 
 		private string vSwitchId;
 
@@ -82,13 +78,37 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 		private string autoRenew;
 
-		private string vpcId;
+		private string port;
 
 		private string zoneId;
 
-		private string chargeType;
+		private string autoUseCoupon;
 
-		private string config;
+		private string instanceClass;
+
+		private long? capacity;
+
+		private string instanceType;
+
+		private string dedicatedHostGroupId;
+
+		private string restoreTime;
+
+		private string resourceOwnerAccount;
+
+		private string srcDBInstanceId;
+
+		private string ownerAccount;
+
+		private bool? globalInstance;
+
+		private string token;
+
+		private string globalInstanceId;
+
+		private string vpcId;
+
+		private string chargeType;
 
 		public long? ResourceOwnerId
 		{
@@ -103,16 +123,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string NodeType
+		public string SecondaryZoneId
 		{
 			get
 			{
-				return nodeType;
+				return secondaryZoneId;
 			}
 			set	
 			{
-				nodeType = value;
-				DictionaryUtil.Add(QueryParameters, "NodeType", value);
+				secondaryZoneId = value;
+				DictionaryUtil.Add(QueryParameters, "SecondaryZoneId", value);
 			}
 		}
 
@@ -155,42 +175,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string AutoUseCoupon
+		public string ResourceGroupId
 		{
 			get
 			{
-				return autoUseCoupon;
+				return resourceGroupId;
 			}
 			set	
 			{
-				autoUseCoupon = value;
-				DictionaryUtil.Add(QueryParameters, "AutoUseCoupon", value);
-			}
-		}
-
-		public string InstanceClass
-		{
-			get
-			{
-				return instanceClass;
-			}
-			set	
-			{
-				instanceClass = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceClass", value);
-			}
-		}
-
-		public long? Capacity
-		{
-			get
-			{
-				return capacity;
-			}
-			set	
-			{
-				capacity = value;
-				DictionaryUtil.Add(QueryParameters, "Capacity", value.ToString());
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
 			}
 		}
 
@@ -220,16 +214,21 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string InstanceType
+		public List<Tag> Tags
 		{
 			get
 			{
-				return instanceType;
+				return tags;
 			}
-			set	
+
+			set
 			{
-				instanceType = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
 			}
 		}
 
@@ -272,42 +271,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public bool? DryRun
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return dryRun;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string SrcDBInstanceId
-		{
-			get
-			{
-				return srcDBInstanceId;
-			}
-			set	
-			{
-				srcDBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "SrcDBInstanceId", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				dryRun = value;
+				DictionaryUtil.Add(QueryParameters, "DryRun", value.ToString());
 			}
 		}
 
@@ -334,19 +307,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string Token
-		{
-			get
-			{
-				return token;
-			}
-			set	
-			{
-				token = value;
-				DictionaryUtil.Add(QueryParameters, "Token", value);
 			}
 		}
 
@@ -402,16 +362,16 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string VpcId
+		public string Port
 		{
 			get
 			{
-				return vpcId;
+				return port;
 			}
 			set	
 			{
-				vpcId = value;
-				DictionaryUtil.Add(QueryParameters, "VpcId", value);
+				port = value;
+				DictionaryUtil.Add(QueryParameters, "Port", value);
 			}
 		}
 
@@ -428,6 +388,175 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
+		public string AutoUseCoupon
+		{
+			get
+			{
+				return autoUseCoupon;
+			}
+			set	
+			{
+				autoUseCoupon = value;
+				DictionaryUtil.Add(QueryParameters, "AutoUseCoupon", value);
+			}
+		}
+
+		public string InstanceClass
+		{
+			get
+			{
+				return instanceClass;
+			}
+			set	
+			{
+				instanceClass = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceClass", value);
+			}
+		}
+
+		public long? Capacity
+		{
+			get
+			{
+				return capacity;
+			}
+			set	
+			{
+				capacity = value;
+				DictionaryUtil.Add(QueryParameters, "Capacity", value.ToString());
+			}
+		}
+
+		public string InstanceType
+		{
+			get
+			{
+				return instanceType;
+			}
+			set	
+			{
+				instanceType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceType", value);
+			}
+		}
+
+		public string DedicatedHostGroupId
+		{
+			get
+			{
+				return dedicatedHostGroupId;
+			}
+			set	
+			{
+				dedicatedHostGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostGroupId", value);
+			}
+		}
+
+		public string RestoreTime
+		{
+			get
+			{
+				return restoreTime;
+			}
+			set	
+			{
+				restoreTime = value;
+				DictionaryUtil.Add(QueryParameters, "RestoreTime", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string SrcDBInstanceId
+		{
+			get
+			{
+				return srcDBInstanceId;
+			}
+			set	
+			{
+				srcDBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "SrcDBInstanceId", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public bool? GlobalInstance
+		{
+			get
+			{
+				return globalInstance;
+			}
+			set	
+			{
+				globalInstance = value;
+				DictionaryUtil.Add(QueryParameters, "GlobalInstance", value.ToString());
+			}
+		}
+
+		public string Token
+		{
+			get
+			{
+				return token;
+			}
+			set	
+			{
+				token = value;
+				DictionaryUtil.Add(QueryParameters, "Token", value);
+			}
+		}
+
+		public string GlobalInstanceId
+		{
+			get
+			{
+				return globalInstanceId;
+			}
+			set	
+			{
+				globalInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "GlobalInstanceId", value);
+			}
+		}
+
+		public string VpcId
+		{
+			get
+			{
+				return vpcId;
+			}
+			set	
+			{
+				vpcId = value;
+				DictionaryUtil.Add(QueryParameters, "VpcId", value);
+			}
+		}
+
 		public string ChargeType
 		{
 			get
@@ -441,16 +570,35 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			}
 		}
 
-		public string Config
+		public class Tag
 		{
-			get
+
+			private string value_;
+
+			private string key;
+
+			public string Value
 			{
-				return config;
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
 			}
-			set	
+
+			public string Key
 			{
-				config = value;
-				DictionaryUtil.Add(QueryParameters, "Config", value);
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 

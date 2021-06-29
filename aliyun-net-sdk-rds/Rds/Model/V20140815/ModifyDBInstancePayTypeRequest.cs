@@ -32,15 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyDBInstancePayTypeRequest()
             : base("Rds", "2014-08-15", "ModifyDBInstancePayType", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string dBInstanceId;
 
 		private string period;
 
 		private int? usedTime;
 
-		private string dBInstanceId;
+		private string payType;
 
 		public long? ResourceOwnerId
 		{
@@ -52,6 +60,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -81,16 +102,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
+		public string PayType
 		{
 			get
 			{
-				return dBInstanceId;
+				return payType;
 			}
 			set	
 			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+				payType = value;
+				DictionaryUtil.Add(QueryParameters, "PayType", value);
 			}
 		}
 

@@ -33,34 +33,27 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyVRouterAttributeRequest()
             : base("Ecs", "2014-05-26", "ModifyVRouterAttribute", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string vRouterName;
 
 		private long? resourceOwnerId;
 
 		private string vRouterId;
 
+		private string description;
+
+		private string vRouterName;
+
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string description;
-
 		private long? ownerId;
-
-		public string VRouterName
-		{
-			get
-			{
-				return vRouterName;
-			}
-			set	
-			{
-				vRouterName = value;
-				DictionaryUtil.Add(QueryParameters, "VRouterName", value);
-			}
-		}
 
 		public long? ResourceOwnerId
 		{
@@ -88,6 +81,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string VRouterName
+		{
+			get
+			{
+				return vRouterName;
+			}
+			set	
+			{
+				vRouterName = value;
+				DictionaryUtil.Add(QueryParameters, "VRouterName", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -111,19 +130,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 

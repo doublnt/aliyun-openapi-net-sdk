@@ -26,7 +26,7 @@ using Xunit;
 namespace Aliyun.Acs.Feature.Test.Timeout
 {
     [Trait("Category", "FeatureTest")]
-    public class TimeoutTest : FeatureTestBase
+    public class TimeoutTest
     {
         [Fact]
         public void TestConnectTimeoutWithException()
@@ -51,7 +51,7 @@ namespace Aliyun.Acs.Feature.Test.Timeout
 
             var exception = Assert.Throws<ClientException>(() =>
             {
-                var response = client.GetAcsResponse(request);
+                var response = FeatureTest.DefaultClient.GetAcsResponse(request);
             });
 
             Assert.NotNull(exception.Message);
@@ -62,6 +62,7 @@ namespace Aliyun.Acs.Feature.Test.Timeout
         {
             var request = new DescribeAccessPointsRequest();
             request.SetConnectTimeoutInMilliSeconds(8000);
+            var client = FeatureTest.DefaultClient;
             client.SetConnectTimeoutInMilliSeconds(1);
 
             var response = client.GetAcsResponse(request);

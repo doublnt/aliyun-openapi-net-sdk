@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,44 +33,31 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public DescribeAlarmsRequest()
             : base("Ess", "2014-08-28", "DescribeAlarms", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private bool? isEnable;
 
 		private string metricType;
 
-		private string resourceOwnerAccount;
-
-		private string regionId;
-
 		private string scalingGroupId;
+
+		private int? pageNumber;
 
 		private int? pageSize;
 
-		private string action;
-
 		private string state;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
 		private string alarmTaskId;
 
-		private int? pageNumber;
-
-		private string accessKeyId;
-
-		public bool? IsEnable
-		{
-			get
-			{
-				return isEnable;
-			}
-			set	
-			{
-				isEnable = value;
-				DictionaryUtil.Add(QueryParameters, "IsEnable", value.ToString());
-			}
-		}
+		private bool? isEnable;
 
 		public string MetricType
 		{
@@ -81,32 +69,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				metricType = value;
 				DictionaryUtil.Add(QueryParameters, "MetricType", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
 			}
 		}
 
@@ -123,6 +85,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
+		public int? PageNumber
+		{
+			get
+			{
+				return pageNumber;
+			}
+			set	
+			{
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
 		public int? PageSize
 		{
 			get
@@ -136,19 +111,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string State
 		{
 			get
@@ -159,6 +121,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				state = value;
 				DictionaryUtil.Add(QueryParameters, "State", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -188,29 +163,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public int? PageNumber
+		public bool? IsEnable
 		{
 			get
 			{
-				return pageNumber;
+				return isEnable;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				isEnable = value;
+				DictionaryUtil.Add(QueryParameters, "IsEnable", value.ToString());
 			}
 		}
 

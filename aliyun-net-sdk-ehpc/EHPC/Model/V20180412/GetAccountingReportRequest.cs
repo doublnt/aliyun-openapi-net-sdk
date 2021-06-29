@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,21 +31,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class GetAccountingReportRequest : RpcAcsRequest<GetAccountingReportResponse>
     {
         public GetAccountingReportRequest()
-            : base("EHPC", "2018-04-12", "GetAccountingReport", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "GetAccountingReport")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string reportType;
 
-		private string action;
-
 		private int? endTime;
+
+		private string filterValue;
+
+		private string dim;
 
 		private string clusterId;
 
 		private int? startTime;
 
-		private string accessKeyId;
+		private int? pageNumber;
+
+		private string jobId;
+
+		private int? pageSize;
 
 		public string ReportType
 		{
@@ -59,19 +71,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public int? EndTime
 		{
 			get
@@ -82,6 +81,32 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				endTime = value;
 				DictionaryUtil.Add(QueryParameters, "EndTime", value.ToString());
+			}
+		}
+
+		public string FilterValue
+		{
+			get
+			{
+				return filterValue;
+			}
+			set	
+			{
+				filterValue = value;
+				DictionaryUtil.Add(QueryParameters, "FilterValue", value);
+			}
+		}
+
+		public string Dim
+		{
+			get
+			{
+				return dim;
+			}
+			set	
+			{
+				dim = value;
+				DictionaryUtil.Add(QueryParameters, "Dim", value);
 			}
 		}
 
@@ -111,16 +136,42 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public int? PageNumber
 		{
 			get
 			{
-				return accessKeyId;
+				return pageNumber;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+			}
+		}
+
+		public string JobId
+		{
+			get
+			{
+				return jobId;
+			}
+			set	
+			{
+				jobId = value;
+				DictionaryUtil.Add(QueryParameters, "JobId", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

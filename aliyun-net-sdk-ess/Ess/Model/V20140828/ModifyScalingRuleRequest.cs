@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,41 +33,57 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public ModifyScalingRuleRequest()
             : base("Ess", "2014-08-28", "ModifyScalingRule", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
-		private int? adjustmentValue;
-
-		private List<StepAdjustment> stepAdjustments;
-
-		private int? estimatedInstanceWarmup;
-
-		private string ownerAccount;
-
-		private string adjustmentType;
+		private List<StepAdjustment> stepAdjustments = new List<StepAdjustment>(){ };
 
 		private bool? disableScaleIn;
 
-		private long? ownerId;
-
 		private string scalingRuleId;
 
-		private string accessKeyId;
+		private int? initialMaxSize;
 
 		private string scalingRuleName;
 
 		private int? cooldown;
 
-		private int? minAdjustmentMagnitude;
+		private string predictiveValueBehavior;
 
-		private string action;
-
-		private float? targetValue;
+		private int? scaleInEvaluationCount;
 
 		private string metricName;
+
+		private string predictiveScalingMode;
+
+		private string resourceOwnerAccount;
+
+		private int? adjustmentValue;
+
+		private int? estimatedInstanceWarmup;
+
+		private string ownerAccount;
+
+		private int? predictiveTaskBufferTime;
+
+		private string adjustmentType;
+
+		private long? ownerId;
+
+		private int? predictiveValueBuffer;
+
+		private int? scaleOutEvaluationCount;
+
+		private int? minAdjustmentMagnitude;
+
+		private float? targetValue;
 
 		public long? ResourceOwnerId
 		{
@@ -78,32 +95,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public int? AdjustmentValue
-		{
-			get
-			{
-				return adjustmentValue;
-			}
-			set	
-			{
-				adjustmentValue = value;
-				DictionaryUtil.Add(QueryParameters, "AdjustmentValue", value.ToString());
 			}
 		}
 
@@ -126,45 +117,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public int? EstimatedInstanceWarmup
-		{
-			get
-			{
-				return estimatedInstanceWarmup;
-			}
-			set	
-			{
-				estimatedInstanceWarmup = value;
-				DictionaryUtil.Add(QueryParameters, "EstimatedInstanceWarmup", value.ToString());
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string AdjustmentType
-		{
-			get
-			{
-				return adjustmentType;
-			}
-			set	
-			{
-				adjustmentType = value;
-				DictionaryUtil.Add(QueryParameters, "AdjustmentType", value);
-			}
-		}
-
 		public bool? DisableScaleIn
 		{
 			get
@@ -175,19 +127,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				disableScaleIn = value;
 				DictionaryUtil.Add(QueryParameters, "DisableScaleIn", value.ToString());
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -204,16 +143,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string AccessKeyId
+		public int? InitialMaxSize
 		{
 			get
 			{
-				return accessKeyId;
+				return initialMaxSize;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				initialMaxSize = value;
+				DictionaryUtil.Add(QueryParameters, "InitialMaxSize", value.ToString());
 			}
 		}
 
@@ -243,42 +182,29 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public int? MinAdjustmentMagnitude
+		public string PredictiveValueBehavior
 		{
 			get
 			{
-				return minAdjustmentMagnitude;
+				return predictiveValueBehavior;
 			}
 			set	
 			{
-				minAdjustmentMagnitude = value;
-				DictionaryUtil.Add(QueryParameters, "MinAdjustmentMagnitude", value.ToString());
+				predictiveValueBehavior = value;
+				DictionaryUtil.Add(QueryParameters, "PredictiveValueBehavior", value);
 			}
 		}
 
-		public string Action
+		public int? ScaleInEvaluationCount
 		{
 			get
 			{
-				return action;
+				return scaleInEvaluationCount;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public float? TargetValue
-		{
-			get
-			{
-				return targetValue;
-			}
-			set	
-			{
-				targetValue = value;
-				DictionaryUtil.Add(QueryParameters, "TargetValue", value.ToString());
+				scaleInEvaluationCount = value;
+				DictionaryUtil.Add(QueryParameters, "ScaleInEvaluationCount", value.ToString());
 			}
 		}
 
@@ -292,6 +218,162 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				metricName = value;
 				DictionaryUtil.Add(QueryParameters, "MetricName", value);
+			}
+		}
+
+		public string PredictiveScalingMode
+		{
+			get
+			{
+				return predictiveScalingMode;
+			}
+			set	
+			{
+				predictiveScalingMode = value;
+				DictionaryUtil.Add(QueryParameters, "PredictiveScalingMode", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public int? AdjustmentValue
+		{
+			get
+			{
+				return adjustmentValue;
+			}
+			set	
+			{
+				adjustmentValue = value;
+				DictionaryUtil.Add(QueryParameters, "AdjustmentValue", value.ToString());
+			}
+		}
+
+		public int? EstimatedInstanceWarmup
+		{
+			get
+			{
+				return estimatedInstanceWarmup;
+			}
+			set	
+			{
+				estimatedInstanceWarmup = value;
+				DictionaryUtil.Add(QueryParameters, "EstimatedInstanceWarmup", value.ToString());
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public int? PredictiveTaskBufferTime
+		{
+			get
+			{
+				return predictiveTaskBufferTime;
+			}
+			set	
+			{
+				predictiveTaskBufferTime = value;
+				DictionaryUtil.Add(QueryParameters, "PredictiveTaskBufferTime", value.ToString());
+			}
+		}
+
+		public string AdjustmentType
+		{
+			get
+			{
+				return adjustmentType;
+			}
+			set	
+			{
+				adjustmentType = value;
+				DictionaryUtil.Add(QueryParameters, "AdjustmentType", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public int? PredictiveValueBuffer
+		{
+			get
+			{
+				return predictiveValueBuffer;
+			}
+			set	
+			{
+				predictiveValueBuffer = value;
+				DictionaryUtil.Add(QueryParameters, "PredictiveValueBuffer", value.ToString());
+			}
+		}
+
+		public int? ScaleOutEvaluationCount
+		{
+			get
+			{
+				return scaleOutEvaluationCount;
+			}
+			set	
+			{
+				scaleOutEvaluationCount = value;
+				DictionaryUtil.Add(QueryParameters, "ScaleOutEvaluationCount", value.ToString());
+			}
+		}
+
+		public int? MinAdjustmentMagnitude
+		{
+			get
+			{
+				return minAdjustmentMagnitude;
+			}
+			set	
+			{
+				minAdjustmentMagnitude = value;
+				DictionaryUtil.Add(QueryParameters, "MinAdjustmentMagnitude", value.ToString());
+			}
+		}
+
+		public float? TargetValue
+		{
+			get
+			{
+				return targetValue;
+			}
+			set	
+			{
+				targetValue = value;
+				DictionaryUtil.Add(QueryParameters, "TargetValue", value.ToString());
 			}
 		}
 

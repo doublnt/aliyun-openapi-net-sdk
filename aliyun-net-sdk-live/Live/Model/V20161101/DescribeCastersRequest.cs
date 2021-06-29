@@ -32,23 +32,55 @@ namespace Aliyun.Acs.live.Model.V20161101
         public DescribeCastersRequest()
             : base("live", "2016-11-01", "DescribeCasters", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string casterName;
-
-		private string casterId;
-
-		private int? pageSize;
-
-		private string endTime;
 
 		private string startTime;
 
-		private long? ownerId;
-
 		private int? pageNum;
 
+		private string casterName;
+
+		private int? pageSize;
+
+		private string casterId;
+
+		private string endTime;
+
+		private long? ownerId;
+
 		private int? status;
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public int? PageNum
+		{
+			get
+			{
+				return pageNum;
+			}
+			set	
+			{
+				pageNum = value;
+				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
+			}
+		}
 
 		public string CasterName
 		{
@@ -60,19 +92,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				casterName = value;
 				DictionaryUtil.Add(QueryParameters, "CasterName", value);
-			}
-		}
-
-		public string CasterId
-		{
-			get
-			{
-				return casterId;
-			}
-			set	
-			{
-				casterId = value;
-				DictionaryUtil.Add(QueryParameters, "CasterId", value);
 			}
 		}
 
@@ -89,6 +108,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
+		public string CasterId
+		{
+			get
+			{
+				return casterId;
+			}
+			set	
+			{
+				casterId = value;
+				DictionaryUtil.Add(QueryParameters, "CasterId", value);
+			}
+		}
+
 		public string EndTime
 		{
 			get
@@ -102,19 +134,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -125,19 +144,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public int? PageNum
-		{
-			get
-			{
-				return pageNum;
-			}
-			set	
-			{
-				pageNum = value;
-				DictionaryUtil.Add(QueryParameters, "PageNum", value.ToString());
 			}
 		}
 

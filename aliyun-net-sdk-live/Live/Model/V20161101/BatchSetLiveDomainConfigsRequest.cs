@@ -32,17 +32,23 @@ namespace Aliyun.Acs.live.Model.V20161101
         public BatchSetLiveDomainConfigsRequest()
             : base("live", "2016-11-01", "BatchSetLiveDomainConfigs", "live", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.live.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.live.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string functions;
-
-		private string securityToken;
 
 		private string domainNames;
 
 		private string ownerAccount;
 
 		private long? ownerId;
+
+		private string securityToken;
 
 		public string Functions
 		{
@@ -54,19 +60,6 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				functions = value;
 				DictionaryUtil.Add(QueryParameters, "Functions", value);
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.live.Model.V20161101
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SecurityToken
+		{
+			get
+			{
+				return securityToken;
+			}
+			set	
+			{
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
 			}
 		}
 

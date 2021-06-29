@@ -30,8 +30,13 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
     public class VoipGetTokenRequest : RpcAcsRequest<VoipGetTokenResponse>
     {
         public VoipGetTokenRequest()
-            : base("Dyvmsapi", "2017-05-25", "VoipGetToken")
+            : base("Dyvmsapi", "2017-05-25", "VoipGetToken", "dyvms", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? resourceOwnerId;
@@ -40,15 +45,11 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 
 		private string resourceOwnerAccount;
 
-		private string action;
-
 		private long? ownerId;
 
 		private string deviceId;
 
 		private bool? isCustomAccount;
-
-		private string accessKeyId;
 
 		public long? ResourceOwnerId
 		{
@@ -89,19 +90,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -138,19 +126,6 @@ namespace Aliyun.Acs.Dyvmsapi.Model.V20170525
 			{
 				isCustomAccount = value;
 				DictionaryUtil.Add(QueryParameters, "IsCustomAccount", value.ToString());
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

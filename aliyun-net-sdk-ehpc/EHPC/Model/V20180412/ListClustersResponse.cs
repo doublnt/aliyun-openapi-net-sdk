@@ -138,6 +138,22 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 			private string ehpcVersion;
 
+			private string nodePrefix;
+
+			private string nodeSuffix;
+
+			private string baseOsTag;
+
+			private string instanceChargeType;
+
+			private string computeSpotStrategy;
+
+			private float? computeSpotPriceLimit;
+
+			private string clientVersion;
+
+			private bool? isComputeEss;
+
 			private ListClusters_Managers managers;
 
 			private ListClusters_Computes computes;
@@ -383,6 +399,102 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 				set	
 				{
 					ehpcVersion = value;
+				}
+			}
+
+			public string NodePrefix
+			{
+				get
+				{
+					return nodePrefix;
+				}
+				set	
+				{
+					nodePrefix = value;
+				}
+			}
+
+			public string NodeSuffix
+			{
+				get
+				{
+					return nodeSuffix;
+				}
+				set	
+				{
+					nodeSuffix = value;
+				}
+			}
+
+			public string BaseOsTag
+			{
+				get
+				{
+					return baseOsTag;
+				}
+				set	
+				{
+					baseOsTag = value;
+				}
+			}
+
+			public string InstanceChargeType
+			{
+				get
+				{
+					return instanceChargeType;
+				}
+				set	
+				{
+					instanceChargeType = value;
+				}
+			}
+
+			public string ComputeSpotStrategy
+			{
+				get
+				{
+					return computeSpotStrategy;
+				}
+				set	
+				{
+					computeSpotStrategy = value;
+				}
+			}
+
+			public float? ComputeSpotPriceLimit
+			{
+				get
+				{
+					return computeSpotPriceLimit;
+				}
+				set	
+				{
+					computeSpotPriceLimit = value;
+				}
+			}
+
+			public string ClientVersion
+			{
+				get
+				{
+					return clientVersion;
+				}
+				set	
+				{
+					clientVersion = value;
+				}
+			}
+
+			public bool? IsComputeEss
+			{
+				get
+				{
+					return isComputeEss;
+				}
+				set	
+				{
+					isComputeEss = value;
 				}
 			}
 

@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public GrantAccountPrivilegeRequest()
             : base("Rds", "2014-08-15", "GrantAccountPrivilege", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string accountName;
+		private string accountPrivilege;
 
-		private string dBName;
+		private string accountName;
 
 		private string dBInstanceId;
 
-		private string accountPrivilege;
+		private string dBName;
 
 		public long? ResourceOwnerId
 		{
@@ -54,6 +60,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string AccountPrivilege
+		{
+			get
+			{
+				return accountPrivilege;
+			}
+			set	
+			{
+				accountPrivilege = value;
+				DictionaryUtil.Add(QueryParameters, "AccountPrivilege", value);
 			}
 		}
 
@@ -70,19 +89,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBName
-		{
-			get
-			{
-				return dBName;
-			}
-			set	
-			{
-				dBName = value;
-				DictionaryUtil.Add(QueryParameters, "DBName", value);
-			}
-		}
-
 		public string DBInstanceId
 		{
 			get
@@ -96,16 +102,16 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string AccountPrivilege
+		public string DBName
 		{
 			get
 			{
-				return accountPrivilege;
+				return dBName;
 			}
 			set	
 			{
-				accountPrivilege = value;
-				DictionaryUtil.Add(QueryParameters, "AccountPrivilege", value);
+				dBName = value;
+				DictionaryUtil.Add(QueryParameters, "DBName", value);
 			}
 		}
 

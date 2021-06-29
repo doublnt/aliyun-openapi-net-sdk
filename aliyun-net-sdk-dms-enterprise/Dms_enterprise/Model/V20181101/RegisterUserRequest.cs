@@ -16,31 +16,42 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.dms_enterprise.Transform;
 using Aliyun.Acs.dms_enterprise.Transform.V20181101;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 {
     public class RegisterUserRequest : RpcAcsRequest<RegisterUserResponse>
     {
         public RegisterUserRequest()
-            : base("dms_enterprise", "2018-11-01", "RegisterUser", "dmsenterprise", "openAPI")
+            : base("dms-enterprise", "2018-11-01", "RegisterUser", "dms-enterprise", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string roleNames;
 
-		private long? uid;
-
 		private string userNick;
+
+		private string mobile;
 
 		private long? tid;
 
+		private string uid;
+
+		[JsonProperty(PropertyName = "RoleNames")]
 		public string RoleNames
 		{
 			get
@@ -54,19 +65,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-		public long? Uid
-		{
-			get
-			{
-				return uid;
-			}
-			set	
-			{
-				uid = value;
-				DictionaryUtil.Add(QueryParameters, "Uid", value.ToString());
-			}
-		}
-
+		[JsonProperty(PropertyName = "UserNick")]
 		public string UserNick
 		{
 			get
@@ -80,6 +79,21 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "Mobile")]
+		public string Mobile
+		{
+			get
+			{
+				return mobile;
+			}
+			set	
+			{
+				mobile = value;
+				DictionaryUtil.Add(QueryParameters, "Mobile", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "Tid")]
 		public long? Tid
 		{
 			get
@@ -93,7 +107,21 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-        public override RegisterUserResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		[JsonProperty(PropertyName = "Uid")]
+		public string Uid
+		{
+			get
+			{
+				return uid;
+			}
+			set	
+			{
+				uid = value;
+				DictionaryUtil.Add(QueryParameters, "Uid", value);
+			}
+		}
+
+        public override RegisterUserResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return RegisterUserResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

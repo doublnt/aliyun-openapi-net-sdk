@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.CSB;
 using Aliyun.Acs.CSB.Transform;
 using Aliyun.Acs.CSB.Transform.V20171118;
 
@@ -32,16 +33,20 @@ namespace Aliyun.Acs.CSB.Model.V20171118
         public FindServiceStatisticalDataRequest()
             : base("CSB", "2017-11-18", "FindServiceStatisticalData")
         {
-			Protocol = ProtocolType.HTTPS;
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private long? csbId;
 
 		private long? endTime;
 
-		private string serviceName;
-
 		private long? startTime;
+
+		private string serviceNameVersion;
 
 		public long? CsbId
 		{
@@ -69,19 +74,6 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 			}
 		}
 
-		public string ServiceName
-		{
-			get
-			{
-				return serviceName;
-			}
-			set	
-			{
-				serviceName = value;
-				DictionaryUtil.Add(QueryParameters, "ServiceName", value);
-			}
-		}
-
 		public long? StartTime
 		{
 			get
@@ -92,6 +84,19 @@ namespace Aliyun.Acs.CSB.Model.V20171118
 			{
 				startTime = value;
 				DictionaryUtil.Add(QueryParameters, "StartTime", value.ToString());
+			}
+		}
+
+		public string ServiceNameVersion
+		{
+			get
+			{
+				return serviceNameVersion;
+			}
+			set	
+			{
+				serviceNameVersion = value;
+				DictionaryUtil.Add(QueryParameters, "ServiceNameVersion", value);
 			}
 		}
 

@@ -32,17 +32,36 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public DeleteDevicePropRequest()
             : base("Iot", "2018-01-20", "DeleteDeviceProp", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
+
+		private string propKey;
 
 		private string iotId;
 
 		private string iotInstanceId;
 
-		private string deviceName;
-
 		private string productKey;
 
-		private string propKey;
+		private string deviceName;
+
+		public string PropKey
+		{
+			get
+			{
+				return propKey;
+			}
+			set	
+			{
+				propKey = value;
+				DictionaryUtil.Add(QueryParameters, "PropKey", value);
+			}
+		}
 
 		public string IotId
 		{
@@ -70,19 +89,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
-		{
-			get
-			{
-				return deviceName;
-			}
-			set	
-			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
 		public string ProductKey
 		{
 			get
@@ -96,16 +102,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string PropKey
+		public string DeviceName
 		{
 			get
 			{
-				return propKey;
+				return deviceName;
 			}
 			set	
 			{
-				propKey = value;
-				DictionaryUtil.Add(QueryParameters, "PropKey", value);
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

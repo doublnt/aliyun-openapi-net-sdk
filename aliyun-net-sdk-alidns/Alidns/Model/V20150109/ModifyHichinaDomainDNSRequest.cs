@@ -30,28 +30,21 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
     public class ModifyHichinaDomainDNSRequest : RpcAcsRequest<ModifyHichinaDomainDNSResponse>
     {
         public ModifyHichinaDomainDNSRequest()
-            : base("Alidns", "2015-01-09", "ModifyHichinaDomainDNS", "Alidns", "openAPI")
+            : base("Alidns", "2015-01-09", "ModifyHichinaDomainDNS", "alidns", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Alidns.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string userClientIp;
 
 		private string domainName;
 
-		private string lang;
+		private string userClientIp;
 
-		public string UserClientIp
-		{
-			get
-			{
-				return userClientIp;
-			}
-			set	
-			{
-				userClientIp = value;
-				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
-			}
-		}
+		private string lang;
 
 		public string DomainName
 		{
@@ -63,6 +56,19 @@ namespace Aliyun.Acs.Alidns.Model.V20150109
 			{
 				domainName = value;
 				DictionaryUtil.Add(QueryParameters, "DomainName", value);
+			}
+		}
+
+		public string UserClientIp
+		{
+			get
+			{
+				return userClientIp;
+			}
+			set	
+			{
+				userClientIp = value;
+				DictionaryUtil.Add(QueryParameters, "UserClientIp", value);
 			}
 		}
 

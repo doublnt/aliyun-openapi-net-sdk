@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Dds;
 using Aliyun.Acs.Dds.Transform;
 using Aliyun.Acs.Dds.Transform.V20151201;
 
@@ -30,29 +31,31 @@ namespace Aliyun.Acs.Dds.Model.V20151201
     public class TagResourcesRequest : RpcAcsRequest<TagResourcesResponse>
     {
         public TagResourcesRequest()
-            : base("Dds", "2015-12-01", "TagResources", "Dds", "openAPI")
+            : base("Dds", "2015-12-01", "TagResources")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Dds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private List<string> resourceIds;
+		private string resourceGroupId;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private List<string> resourceIds = new List<string>(){ };
 
 		private string resourceOwnerAccount;
 
-		private string regionId;
-
 		private string ownerAccount;
-
-		private string action;
-
-		private List<Tag> tags;
 
 		private long? ownerId;
 
 		private string resourceType;
-
-		private string accessKeyId;
 
 		public long? ResourceOwnerId
 		{
@@ -64,6 +67,37 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
 			}
 		}
 
@@ -97,19 +131,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -120,37 +141,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public List<Tag> Tags
-		{
-			get
-			{
-				return tags;
-			}
-
-			set
-			{
-				tags = value;
-				for (int i = 0; i < tags.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
-					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
-				}
 			}
 		}
 
@@ -177,19 +167,6 @@ namespace Aliyun.Acs.Dds.Model.V20151201
 			{
 				resourceType = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceType", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
 			}
 		}
 

@@ -32,28 +32,21 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
         public CreateVerifySDKRequest()
             : base("Cloudauth", "2018-09-16", "CreateVerifySDK", "cloudauth", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cloudauth.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string sourceIp;
 
 		private string appUrl;
 
-		private string lang;
-
 		private string platform;
 
-		public string SourceIp
-		{
-			get
-			{
-				return sourceIp;
-			}
-			set	
-			{
-				sourceIp = value;
-				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
-			}
-		}
+		private string sourceIp;
+
+		private string lang;
 
 		public string AppUrl
 		{
@@ -68,19 +61,6 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			}
 		}
 
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
 		public string Platform
 		{
 			get
@@ -91,6 +71,32 @@ namespace Aliyun.Acs.Cloudauth.Model.V20180916
 			{
 				platform = value;
 				DictionaryUtil.Add(QueryParameters, "Platform", value);
+			}
+		}
+
+		public string SourceIp
+		{
+			get
+			{
+				return sourceIp;
+			}
+			set	
+			{
+				sourceIp = value;
+				DictionaryUtil.Add(QueryParameters, "SourceIp", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
 			}
 		}
 

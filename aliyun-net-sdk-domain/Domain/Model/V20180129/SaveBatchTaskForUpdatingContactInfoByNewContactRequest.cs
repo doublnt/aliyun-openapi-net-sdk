@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,35 +30,23 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveBatchTaskForUpdatingContactInfoByNewContactRequest : RpcAcsRequest<SaveBatchTaskForUpdatingContactInfoByNewContactResponse>
     {
         public SaveBatchTaskForUpdatingContactInfoByNewContactRequest()
-            : base("Domain", "2018-01-29", "SaveBatchTaskForUpdatingContactInfoByNewContact")
+            : base("Domain", "2018-01-29", "SaveBatchTaskForUpdatingContactInfoByNewContact", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string country;
 
-		private string address;
-
-		private string telArea;
-
-		private string contactType;
-
 		private string city;
-
-		private string zhAddress;
-
-		private string registrantType;
-
-		private List<string> domainNames;
-
-		private string telephone;
 
 		private bool? transferOutProhibited;
 
 		private string zhCity;
-
-		private string zhProvince;
-
-		private string registrantOrganization;
 
 		private string telExt;
 
@@ -69,15 +56,33 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 
 		private string postalCode;
 
-		private string userClientIp;
-
 		private string lang;
 
 		private string email;
 
-		private string registrantName;
-
 		private string zhRegistrantOrganization;
+
+		private string address;
+
+		private string telArea;
+
+		private string contactType;
+
+		private string zhAddress;
+
+		private string registrantType;
+
+		private List<string> domainNames = new List<string>(){ };
+
+		private string telephone;
+
+		private string zhProvince;
+
+		private string registrantOrganization;
+
+		private string userClientIp;
+
+		private string registrantName;
 
 		public string Country
 		{
@@ -89,6 +94,136 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				country = value;
 				DictionaryUtil.Add(QueryParameters, "Country", value);
+			}
+		}
+
+		public string City
+		{
+			get
+			{
+				return city;
+			}
+			set	
+			{
+				city = value;
+				DictionaryUtil.Add(QueryParameters, "City", value);
+			}
+		}
+
+		public bool? TransferOutProhibited
+		{
+			get
+			{
+				return transferOutProhibited;
+			}
+			set	
+			{
+				transferOutProhibited = value;
+				DictionaryUtil.Add(QueryParameters, "TransferOutProhibited", value.ToString());
+			}
+		}
+
+		public string ZhCity
+		{
+			get
+			{
+				return zhCity;
+			}
+			set	
+			{
+				zhCity = value;
+				DictionaryUtil.Add(QueryParameters, "ZhCity", value);
+			}
+		}
+
+		public string TelExt
+		{
+			get
+			{
+				return telExt;
+			}
+			set	
+			{
+				telExt = value;
+				DictionaryUtil.Add(QueryParameters, "TelExt", value);
+			}
+		}
+
+		public string Province
+		{
+			get
+			{
+				return province;
+			}
+			set	
+			{
+				province = value;
+				DictionaryUtil.Add(QueryParameters, "Province", value);
+			}
+		}
+
+		public string ZhRegistrantName
+		{
+			get
+			{
+				return zhRegistrantName;
+			}
+			set	
+			{
+				zhRegistrantName = value;
+				DictionaryUtil.Add(QueryParameters, "ZhRegistrantName", value);
+			}
+		}
+
+		public string PostalCode
+		{
+			get
+			{
+				return postalCode;
+			}
+			set	
+			{
+				postalCode = value;
+				DictionaryUtil.Add(QueryParameters, "PostalCode", value);
+			}
+		}
+
+		public string Lang
+		{
+			get
+			{
+				return lang;
+			}
+			set	
+			{
+				lang = value;
+				DictionaryUtil.Add(QueryParameters, "Lang", value);
+			}
+		}
+
+		public string Email
+		{
+			get
+			{
+				return email;
+			}
+			set	
+			{
+				email = value;
+				DictionaryUtil.Add(QueryParameters, "Email", value);
+			}
+		}
+
+		public string ZhRegistrantOrganization
+		{
+			get
+			{
+				return zhRegistrantOrganization;
+			}
+			set	
+			{
+				zhRegistrantOrganization = value;
+				DictionaryUtil.Add(QueryParameters, "ZhRegistrantOrganization", value);
 			}
 		}
 
@@ -128,19 +263,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				contactType = value;
 				DictionaryUtil.Add(QueryParameters, "ContactType", value);
-			}
-		}
-
-		public string City
-		{
-			get
-			{
-				return city;
-			}
-			set	
-			{
-				city = value;
-				DictionaryUtil.Add(QueryParameters, "City", value);
 			}
 		}
 
@@ -200,32 +322,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public bool? TransferOutProhibited
-		{
-			get
-			{
-				return transferOutProhibited;
-			}
-			set	
-			{
-				transferOutProhibited = value;
-				DictionaryUtil.Add(QueryParameters, "TransferOutProhibited", value.ToString());
-			}
-		}
-
-		public string ZhCity
-		{
-			get
-			{
-				return zhCity;
-			}
-			set	
-			{
-				zhCity = value;
-				DictionaryUtil.Add(QueryParameters, "ZhCity", value);
-			}
-		}
-
 		public string ZhProvince
 		{
 			get
@@ -252,58 +348,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string TelExt
-		{
-			get
-			{
-				return telExt;
-			}
-			set	
-			{
-				telExt = value;
-				DictionaryUtil.Add(QueryParameters, "TelExt", value);
-			}
-		}
-
-		public string Province
-		{
-			get
-			{
-				return province;
-			}
-			set	
-			{
-				province = value;
-				DictionaryUtil.Add(QueryParameters, "Province", value);
-			}
-		}
-
-		public string ZhRegistrantName
-		{
-			get
-			{
-				return zhRegistrantName;
-			}
-			set	
-			{
-				zhRegistrantName = value;
-				DictionaryUtil.Add(QueryParameters, "ZhRegistrantName", value);
-			}
-		}
-
-		public string PostalCode
-		{
-			get
-			{
-				return postalCode;
-			}
-			set	
-			{
-				postalCode = value;
-				DictionaryUtil.Add(QueryParameters, "PostalCode", value);
-			}
-		}
-
 		public string UserClientIp
 		{
 			get
@@ -317,32 +361,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			}
 		}
 
-		public string Lang
-		{
-			get
-			{
-				return lang;
-			}
-			set	
-			{
-				lang = value;
-				DictionaryUtil.Add(QueryParameters, "Lang", value);
-			}
-		}
-
-		public string Email
-		{
-			get
-			{
-				return email;
-			}
-			set	
-			{
-				email = value;
-				DictionaryUtil.Add(QueryParameters, "Email", value);
-			}
-		}
-
 		public string RegistrantName
 		{
 			get
@@ -353,19 +371,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 			{
 				registrantName = value;
 				DictionaryUtil.Add(QueryParameters, "RegistrantName", value);
-			}
-		}
-
-		public string ZhRegistrantOrganization
-		{
-			get
-			{
-				return zhRegistrantOrganization;
-			}
-			set	
-			{
-				zhRegistrantOrganization = value;
-				DictionaryUtil.Add(QueryParameters, "ZhRegistrantOrganization", value);
 			}
 		}
 

@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.alimt.Transform;
 using Aliyun.Acs.alimt.Transform.V20181012;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.alimt.Model.V20181012
 {
@@ -31,6 +32,12 @@ namespace Aliyun.Acs.alimt.Model.V20181012
         public TranslateGeneralRequest()
             : base("alimt", "2018-10-12", "TranslateGeneral", "alimt", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.alimt.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.alimt.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string sourceLanguage;
@@ -39,9 +46,9 @@ namespace Aliyun.Acs.alimt.Model.V20181012
 
 		private string formatType;
 
-		private string targetLanguage;
-
 		private string scene;
+
+		private string targetLanguage;
 
 		public string SourceLanguage
 		{
@@ -82,19 +89,6 @@ namespace Aliyun.Acs.alimt.Model.V20181012
 			}
 		}
 
-		public string TargetLanguage
-		{
-			get
-			{
-				return targetLanguage;
-			}
-			set	
-			{
-				targetLanguage = value;
-				DictionaryUtil.Add(BodyParameters, "TargetLanguage", value);
-			}
-		}
-
 		public string Scene
 		{
 			get
@@ -108,12 +102,25 @@ namespace Aliyun.Acs.alimt.Model.V20181012
 			}
 		}
 
+		public string TargetLanguage
+		{
+			get
+			{
+				return targetLanguage;
+			}
+			set	
+			{
+				targetLanguage = value;
+				DictionaryUtil.Add(BodyParameters, "TargetLanguage", value);
+			}
+		}
+
 		public override bool CheckShowJsonItemName()
 		{
 			return false;
 		}
 
-        public override TranslateGeneralResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override TranslateGeneralResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return TranslateGeneralResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

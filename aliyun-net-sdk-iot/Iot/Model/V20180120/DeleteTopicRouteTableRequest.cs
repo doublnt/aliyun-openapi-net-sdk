@@ -32,13 +32,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public DeleteTopicRouteTableRequest()
             : base("Iot", "2018-01-20", "DeleteTopicRouteTable", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private List<string> dstTopics;
 
 		private string iotInstanceId;
 
+		private List<string> dstTopics = new List<string>(){ };
+
 		private string srcTopic;
+
+		public string IotInstanceId
+		{
+			get
+			{
+				return iotInstanceId;
+			}
+			set	
+			{
+				iotInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
+			}
+		}
 
 		public List<string> DstTopics
 		{
@@ -54,19 +73,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 				{
 					DictionaryUtil.Add(QueryParameters,"DstTopic." + (i + 1) , dstTopics[i]);
 				}
-			}
-		}
-
-		public string IotInstanceId
-		{
-			get
-			{
-				return iotInstanceId;
-			}
-			set	
-			{
-				iotInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
 			}
 		}
 

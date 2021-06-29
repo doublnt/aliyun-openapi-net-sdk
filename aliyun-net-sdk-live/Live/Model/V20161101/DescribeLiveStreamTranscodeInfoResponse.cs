@@ -64,6 +64,8 @@ namespace Aliyun.Acs.live.Model.V20161101
 
 			private DescribeLiveStreamTranscodeInfo_CustomTranscodeParameters customTranscodeParameters;
 
+			private DescribeLiveStreamTranscodeInfo_EncryptParameters encryptParameters;
+
 			public string TranscodeApp
 			{
 				get
@@ -112,8 +114,24 @@ namespace Aliyun.Acs.live.Model.V20161101
 				}
 			}
 
+			public DescribeLiveStreamTranscodeInfo_EncryptParameters EncryptParameters
+			{
+				get
+				{
+					return encryptParameters;
+				}
+				set	
+				{
+					encryptParameters = value;
+				}
+			}
+
 			public class DescribeLiveStreamTranscodeInfo_CustomTranscodeParameters
 			{
+
+				private string rtsFlag;
+
+				private string bframes;
 
 				private int? videoBitrate;
 
@@ -138,6 +156,30 @@ namespace Aliyun.Acs.live.Model.V20161101
 				private int? audioRate;
 
 				private int? audioChannelNum;
+
+				public string RtsFlag
+				{
+					get
+					{
+						return rtsFlag;
+					}
+					set	
+					{
+						rtsFlag = value;
+					}
+				}
+
+				public string Bframes
+				{
+					get
+					{
+						return bframes;
+					}
+					set	
+					{
+						bframes = value;
+					}
+				}
 
 				public int? VideoBitrate
 				{
@@ -280,6 +322,52 @@ namespace Aliyun.Acs.live.Model.V20161101
 					set	
 					{
 						audioChannelNum = value;
+					}
+				}
+			}
+
+			public class DescribeLiveStreamTranscodeInfo_EncryptParameters
+			{
+
+				private string encryptType;
+
+				private string kmsKeyExpireInterval;
+
+				private string kmsKeyID;
+
+				public string EncryptType
+				{
+					get
+					{
+						return encryptType;
+					}
+					set	
+					{
+						encryptType = value;
+					}
+				}
+
+				public string KmsKeyExpireInterval
+				{
+					get
+					{
+						return kmsKeyExpireInterval;
+					}
+					set	
+					{
+						kmsKeyExpireInterval = value;
+					}
+				}
+
+				public string KmsKeyID
+				{
+					get
+					{
+						return kmsKeyID;
+					}
+					set	
+					{
+						kmsKeyID = value;
 					}
 				}
 			}

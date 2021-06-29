@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,21 +32,35 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public CreateAutoSnapshotPolicyRequest()
             : base("Ecs", "2014-05-26", "CreateAutoSnapshotPolicy", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private int? copiedSnapshotsRetentionDays;
 
 		private string timePoints;
 
-		private int? retentionDays;
+		private string repeatWeekdays;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private bool? enableCrossRegionCopy;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string repeatWeekdays;
-
 		private string autoSnapshotPolicyName;
+
+		private int? retentionDays;
+
+		private string targetCopyRegions;
 
 		public long? ResourceOwnerId
 		{
@@ -62,16 +75,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public int? CopiedSnapshotsRetentionDays
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return copiedSnapshotsRetentionDays;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				copiedSnapshotsRetentionDays = value;
+				DictionaryUtil.Add(QueryParameters, "CopiedSnapshotsRetentionDays", value.ToString());
 			}
 		}
 
@@ -88,16 +101,60 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public int? RetentionDays
+		public string RepeatWeekdays
 		{
 			get
 			{
-				return retentionDays;
+				return repeatWeekdays;
 			}
 			set	
 			{
-				retentionDays = value;
-				DictionaryUtil.Add(QueryParameters, "retentionDays", value.ToString());
+				repeatWeekdays = value;
+				DictionaryUtil.Add(QueryParameters, "repeatWeekdays", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public bool? EnableCrossRegionCopy
+		{
+			get
+			{
+				return enableCrossRegionCopy;
+			}
+			set	
+			{
+				enableCrossRegionCopy = value;
+				DictionaryUtil.Add(QueryParameters, "EnableCrossRegionCopy", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -114,19 +171,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string RepeatWeekdays
-		{
-			get
-			{
-				return repeatWeekdays;
-			}
-			set	
-			{
-				repeatWeekdays = value;
-				DictionaryUtil.Add(QueryParameters, "repeatWeekdays", value);
-			}
-		}
-
 		public string AutoSnapshotPolicyName
 		{
 			get
@@ -137,6 +181,64 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				autoSnapshotPolicyName = value;
 				DictionaryUtil.Add(QueryParameters, "autoSnapshotPolicyName", value);
+			}
+		}
+
+		public int? RetentionDays
+		{
+			get
+			{
+				return retentionDays;
+			}
+			set	
+			{
+				retentionDays = value;
+				DictionaryUtil.Add(QueryParameters, "retentionDays", value.ToString());
+			}
+		}
+
+		public string TargetCopyRegions
+		{
+			get
+			{
+				return targetCopyRegions;
+			}
+			set	
+			{
+				targetCopyRegions = value;
+				DictionaryUtil.Add(QueryParameters, "TargetCopyRegions", value);
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
 			}
 		}
 

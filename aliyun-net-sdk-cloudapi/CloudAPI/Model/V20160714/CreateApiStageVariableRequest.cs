@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.CloudAPI.Transform;
 using Aliyun.Acs.CloudAPI.Transform.V20160714;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.CloudAPI.Model.V20160714
 {
@@ -31,23 +32,24 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
         public CreateApiStageVariableRequest()
             : base("CloudAPI", "2016-07-14", "CreateApiStageVariable", "apigateway", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private bool? supportRoute;
-
-		private string securityToken;
-
-		private string variableName;
 
 		private string variableValue;
 
 		private string groupId;
 
-		private string action;
-
 		private string stageRouteModel;
 
-		private string accessKeyId;
+		private string securityToken;
+
+		private string variableName;
 
 		private string stageId;
 
@@ -61,32 +63,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			{
 				supportRoute = value;
 				DictionaryUtil.Add(QueryParameters, "SupportRoute", value.ToString());
-			}
-		}
-
-		public string SecurityToken
-		{
-			get
-			{
-				return securityToken;
-			}
-			set	
-			{
-				securityToken = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
-			}
-		}
-
-		public string VariableName
-		{
-			get
-			{
-				return variableName;
-			}
-			set	
-			{
-				variableName = value;
-				DictionaryUtil.Add(QueryParameters, "VariableName", value);
 			}
 		}
 
@@ -116,19 +92,6 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string StageRouteModel
 		{
 			get
@@ -142,16 +105,29 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-		public string AccessKeyId
+		public string SecurityToken
 		{
 			get
 			{
-				return accessKeyId;
+				return securityToken;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				securityToken = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityToken", value);
+			}
+		}
+
+		public string VariableName
+		{
+			get
+			{
+				return variableName;
+			}
+			set	
+			{
+				variableName = value;
+				DictionaryUtil.Add(QueryParameters, "VariableName", value);
 			}
 		}
 
@@ -168,7 +144,7 @@ namespace Aliyun.Acs.CloudAPI.Model.V20160714
 			}
 		}
 
-        public override CreateApiStageVariableResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override CreateApiStageVariableResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return CreateApiStageVariableResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

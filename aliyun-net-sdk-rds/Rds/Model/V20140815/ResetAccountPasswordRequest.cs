@@ -32,21 +32,27 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ResetAccountPasswordRequest()
             : base("Rds", "2014-08-15", "ResetAccountPassword", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string accountPassword;
-
 		private string accountName;
+
+		private string dBInstanceId;
 
 		private string resourceOwnerAccount;
 
 		private string ownerAccount;
 
-		private string dBInstanceId;
-
 		private long? ownerId;
+
+		private string accountPassword;
 
 		public long? ResourceOwnerId
 		{
@@ -61,19 +67,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string AccountPassword
-		{
-			get
-			{
-				return accountPassword;
-			}
-			set	
-			{
-				accountPassword = value;
-				DictionaryUtil.Add(QueryParameters, "AccountPassword", value);
-			}
-		}
-
 		public string AccountName
 		{
 			get
@@ -84,6 +77,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				accountName = value;
 				DictionaryUtil.Add(QueryParameters, "AccountName", value);
+			}
+		}
+
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -113,19 +119,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -136,6 +129,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string AccountPassword
+		{
+			get
+			{
+				return accountPassword;
+			}
+			set	
+			{
+				accountPassword = value;
+				DictionaryUtil.Add(QueryParameters, "AccountPassword", value);
 			}
 		}
 

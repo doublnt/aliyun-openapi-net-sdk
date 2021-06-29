@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,27 +32,41 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ImportImageRequest()
             : base("Ecs", "2014-05-26", "ImportImage", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private List<DiskDeviceMapping> diskDeviceMappings;
+		private List<DiskDeviceMapping> diskDeviceMappings = new List<DiskDeviceMapping>(){ };
 
 		private long? resourceOwnerId;
+
+		private string description;
+
+		private string platform;
+
+		private string resourceGroupId;
+
+		private string bootMode;
+
+		private string imageName;
+
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string architecture;
+
+		private string licenseType;
 
 		private string resourceOwnerAccount;
 
 		private string roleName;
 
-		private string description;
-
 		private string oSType;
 
 		private long? ownerId;
-
-		private string platform;
-
-		private string imageName;
-
-		private string architecture;
 
 		public List<DiskDeviceMapping> DiskDeviceMappings
 		{
@@ -90,6 +103,115 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
+			}
+		}
+
+		public string Platform
+		{
+			get
+			{
+				return platform;
+			}
+			set	
+			{
+				platform = value;
+				DictionaryUtil.Add(QueryParameters, "Platform", value);
+			}
+		}
+
+		public string ResourceGroupId
+		{
+			get
+			{
+				return resourceGroupId;
+			}
+			set	
+			{
+				resourceGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string BootMode
+		{
+			get
+			{
+				return bootMode;
+			}
+			set	
+			{
+				bootMode = value;
+				DictionaryUtil.Add(QueryParameters, "BootMode", value);
+			}
+		}
+
+		public string ImageName
+		{
+			get
+			{
+				return imageName;
+			}
+			set	
+			{
+				imageName = value;
+				DictionaryUtil.Add(QueryParameters, "ImageName", value);
+			}
+		}
+
+		public List<Tag> Tags
+		{
+			get
+			{
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public string Architecture
+		{
+			get
+			{
+				return architecture;
+			}
+			set	
+			{
+				architecture = value;
+				DictionaryUtil.Add(QueryParameters, "Architecture", value);
+			}
+		}
+
+		public string LicenseType
+		{
+			get
+			{
+				return licenseType;
+			}
+			set	
+			{
+				licenseType = value;
+				DictionaryUtil.Add(QueryParameters, "LicenseType", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -116,19 +238,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
 		public string OSType
 		{
 			get
@@ -152,45 +261,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string Platform
-		{
-			get
-			{
-				return platform;
-			}
-			set	
-			{
-				platform = value;
-				DictionaryUtil.Add(QueryParameters, "Platform", value);
-			}
-		}
-
-		public string ImageName
-		{
-			get
-			{
-				return imageName;
-			}
-			set	
-			{
-				imageName = value;
-				DictionaryUtil.Add(QueryParameters, "ImageName", value);
-			}
-		}
-
-		public string Architecture
-		{
-			get
-			{
-				return architecture;
-			}
-			set	
-			{
-				architecture = value;
-				DictionaryUtil.Add(QueryParameters, "Architecture", value);
 			}
 		}
 
@@ -278,6 +348,38 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					diskImageSize = value;
+				}
+			}
+		}
+
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
 				}
 			}
 		}

@@ -22,7 +22,6 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
-using Aliyun.Acs.Domain;
 using Aliyun.Acs.Domain.Transform;
 using Aliyun.Acs.Domain.Transform.V20180129;
 
@@ -31,23 +30,55 @@ namespace Aliyun.Acs.Domain.Model.V20180129
     public class SaveBatchTaskForCreatingOrderRenewRequest : RpcAcsRequest<SaveBatchTaskForCreatingOrderRenewResponse>
     {
         public SaveBatchTaskForCreatingOrderRenewRequest()
-            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderRenew")
+            : base("Domain", "2018-01-29", "SaveBatchTaskForCreatingOrderRenew", "domain", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Domain.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string promotionNo;
-
-		private string userClientIp;
-
-		private List<OrderRenewParam> orderRenewParams;
 
 		private string couponNo;
 
 		private bool? useCoupon;
 
+		private string promotionNo;
+
+		private string userClientIp;
+
+		private List<OrderRenewParam> orderRenewParams = new List<OrderRenewParam>(){ };
+
 		private string lang;
 
 		private bool? usePromotion;
+
+		public string CouponNo
+		{
+			get
+			{
+				return couponNo;
+			}
+			set	
+			{
+				couponNo = value;
+				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
+			}
+		}
+
+		public bool? UseCoupon
+		{
+			get
+			{
+				return useCoupon;
+			}
+			set	
+			{
+				useCoupon = value;
+				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
+			}
+		}
 
 		public string PromotionNo
 		{
@@ -91,32 +122,6 @@ namespace Aliyun.Acs.Domain.Model.V20180129
 					DictionaryUtil.Add(QueryParameters,"OrderRenewParam." + (i + 1) + ".CurrentExpirationDate", orderRenewParams[i].CurrentExpirationDate);
 					DictionaryUtil.Add(QueryParameters,"OrderRenewParam." + (i + 1) + ".DomainName", orderRenewParams[i].DomainName);
 				}
-			}
-		}
-
-		public string CouponNo
-		{
-			get
-			{
-				return couponNo;
-			}
-			set	
-			{
-				couponNo = value;
-				DictionaryUtil.Add(QueryParameters, "CouponNo", value);
-			}
-		}
-
-		public bool? UseCoupon
-		{
-			get
-			{
-				return useCoupon;
-			}
-			set	
-			{
-				useCoupon = value;
-				DictionaryUtil.Add(QueryParameters, "UseCoupon", value.ToString());
 			}
 		}
 

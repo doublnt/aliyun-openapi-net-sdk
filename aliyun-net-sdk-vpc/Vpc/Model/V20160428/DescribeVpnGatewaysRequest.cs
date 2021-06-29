@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,44 +32,37 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public DescribeVpnGatewaysRequest()
             : base("Vpc", "2016-04-28", "DescribeVpnGateways", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string businessStatus;
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private bool? includeReservationData;
 
-		private string regionId;
-
-		private string ownerAccount;
-
-		private string vpcId;
+		private int? pageNumber;
 
 		private int? pageSize;
 
-		private string action;
+		private List<Tag> tags = new List<Tag>(){ };
+
+		private string businessStatus;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
 
 		private string vpnGatewayId;
 
 		private long? ownerId;
 
-		private int? pageNumber;
+		private string vpcId;
 
 		private string status;
-
-		public string BusinessStatus
-		{
-			get
-			{
-				return businessStatus;
-			}
-			set	
-			{
-				businessStatus = value;
-				DictionaryUtil.Add(QueryParameters, "BusinessStatus", value);
-			}
-		}
 
 		public long? ResourceOwnerId
 		{
@@ -83,55 +77,29 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public bool? IncludeReservationData
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return includeReservationData;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				includeReservationData = value;
+				DictionaryUtil.Add(QueryParameters, "IncludeReservationData", value.ToString());
 			}
 		}
 
-		public string RegionId
+		public int? PageNumber
 		{
 			get
 			{
-				return regionId;
+				return pageNumber;
 			}
 			set	
 			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string VpcId
-		{
-			get
-			{
-				return vpcId;
-			}
-			set	
-			{
-				vpcId = value;
-				DictionaryUtil.Add(QueryParameters, "VpcId", value);
+				pageNumber = value;
+				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
 			}
 		}
 
@@ -148,16 +116,60 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string Action
+		public List<Tag> Tags
 		{
 			get
 			{
-				return action;
+				return tags;
+			}
+
+			set
+			{
+				tags = value;
+				for (int i = 0; i < tags.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Value", tags[i].Value);
+					DictionaryUtil.Add(QueryParameters,"Tag." + (i + 1) + ".Key", tags[i].Key);
+				}
+			}
+		}
+
+		public string BusinessStatus
+		{
+			get
+			{
+				return businessStatus;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				businessStatus = value;
+				DictionaryUtil.Add(QueryParameters, "BusinessStatus", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
 			}
 		}
 
@@ -187,16 +199,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public int? PageNumber
+		public string VpcId
 		{
 			get
 			{
-				return pageNumber;
+				return vpcId;
 			}
 			set	
 			{
-				pageNumber = value;
-				DictionaryUtil.Add(QueryParameters, "PageNumber", value.ToString());
+				vpcId = value;
+				DictionaryUtil.Add(QueryParameters, "VpcId", value);
 			}
 		}
 
@@ -213,7 +225,39 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override DescribeVpnGatewaysResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public class Tag
+		{
+
+			private string value_;
+
+			private string key;
+
+			public string Value
+			{
+				get
+				{
+					return value_;
+				}
+				set	
+				{
+					value_ = value;
+				}
+			}
+
+			public string Key
+			{
+				get
+				{
+					return key;
+				}
+				set	
+				{
+					key = value;
+				}
+			}
+		}
+
+        public override DescribeVpnGatewaysResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeVpnGatewaysResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,8 +31,13 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class RecoverClusterRequest : RpcAcsRequest<RecoverClusterResponse>
     {
         public RecoverClusterRequest()
-            : base("EHPC", "2018-04-12", "RecoverCluster", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "RecoverCluster")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
 
 		private string imageId;
@@ -42,15 +48,11 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 
 		private string accountType;
 
-		private string schedulerType;
-
-		private string action;
-
 		private string clusterId;
 
-		private string accessKeyId;
-
 		private string imageOwnerAlias;
+
+		private string schedulerType;
 
 		public string ImageId
 		{
@@ -104,32 +106,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string SchedulerType
-		{
-			get
-			{
-				return schedulerType;
-			}
-			set	
-			{
-				schedulerType = value;
-				DictionaryUtil.Add(QueryParameters, "SchedulerType", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string ClusterId
 		{
 			get
@@ -143,19 +119,6 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
 		public string ImageOwnerAlias
 		{
 			get
@@ -166,6 +129,19 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			{
 				imageOwnerAlias = value;
 				DictionaryUtil.Add(QueryParameters, "ImageOwnerAlias", value);
+			}
+		}
+
+		public string SchedulerType
+		{
+			get
+			{
+				return schedulerType;
+			}
+			set	
+			{
+				schedulerType = value;
+				DictionaryUtil.Add(QueryParameters, "SchedulerType", value);
 			}
 		}
 

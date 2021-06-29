@@ -32,17 +32,21 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public CreateAppInfoRequest()
             : base("vod", "2017-03-21", "CreateAppInfo", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
+		private string description;
+
 		private string appName;
 
 		private string resourceOwnerAccount;
-
-		private string description;
-
-		private long? resourceRealOwnerId;
 
 		private long? ownerId;
 
@@ -56,6 +60,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string Description
+		{
+			get
+			{
+				return description;
+			}
+			set	
+			{
+				description = value;
+				DictionaryUtil.Add(QueryParameters, "Description", value);
 			}
 		}
 
@@ -82,32 +99,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return description;
-			}
-			set	
-			{
-				description = value;
-				DictionaryUtil.Add(QueryParameters, "Description", value);
-			}
-		}
-
-		public long? ResourceRealOwnerId
-		{
-			get
-			{
-				return resourceRealOwnerId;
-			}
-			set	
-			{
-				resourceRealOwnerId = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceRealOwnerId", value.ToString());
 			}
 		}
 

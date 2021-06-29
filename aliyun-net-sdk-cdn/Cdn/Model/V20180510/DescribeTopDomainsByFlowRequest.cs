@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20180510;
 
@@ -32,15 +33,17 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
         public DescribeTopDomainsByFlowRequest()
             : base("Cdn", "2018-05-10", "DescribeTopDomainsByFlow")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string startTime;
 
 		private long? limit;
-
-		private string action;
-
-		private string product;
 
 		private string endTime;
 
@@ -69,32 +72,6 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			{
 				limit = value;
 				DictionaryUtil.Add(QueryParameters, "Limit", value.ToString());
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
-		public string Product
-		{
-			get
-			{
-				return product;
-			}
-			set	
-			{
-				product = value;
-				DictionaryUtil.Add(QueryParameters, "Product", value);
 			}
 		}
 

@@ -32,28 +32,45 @@ namespace Aliyun.Acs.Ons.Model.V20190214
         public OnsTopicCreateRequest()
             : base("Ons", "2019-02-14", "OnsTopicCreate", "ons", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ons.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private long? preventCache;
-
-		private string instanceId;
 
 		private int? messageType;
 
-		private string topic;
-
 		private string remark;
 
-		public long? PreventCache
+		private string instanceId;
+
+		private string topic;
+
+		public int? MessageType
 		{
 			get
 			{
-				return preventCache;
+				return messageType;
 			}
 			set	
 			{
-				preventCache = value;
-				DictionaryUtil.Add(QueryParameters, "PreventCache", value.ToString());
+				messageType = value;
+				DictionaryUtil.Add(QueryParameters, "MessageType", value.ToString());
+			}
+		}
+
+		public string Remark
+		{
+			get
+			{
+				return remark;
+			}
+			set	
+			{
+				remark = value;
+				DictionaryUtil.Add(QueryParameters, "Remark", value);
 			}
 		}
 
@@ -70,19 +87,6 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			}
 		}
 
-		public int? MessageType
-		{
-			get
-			{
-				return messageType;
-			}
-			set	
-			{
-				messageType = value;
-				DictionaryUtil.Add(QueryParameters, "MessageType", value.ToString());
-			}
-		}
-
 		public string Topic
 		{
 			get
@@ -93,19 +97,6 @@ namespace Aliyun.Acs.Ons.Model.V20190214
 			{
 				topic = value;
 				DictionaryUtil.Add(QueryParameters, "Topic", value);
-			}
-		}
-
-		public string Remark
-		{
-			get
-			{
-				return remark;
-			}
-			set	
-			{
-				remark = value;
-				DictionaryUtil.Add(QueryParameters, "Remark", value);
 			}
 		}
 

@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,9 +32,17 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeRenewalPriceRequest()
             : base("Ecs", "2014-05-26", "DescribeRenewalPrice", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string priceUnit;
 
 		private string resourceId;
 
@@ -45,7 +52,7 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private string ownerAccount;
 
-		private string priceUnit;
+		private int? expectedRenewDay;
 
 		private long? ownerId;
 
@@ -61,6 +68,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string PriceUnit
+		{
+			get
+			{
+				return priceUnit;
+			}
+			set	
+			{
+				priceUnit = value;
+				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
 			}
 		}
 
@@ -116,16 +136,16 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string PriceUnit
+		public int? ExpectedRenewDay
 		{
 			get
 			{
-				return priceUnit;
+				return expectedRenewDay;
 			}
 			set	
 			{
-				priceUnit = value;
-				DictionaryUtil.Add(QueryParameters, "PriceUnit", value);
+				expectedRenewDay = value;
+				DictionaryUtil.Add(QueryParameters, "ExpectedRenewDay", value.ToString());
 			}
 		}
 

@@ -26,62 +26,27 @@ namespace Aliyun.Acs.ivision.Transform.V20190308
 {
     public class DescribeStreamPredictResultResponseUnmarshaller
     {
-        public static DescribeStreamPredictResultResponse Unmarshall(UnmarshallerContext context)
+        public static DescribeStreamPredictResultResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			DescribeStreamPredictResultResponse describeStreamPredictResultResponse = new DescribeStreamPredictResultResponse();
 
-			describeStreamPredictResultResponse.HttpResponse = context.HttpResponse;
-			describeStreamPredictResultResponse.RequestId = context.StringValue("DescribeStreamPredictResult.RequestId");
-			describeStreamPredictResultResponse.TotalNum = context.LongValue("DescribeStreamPredictResult.TotalNum");
-			describeStreamPredictResultResponse.CurrentPage = context.LongValue("DescribeStreamPredictResult.CurrentPage");
-			describeStreamPredictResultResponse.PageSize = context.LongValue("DescribeStreamPredictResult.PageSize");
-			describeStreamPredictResultResponse.NextPageToken = context.StringValue("DescribeStreamPredictResult.NextPageToken");
+			describeStreamPredictResultResponse.HttpResponse = _ctx.HttpResponse;
+			describeStreamPredictResultResponse.TotalNum = _ctx.LongValue("DescribeStreamPredictResult.TotalNum");
+			describeStreamPredictResultResponse.PageSize = _ctx.LongValue("DescribeStreamPredictResult.PageSize");
+			describeStreamPredictResultResponse.RequestId = _ctx.StringValue("DescribeStreamPredictResult.RequestId");
+			describeStreamPredictResultResponse.CurrentPage = _ctx.LongValue("DescribeStreamPredictResult.CurrentPage");
+			describeStreamPredictResultResponse.NextPageToken = _ctx.StringValue("DescribeStreamPredictResult.NextPageToken");
 
 			List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData> describeStreamPredictResultResponse_streamPredictDatas = new List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData>();
-			for (int i = 0; i < context.Length("DescribeStreamPredictResult.StreamPredictDatas.Length"); i++) {
+			for (int i = 0; i < _ctx.Length("DescribeStreamPredictResult.StreamPredictDatas.Length"); i++) {
 				DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData streamPredictData = new DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData();
-				streamPredictData.PredictId = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictId");
-				streamPredictData.ModelId = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ModelId");
-				streamPredictData.DataUrl = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].DataUrl");
-				streamPredictData.StreamTimestamp = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].StreamTimestamp");
-				streamPredictData.PredictTime = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictTime");
-				streamPredictData.Status = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].Status");
-
-				List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_ResultStatisticsItem> streamPredictData_resultStatistics = new List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_ResultStatisticsItem>();
-				for (int j = 0; j < context.Length("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ResultStatistics.Length"); j++) {
-					DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_ResultStatisticsItem resultStatisticsItem = new DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_ResultStatisticsItem();
-					resultStatisticsItem.TagId = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ResultStatistics["+ j +"].TagId");
-					resultStatisticsItem.TagName = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ResultStatistics["+ j +"].TagName");
-					resultStatisticsItem.Count = context.LongValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ResultStatistics["+ j +"].Count");
-
-					streamPredictData_resultStatistics.Add(resultStatisticsItem);
-				}
-				streamPredictData.ResultStatistics = streamPredictData_resultStatistics;
-
-				List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult> streamPredictData_predictionResults = new List<DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult>();
-				for (int j = 0; j < context.Length("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults.Length"); j++) {
-					DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult predictionResult = new DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult();
-					predictionResult.TagId = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].TagId");
-					predictionResult.TagName = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].TagName");
-					predictionResult.Probability = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Probability");
-					predictionResult.Overlap = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Overlap");
-					predictionResult.RegionType = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].RegionType");
-
-					DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult.DescribeStreamPredictResult_Region region = new DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult.DescribeStreamPredictResult_Region();
-					region.Left = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Region.Left");
-					region.Top = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Region.Top");
-					region.Width = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Region.Width");
-					region.Height = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Region.Height");
-					predictionResult.Region = region;
-
-					DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult.DescribeStreamPredictResult_Properties properties = new DescribeStreamPredictResultResponse.DescribeStreamPredictResult_StreamPredictData.DescribeStreamPredictResult_PredictionResult.DescribeStreamPredictResult_Properties();
-					properties.WithGloves = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Properties.WithGloves");
-					properties.WithGlovesProbability = context.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictionResults["+ j +"].Properties.WithGlovesProbability");
-					predictionResult.Properties = properties;
-
-					streamPredictData_predictionResults.Add(predictionResult);
-				}
-				streamPredictData.PredictionResults = streamPredictData_predictionResults;
+				streamPredictData.Status = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].Status");
+				streamPredictData.PredictResult = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictResult");
+				streamPredictData.PredictId = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictId");
+				streamPredictData.PredictTime = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].PredictTime");
+				streamPredictData.DataUrl = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].DataUrl");
+				streamPredictData.Timestamp = _ctx.LongValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].Timestamp");
+				streamPredictData.ModelId = _ctx.StringValue("DescribeStreamPredictResult.StreamPredictDatas["+ i +"].ModelId");
 
 				describeStreamPredictResultResponse_streamPredictDatas.Add(streamPredictData);
 			}

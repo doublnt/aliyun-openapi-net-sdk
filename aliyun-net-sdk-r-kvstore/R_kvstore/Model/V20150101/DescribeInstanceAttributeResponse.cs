@@ -118,8 +118,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 
 			private string architectureType;
 
-			private string nodeType1;
-
 			private string packageType;
 
 			private string replicaId;
@@ -129,6 +127,24 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 			private string auditLogRetention;
 
 			private string replicationMode;
+
+			private string vpcCloudInstanceId;
+
+			private bool? instanceReleaseProtection;
+
+			private string resourceGroupId;
+
+			private int? shardCount;
+
+			private string storage;
+
+			private string storageType;
+
+			private string globalInstanceId;
+
+			private string secondaryZoneId;
+
+			private string zoneType;
 
 			private List<DescribeInstanceAttribute_Tag> tags;
 
@@ -504,18 +520,6 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				}
 			}
 
-			public string NodeType1
-			{
-				get
-				{
-					return nodeType1;
-				}
-				set	
-				{
-					nodeType1 = value;
-				}
-			}
-
 			public string PackageType
 			{
 				get
@@ -573,6 +577,114 @@ namespace Aliyun.Acs.R_kvstore.Model.V20150101
 				set	
 				{
 					replicationMode = value;
+				}
+			}
+
+			public string VpcCloudInstanceId
+			{
+				get
+				{
+					return vpcCloudInstanceId;
+				}
+				set	
+				{
+					vpcCloudInstanceId = value;
+				}
+			}
+
+			public bool? InstanceReleaseProtection
+			{
+				get
+				{
+					return instanceReleaseProtection;
+				}
+				set	
+				{
+					instanceReleaseProtection = value;
+				}
+			}
+
+			public string ResourceGroupId
+			{
+				get
+				{
+					return resourceGroupId;
+				}
+				set	
+				{
+					resourceGroupId = value;
+				}
+			}
+
+			public int? ShardCount
+			{
+				get
+				{
+					return shardCount;
+				}
+				set	
+				{
+					shardCount = value;
+				}
+			}
+
+			public string Storage
+			{
+				get
+				{
+					return storage;
+				}
+				set	
+				{
+					storage = value;
+				}
+			}
+
+			public string StorageType
+			{
+				get
+				{
+					return storageType;
+				}
+				set	
+				{
+					storageType = value;
+				}
+			}
+
+			public string GlobalInstanceId
+			{
+				get
+				{
+					return globalInstanceId;
+				}
+				set	
+				{
+					globalInstanceId = value;
+				}
+			}
+
+			public string SecondaryZoneId
+			{
+				get
+				{
+					return secondaryZoneId;
+				}
+				set	
+				{
+					secondaryZoneId = value;
+				}
+			}
+
+			public string ZoneType
+			{
+				get
+				{
+					return zoneType;
+				}
+				set	
+				{
+					zoneType = value;
 				}
 			}
 

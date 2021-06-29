@@ -32,17 +32,23 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public CreateRuleActionRequest()
             : base("Iot", "2018-01-20", "CreateRuleAction", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string configuration;
 
-		private string iotInstanceId;
-
-		private long? ruleId;
-
 		private string type;
 
+		private string iotInstanceId;
+
 		private bool? errorActionFlag;
+
+		private long? ruleId;
 
 		public string Configuration
 		{
@@ -54,32 +60,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				configuration = value;
 				DictionaryUtil.Add(QueryParameters, "Configuration", value);
-			}
-		}
-
-		public string IotInstanceId
-		{
-			get
-			{
-				return iotInstanceId;
-			}
-			set	
-			{
-				iotInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
-			}
-		}
-
-		public long? RuleId
-		{
-			get
-			{
-				return ruleId;
-			}
-			set	
-			{
-				ruleId = value;
-				DictionaryUtil.Add(QueryParameters, "RuleId", value.ToString());
 			}
 		}
 
@@ -96,6 +76,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
+		public string IotInstanceId
+		{
+			get
+			{
+				return iotInstanceId;
+			}
+			set	
+			{
+				iotInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "IotInstanceId", value);
+			}
+		}
+
 		public bool? ErrorActionFlag
 		{
 			get
@@ -106,6 +99,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				errorActionFlag = value;
 				DictionaryUtil.Add(QueryParameters, "ErrorActionFlag", value.ToString());
+			}
+		}
+
+		public long? RuleId
+		{
+			get
+			{
+				return ruleId;
+			}
+			set	
+			{
+				ruleId = value;
+				DictionaryUtil.Add(QueryParameters, "RuleId", value.ToString());
 			}
 		}
 

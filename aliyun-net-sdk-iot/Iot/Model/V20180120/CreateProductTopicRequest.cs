@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public CreateProductTopicRequest()
             : base("Iot", "2018-01-20", "CreateProductTopic", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;
 
-		private string productKey;
-
 		private string topicShortName;
+
+		private string productKey;
 
 		private string operation;
 
@@ -57,19 +63,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string ProductKey
-		{
-			get
-			{
-				return productKey;
-			}
-			set	
-			{
-				productKey = value;
-				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
-			}
-		}
-
 		public string TopicShortName
 		{
 			get
@@ -80,6 +73,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				topicShortName = value;
 				DictionaryUtil.Add(QueryParameters, "TopicShortName", value);
+			}
+		}
+
+		public string ProductKey
+		{
+			get
+			{
+				return productKey;
+			}
+			set	
+			{
+				productKey = value;
+				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
 			}
 		}
 

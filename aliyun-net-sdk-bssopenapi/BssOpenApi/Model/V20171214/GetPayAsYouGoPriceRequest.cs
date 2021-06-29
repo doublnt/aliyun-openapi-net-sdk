@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,19 +33,25 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public GetPayAsYouGoPriceRequest()
             : base("BssOpenApi", "2017-12-14", "GetPayAsYouGoPrice")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string productCode;
 
 		private string subscriptionType;
 
-		private List<ModuleList> moduleLists;
+		private List<ModuleList> moduleLists = new List<ModuleList>(){ };
 
 		private long? ownerId;
 
-		private string region;
-
 		private string productType;
+
+		private string region;
 
 		public string ProductCode
 		{
@@ -104,19 +111,6 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			}
 		}
 
-		public string Region
-		{
-			get
-			{
-				return region;
-			}
-			set	
-			{
-				region = value;
-				DictionaryUtil.Add(QueryParameters, "Region", value);
-			}
-		}
-
 		public string ProductType
 		{
 			get
@@ -127,6 +121,19 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				productType = value;
 				DictionaryUtil.Add(QueryParameters, "ProductType", value);
+			}
+		}
+
+		public string Region
+		{
+			get
+			{
+				return region;
+			}
+			set	
+			{
+				region = value;
+				DictionaryUtil.Add(QueryParameters, "Region", value);
 			}
 		}
 

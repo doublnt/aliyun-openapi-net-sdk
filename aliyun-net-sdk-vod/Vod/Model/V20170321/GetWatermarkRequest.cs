@@ -32,9 +32,13 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public GetWatermarkRequest()
             : base("vod", "2017-03-21", "GetWatermark", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string watermarkId;
 
 		private long? resourceOwnerId;
 
@@ -42,18 +46,7 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private long? ownerId;
 
-		public string WatermarkId
-		{
-			get
-			{
-				return watermarkId;
-			}
-			set	
-			{
-				watermarkId = value;
-				DictionaryUtil.Add(QueryParameters, "WatermarkId", value);
-			}
-		}
+		private string watermarkId;
 
 		public long? ResourceOwnerId
 		{
@@ -91,6 +84,19 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string WatermarkId
+		{
+			get
+			{
+				return watermarkId;
+			}
+			set	
+			{
+				watermarkId = value;
+				DictionaryUtil.Add(QueryParameters, "WatermarkId", value);
 			}
 		}
 

@@ -32,13 +32,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public QueryDeviceListByDeviceGroupRequest()
             : base("Iot", "2018-01-20", "QueryDeviceListByDeviceGroup", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotInstanceId;
 
-		private string groupId;
-
 		private int? pageSize;
+
+		private string groupId;
 
 		private int? currentPage;
 
@@ -55,19 +61,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string GroupId
-		{
-			get
-			{
-				return groupId;
-			}
-			set	
-			{
-				groupId = value;
-				DictionaryUtil.Add(QueryParameters, "GroupId", value);
-			}
-		}
-
 		public int? PageSize
 		{
 			get
@@ -78,6 +71,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				pageSize = value;
 				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string GroupId
+		{
+			get
+			{
+				return groupId;
+			}
+			set	
+			{
+				groupId = value;
+				DictionaryUtil.Add(QueryParameters, "GroupId", value);
 			}
 		}
 

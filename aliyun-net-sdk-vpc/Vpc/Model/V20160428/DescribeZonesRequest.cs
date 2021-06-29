@@ -16,13 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.Vpc.Transform;
 using Aliyun.Acs.Vpc.Transform.V20160428;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -31,19 +32,25 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
         public DescribeZonesRequest()
             : base("Vpc", "2016-04-28", "DescribeZones", "vpc", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Vpc.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string resourceOwnerAccount;
 
-		private string regionId;
-
 		private string ownerAccount;
 
-		private string action;
-
 		private long? ownerId;
+
+		private string acceptLanguage;
+
+		private string zoneType;
 
 		public long? ResourceOwnerId
 		{
@@ -71,19 +78,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-		public string RegionId
-		{
-			get
-			{
-				return regionId;
-			}
-			set	
-			{
-				regionId = value;
-				DictionaryUtil.Add(QueryParameters, "RegionId", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -94,19 +88,6 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -123,7 +104,33 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			}
 		}
 
-        public override DescribeZonesResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+		public string AcceptLanguage
+		{
+			get
+			{
+				return acceptLanguage;
+			}
+			set	
+			{
+				acceptLanguage = value;
+				DictionaryUtil.Add(QueryParameters, "AcceptLanguage", value);
+			}
+		}
+
+		public string ZoneType
+		{
+			get
+			{
+				return zoneType;
+			}
+			set	
+			{
+				zoneType = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneType", value);
+			}
+		}
+
+        public override DescribeZonesResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeZonesResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

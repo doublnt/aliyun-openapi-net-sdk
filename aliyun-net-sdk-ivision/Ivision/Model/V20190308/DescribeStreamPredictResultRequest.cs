@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.ivision;
 using Aliyun.Acs.ivision.Transform;
 using Aliyun.Acs.ivision.Transform.V20190308;
 
@@ -30,8 +31,14 @@ namespace Aliyun.Acs.ivision.Model.V20190308
     public class DescribeStreamPredictResultRequest : RpcAcsRequest<DescribeStreamPredictResultResponse>
     {
         public DescribeStreamPredictResultRequest()
-            : base("ivision", "2019-03-08", "DescribeStreamPredictResult", "ivision", "openAPI")
+            : base("ivision", "2019-03-08", "DescribeStreamPredictResult")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.ivision.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.ivision.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string nextPageToken;
@@ -42,11 +49,7 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 
 		private long? pageSize;
 
-		private string action;
-
 		private string probabilityThreshold;
-
-		private string showLog;
 
 		private string modelId;
 
@@ -108,19 +111,6 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 			}
 		}
 
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string ProbabilityThreshold
 		{
 			get
@@ -131,19 +121,6 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 			{
 				probabilityThreshold = value;
 				DictionaryUtil.Add(QueryParameters, "ProbabilityThreshold", value);
-			}
-		}
-
-		public string ShowLog
-		{
-			get
-			{
-				return showLog;
-			}
-			set	
-			{
-				showLog = value;
-				DictionaryUtil.Add(QueryParameters, "ShowLog", value);
 			}
 		}
 
@@ -197,6 +174,11 @@ namespace Aliyun.Acs.ivision.Model.V20190308
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
+		}
+
+		public override bool CheckShowJsonItemName()
+		{
+			return false;
 		}
 
         public override DescribeStreamPredictResultResponse GetResponse(UnmarshallerContext unmarshallerContext)

@@ -33,23 +33,35 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public ModifyAutoSnapshotPolicyExRequest()
             : base("Ecs", "2014-05-26", "ModifyAutoSnapshotPolicyEx", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
-
 		private string autoSnapshotPolicyId;
+
+		private int? copiedSnapshotsRetentionDays;
 
 		private string timePoints;
 
-		private int? retentionDays;
+		private string repeatWeekdays;
+
+		private bool? enableCrossRegionCopy;
+
+		private string resourceOwnerAccount;
 
 		private long? ownerId;
 
-		private string repeatWeekdays;
-
 		private string autoSnapshotPolicyName;
+
+		private int? retentionDays;
+
+		private string targetCopyRegions;
 
 		public long? ResourceOwnerId
 		{
@@ -61,19 +73,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
 			}
 		}
 
@@ -90,6 +89,19 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public int? CopiedSnapshotsRetentionDays
+		{
+			get
+			{
+				return copiedSnapshotsRetentionDays;
+			}
+			set	
+			{
+				copiedSnapshotsRetentionDays = value;
+				DictionaryUtil.Add(QueryParameters, "CopiedSnapshotsRetentionDays", value.ToString());
+			}
+		}
+
 		public string TimePoints
 		{
 			get
@@ -100,32 +112,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				timePoints = value;
 				DictionaryUtil.Add(QueryParameters, "timePoints", value);
-			}
-		}
-
-		public int? RetentionDays
-		{
-			get
-			{
-				return retentionDays;
-			}
-			set	
-			{
-				retentionDays = value;
-				DictionaryUtil.Add(QueryParameters, "retentionDays", value.ToString());
-			}
-		}
-
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
 			}
 		}
 
@@ -142,6 +128,45 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public bool? EnableCrossRegionCopy
+		{
+			get
+			{
+				return enableCrossRegionCopy;
+			}
+			set	
+			{
+				enableCrossRegionCopy = value;
+				DictionaryUtil.Add(QueryParameters, "EnableCrossRegionCopy", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
 		public string AutoSnapshotPolicyName
 		{
 			get
@@ -152,6 +177,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				autoSnapshotPolicyName = value;
 				DictionaryUtil.Add(QueryParameters, "autoSnapshotPolicyName", value);
+			}
+		}
+
+		public int? RetentionDays
+		{
+			get
+			{
+				return retentionDays;
+			}
+			set	
+			{
+				retentionDays = value;
+				DictionaryUtil.Add(QueryParameters, "retentionDays", value.ToString());
+			}
+		}
+
+		public string TargetCopyRegions
+		{
+			get
+			{
+				return targetCopyRegions;
+			}
+			set	
+			{
+				targetCopyRegions = value;
+				DictionaryUtil.Add(QueryParameters, "TargetCopyRegions", value);
 			}
 		}
 

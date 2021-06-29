@@ -17,6 +17,7 @@
  * under the License.
  */
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -32,57 +33,37 @@ namespace Aliyun.Acs.Ess.Model.V20140828
         public ModifyScalingConfigurationRequest()
             : base("Ess", "2014-08-28", "ModifyScalingConfiguration", "ess", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string imageId;
-
-		private int? memory;
-
-		private string ioOptimized;
-
-		private List<string> instanceTypes;
-
-		private int? internetMaxBandwidthOut;
-
-		private string securityGroupId;
+		private string hpcClusterId;
 
 		private string keyPairName;
 
-		private List<SpotPriceLimit> spotPriceLimits;
-
-		private string systemDiskCategory;
-
-		private string accessKeyId;
-
-		private string userData;
+		private List<SpotPriceLimit> spotPriceLimits = new List<SpotPriceLimit>(){ };
 
 		private string resourceGroupId;
 
+		private string privatePoolOptionsMatchCriteria;
+
 		private string hostName;
 
-		private bool? passwordInherit;
+		private string instanceDescription;
 
-		private string imageName;
+		private string systemDiskAutoSnapshotPolicyId;
 
-		private string action;
+		private string privatePoolOptionsId;
 
-		private bool? _override;
-
-		private string deploymentSetId;
-
-		private string resourceOwnerAccount;
-
-		private string ownerAccount;
+		private int? ipv6AddressCount;
 
 		private int? cpu;
 
-		private string systemDiskDiskName;
-
-		private string ramRoleName;
-
 		private long? ownerId;
-
-		private List<DataDisk> dataDisks;
 
 		private string scalingConfigurationName;
 
@@ -94,93 +75,74 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 		private string instanceName;
 
+		private string internetChargeType;
+
+		private string zoneId;
+
+		private string affinity;
+
+		private string imageId;
+
+		private int? memory;
+
+		private string ioOptimized;
+
+		private List<string> instanceTypess = new List<string>(){ };
+
+		private int? internetMaxBandwidthOut;
+
+		private string securityGroupId;
+
+		private string systemDiskCategory;
+
+		private string userData;
+
+		private bool? passwordInherit;
+
+		private string imageName;
+
+		private bool? _override;
+
+		private Dictionary<object,object> schedulerOptions;
+
+		private string deploymentSetId;
+
+		private string resourceOwnerAccount;
+
+		private string ownerAccount;
+
+		private string tenancy;
+
+		private string systemDiskDiskName;
+
+		private string ramRoleName;
+
+		private string dedicatedHostId;
+
+		private string creditSpecification;
+
+		private List<string> securityGroupIdss = new List<string>(){ };
+
+		private List<DataDisk> dataDisks = new List<DataDisk>(){ };
+
 		private int? loadBalancerWeight;
 
 		private int? systemDiskSize;
 
-		private string internetChargeType;
+		private string imageFamily;
 
 		private string systemDiskDescription;
 
-		public string ImageId
+		public string HpcClusterId
 		{
 			get
 			{
-				return imageId;
+				return hpcClusterId;
 			}
 			set	
 			{
-				imageId = value;
-				DictionaryUtil.Add(QueryParameters, "ImageId", value);
-			}
-		}
-
-		public int? Memory
-		{
-			get
-			{
-				return memory;
-			}
-			set	
-			{
-				memory = value;
-				DictionaryUtil.Add(QueryParameters, "Memory", value.ToString());
-			}
-		}
-
-		public string IoOptimized
-		{
-			get
-			{
-				return ioOptimized;
-			}
-			set	
-			{
-				ioOptimized = value;
-				DictionaryUtil.Add(QueryParameters, "IoOptimized", value);
-			}
-		}
-
-		public List<string> InstanceTypes
-		{
-			get
-			{
-				return instanceTypes;
-			}
-
-			set
-			{
-				instanceTypes = value;
-				for (int i = 0; i < instanceTypes.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"InstanceTypes." + (i + 1) , instanceTypes[i]);
-				}
-			}
-		}
-
-		public int? InternetMaxBandwidthOut
-		{
-			get
-			{
-				return internetMaxBandwidthOut;
-			}
-			set	
-			{
-				internetMaxBandwidthOut = value;
-				DictionaryUtil.Add(QueryParameters, "InternetMaxBandwidthOut", value.ToString());
-			}
-		}
-
-		public string SecurityGroupId
-		{
-			get
-			{
-				return securityGroupId;
-			}
-			set	
-			{
-				securityGroupId = value;
-				DictionaryUtil.Add(QueryParameters, "SecurityGroupId", value);
+				hpcClusterId = value;
+				DictionaryUtil.Add(QueryParameters, "HpcClusterId", value);
 			}
 		}
 
@@ -215,45 +177,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string SystemDiskCategory
-		{
-			get
-			{
-				return systemDiskCategory;
-			}
-			set	
-			{
-				systemDiskCategory = value;
-				DictionaryUtil.Add(QueryParameters, "SystemDisk.Category", value);
-			}
-		}
-
-		public string AccessKeyId
-		{
-			get
-			{
-				return accessKeyId;
-			}
-			set	
-			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
-			}
-		}
-
-		public string UserData
-		{
-			get
-			{
-				return userData;
-			}
-			set	
-			{
-				userData = value;
-				DictionaryUtil.Add(QueryParameters, "UserData", value);
-			}
-		}
-
 		public string ResourceGroupId
 		{
 			get
@@ -264,6 +187,19 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				resourceGroupId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceGroupId", value);
+			}
+		}
+
+		public string PrivatePoolOptionsMatchCriteria
+		{
+			get
+			{
+				return privatePoolOptionsMatchCriteria;
+			}
+			set	
+			{
+				privatePoolOptionsMatchCriteria = value;
+				DictionaryUtil.Add(QueryParameters, "PrivatePoolOptions.MatchCriteria", value);
 			}
 		}
 
@@ -280,94 +216,55 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public bool? PasswordInherit
+		public string InstanceDescription
 		{
 			get
 			{
-				return passwordInherit;
+				return instanceDescription;
 			}
 			set	
 			{
-				passwordInherit = value;
-				DictionaryUtil.Add(QueryParameters, "PasswordInherit", value.ToString());
+				instanceDescription = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceDescription", value);
 			}
 		}
 
-		public string ImageName
+		public string SystemDiskAutoSnapshotPolicyId
 		{
 			get
 			{
-				return imageName;
+				return systemDiskAutoSnapshotPolicyId;
 			}
 			set	
 			{
-				imageName = value;
-				DictionaryUtil.Add(QueryParameters, "ImageName", value);
+				systemDiskAutoSnapshotPolicyId = value;
+				DictionaryUtil.Add(QueryParameters, "SystemDisk.AutoSnapshotPolicyId", value);
 			}
 		}
 
-		public string Action
+		public string PrivatePoolOptionsId
 		{
 			get
 			{
-				return action;
+				return privatePoolOptionsId;
 			}
 			set	
 			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
+				privatePoolOptionsId = value;
+				DictionaryUtil.Add(QueryParameters, "PrivatePoolOptions.Id", value);
 			}
 		}
 
-		public bool? _Override
+		public int? Ipv6AddressCount
 		{
 			get
 			{
-				return _override;
+				return ipv6AddressCount;
 			}
 			set	
 			{
-				_override = value;
-				DictionaryUtil.Add(QueryParameters, "Override", value.ToString());
-			}
-		}
-
-		public string DeploymentSetId
-		{
-			get
-			{
-				return deploymentSetId;
-			}
-			set	
-			{
-				deploymentSetId = value;
-				DictionaryUtil.Add(QueryParameters, "DeploymentSetId", value);
-			}
-		}
-
-		public string ResourceOwnerAccount
-		{
-			get
-			{
-				return resourceOwnerAccount;
-			}
-			set	
-			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
-			}
-		}
-
-		public string OwnerAccount
-		{
-			get
-			{
-				return ownerAccount;
-			}
-			set	
-			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+				ipv6AddressCount = value;
+				DictionaryUtil.Add(QueryParameters, "Ipv6AddressCount", value.ToString());
 			}
 		}
 
@@ -384,32 +281,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string SystemDiskDiskName
-		{
-			get
-			{
-				return systemDiskDiskName;
-			}
-			set	
-			{
-				systemDiskDiskName = value;
-				DictionaryUtil.Add(QueryParameters, "SystemDisk.DiskName", value);
-			}
-		}
-
-		public string RamRoleName
-		{
-			get
-			{
-				return ramRoleName;
-			}
-			set	
-			{
-				ramRoleName = value;
-				DictionaryUtil.Add(QueryParameters, "RamRoleName", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -420,31 +291,6 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public List<DataDisk> DataDisks
-		{
-			get
-			{
-				return dataDisks;
-			}
-
-			set
-			{
-				dataDisks = value;
-				for (int i = 0; i < dataDisks.Count; i++)
-				{
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".DiskName", dataDisks[i].DiskName);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".SnapshotId", dataDisks[i].SnapshotId);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Size", dataDisks[i].Size);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Encrypted", dataDisks[i].Encrypted);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Description", dataDisks[i].Description);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Category", dataDisks[i].Category);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".KMSKeyId", dataDisks[i].KMSKeyId);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Device", dataDisks[i].Device);
-					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".DeleteWithInstance", dataDisks[i].DeleteWithInstance);
-				}
 			}
 		}
 
@@ -513,6 +359,352 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
+		public string InternetChargeType
+		{
+			get
+			{
+				return internetChargeType;
+			}
+			set	
+			{
+				internetChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
+			}
+		}
+
+		public string ZoneId
+		{
+			get
+			{
+				return zoneId;
+			}
+			set	
+			{
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
+			}
+		}
+
+		public string Affinity
+		{
+			get
+			{
+				return affinity;
+			}
+			set	
+			{
+				affinity = value;
+				DictionaryUtil.Add(QueryParameters, "Affinity", value);
+			}
+		}
+
+		public string ImageId
+		{
+			get
+			{
+				return imageId;
+			}
+			set	
+			{
+				imageId = value;
+				DictionaryUtil.Add(QueryParameters, "ImageId", value);
+			}
+		}
+
+		public int? Memory
+		{
+			get
+			{
+				return memory;
+			}
+			set	
+			{
+				memory = value;
+				DictionaryUtil.Add(QueryParameters, "Memory", value.ToString());
+			}
+		}
+
+		public string IoOptimized
+		{
+			get
+			{
+				return ioOptimized;
+			}
+			set	
+			{
+				ioOptimized = value;
+				DictionaryUtil.Add(QueryParameters, "IoOptimized", value);
+			}
+		}
+
+		public List<string> InstanceTypess
+		{
+			get
+			{
+				return instanceTypess;
+			}
+
+			set
+			{
+				instanceTypess = value;
+				for (int i = 0; i < instanceTypess.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"InstanceTypes." + (i + 1) , instanceTypess[i]);
+				}
+			}
+		}
+
+		public int? InternetMaxBandwidthOut
+		{
+			get
+			{
+				return internetMaxBandwidthOut;
+			}
+			set	
+			{
+				internetMaxBandwidthOut = value;
+				DictionaryUtil.Add(QueryParameters, "InternetMaxBandwidthOut", value.ToString());
+			}
+		}
+
+		public string SecurityGroupId
+		{
+			get
+			{
+				return securityGroupId;
+			}
+			set	
+			{
+				securityGroupId = value;
+				DictionaryUtil.Add(QueryParameters, "SecurityGroupId", value);
+			}
+		}
+
+		public string SystemDiskCategory
+		{
+			get
+			{
+				return systemDiskCategory;
+			}
+			set	
+			{
+				systemDiskCategory = value;
+				DictionaryUtil.Add(QueryParameters, "SystemDisk.Category", value);
+			}
+		}
+
+		public string UserData
+		{
+			get
+			{
+				return userData;
+			}
+			set	
+			{
+				userData = value;
+				DictionaryUtil.Add(QueryParameters, "UserData", value);
+			}
+		}
+
+		public bool? PasswordInherit
+		{
+			get
+			{
+				return passwordInherit;
+			}
+			set	
+			{
+				passwordInherit = value;
+				DictionaryUtil.Add(QueryParameters, "PasswordInherit", value.ToString());
+			}
+		}
+
+		public string ImageName
+		{
+			get
+			{
+				return imageName;
+			}
+			set	
+			{
+				imageName = value;
+				DictionaryUtil.Add(QueryParameters, "ImageName", value);
+			}
+		}
+
+		public bool? _Override
+		{
+			get
+			{
+				return _override;
+			}
+			set	
+			{
+				_override = value;
+				DictionaryUtil.Add(QueryParameters, "Override", value.ToString());
+			}
+		}
+
+		public Dictionary<object,object> SchedulerOptions
+		{
+			get
+			{
+				return schedulerOptions;
+			}
+			set	
+			{
+				schedulerOptions = value;
+				DictionaryUtil.Add(QueryParameters, "SchedulerOptions", JsonConvert.SerializeObject(value));
+			}
+		}
+
+		public string DeploymentSetId
+		{
+			get
+			{
+				return deploymentSetId;
+			}
+			set	
+			{
+				deploymentSetId = value;
+				DictionaryUtil.Add(QueryParameters, "DeploymentSetId", value);
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public string Tenancy
+		{
+			get
+			{
+				return tenancy;
+			}
+			set	
+			{
+				tenancy = value;
+				DictionaryUtil.Add(QueryParameters, "Tenancy", value);
+			}
+		}
+
+		public string SystemDiskDiskName
+		{
+			get
+			{
+				return systemDiskDiskName;
+			}
+			set	
+			{
+				systemDiskDiskName = value;
+				DictionaryUtil.Add(QueryParameters, "SystemDisk.DiskName", value);
+			}
+		}
+
+		public string RamRoleName
+		{
+			get
+			{
+				return ramRoleName;
+			}
+			set	
+			{
+				ramRoleName = value;
+				DictionaryUtil.Add(QueryParameters, "RamRoleName", value);
+			}
+		}
+
+		public string DedicatedHostId
+		{
+			get
+			{
+				return dedicatedHostId;
+			}
+			set	
+			{
+				dedicatedHostId = value;
+				DictionaryUtil.Add(QueryParameters, "DedicatedHostId", value);
+			}
+		}
+
+		public string CreditSpecification
+		{
+			get
+			{
+				return creditSpecification;
+			}
+			set	
+			{
+				creditSpecification = value;
+				DictionaryUtil.Add(QueryParameters, "CreditSpecification", value);
+			}
+		}
+
+		public List<string> SecurityGroupIdss
+		{
+			get
+			{
+				return securityGroupIdss;
+			}
+
+			set
+			{
+				securityGroupIdss = value;
+				for (int i = 0; i < securityGroupIdss.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"SecurityGroupIds." + (i + 1) , securityGroupIdss[i]);
+				}
+			}
+		}
+
+		public List<DataDisk> DataDisks
+		{
+			get
+			{
+				return dataDisks;
+			}
+
+			set
+			{
+				dataDisks = value;
+				for (int i = 0; i < dataDisks.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".DiskName", dataDisks[i].DiskName);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".SnapshotId", dataDisks[i].SnapshotId);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Size", dataDisks[i].Size);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Encrypted", dataDisks[i].Encrypted);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".AutoSnapshotPolicyId", dataDisks[i].AutoSnapshotPolicyId);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Description", dataDisks[i].Description);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Category", dataDisks[i].Category);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".KMSKeyId", dataDisks[i].KMSKeyId);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".Device", dataDisks[i].Device);
+					DictionaryUtil.Add(QueryParameters,"DataDisk." + (i + 1) + ".DeleteWithInstance", dataDisks[i].DeleteWithInstance);
+				}
+			}
+		}
+
 		public int? LoadBalancerWeight
 		{
 			get
@@ -539,16 +731,16 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 			}
 		}
 
-		public string InternetChargeType
+		public string ImageFamily
 		{
 			get
 			{
-				return internetChargeType;
+				return imageFamily;
 			}
 			set	
 			{
-				internetChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
+				imageFamily = value;
+				DictionaryUtil.Add(QueryParameters, "ImageFamily", value);
 			}
 		}
 
@@ -608,6 +800,8 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 
 			private string encrypted;
 
+			private string autoSnapshotPolicyId;
+
 			private string description;
 
 			private string category;
@@ -663,6 +857,18 @@ namespace Aliyun.Acs.Ess.Model.V20140828
 				set	
 				{
 					encrypted = value;
+				}
+			}
+
+			public string AutoSnapshotPolicyId
+			{
+				get
+				{
+					return autoSnapshotPolicyId;
+				}
+				set	
+				{
+					autoSnapshotPolicyId = value;
 				}
 			}
 

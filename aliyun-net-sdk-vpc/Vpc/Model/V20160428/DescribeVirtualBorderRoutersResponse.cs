@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core;
 
 namespace Aliyun.Acs.Vpc.Model.V20160428
 {
@@ -136,6 +137,28 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 			private string name;
 
 			private string description;
+
+			private string pConnVbrExpireTime;
+
+			private string eccId;
+
+			private string type;
+
+			private long? minTxInterval;
+
+			private long? minRxInterval;
+
+			private long? detectMultiplier;
+
+			private string localIpv6GatewayIp;
+
+			private string peerIpv6GatewayIp;
+
+			private string peeringIpv6SubnetMask;
+
+			private bool? enableIpv6;
+
+			private string cloudBoxInstanceId;
 
 			private List<DescribeVirtualBorderRouters_AssociatedPhysicalConnection> associatedPhysicalConnections;
 
@@ -381,6 +404,138 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				}
 			}
 
+			public string PConnVbrExpireTime
+			{
+				get
+				{
+					return pConnVbrExpireTime;
+				}
+				set	
+				{
+					pConnVbrExpireTime = value;
+				}
+			}
+
+			public string EccId
+			{
+				get
+				{
+					return eccId;
+				}
+				set	
+				{
+					eccId = value;
+				}
+			}
+
+			public string Type
+			{
+				get
+				{
+					return type;
+				}
+				set	
+				{
+					type = value;
+				}
+			}
+
+			public long? MinTxInterval
+			{
+				get
+				{
+					return minTxInterval;
+				}
+				set	
+				{
+					minTxInterval = value;
+				}
+			}
+
+			public long? MinRxInterval
+			{
+				get
+				{
+					return minRxInterval;
+				}
+				set	
+				{
+					minRxInterval = value;
+				}
+			}
+
+			public long? DetectMultiplier
+			{
+				get
+				{
+					return detectMultiplier;
+				}
+				set	
+				{
+					detectMultiplier = value;
+				}
+			}
+
+			public string LocalIpv6GatewayIp
+			{
+				get
+				{
+					return localIpv6GatewayIp;
+				}
+				set	
+				{
+					localIpv6GatewayIp = value;
+				}
+			}
+
+			public string PeerIpv6GatewayIp
+			{
+				get
+				{
+					return peerIpv6GatewayIp;
+				}
+				set	
+				{
+					peerIpv6GatewayIp = value;
+				}
+			}
+
+			public string PeeringIpv6SubnetMask
+			{
+				get
+				{
+					return peeringIpv6SubnetMask;
+				}
+				set	
+				{
+					peeringIpv6SubnetMask = value;
+				}
+			}
+
+			public bool? EnableIpv6
+			{
+				get
+				{
+					return enableIpv6;
+				}
+				set	
+				{
+					enableIpv6 = value;
+				}
+			}
+
+			public string CloudBoxInstanceId
+			{
+				get
+				{
+					return cloudBoxInstanceId;
+				}
+				set	
+				{
+					cloudBoxInstanceId = value;
+				}
+			}
+
 			public List<DescribeVirtualBorderRouters_AssociatedPhysicalConnection> AssociatedPhysicalConnections
 			{
 				get
@@ -427,6 +582,16 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 				private string physicalConnectionOwnerUid;
 
 				private string vlanId;
+
+				private string localIpv6GatewayIp;
+
+				private string peerIpv6GatewayIp;
+
+				private string peeringIpv6SubnetMask;
+
+				private string status;
+
+				private bool? enableIpv6;
 
 				public string CircuitCode
 				{
@@ -545,6 +710,66 @@ namespace Aliyun.Acs.Vpc.Model.V20160428
 					set	
 					{
 						vlanId = value;
+					}
+				}
+
+				public string LocalIpv6GatewayIp
+				{
+					get
+					{
+						return localIpv6GatewayIp;
+					}
+					set	
+					{
+						localIpv6GatewayIp = value;
+					}
+				}
+
+				public string PeerIpv6GatewayIp
+				{
+					get
+					{
+						return peerIpv6GatewayIp;
+					}
+					set	
+					{
+						peerIpv6GatewayIp = value;
+					}
+				}
+
+				public string PeeringIpv6SubnetMask
+				{
+					get
+					{
+						return peeringIpv6SubnetMask;
+					}
+					set	
+					{
+						peeringIpv6SubnetMask = value;
+					}
+				}
+
+				public string Status
+				{
+					get
+					{
+						return status;
+					}
+					set	
+					{
+						status = value;
+					}
+				}
+
+				public bool? EnableIpv6
+				{
+					get
+					{
+						return enableIpv6;
+					}
+					set	
+					{
+						enableIpv6 = value;
 					}
 				}
 			}

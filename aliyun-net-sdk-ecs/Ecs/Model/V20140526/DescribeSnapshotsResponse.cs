@@ -33,6 +33,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 		private int? pageSize;
 
+		private string nextToken;
+
 		private List<DescribeSnapshots_Snapshot> snapshots;
 
 		public string RequestId
@@ -83,6 +85,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
+		public string NextToken
+		{
+			get
+			{
+				return nextToken;
+			}
+			set	
+			{
+				nextToken = value;
+			}
+		}
+
 		public List<DescribeSnapshots_Snapshot> Snapshots
 		{
 			get
@@ -99,6 +113,8 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 		{
 
 			private string snapshotId;
+
+			private string snapshotSN;
 
 			private string snapshotName;
 
@@ -134,6 +150,14 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string kMSKeyId;
 
+			private string category;
+
+			private string snapshotType;
+
+			private bool? instantAccess;
+
+			private int? instantAccessRetentionDays;
+
 			private List<DescribeSnapshots_Tag> tags;
 
 			public string SnapshotId
@@ -145,6 +169,18 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					snapshotId = value;
+				}
+			}
+
+			public string SnapshotSN
+			{
+				get
+				{
+					return snapshotSN;
+				}
+				set	
+				{
+					snapshotSN = value;
 				}
 			}
 
@@ -349,6 +385,54 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					kMSKeyId = value;
+				}
+			}
+
+			public string Category
+			{
+				get
+				{
+					return category;
+				}
+				set	
+				{
+					category = value;
+				}
+			}
+
+			public string SnapshotType
+			{
+				get
+				{
+					return snapshotType;
+				}
+				set	
+				{
+					snapshotType = value;
+				}
+			}
+
+			public bool? InstantAccess
+			{
+				get
+				{
+					return instantAccess;
+				}
+				set	
+				{
+					instantAccess = value;
+				}
+			}
+
+			public int? InstantAccessRetentionDays
+			{
+				get
+				{
+					return instantAccessRetentionDays;
+				}
+				set	
+				{
+					instantAccessRetentionDays = value;
 				}
 			}
 

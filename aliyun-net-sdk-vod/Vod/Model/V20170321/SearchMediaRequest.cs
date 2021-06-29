@@ -32,25 +32,31 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public SearchMediaRequest()
             : base("vod", "2017-03-21", "SearchMedia", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string sessionId;
+
+		private string scrollToken;
+
+		private string searchType;
+
+		private int? pageSize;
 
 		private string resourceOwnerAccount;
 
 		private string match;
 
-		private string sessionId;
-
 		private long? ownerId;
 
-		private string scrollToken;
-
 		private int? pageNo;
-
-		private string searchType;
-
-		private int? pageSize;
 
 		private string sortBy;
 
@@ -66,6 +72,58 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string SessionId
+		{
+			get
+			{
+				return sessionId;
+			}
+			set	
+			{
+				sessionId = value;
+				DictionaryUtil.Add(QueryParameters, "SessionId", value);
+			}
+		}
+
+		public string ScrollToken
+		{
+			get
+			{
+				return scrollToken;
+			}
+			set	
+			{
+				scrollToken = value;
+				DictionaryUtil.Add(QueryParameters, "ScrollToken", value);
+			}
+		}
+
+		public string SearchType
+		{
+			get
+			{
+				return searchType;
+			}
+			set	
+			{
+				searchType = value;
+				DictionaryUtil.Add(QueryParameters, "SearchType", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 
@@ -95,19 +153,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string SessionId
-		{
-			get
-			{
-				return sessionId;
-			}
-			set	
-			{
-				sessionId = value;
-				DictionaryUtil.Add(QueryParameters, "SessionId", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -121,19 +166,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string ScrollToken
-		{
-			get
-			{
-				return scrollToken;
-			}
-			set	
-			{
-				scrollToken = value;
-				DictionaryUtil.Add(QueryParameters, "ScrollToken", value);
-			}
-		}
-
 		public int? PageNo
 		{
 			get
@@ -144,32 +176,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				pageNo = value;
 				DictionaryUtil.Add(QueryParameters, "PageNo", value.ToString());
-			}
-		}
-
-		public string SearchType
-		{
-			get
-			{
-				return searchType;
-			}
-			set	
-			{
-				searchType = value;
-				DictionaryUtil.Add(QueryParameters, "SearchType", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

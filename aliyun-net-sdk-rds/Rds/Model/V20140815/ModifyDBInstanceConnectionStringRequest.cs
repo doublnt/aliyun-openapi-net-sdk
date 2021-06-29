@@ -32,23 +32,29 @@ namespace Aliyun.Acs.Rds.Model.V20140815
         public ModifyDBInstanceConnectionStringRequest()
             : base("Rds", "2014-08-15", "ModifyDBInstanceConnectionString", "rds", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Rds.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
 		private string connectionStringPrefix;
 
+		private string dBInstanceId;
+
 		private string resourceOwnerAccount;
 
-		private string port;
-
 		private string ownerAccount;
-
-		private string dBInstanceId;
 
 		private long? ownerId;
 
 		private string currentConnectionString;
+
+		private string port;
 
 		public long? ResourceOwnerId
 		{
@@ -76,6 +82,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
+		public string DBInstanceId
+		{
+			get
+			{
+				return dBInstanceId;
+			}
+			set	
+			{
+				dBInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
+			}
+		}
+
 		public string ResourceOwnerAccount
 		{
 			get
@@ -89,19 +108,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			}
 		}
 
-		public string Port
-		{
-			get
-			{
-				return port;
-			}
-			set	
-			{
-				port = value;
-				DictionaryUtil.Add(QueryParameters, "Port", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -112,19 +118,6 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				ownerAccount = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string DBInstanceId
-		{
-			get
-			{
-				return dBInstanceId;
-			}
-			set	
-			{
-				dBInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "DBInstanceId", value);
 			}
 		}
 
@@ -151,6 +144,19 @@ namespace Aliyun.Acs.Rds.Model.V20140815
 			{
 				currentConnectionString = value;
 				DictionaryUtil.Add(QueryParameters, "CurrentConnectionString", value);
+			}
+		}
+
+		public string Port
+		{
+			get
+			{
+				return port;
+			}
+			set	
+			{
+				port = value;
+				DictionaryUtil.Add(QueryParameters, "Port", value);
 			}
 		}
 

@@ -43,6 +43,14 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 
 		private string blockRemain;
 
+		private string regexQuota;
+
+		private string regexRemain;
+
+		private string preloadEdgeQuota;
+
+		private string preloadEdgeRemain;
+
 		public string RequestId
 		{
 			get
@@ -148,6 +156,54 @@ namespace Aliyun.Acs.Cdn.Model.V20180510
 			set	
 			{
 				blockRemain = value;
+			}
+		}
+
+		public string RegexQuota
+		{
+			get
+			{
+				return regexQuota;
+			}
+			set	
+			{
+				regexQuota = value;
+			}
+		}
+
+		public string RegexRemain
+		{
+			get
+			{
+				return regexRemain;
+			}
+			set	
+			{
+				regexRemain = value;
+			}
+		}
+
+		public string PreloadEdgeQuota
+		{
+			get
+			{
+				return preloadEdgeQuota;
+			}
+			set	
+			{
+				preloadEdgeQuota = value;
+			}
+		}
+
+		public string PreloadEdgeRemain
+		{
+			get
+			{
+				return preloadEdgeRemain;
+			}
+			set	
+			{
+				preloadEdgeRemain = value;
 			}
 		}
 	}

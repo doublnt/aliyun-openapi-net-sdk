@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,29 +32,51 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public DescribeRecommendInstanceTypeRequest()
             : base("Ecs", "2014-05-26", "DescribeRecommendInstanceType", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
 
-		private string resourceOwnerAccount;
+		private float? memory;
 
-		private string ownerAccount;
-
-		private string channel;
+		private string ioOptimized;
 
 		private string networkType;
 
-		private long? ownerId;
-
-		private string _operator;
-
-		private string token;
-
 		private string scene;
+
+		private int? cores;
+
+		private string systemDiskCategory;
 
 		private string instanceType;
 
-		private string proxyId;
+		private string instanceChargeType;
+
+		private float? maxPrice;
+
+		private string resourceOwnerAccount;
+
+		private string zoneMatchMode;
+
+		private string ownerAccount;
+
+		private List<string> instanceTypeFamilys = new List<string>(){ };
+
+		private long? ownerId;
+
+		private string spotStrategy;
+
+		private string priorityStrategy;
+
+		private string instanceFamilyLevel;
+
+		private string zoneId;
 
 		public long? ResourceOwnerId
 		{
@@ -70,42 +91,29 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ResourceOwnerAccount
+		public float? Memory
 		{
 			get
 			{
-				return resourceOwnerAccount;
+				return memory;
 			}
 			set	
 			{
-				resourceOwnerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+				memory = value;
+				DictionaryUtil.Add(QueryParameters, "Memory", value.ToString());
 			}
 		}
 
-		public string OwnerAccount
+		public string IoOptimized
 		{
 			get
 			{
-				return ownerAccount;
+				return ioOptimized;
 			}
 			set	
 			{
-				ownerAccount = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
-			}
-		}
-
-		public string Channel
-		{
-			get
-			{
-				return channel;
-			}
-			set	
-			{
-				channel = value;
-				DictionaryUtil.Add(QueryParameters, "channel", value);
+				ioOptimized = value;
+				DictionaryUtil.Add(QueryParameters, "IoOptimized", value);
 			}
 		}
 
@@ -122,45 +130,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public long? OwnerId
-		{
-			get
-			{
-				return ownerId;
-			}
-			set	
-			{
-				ownerId = value;
-				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string _Operator
-		{
-			get
-			{
-				return _operator;
-			}
-			set	
-			{
-				_operator = value;
-				DictionaryUtil.Add(QueryParameters, "operator", value);
-			}
-		}
-
-		public string Token
-		{
-			get
-			{
-				return token;
-			}
-			set	
-			{
-				token = value;
-				DictionaryUtil.Add(QueryParameters, "token", value);
-			}
-		}
-
 		public string Scene
 		{
 			get
@@ -171,6 +140,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				scene = value;
 				DictionaryUtil.Add(QueryParameters, "Scene", value);
+			}
+		}
+
+		public int? Cores
+		{
+			get
+			{
+				return cores;
+			}
+			set	
+			{
+				cores = value;
+				DictionaryUtil.Add(QueryParameters, "Cores", value.ToString());
+			}
+		}
+
+		public string SystemDiskCategory
+		{
+			get
+			{
+				return systemDiskCategory;
+			}
+			set	
+			{
+				systemDiskCategory = value;
+				DictionaryUtil.Add(QueryParameters, "SystemDiskCategory", value);
 			}
 		}
 
@@ -187,16 +182,150 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ProxyId
+		public string InstanceChargeType
 		{
 			get
 			{
-				return proxyId;
+				return instanceChargeType;
 			}
 			set	
 			{
-				proxyId = value;
-				DictionaryUtil.Add(QueryParameters, "proxyId", value);
+				instanceChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceChargeType", value);
+			}
+		}
+
+		public float? MaxPrice
+		{
+			get
+			{
+				return maxPrice;
+			}
+			set	
+			{
+				maxPrice = value;
+				DictionaryUtil.Add(QueryParameters, "MaxPrice", value.ToString());
+			}
+		}
+
+		public string ResourceOwnerAccount
+		{
+			get
+			{
+				return resourceOwnerAccount;
+			}
+			set	
+			{
+				resourceOwnerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "ResourceOwnerAccount", value);
+			}
+		}
+
+		public string ZoneMatchMode
+		{
+			get
+			{
+				return zoneMatchMode;
+			}
+			set	
+			{
+				zoneMatchMode = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneMatchMode", value);
+			}
+		}
+
+		public string OwnerAccount
+		{
+			get
+			{
+				return ownerAccount;
+			}
+			set	
+			{
+				ownerAccount = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerAccount", value);
+			}
+		}
+
+		public List<string> InstanceTypeFamilys
+		{
+			get
+			{
+				return instanceTypeFamilys;
+			}
+
+			set
+			{
+				instanceTypeFamilys = value;
+				for (int i = 0; i < instanceTypeFamilys.Count; i++)
+				{
+					DictionaryUtil.Add(QueryParameters,"InstanceTypeFamily." + (i + 1) , instanceTypeFamilys[i]);
+				}
+			}
+		}
+
+		public long? OwnerId
+		{
+			get
+			{
+				return ownerId;
+			}
+			set	
+			{
+				ownerId = value;
+				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string SpotStrategy
+		{
+			get
+			{
+				return spotStrategy;
+			}
+			set	
+			{
+				spotStrategy = value;
+				DictionaryUtil.Add(QueryParameters, "SpotStrategy", value);
+			}
+		}
+
+		public string PriorityStrategy
+		{
+			get
+			{
+				return priorityStrategy;
+			}
+			set	
+			{
+				priorityStrategy = value;
+				DictionaryUtil.Add(QueryParameters, "PriorityStrategy", value);
+			}
+		}
+
+		public string InstanceFamilyLevel
+		{
+			get
+			{
+				return instanceFamilyLevel;
+			}
+			set	
+			{
+				instanceFamilyLevel = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceFamilyLevel", value);
+			}
+		}
+
+		public string ZoneId
+		{
+			get
+			{
+				return zoneId;
+			}
+			set	
+			{
+				zoneId = value;
+				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
 			}
 		}
 

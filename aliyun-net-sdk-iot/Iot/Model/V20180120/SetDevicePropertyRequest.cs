@@ -32,15 +32,21 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public SetDevicePropertyRequest()
             : base("Iot", "2018-01-20", "SetDeviceProperty", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotId;
 
 		private string iotInstanceId;
 
-		private string deviceName;
-
 		private string productKey;
+
+		private string deviceName;
 
 		private string items;
 
@@ -70,19 +76,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
-		{
-			get
-			{
-				return deviceName;
-			}
-			set	
-			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
 		public string ProductKey
 		{
 			get
@@ -93,6 +86,19 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productKey = value;
 				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public string DeviceName
+		{
+			get
+			{
+				return deviceName;
+			}
+			set	
+			{
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

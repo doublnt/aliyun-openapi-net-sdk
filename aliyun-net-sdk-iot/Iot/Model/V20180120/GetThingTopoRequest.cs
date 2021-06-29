@@ -32,19 +32,25 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public GetThingTopoRequest()
             : base("Iot", "2018-01-20", "GetThingTopo", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string iotId;
-
-		private int? pageNo;
 
 		private string iotInstanceId;
 
 		private int? pageSize;
 
-		private string deviceName;
-
 		private string productKey;
+
+		private int? pageNo;
+
+		private string deviceName;
 
 		public string IotId
 		{
@@ -56,19 +62,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				iotId = value;
 				DictionaryUtil.Add(QueryParameters, "IotId", value);
-			}
-		}
-
-		public int? PageNo
-		{
-			get
-			{
-				return pageNo;
-			}
-			set	
-			{
-				pageNo = value;
-				DictionaryUtil.Add(QueryParameters, "PageNo", value.ToString());
 			}
 		}
 
@@ -98,19 +91,6 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
-		{
-			get
-			{
-				return deviceName;
-			}
-			set	
-			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
-			}
-		}
-
 		public string ProductKey
 		{
 			get
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productKey = value;
 				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public int? PageNo
+		{
+			get
+			{
+				return pageNo;
+			}
+			set	
+			{
+				pageNo = value;
+				DictionaryUtil.Add(QueryParameters, "PageNo", value.ToString());
+			}
+		}
+
+		public string DeviceName
+		{
+			get
+			{
+				return deviceName;
+			}
+			set	
+			{
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

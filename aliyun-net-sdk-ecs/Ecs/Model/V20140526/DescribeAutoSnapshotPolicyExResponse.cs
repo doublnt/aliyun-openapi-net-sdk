@@ -118,6 +118,14 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 
 			private string status;
 
+			private bool? enableCrossRegionCopy;
+
+			private string targetCopyRegions;
+
+			private int? copiedSnapshotsRetentionDays;
+
+			private List<DescribeAutoSnapshotPolicyEx_Tag> tags;
+
 			public string AutoSnapshotPolicyId
 			{
 				get
@@ -235,6 +243,86 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 				set	
 				{
 					status = value;
+				}
+			}
+
+			public bool? EnableCrossRegionCopy
+			{
+				get
+				{
+					return enableCrossRegionCopy;
+				}
+				set	
+				{
+					enableCrossRegionCopy = value;
+				}
+			}
+
+			public string TargetCopyRegions
+			{
+				get
+				{
+					return targetCopyRegions;
+				}
+				set	
+				{
+					targetCopyRegions = value;
+				}
+			}
+
+			public int? CopiedSnapshotsRetentionDays
+			{
+				get
+				{
+					return copiedSnapshotsRetentionDays;
+				}
+				set	
+				{
+					copiedSnapshotsRetentionDays = value;
+				}
+			}
+
+			public List<DescribeAutoSnapshotPolicyEx_Tag> Tags
+			{
+				get
+				{
+					return tags;
+				}
+				set	
+				{
+					tags = value;
+				}
+			}
+
+			public class DescribeAutoSnapshotPolicyEx_Tag
+			{
+
+				private string tagKey;
+
+				private string tagValue;
+
+				public string TagKey
+				{
+					get
+					{
+						return tagKey;
+					}
+					set	
+					{
+						tagKey = value;
+					}
+				}
+
+				public string TagValue
+				{
+					get
+					{
+						return tagValue;
+					}
+					set	
+					{
+						tagValue = value;
+					}
 				}
 			}
 		}

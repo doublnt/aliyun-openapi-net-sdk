@@ -17,7 +17,6 @@
  * under the License.
  */
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
@@ -33,38 +32,31 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
         public AllocateEipAddressRequest()
             : base("Ecs", "2014-05-26", "AllocateEipAddress", "ecs", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Ecs.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private long? activityId;
-
 		private long? resourceOwnerId;
+
+		private string clientToken;
+
+		private string iSP;
 
 		private string resourceOwnerAccount;
 
 		private string bandwidth;
 
-		private string clientToken;
-
-		private string internetChargeType;
-
-		private string iSP;
-
 		private string ownerAccount;
 
 		private long? ownerId;
 
-		public long? ActivityId
-		{
-			get
-			{
-				return activityId;
-			}
-			set	
-			{
-				activityId = value;
-				DictionaryUtil.Add(QueryParameters, "ActivityId", value.ToString());
-			}
-		}
+		private long? activityId;
+
+		private string internetChargeType;
 
 		public long? ResourceOwnerId
 		{
@@ -76,6 +68,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string ClientToken
+		{
+			get
+			{
+				return clientToken;
+			}
+			set	
+			{
+				clientToken = value;
+				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
+			}
+		}
+
+		public string ISP
+		{
+			get
+			{
+				return iSP;
+			}
+			set	
+			{
+				iSP = value;
+				DictionaryUtil.Add(QueryParameters, "ISP", value);
 			}
 		}
 
@@ -105,45 +123,6 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			}
 		}
 
-		public string ClientToken
-		{
-			get
-			{
-				return clientToken;
-			}
-			set	
-			{
-				clientToken = value;
-				DictionaryUtil.Add(QueryParameters, "ClientToken", value);
-			}
-		}
-
-		public string InternetChargeType
-		{
-			get
-			{
-				return internetChargeType;
-			}
-			set	
-			{
-				internetChargeType = value;
-				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
-			}
-		}
-
-		public string ISP
-		{
-			get
-			{
-				return iSP;
-			}
-			set	
-			{
-				iSP = value;
-				DictionaryUtil.Add(QueryParameters, "ISP", value);
-			}
-		}
-
 		public string OwnerAccount
 		{
 			get
@@ -167,6 +146,32 @@ namespace Aliyun.Acs.Ecs.Model.V20140526
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public long? ActivityId
+		{
+			get
+			{
+				return activityId;
+			}
+			set	
+			{
+				activityId = value;
+				DictionaryUtil.Add(QueryParameters, "ActivityId", value.ToString());
+			}
+		}
+
+		public string InternetChargeType
+		{
+			get
+			{
+				return internetChargeType;
+			}
+			set	
+			{
+				internetChargeType = value;
+				DictionaryUtil.Add(QueryParameters, "InternetChargeType", value);
 			}
 		}
 

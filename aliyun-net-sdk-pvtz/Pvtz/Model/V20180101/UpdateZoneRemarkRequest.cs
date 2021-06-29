@@ -32,15 +32,33 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
         public UpdateZoneRemarkRequest()
             : base("pvtz", "2018-01-01", "UpdateZoneRemark", "pvtz", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
         }
+
+		private string remark;
 
 		private string userClientIp;
 
 		private string zoneId;
 
-		private string remark;
-
 		private string lang;
+
+		public string Remark
+		{
+			get
+			{
+				return remark;
+			}
+			set	
+			{
+				remark = value;
+				DictionaryUtil.Add(QueryParameters, "Remark", value);
+			}
+		}
 
 		public string UserClientIp
 		{
@@ -65,19 +83,6 @@ namespace Aliyun.Acs.pvtz.Model.V20180101
 			{
 				zoneId = value;
 				DictionaryUtil.Add(QueryParameters, "ZoneId", value);
-			}
-		}
-
-		public string Remark
-		{
-			get
-			{
-				return remark;
-			}
-			set	
-			{
-				remark = value;
-				DictionaryUtil.Add(QueryParameters, "Remark", value);
 			}
 		}
 

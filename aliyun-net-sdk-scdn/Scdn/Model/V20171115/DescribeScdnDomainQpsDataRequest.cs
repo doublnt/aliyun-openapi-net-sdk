@@ -16,21 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.scdn;
 using Aliyun.Acs.scdn.Transform;
 using Aliyun.Acs.scdn.Transform.V20171115;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.scdn.Model.V20171115
 {
     public class DescribeScdnDomainQpsDataRequest : RpcAcsRequest<DescribeScdnDomainQpsDataResponse>
     {
         public DescribeScdnDomainQpsDataRequest()
-            : base("scdn", "2017-11-15", "DescribeScdnDomainQpsData", "scdn", "openAPI")
+            : base("scdn", "2017-11-15", "DescribeScdnDomainQpsData")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.scdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private string locationNameEn;
@@ -38,8 +46,6 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 		private string startTime;
 
 		private string ispNameEn;
-
-		private string action;
 
 		private string domainName;
 
@@ -85,19 +91,6 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			{
 				ispNameEn = value;
 				DictionaryUtil.Add(QueryParameters, "IspNameEn", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
 			}
 		}
 
@@ -153,7 +146,7 @@ namespace Aliyun.Acs.scdn.Model.V20171115
 			}
 		}
 
-        public override DescribeScdnDomainQpsDataResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override DescribeScdnDomainQpsDataResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return DescribeScdnDomainQpsDataResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

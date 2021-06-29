@@ -32,9 +32,25 @@ namespace Aliyun.Acs.vod.Model.V20170321
         public ListLiveRecordVideoRequest()
             : base("vod", "2017-03-21", "ListLiveRecordVideo", "vod", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
 		private long? resourceOwnerId;
+
+		private string startTime;
+
+		private string appName;
+
+		private int? pageSize;
+
+		private string streamName;
+
+		private string queryType;
 
 		private string resourceOwnerAccount;
 
@@ -42,21 +58,11 @@ namespace Aliyun.Acs.vod.Model.V20170321
 
 		private string endTime;
 
-		private string startTime;
-
 		private long? ownerId;
-
-		private string appName;
 
 		private int? pageNo;
 
-		private int? pageSize;
-
 		private string sortBy;
-
-		private string streamName;
-
-		private string queryType;
 
 		public long? ResourceOwnerId
 		{
@@ -68,6 +74,71 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				resourceOwnerId = value;
 				DictionaryUtil.Add(QueryParameters, "ResourceOwnerId", value.ToString());
+			}
+		}
+
+		public string StartTime
+		{
+			get
+			{
+				return startTime;
+			}
+			set	
+			{
+				startTime = value;
+				DictionaryUtil.Add(QueryParameters, "StartTime", value);
+			}
+		}
+
+		public string AppName
+		{
+			get
+			{
+				return appName;
+			}
+			set	
+			{
+				appName = value;
+				DictionaryUtil.Add(QueryParameters, "AppName", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
+			}
+		}
+
+		public string StreamName
+		{
+			get
+			{
+				return streamName;
+			}
+			set	
+			{
+				streamName = value;
+				DictionaryUtil.Add(QueryParameters, "StreamName", value);
+			}
+		}
+
+		public string QueryType
+		{
+			get
+			{
+				return queryType;
+			}
+			set	
+			{
+				queryType = value;
+				DictionaryUtil.Add(QueryParameters, "QueryType", value);
 			}
 		}
 
@@ -110,19 +181,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public string StartTime
-		{
-			get
-			{
-				return startTime;
-			}
-			set	
-			{
-				startTime = value;
-				DictionaryUtil.Add(QueryParameters, "StartTime", value);
-			}
-		}
-
 		public long? OwnerId
 		{
 			get
@@ -133,19 +191,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
-			}
-		}
-
-		public string AppName
-		{
-			get
-			{
-				return appName;
-			}
-			set	
-			{
-				appName = value;
-				DictionaryUtil.Add(QueryParameters, "AppName", value);
 			}
 		}
 
@@ -162,19 +207,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			}
 		}
 
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
-
 		public string SortBy
 		{
 			get
@@ -185,32 +217,6 @@ namespace Aliyun.Acs.vod.Model.V20170321
 			{
 				sortBy = value;
 				DictionaryUtil.Add(QueryParameters, "SortBy", value);
-			}
-		}
-
-		public string StreamName
-		{
-			get
-			{
-				return streamName;
-			}
-			set	
-			{
-				streamName = value;
-				DictionaryUtil.Add(QueryParameters, "StreamName", value);
-			}
-		}
-
-		public string QueryType
-		{
-			get
-			{
-				return queryType;
-			}
-			set	
-			{
-				queryType = value;
-				DictionaryUtil.Add(QueryParameters, "QueryType", value);
 			}
 		}
 

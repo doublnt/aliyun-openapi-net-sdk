@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.Cdn;
 using Aliyun.Acs.Cdn.Transform;
 using Aliyun.Acs.Cdn.Transform.V20141111;
 
@@ -32,9 +33,15 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
         public ModifyCdnDomainRequest()
             : base("Cdn", "2014-11-11", "ModifyCdnDomain")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Cdn.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
 
-		private string topLevelDomain;
+		private string sources;
 
 		private int? sourcePort;
 
@@ -42,28 +49,26 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 
 		private string priorities;
 
-		private string sources;
-
 		private string securityToken;
-
-		private string domainName;
-
-		private string action;
 
 		private string sourceType;
 
+		private string topLevelDomain;
+
+		private string domainName;
+
 		private long? ownerId;
 
-		public string TopLevelDomain
+		public string Sources
 		{
 			get
 			{
-				return topLevelDomain;
+				return sources;
 			}
 			set	
 			{
-				topLevelDomain = value;
-				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+				sources = value;
+				DictionaryUtil.Add(QueryParameters, "Sources", value);
 			}
 		}
 
@@ -106,19 +111,6 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			}
 		}
 
-		public string Sources
-		{
-			get
-			{
-				return sources;
-			}
-			set	
-			{
-				sources = value;
-				DictionaryUtil.Add(QueryParameters, "Sources", value);
-			}
-		}
-
 		public string SecurityToken
 		{
 			get
@@ -132,32 +124,6 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			}
 		}
 
-		public string DomainName
-		{
-			get
-			{
-				return domainName;
-			}
-			set	
-			{
-				domainName = value;
-				DictionaryUtil.Add(QueryParameters, "DomainName", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
-
 		public string SourceType
 		{
 			get
@@ -168,6 +134,32 @@ namespace Aliyun.Acs.Cdn.Model.V20141111
 			{
 				sourceType = value;
 				DictionaryUtil.Add(QueryParameters, "SourceType", value);
+			}
+		}
+
+		public string TopLevelDomain
+		{
+			get
+			{
+				return topLevelDomain;
+			}
+			set	
+			{
+				topLevelDomain = value;
+				DictionaryUtil.Add(QueryParameters, "TopLevelDomain", value);
+			}
+		}
+
+		public string DomainName
+		{
+			get
+			{
+				return domainName;
+			}
+			set	
+			{
+				domainName = value;
+				DictionaryUtil.Add(QueryParameters, "DomainName", value);
 			}
 		}
 

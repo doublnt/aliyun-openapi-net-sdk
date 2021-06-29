@@ -1,3 +1,33 @@
+2020-09-02 Version: 3.13.5
+- Supported AndroidNotificationHuaweiChannel for Push and MassPush.
+
+2020-09-02 Version: 3.13.4
+- Supported AndroidNotificationHuaweiChannel for Push and MassPush.
+
+2020-06-11 Version: 3.13.3
+- Supported AndroidNotificationVivoChannel for Push and MassPush.
+
+2020-05-28 Version: 3.13.2
+- Supported AndroidNotificationXiaomiChannel for Push and MassPush.
+
+2020-04-23 Version: 3.13.1
+- Fixed bugs for MassPush API.
+
+2020-04-23 Version: 3.13.1
+- Fixed bugs for MassPush API.
+
+2019-11-28 Version 3.13.1 
+- Supported Newtonsoft_Json bigger than 12_0_2.
+
+2019-10-25 Version 3.13.0
+- Supported query push records.
+
+2019-10-14 Version 3.12.0
+- Support continuous pushing.
+
+2019-10-08 Version 3.11.0
+- Supported API MassPush for Push Message or Notice.
+
 2019-03-11 Version: 3.10.1
 1, Update aliyun-java-sdk-core version.
 

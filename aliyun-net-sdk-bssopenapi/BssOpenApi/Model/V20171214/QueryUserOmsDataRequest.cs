@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.BssOpenApi;
 using Aliyun.Acs.BssOpenApi.Transform;
 using Aliyun.Acs.BssOpenApi.Transform.V20171214;
 
@@ -32,13 +33,13 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
         public QueryUserOmsDataRequest()
             : base("BssOpenApi", "2017-12-14", "QueryUserOmsData")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.BssOpenApi.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string dataType;
-
-		private string marker;
-
-		private int? pageSize;
 
 		private string endTime;
 
@@ -46,46 +47,13 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 
 		private long? ownerId;
 
+		private string dataType;
+
+		private string marker;
+
+		private int? pageSize;
+
 		private string table;
-
-		public string DataType
-		{
-			get
-			{
-				return dataType;
-			}
-			set	
-			{
-				dataType = value;
-				DictionaryUtil.Add(QueryParameters, "DataType", value);
-			}
-		}
-
-		public string Marker
-		{
-			get
-			{
-				return marker;
-			}
-			set	
-			{
-				marker = value;
-				DictionaryUtil.Add(QueryParameters, "Marker", value);
-			}
-		}
-
-		public int? PageSize
-		{
-			get
-			{
-				return pageSize;
-			}
-			set	
-			{
-				pageSize = value;
-				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
-			}
-		}
 
 		public string EndTime
 		{
@@ -123,6 +91,45 @@ namespace Aliyun.Acs.BssOpenApi.Model.V20171214
 			{
 				ownerId = value;
 				DictionaryUtil.Add(QueryParameters, "OwnerId", value.ToString());
+			}
+		}
+
+		public string DataType
+		{
+			get
+			{
+				return dataType;
+			}
+			set	
+			{
+				dataType = value;
+				DictionaryUtil.Add(QueryParameters, "DataType", value);
+			}
+		}
+
+		public string Marker
+		{
+			get
+			{
+				return marker;
+			}
+			set	
+			{
+				marker = value;
+				DictionaryUtil.Add(QueryParameters, "Marker", value);
+			}
+		}
+
+		public int? PageSize
+		{
+			get
+			{
+				return pageSize;
+			}
+			set	
+			{
+				pageSize = value;
+				DictionaryUtil.Add(QueryParameters, "PageSize", value.ToString());
 			}
 		}
 

@@ -16,32 +16,36 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
 using Aliyun.Acs.dms_enterprise.Transform;
 using Aliyun.Acs.dms_enterprise.Transform.V20181101;
-using System.Collections.Generic;
 
 namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 {
     public class RegisterInstanceRequest : RpcAcsRequest<RegisterInstanceResponse>
     {
         public RegisterInstanceRequest()
-            : base("dms_enterprise", "2018-11-01", "RegisterInstance", "dmsenterprise", "openAPI")
+            : base("dms-enterprise", "2018-11-01", "RegisterInstance", "dms-enterprise", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.dms_enterprise.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string ecsInstanceId;
 
 		private string ecsRegion;
 
-		private int? exportTimeout;
+		private int? ddlOnline;
 
-		private string databasePassword;
-
-		private string instanceAlias;
+		private int? useDsql;
 
 		private string networkType;
 
@@ -49,11 +53,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 
 		private string sid;
 
-		private string databaseUser;
-
-		private int? port;
-
-		private string vpcId;
+		private string dataLinkName;
 
 		private string instanceSource;
 
@@ -65,23 +65,27 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 
 		private int? queryTimeout;
 
+		private string ecsInstanceId;
+
+		private int? exportTimeout;
+
+		private string databasePassword;
+
+		private string instanceAlias;
+
+		private string databaseUser;
+
+		private int? port;
+
+		private string vpcId;
+
 		private long? dbaUid;
+
+		private bool? skipTest;
 
 		private string safeRule;
 
-		public string EcsInstanceId
-		{
-			get
-			{
-				return ecsInstanceId;
-			}
-			set	
-			{
-				ecsInstanceId = value;
-				DictionaryUtil.Add(QueryParameters, "EcsInstanceId", value);
-			}
-		}
-
+		[JsonProperty(PropertyName = "EcsRegion")]
 		public string EcsRegion
 		{
 			get
@@ -95,45 +99,35 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-		public int? ExportTimeout
+		[JsonProperty(PropertyName = "DdlOnline")]
+		public int? DdlOnline
 		{
 			get
 			{
-				return exportTimeout;
+				return ddlOnline;
 			}
 			set	
 			{
-				exportTimeout = value;
-				DictionaryUtil.Add(QueryParameters, "ExportTimeout", value.ToString());
+				ddlOnline = value;
+				DictionaryUtil.Add(QueryParameters, "DdlOnline", value.ToString());
 			}
 		}
 
-		public string DatabasePassword
+		[JsonProperty(PropertyName = "UseDsql")]
+		public int? UseDsql
 		{
 			get
 			{
-				return databasePassword;
+				return useDsql;
 			}
 			set	
 			{
-				databasePassword = value;
-				DictionaryUtil.Add(QueryParameters, "DatabasePassword", value);
+				useDsql = value;
+				DictionaryUtil.Add(QueryParameters, "UseDsql", value.ToString());
 			}
 		}
 
-		public string InstanceAlias
-		{
-			get
-			{
-				return instanceAlias;
-			}
-			set	
-			{
-				instanceAlias = value;
-				DictionaryUtil.Add(QueryParameters, "InstanceAlias", value);
-			}
-		}
-
+		[JsonProperty(PropertyName = "NetworkType")]
 		public string NetworkType
 		{
 			get
@@ -147,6 +141,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "Tid")]
 		public long? Tid
 		{
 			get
@@ -160,6 +155,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "Sid")]
 		public string Sid
 		{
 			get
@@ -173,45 +169,21 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-		public string DatabaseUser
+		[JsonProperty(PropertyName = "DataLinkName")]
+		public string DataLinkName
 		{
 			get
 			{
-				return databaseUser;
+				return dataLinkName;
 			}
 			set	
 			{
-				databaseUser = value;
-				DictionaryUtil.Add(QueryParameters, "DatabaseUser", value);
+				dataLinkName = value;
+				DictionaryUtil.Add(QueryParameters, "DataLinkName", value);
 			}
 		}
 
-		public int? Port
-		{
-			get
-			{
-				return port;
-			}
-			set	
-			{
-				port = value;
-				DictionaryUtil.Add(QueryParameters, "Port", value.ToString());
-			}
-		}
-
-		public string VpcId
-		{
-			get
-			{
-				return vpcId;
-			}
-			set	
-			{
-				vpcId = value;
-				DictionaryUtil.Add(QueryParameters, "VpcId", value);
-			}
-		}
-
+		[JsonProperty(PropertyName = "InstanceSource")]
 		public string InstanceSource
 		{
 			get
@@ -225,6 +197,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "EnvType")]
 		public string EnvType
 		{
 			get
@@ -238,6 +211,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "Host")]
 		public string Host
 		{
 			get
@@ -251,6 +225,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "InstanceType")]
 		public string InstanceType
 		{
 			get
@@ -264,6 +239,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "QueryTimeout")]
 		public int? QueryTimeout
 		{
 			get
@@ -277,6 +253,105 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "EcsInstanceId")]
+		public string EcsInstanceId
+		{
+			get
+			{
+				return ecsInstanceId;
+			}
+			set	
+			{
+				ecsInstanceId = value;
+				DictionaryUtil.Add(QueryParameters, "EcsInstanceId", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "ExportTimeout")]
+		public int? ExportTimeout
+		{
+			get
+			{
+				return exportTimeout;
+			}
+			set	
+			{
+				exportTimeout = value;
+				DictionaryUtil.Add(QueryParameters, "ExportTimeout", value.ToString());
+			}
+		}
+
+		[JsonProperty(PropertyName = "DatabasePassword")]
+		public string DatabasePassword
+		{
+			get
+			{
+				return databasePassword;
+			}
+			set	
+			{
+				databasePassword = value;
+				DictionaryUtil.Add(QueryParameters, "DatabasePassword", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "InstanceAlias")]
+		public string InstanceAlias
+		{
+			get
+			{
+				return instanceAlias;
+			}
+			set	
+			{
+				instanceAlias = value;
+				DictionaryUtil.Add(QueryParameters, "InstanceAlias", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "DatabaseUser")]
+		public string DatabaseUser
+		{
+			get
+			{
+				return databaseUser;
+			}
+			set	
+			{
+				databaseUser = value;
+				DictionaryUtil.Add(QueryParameters, "DatabaseUser", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "Port")]
+		public int? Port
+		{
+			get
+			{
+				return port;
+			}
+			set	
+			{
+				port = value;
+				DictionaryUtil.Add(QueryParameters, "Port", value.ToString());
+			}
+		}
+
+		[JsonProperty(PropertyName = "VpcId")]
+		public string VpcId
+		{
+			get
+			{
+				return vpcId;
+			}
+			set	
+			{
+				vpcId = value;
+				DictionaryUtil.Add(QueryParameters, "VpcId", value);
+			}
+		}
+
+		[JsonProperty(PropertyName = "DbaUid")]
 		public long? DbaUid
 		{
 			get
@@ -290,6 +365,21 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
+		[JsonProperty(PropertyName = "SkipTest")]
+		public bool? SkipTest
+		{
+			get
+			{
+				return skipTest;
+			}
+			set	
+			{
+				skipTest = value;
+				DictionaryUtil.Add(QueryParameters, "SkipTest", value.ToString());
+			}
+		}
+
+		[JsonProperty(PropertyName = "SafeRule")]
 		public string SafeRule
 		{
 			get
@@ -303,7 +393,7 @@ namespace Aliyun.Acs.dms_enterprise.Model.V20181101
 			}
 		}
 
-        public override RegisterInstanceResponse GetResponse(Core.Transform.UnmarshallerContext unmarshallerContext)
+        public override RegisterInstanceResponse GetResponse(UnmarshallerContext unmarshallerContext)
         {
             return RegisterInstanceResponseUnmarshaller.Unmarshall(unmarshallerContext);
         }

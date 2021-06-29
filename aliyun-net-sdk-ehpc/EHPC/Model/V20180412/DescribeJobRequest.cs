@@ -22,6 +22,7 @@ using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Transform;
 using Aliyun.Acs.Core.Utils;
+using Aliyun.Acs.EHPC;
 using Aliyun.Acs.EHPC.Transform;
 using Aliyun.Acs.EHPC.Transform.V20180412;
 
@@ -30,43 +31,18 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
     public class DescribeJobRequest : RpcAcsRequest<DescribeJobResponse>
     {
         public DescribeJobRequest()
-            : base("EHPC", "2018-04-12", "DescribeJob", "ehs", "openAPI")
+            : base("EHPC", "2018-04-12", "DescribeJob")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.EHPC.Endpoint.endpointRegionalType, null);
+            }
         }
-
-		private string jobId;
-
-		private string action;
 
 		private string clusterId;
 
-		private string accessKeyId;
-
-		public string JobId
-		{
-			get
-			{
-				return jobId;
-			}
-			set	
-			{
-				jobId = value;
-				DictionaryUtil.Add(QueryParameters, "JobId", value);
-			}
-		}
-
-		public string Action
-		{
-			get
-			{
-				return action;
-			}
-			set	
-			{
-				action = value;
-				DictionaryUtil.Add(QueryParameters, "Action", value);
-			}
-		}
+		private string jobId;
 
 		public string ClusterId
 		{
@@ -81,16 +57,16 @@ namespace Aliyun.Acs.EHPC.Model.V20180412
 			}
 		}
 
-		public string AccessKeyId
+		public string JobId
 		{
 			get
 			{
-				return accessKeyId;
+				return jobId;
 			}
 			set	
 			{
-				accessKeyId = value;
-				DictionaryUtil.Add(QueryParameters, "AccessKeyId", value);
+				jobId = value;
+				DictionaryUtil.Add(QueryParameters, "JobId", value);
 			}
 		}
 

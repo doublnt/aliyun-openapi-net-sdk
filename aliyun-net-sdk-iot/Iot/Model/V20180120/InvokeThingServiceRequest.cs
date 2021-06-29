@@ -32,45 +32,25 @@ namespace Aliyun.Acs.Iot.Model.V20180120
         public InvokeThingServiceRequest()
             : base("Iot", "2018-01-20", "InvokeThingService", "iot", "openAPI")
         {
+            if (this.GetType().GetProperty("ProductEndpointMap") != null && this.GetType().GetProperty("ProductEndpointType") != null)
+            {
+                this.GetType().GetProperty("ProductEndpointMap").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointMap, null);
+                this.GetType().GetProperty("ProductEndpointType").SetValue(this, Aliyun.Acs.Iot.Endpoint.endpointRegionalType, null);
+            }
+			Method = MethodType.POST;
         }
-
-		private string args;
-
-		private string identifier;
 
 		private string iotId;
 
 		private string iotInstanceId;
 
-		private string deviceName;
+		private string identifier;
 
 		private string productKey;
 
-		public string Args
-		{
-			get
-			{
-				return args;
-			}
-			set	
-			{
-				args = value;
-				DictionaryUtil.Add(QueryParameters, "Args", value);
-			}
-		}
+		private string args;
 
-		public string Identifier
-		{
-			get
-			{
-				return identifier;
-			}
-			set	
-			{
-				identifier = value;
-				DictionaryUtil.Add(QueryParameters, "Identifier", value);
-			}
-		}
+		private string deviceName;
 
 		public string IotId
 		{
@@ -98,16 +78,16 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			}
 		}
 
-		public string DeviceName
+		public string Identifier
 		{
 			get
 			{
-				return deviceName;
+				return identifier;
 			}
 			set	
 			{
-				deviceName = value;
-				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
+				identifier = value;
+				DictionaryUtil.Add(QueryParameters, "Identifier", value);
 			}
 		}
 
@@ -121,6 +101,32 @@ namespace Aliyun.Acs.Iot.Model.V20180120
 			{
 				productKey = value;
 				DictionaryUtil.Add(QueryParameters, "ProductKey", value);
+			}
+		}
+
+		public string Args
+		{
+			get
+			{
+				return args;
+			}
+			set	
+			{
+				args = value;
+				DictionaryUtil.Add(QueryParameters, "Args", value);
+			}
+		}
+
+		public string DeviceName
+		{
+			get
+			{
+				return deviceName;
+			}
+			set	
+			{
+				deviceName = value;
+				DictionaryUtil.Add(QueryParameters, "DeviceName", value);
 			}
 		}
 

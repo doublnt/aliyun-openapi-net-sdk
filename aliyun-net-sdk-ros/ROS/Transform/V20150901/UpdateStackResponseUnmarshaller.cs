@@ -16,20 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-using Aliyun.Acs.Core.Transform;
-using Aliyun.Acs.ROS.Model.V20150901;
 using System;
 using System.Collections.Generic;
+
+using Aliyun.Acs.Core.Transform;
+using Aliyun.Acs.ROS.Model.V20150901;
 
 namespace Aliyun.Acs.ROS.Transform.V20150901
 {
     public class UpdateStackResponseUnmarshaller
     {
-        public static UpdateStackResponse Unmarshall(UnmarshallerContext context)
+        public static UpdateStackResponse Unmarshall(UnmarshallerContext _ctx)
         {
 			UpdateStackResponse updateStackResponse = new UpdateStackResponse();
 
-			updateStackResponse.HttpResponse = context.HttpResponse;
+			updateStackResponse.HttpResponse = _ctx.HttpResponse;
         
 			return updateStackResponse;
         }
